@@ -47,6 +47,14 @@ These will be implemented:
 * authentication using google, facebook.
 * If time permits, we will convert the project to a react native project and use expo for development purposes. At the end, we could have a cross platform app and a website!!
 
-Definitely doable with a small team of developers.
+### Developers
+* [Mark Zarutin](https://github.com/m4rker11)
+* [Demir Atacan](https://github.com/HuseyinAtacanDemir)
+* [Julie Pirro](No link yet)
+* [Matthew Apuya](https://github.com/mapuya19)
+* [Kaan Karakas](https://github.com/KocKaan)
 
-### What Are You Waiting For? JOIN THE TEAM NOW!!
+#### If you are iterested in contributing please read [Contributing.md](https://github.com/software-students-fall2021/project-setup-gotnotes/blob/master/CONTRIBUTING.md)
+
+### Instructions for building go here
+
