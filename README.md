@@ -49,7 +49,7 @@ These will be implemented:
 
 ### Developers
 * [Mark Zarutin](https://github.com/m4rker11)
-* [Demir Atacan](https://github.com/HuseyinAtacanDemir)
+* [H. Atacan Demir](https://github.com/HuseyinAtacanDemir)
 * [Julie Pirro](https://github.com/jap871)
 * [Matthew Apuya](https://github.com/mapuya19)
 * [Kaan Karakas](https://github.com/KocKaan)
