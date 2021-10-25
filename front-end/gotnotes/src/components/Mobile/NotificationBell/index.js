@@ -14,7 +14,7 @@ export const NotificationBell = ({props}) => {
     mockUserData.filter((user) => 
     (user.userID === currentUserID)
     )[0].userSubscribed.includes(itemID) ? setIsActive(1) : setIsActive(0);
-    
+    //checking if the current user has subscribed to this class
     
     //TODO create a middleware that adds the item to Subscribed lsit of the User
     //upon clicking on the bell
