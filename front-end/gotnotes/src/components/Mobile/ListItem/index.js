@@ -7,7 +7,7 @@ export const ListItem = ({props}) => {
 
     //TODO in the future we will fetch these data from the api, for now we use mock data
     //with a similar format to the actual api that we will design
-    const {itemID, itemName, itemLogoPath, itemType} = props; 
+    const {itemID, itemName, itemLogoPath, itemType, enrolledStudents, courseCount, likeCount, commentCount, dislikeCount} = props; 
 
     //TODO we will refactor this so that logic will be seperate from the components
     //TODO we will create another function that actually takes the User to the proper page after click
@@ -17,7 +17,9 @@ export const ListItem = ({props}) => {
 
     return (
         <div className="list-item" onClick={() => navigationHandler(itemID)}>
-            <img className="list-item-logo" src={itemLogoPath} alt="" />
+            {itemType === "uni" && <img className="list-item-logo" src={itemLogoPath} alt="" />}
+            {itemType === "file" && <img className="list-item-logo" src={`./fileLogos/${props.fileType}.png`} alt="" />}
+            
             <p className="list-item-name">{itemName}</p>
             {/*this is how you do comments inreactjs btw*/ }
             {/*
@@ -29,9 +31,9 @@ export const ListItem = ({props}) => {
             
             */ }
             <div className="info">
-                {itemType === "uni" && <p># of courses</p>}
-                {itemType === "class" && <div><p># of subscribers</p><NotificationBell props={{itemID}}/></div>}
-                {itemType === "file" && <p># of like download comment</p>}
+                {itemType === "uni" && <p>{courseCount}</p>}
+                {itemType === "class" && <div><p>{enrolledStudents}</p><NotificationBell props={{itemID}}/></div>}
+                {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p> }
             </div>
             
         </div>
