@@ -20,20 +20,20 @@ function App() {
 
       <p>List Items for Universities</p>
 
-      {mockUniData.map(({ itemID, itemName, itemLogoPath, itemType }) => (
-        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType }} />
+      {mockUniData.map(({ itemID, itemName, itemLogoPath, itemType, courseCount }) => (
+        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, courseCount }} />
       ))}
 
       <p>List Items for Courses</p>
 
-      {mockClassData.map(({ itemID, itemName, itemLogoPath, itemType }) => (
-        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType }} />
+      {mockClassData.map(({ itemID, itemName, itemLogoPath, itemType, enrolledStudents }) => (
+        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, enrolledStudents }} />
       ))}
 
       <p>List Items for Files</p>
 
-      {mockFileData.map(({ itemID, itemName, itemLogoPath, itemType }) => (
-        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType }} />
+      {mockFileData.map(({ itemID, itemName, itemLogoPath, itemType, fileType, likeCount, commentCount, dislikeCount }) => (
+        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, fileType, likeCount, commentCount, dislikeCount }} />
       ))}
 
 
