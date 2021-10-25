@@ -71,9 +71,17 @@ export const mockFileData = [
 ]
 
 export const mockUserData = [
-    
+    {
+        userID: 1,
+        userName: "GotNotes",
+        userSubscribed: [
+            1,
+        ]
+    }
+
 ]
 
+export const currentUserID = 1
 
 
 
