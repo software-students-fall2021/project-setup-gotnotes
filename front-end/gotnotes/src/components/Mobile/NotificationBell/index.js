@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import './styles.scss'
 
@@ -8,12 +8,21 @@ import {NotificationsActiveOutlined, NotificationsNoneOutlined} from "@mui/icons
 
 export const NotificationBell = ({props}) => {
 
+    //TODO gotta refactor this logic out to a helper function later
+
     const [isActive, setIsActive] = useState(0);
     const {itemID} = props
 
-    mockUserData.filter((user) => 
-    (user.userID === currentUserID)
-    )[0].userSubscribed.includes(itemID) ? setIsActive(1) : setIsActive(0);
+    useEffect(() => {
+
+        mockUserData.filter((user) => 
+            (user.userID === currentUserID)
+        )[0]
+        .userSubscribed.includes(itemID) ? setIsActive(1) : setIsActive(0);
+        
+    }, [itemID])
+
+    
     //checking if the current user has subscribed to this class
     
     //TODO create a middleware that adds the item to Subscribed lsit of the User
