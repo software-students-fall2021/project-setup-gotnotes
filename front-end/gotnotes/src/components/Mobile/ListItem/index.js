@@ -19,6 +19,15 @@ export const ListItem = ({props}) => {
         <div className="list-item" onClick={() => navigationHandler(itemID)}>
             <img className="list-item-logo" src={itemLogoPath} alt="" />
             <p className="list-item-name">{itemName}</p>
+            {/*this is how you do comments inreactjs btw*/ }
+            {/*
+                So the code below, the part in the curly braces, means that if the itemType prop
+                inherited from the parent calling this component is equal to "class",
+                then we know that we are dealing with a list of classes, so we should enable the 
+                notification bell functionality
+
+            
+            */ }
             {itemType === "class" && <NotificationBell props={{itemID}}/>}
         </div>
     )
