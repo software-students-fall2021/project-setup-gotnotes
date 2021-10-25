@@ -28,7 +28,12 @@ export const ListItem = ({props}) => {
 
             
             */ }
-            {itemType === "class" && <NotificationBell props={{itemID}}/>}
+            <div className="info">
+                {itemType === "uni" && <p># of courses</p>}
+                {itemType === "class" && <div><p># of subscribers</p><NotificationBell props={{itemID}}/></div>}
+                {itemType === "file" && <p># of like download comment</p>}
+            </div>
+            
         </div>
     )
 }
