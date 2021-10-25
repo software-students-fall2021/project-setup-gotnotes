@@ -17,7 +17,8 @@ export const ListItem = ({props}) => {
 
     return (
         <div className="list-item" onClick={() => navigationHandler(itemID)}>
-            <img className="list-item-logo" src={itemLogoPath} alt="" />
+            {itemType === "uni" && <img className="list-item-logo" src={itemLogoPath} alt="" />}
+            
             <p className="list-item-name">{itemName}</p>
             {/*this is how you do comments inreactjs btw*/ }
             {/*
