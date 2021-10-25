@@ -1,10 +1,18 @@
 import logo from './assets/logo.svg';
-import './styles/App.css';
+import { ListItem } from './components/Mobile/ListItem';
+import './default.scss';
+
+import {mockUniData} from './assets/mocks/mockData'
 
 
 function App() {
   return (
     <div className="App"> 
+    {mockUniData.map(({itemID, itemName, itemLogoPath, itemtype}) => (
+      <ListItem props={{}}/>
+    ))}
+    
+    
       
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
