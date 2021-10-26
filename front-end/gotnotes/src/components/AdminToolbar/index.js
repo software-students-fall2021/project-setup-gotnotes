@@ -6,9 +6,12 @@ import './styles.scss'
 import { checkUserIsAdmin } from "../../services/AdminAuthService";
 
 
-const AdminToolbar = props => {
+const AdminToolbar = ({props}) => {
 
-    const isAdmin = checkUserIsAdmin(props.currentUser);
+    const {currentUser} = props;
+
+    const isAdmin = checkUserIsAdmin(currentUser);
+    console.log(isAdmin)
 
     if(!isAdmin) return null;
     return (
