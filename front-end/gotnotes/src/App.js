@@ -23,6 +23,10 @@ import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
 import { ResetPass } from './pages/Login/ResetPass';
 
+import { Chat } from './pages/Chat';
+
+import { AddFile } from './pages/AddFile';
+
 import { Admin } from './pages/Admin'
 
 import { Account } from './pages/Account/Account';
@@ -77,6 +81,27 @@ function App() {
           render={() => (
             
               <ResetPass />
+            
+          )}
+        />
+
+
+        <Route path="/chat"
+          render={() => (
+            
+              
+                <Chat />
+              
+            
+          )}
+        /> 
+
+        <Route path="/addFile"
+          render={() => (
+            
+              
+                <AddFile />
+              
             
           )}
         />
