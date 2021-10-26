@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles.scss'
 
 //imports
 import { useLocation, useParams } from "react-router-dom";
@@ -11,7 +12,7 @@ import { ListItem } from '../../../components/Mobile/ListItem'
 
 export const Unis = () => {
     return (
-        <div>
+        <div className="unis">
 
             <p>List Items for Universities</p>
 
