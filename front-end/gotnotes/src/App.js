@@ -6,8 +6,8 @@ import {
   mockUniData,
   mockClassData,
   mockFileData,
-  currentUserID
-  //mockUserData
+  currentUserID,
+  mockUserData,
 } from './assets/mocks/mockData'
 
 //Components
@@ -37,7 +37,7 @@ function App() {
 
     <div className="App">
 
-      <AdminToolbar props={{curretnUser: currentUserID}}/>
+      <AdminToolbar props={{currentUser: mockUserData.filter(user => user.userID === currentUserID)[0]}}/>
       <Switch>        
         
         <Route exact path="/unis" render={() => (
@@ -102,24 +102,7 @@ function App() {
       </Switch>
 
 
-      <p>List Items for Universities</p>
-
-      {mockUniData.map(({ itemID, itemName, itemLogoPath, itemType, courseCount }) => (
-        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, courseCount }} />
-      ))}
-
-      <p>List Items for Courses</p>
-
-      {mockClassData.map(({ itemID, itemName, itemLogoPath, itemType, enrolledStudents }) => (
-        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, enrolledStudents }} />
-      ))}
-
-      <p>List Items for Files</p>
-
-      {mockFileData.map(({ itemID, itemName, itemLogoPath, itemType, fileType, likeCount, commentCount, dislikeCount }) => (
-        <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, fileType, likeCount, commentCount, dislikeCount }} />
-      ))}
-
+      
 
     </div>
   );
