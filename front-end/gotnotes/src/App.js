@@ -23,7 +23,7 @@ import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
 import { ResetPass } from './pages/Login/ResetPass';
 
-import {Chat} from './pages/Chat/ChatSearch';
+import { ChatSearch } from './pages/Chat/ChatSearch';
 
 import { AddFile } from './pages/AddFile';
 
@@ -42,98 +42,59 @@ function App() {
 
     <div className="App">
 
-      <AdminToolbar props={{currentUser: mockUserData.filter(user => user.userID === currentUserID)[0]}}/>
-      <Switch>        
-      <Redirect exact from="/" to="unis" />
-        
+      <AdminToolbar props={{ currentUser: mockUserData.filter(user => user.userID === currentUserID)[0] }} />
+      <Switch>
+        <Redirect exact from="/" to="unis" />
+
         <Route path="/unis" render={() => (
-          
-            <Unis />
-          
+          <Unis />
         )} />
         <Route exact path="/:uniName/courses" render={() => (
-          
-            <Courses />
-          
+          <Courses />
         )} />
         <Route exact path="/:uniName/:courseName/files" render={() => (
-          
-            <Files />
-          
+          <Files />
         )} />
-        
-        
-       
 
-        <Route path="/signup"
-          render={() => (
-            
-              <SignUp />
-            
-          )}
-        />
-        <Route path="/login"
-          render={() => (
-            
-              <Login />
-            
-          )}
-        />
-        <Route path="/resetpass"
-          render={() => (
-            
-              <ResetPass />
-            
-          )}
+        <Route path="/signup" render={() => (
+          <SignUp />
+        )}
         />
 
-
-        <Route path="/chat"
-          render={() => (
-            
-              
-                <Chat />
-              
-            
-          )}
-        /> 
-
-        <Route path="/addFile"
-          render={() => (
-            
-              
-                <AddFile />
-              
-            
-          )}
+        <Route path="/login" render={() => (
+          <Login />
+        )}
         />
-       
-        <Route path="/account"
-          render={() => (
-            
-              
-                <Account />
-              
-            
-          )}
+
+        <Route path="/resetpass" render={() => (
+          <ResetPass />
+        )}
         />
-        
-        
+
+        <Route path="/chat" render={() => (
+          <ChatSearch />
+        )}
+        />
+
+        <Route path="/addFile" render={() => (
+          <AddFile />
+        )}
+        />
+
+        <Route path="/account" render={() => (
+          <Account />
+        )}
+        />
+
+
         <Route path="/admin"
           render={() => (
-            
-                <Admin />
-            
+            <Admin />
           )}
         />
       </Switch>
 
-      <BottomNav/>
-
-      
-
-
-      
+      <BottomNav />
 
     </div>
   );
