@@ -4,6 +4,8 @@ import { mockFileData } from '../../../assets/mocks/mockData'
 
 import { ListItem } from '../../../components/Mobile/ListItem'
 
+import { useLocation, useParams } from "react-router-dom";
+
 export const Files = () => {
     return (
         <div>

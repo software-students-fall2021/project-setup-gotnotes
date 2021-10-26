@@ -1,7 +1,12 @@
 import React from 'react'
+
+//imports
+import { useLocation, useParams } from "react-router-dom";
+
 //mock data
 import { mockUniData } from '../../../assets/mocks/mockData'
 
+//components
 import { ListItem } from '../../../components/Mobile/ListItem'
 
 export const Unis = () => {
