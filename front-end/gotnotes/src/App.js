@@ -1,6 +1,6 @@
 import './default.scss';
 
-import { Switch, Route/*, Redirect*/ } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import {
   mockUniData,
@@ -43,8 +43,9 @@ function App() {
 
       <AdminToolbar props={{currentUser: mockUserData.filter(user => user.userID === currentUserID)[0]}}/>
       <Switch>        
+      <Redirect exact from="/" to="unis" />
         
-        <Route exact path="/unis" render={() => (
+        <Route path="/unis" render={() => (
           
             <Unis />
           
