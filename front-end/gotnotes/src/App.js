@@ -6,6 +6,7 @@ import {
   mockUniData,
   mockClassData,
   mockFileData,
+  currentUserID
   //mockUserData
 } from './assets/mocks/mockData'
 
@@ -36,7 +37,7 @@ function App() {
 
     <div className="App">
 
-      <AdminToolbar />
+      <AdminToolbar props={{curretnUser: currentUserID}}/>
       <Switch>        
         
         <Route exact path="/unis" render={() => (
