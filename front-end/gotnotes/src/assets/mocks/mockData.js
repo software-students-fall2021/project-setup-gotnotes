@@ -90,6 +90,10 @@ export const mockUserData = [
     {
         userID: 1,
         userName: "GotNotes",
+        userRoles: [
+            "admin",
+            "user",
+        ],
         userSubscribed: [
             2,
         ]
