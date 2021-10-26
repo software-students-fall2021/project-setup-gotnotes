@@ -2,27 +2,29 @@ import React from 'react';
 import { Nav, NavItem} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+//icons
 import SearchIcon from '@mui/icons-material/Search';
-import ChatIcon from '@mui/icons-material/Chat';
-import AddIcon from '@mui/icons-material/Add';
-import PersonIcon from '@mui/icons-material/Person'; 
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 //comment
 
 const tabs = [{
-    route: "/search/unis",
+    route: "/unis",
     icon: SearchIcon,
     label: "Unis"
 },{
     route: "/chat",
-    icon: ChatIcon,
+    icon: ChatOutlinedIcon,
     label: "Chat"
 },{
     route: "/addFile",
-    icon: AddIcon,
+    icon: AddCircleOutlineOutlinedIcon,
     label: "AddFile"
 },{
     route: "/account",
-    icon: PersonIcon,
+    icon: PersonOutlineOutlinedIcon,
     label: "Account"
 }]
 
