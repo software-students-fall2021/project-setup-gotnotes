@@ -42,59 +42,59 @@ function App() {
 
     <div className="App">
 
-      <AdminToolbar props={{currentUser: mockUserData.filter(user => user.userID === currentUserID)[0]}}/>
-      <Switch>        
-      <Redirect exact from="/" to="unis" />
-        
+      <AdminToolbar props={{ currentUser: mockUserData.filter(user => user.userID === currentUserID)[0] }} />
+      <Switch>
+        <Redirect exact from="/" to="unis" />
+
         <Route path="/unis" render={() => (
-            <Unis />
+          <Unis />
         )} />
         <Route exact path="/:uniName/courses" render={() => (
-            <Courses />
+          <Courses />
         )} />
         <Route exact path="/:uniName/:courseName/files" render={() => (
-            <Files />
+          <Files />
         )} />
 
         <Route path="/signup" render={() => (
-              <SignUp />            
-          )}
+          <SignUp />
+        )}
         />
-        
+
         <Route path="/login" render={() => (
-              <Login />
-          )}
+          <Login />
+        )}
         />
 
         <Route path="/resetpass" render={() => (
-              <ResetPass />
-          )}
+          <ResetPass />
+        )}
         />
 
         <Route path="/chat" render={() => (
-                <ChatSearch />            
-          )}
-        /> 
+          <ChatSearch />
+        )}
+        />
 
         <Route path="/addFile" render={() => (
-                <AddFile />
-          )}
+          <AddFile />
+        )}
         />
-       
+
         <Route path="/account" render={() => (
-                <Account />
-          )}
+          <Account />
+        )}
         />
-        
-        
+
+
         <Route path="/admin"
           render={() => (
-                <Admin />
+            <Admin />
           )}
         />
       </Switch>
 
-      <BottomNav/>
+      <BottomNav />
 
     </div>
   );
