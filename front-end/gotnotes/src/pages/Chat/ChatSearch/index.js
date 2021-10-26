@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Account = () => {
+export const ChatSearch = () => {
     return (
         <div>
-            <p>Account</p>
+            <p>Chat Searc</p>
         </div>
     )
 }

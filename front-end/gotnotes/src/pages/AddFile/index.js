@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Account = () => {
+export const AddFile = () => {
     return (
         <div>
-            <p>Account</p>
+            AddFile
         </div>
     )
 }
