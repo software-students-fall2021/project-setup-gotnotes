@@ -23,13 +23,14 @@ import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
 import { ResetPass } from './pages/Login/ResetPass';
 
-import { Chat } from './pages/Chat';
+import {Chat} from './pages/Chat/ChatSearch';
 
 import { AddFile } from './pages/AddFile';
 
 import { Admin } from './pages/Admin'
 
 import { Account } from './pages/Account/Account';
+import BottomNav from './components/Mobile/BottomNav';
 
 
 function App() {
@@ -126,6 +127,8 @@ function App() {
           )}
         />
       </Switch>
+
+      <BottomNav/>
 
       
 
