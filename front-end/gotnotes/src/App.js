@@ -104,8 +104,8 @@ function App() {
       </Switch>
 
       <BottomNav />
-
-      <Breadcrumbs crumbs={ crumbs } selected={ selected }  />
+      <Breadcrumbs/>
+      
 
     </div>
   );
