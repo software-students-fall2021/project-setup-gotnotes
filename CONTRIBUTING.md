@@ -19,7 +19,7 @@
 
 ### Sprint cadence
 
-Sprints are 2 weeks long
+Sprints are 1 week long
 
 
 ### Daily standups
@@ -32,6 +32,13 @@ Sprints are 2 weeks long
 
 ### Coding standards
 
+
+- Fetch all remote repo data
+- Pull the latest from the main branch
+- Create your won branch and work on your code
+- Synch your changes on your own branch regularly so that other developers can see your progress through the remote repo
+- Create a PR
+- If any conflicts arise create an issue for review
 - We use VSCode and es-lint for coding and linting, we will use reactjs-code-snippets extension on vscode for react related code snippets
 - Don't over-engineer. Write minimum code to get things working end to end, only then iterate to improve. Don't divide code into react components just for the sake of using react components. Only create new components if it makes sense logically.
   - Code for each task and spike must be peer-reviewed and pass tests before merging into the `main` branch of code.
