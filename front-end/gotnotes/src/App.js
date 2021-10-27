@@ -1,6 +1,7 @@
 import './default.scss';
 
 import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useState } from 'react';
 
 import {
   mockUniData,
@@ -32,11 +33,19 @@ import { Admin } from './pages/Admin'
 import { Account } from './pages/Account/Account';
 import BottomNav from './components/Mobile/BottomNav';
 
+import Breadcrumbs from './components/Mobile/Breadcrumbs';
+
 
 function App() {
   //ANCHOR: for now we are using the mock data imported above to test our designs
   //let's focus on overall functionality of individual components, 
   //before we tie everything together and code up the app logic
+
+  const [crumbs, setCrumbs] = useState(['Unis', 'Uni', 'Class']); //"Uni" needs to be the university that they choose
+
+  const selected = crumb => {
+    console.log(crumb);
+  }
 
   return (
 
@@ -95,6 +104,8 @@ function App() {
       </Switch>
 
       <BottomNav />
+
+      <Breadcrumbs crumbs={ crumbs } selected={ selected }  />
 
     </div>
   );
