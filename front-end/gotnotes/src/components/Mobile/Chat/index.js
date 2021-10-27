@@ -11,12 +11,14 @@ chatClient.connectUser(
   {
     id: 'long-moon-4',
     name: 'long',
+    image: 'https://getstream.io/random_png/?id=long-moon-4&name=long',
   },
   userToken,
 );
 
 const channel = chatClient.channel('messaging', 'custom_channel_id', {
   // add as many custom fields as you'd like
+  image: 'https://www.drupal.org/files/project-images/react.png',
   name: 'Talk about React',
   members: ['long-moon-4'],
 });

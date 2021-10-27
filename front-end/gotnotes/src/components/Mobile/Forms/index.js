@@ -1,12 +1,12 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import "./formStyles.scss";
-import Button from "./button.js";
+
+import "./styles.scss";
+import Button from "../Button/index.js";
+import React, { useState } from 'react';
 
 const Form = ({ placeholder1, placeholder2, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const printCon = () => {
+  const printCon = () => {  
     console.log(email, pass);
   };
   onSubmit = printCon;
@@ -34,7 +34,4 @@ const Form = ({ placeholder1, placeholder2, onSubmit }) => {
   );
 };
 
-ReactDOM.render(
-  <Form placeholder1="email" placeholder2="password" />,
-  document.getElementById("root")
-);
+export default Form;
