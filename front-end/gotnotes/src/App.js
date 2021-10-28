@@ -33,6 +33,7 @@ import { Account } from './pages/Account/Account';
 import BottomNav from './components/Mobile/BottomNav';
 
 import Breadcrumbs from './components/Mobile/Breadcrumbs';
+import Search from './components/Mobile/SearchCompound/Search';
 
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
 
       <BottomNav />
       <Breadcrumbs/>
+      <Search/>
       
 
     </div>
