@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from '../../../components/Mobile/Forms'
+
 import Button from '../../../components/Mobile/Button'
 import logo from '../../../assets/GotNotes.jpg'
 import "./styles.scss"
@@ -20,11 +21,13 @@ const ForgotPassword = () =>{
 export const Login = () => {
     
     return (
+
         <div className = "whole">
             <h2 className = "login">  Login</h2>
             <img src = {logo} className="image"  />
            <Form placeholder1="Email" placeholder2="Password" />
            <Button text = "Forgot Password?" onClick = {ForgotPassword}/>
+
 
         </div>
     )

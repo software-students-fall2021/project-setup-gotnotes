@@ -14,12 +14,11 @@ import {
 //Components
 import { ListItem } from './components/Mobile/ListItem';
 import AdminToolbar from './components/AdminToolbar'
-
 //Pages
 import { Unis } from './pages/Search/Unis';
 import { Courses } from './pages/Search/Courses';
 import { Files } from './pages/Search/Files';
-
+import  ChatApp  from './pages/Chat/ChatMessages'
 import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
 import { ResetPass } from './pages/Login/ResetPass';
@@ -69,7 +68,10 @@ function App() {
           <SignUp />
         )}
         />
-
+        <Route path="/chat" render={() => (
+          <ChatApp />
+        )} 
+        />
         <Route path="/login" render={() => (
           <Login />
         )}
