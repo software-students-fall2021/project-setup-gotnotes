@@ -29,7 +29,7 @@ const Form = ({ placeholder1, placeholder2, onSubmit }) => {
           onChange={(e) => setPass(e.target.value)}
         />
       </label>
-      <Button onClick={onSubmit} />
+      <Button onClick={onSubmit} text = "Submit"/>
     </form>
   );
 };
