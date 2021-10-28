@@ -12,13 +12,14 @@ import {
 } from './assets/mocks/mockData'
 
 //Components
-import { ListItem } from './components/Mobile/ListItem';
 import AdminToolbar from './components/AdminToolbar'
+import BottomNav from './components/Mobile/BottomNav';
+
 //Pages
 import { Unis } from './pages/Search/Unis';
 import { Courses } from './pages/Search/Courses';
 import { Files } from './pages/Search/Files';
-import  ChatApp  from './pages/Chat/ChatMessages'
+import ChatApp from './pages/Chat/ChatMessages'
 import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
 import { ResetPass } from './pages/Login/ResetPass';
@@ -30,10 +31,7 @@ import { AddFile } from './pages/AddFile';
 import { Admin } from './pages/Admin'
 
 import { Account } from './pages/Account/Account';
-import BottomNav from './components/Mobile/BottomNav';
 
-import Breadcrumbs from './components/Mobile/Breadcrumbs';
-import Search from './components/Mobile/SearchHigherOrder/Search';
 
 
 function App() {
@@ -68,7 +66,7 @@ function App() {
         />
         <Route path="/chat" render={() => (
           <ChatApp />
-        )} 
+        )}
         />
         <Route path="/login" render={() => (
           <Login />
@@ -109,10 +107,10 @@ function App() {
         <Breadcrumbs/>
         <Search/>
         
-        */ 
+        */
       }
-      
-      
+
+
 
     </div>
   );

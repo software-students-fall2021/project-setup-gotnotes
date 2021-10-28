@@ -20,9 +20,6 @@ export const Unis = () => {
                 <ListItem key={itemID} props={{ itemID, itemName, itemLogoPath, itemType, courseCount }} />
             ))}
 
-
-
-
         </div>
     )
 }
