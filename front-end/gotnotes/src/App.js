@@ -4,21 +4,20 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import React, { useState } from 'react';
 
 import {
-  mockUniData,
-  mockClassData,
-  mockFileData,
   currentUserID,
   mockUserData,
 } from './assets/mocks/mockData'
 
 //Components
-import { ListItem } from './components/Mobile/ListItem';
 import AdminToolbar from './components/AdminToolbar'
+import BottomNav from './components/Mobile/BottomNav';
+
 //Pages
 import { Unis } from './pages/Search/Unis';
 import { Courses } from './pages/Search/Courses';
 import { Files } from './pages/Search/Files';
-import  ChatApp  from './pages/Chat/ChatMessages'
+import { FileDetails } from "./pages/Search/FileDetails";
+import ChatApp from './pages/Chat/ChatMessages'
 import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
 import { ResetPass } from './pages/Login/ResetPass';
@@ -30,10 +29,8 @@ import { AddFile } from './pages/AddFile';
 import { Admin } from './pages/Admin'
 
 import { Account } from './pages/Account/Account';
-import BottomNav from './components/Mobile/BottomNav';
+import { MobileLayoutSelector } from './layouts/Mobile/MobileLayoutSelector';
 
-import Breadcrumbs from './components/Mobile/Breadcrumbs';
-import Search from './components/Mobile/SearchCompound/Search';
 
 
 function App() {
@@ -43,9 +40,6 @@ function App() {
 
   const [crumbs, setCrumbs] = useState(['Unis', 'Uni', 'Class']); //"Uni" needs to be the university that they choose
 
-  const selected = crumb => {
-    console.log(crumb);
-  }
 
   return (
 
@@ -55,14 +49,18 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="unis" />
 
-        <Route path="/unis" render={() => (
-          <Unis />
+        <Route exact path="/unis" render={() => (
+          <MobileLayoutSelector Component={Unis} />
+
         )} />
-        <Route exact path="/:uniName/courses" render={() => (
-          <Courses />
+        <Route exact path="/unis/:uniName" render={() => (
+          <MobileLayoutSelector Component={Courses} />
         )} />
-        <Route exact path="/:uniName/:courseName/files" render={() => (
-          <Files />
+        <Route exact path="/unis/:uniName/:courseName" render={() => (
+          <MobileLayoutSelector Component={Files} />
+        )} />
+        <Route exact path="/unis/:uniName/:courseName/:fileName" render={() => (
+          <FileDetails />
         )} />
 
         <Route path="/signup" render={() => (
@@ -71,7 +69,7 @@ function App() {
         />
         <Route path="/chat" render={() => (
           <ChatApp />
-        )} 
+        )}
         />
         <Route path="/login" render={() => (
           <Login />
@@ -107,9 +105,15 @@ function App() {
       </Switch>
 
       <BottomNav />
-      <Breadcrumbs/>
-      <Search/>
-      
+      {
+        /*
+        <Breadcrumbs/>
+        <Search/>
+        
+        */
+      }
+
+
 
     </div>
   );
