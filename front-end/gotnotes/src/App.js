@@ -33,7 +33,7 @@ import { Account } from './pages/Account/Account';
 import BottomNav from './components/Mobile/BottomNav';
 
 import Breadcrumbs from './components/Mobile/Breadcrumbs';
-import Search from './components/Mobile/SearchCompound/Search';
+import Search from './components/Mobile/SearchHigherOrder/Search';
 
 
 function App() {
@@ -43,9 +43,6 @@ function App() {
 
   const [crumbs, setCrumbs] = useState(['Unis', 'Uni', 'Class']); //"Uni" needs to be the university that they choose
 
-  const selected = crumb => {
-    console.log(crumb);
-  }
 
   return (
 
@@ -107,8 +104,14 @@ function App() {
       </Switch>
 
       <BottomNav />
-      <Breadcrumbs/>
-      <Search/>
+      {
+        /*
+        <Breadcrumbs/>
+        <Search/>
+        
+        */ 
+      }
+      
       
 
     </div>

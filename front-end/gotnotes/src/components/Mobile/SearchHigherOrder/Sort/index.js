@@ -1,6 +1,8 @@
 import React from 'react'
 
-export const EditAccount = () => {
+import './styles.scss'
+
+export const Sort = () => {
     return (
         <div>
             
