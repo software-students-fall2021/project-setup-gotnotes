@@ -6,7 +6,6 @@ import { ListItem } from '../../../components/Mobile/ListItem'
 
 import { mockClassData } from '../../../assets/mocks/mockData'
 
-import { useLocation, useParams } from "react-router-dom";
 
 export const Courses = () => {
     return (

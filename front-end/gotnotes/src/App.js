@@ -19,6 +19,7 @@ import BottomNav from './components/Mobile/BottomNav';
 import { Unis } from './pages/Search/Unis';
 import { Courses } from './pages/Search/Courses';
 import { Files } from './pages/Search/Files';
+import { FileDetails } from "./pages/Search/FileDetails";
 import ChatApp from './pages/Chat/ChatMessages'
 import { SignUp } from './pages/Login/SignUp';
 import { Login } from './pages/Login/Login'
@@ -50,14 +51,17 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="unis" />
 
-        <Route path="/unis" render={() => (
+        <Route exact path="/unis" render={() => (
           <Unis />
         )} />
-        <Route exact path="/:uniName/courses" render={() => (
+        <Route exact path="/unis/:uniName" render={() => (
           <Courses />
         )} />
-        <Route exact path="/:uniName/:courseName/files" render={() => (
+        <Route exact path="/unis/:uniName/:courseName" render={() => (
           <Files />
+        )} />
+        <Route exact path="/unis/:uniName/:courseName/:fileName" render={() => (
+          <FileDetails />
         )} />
 
         <Route path="/signup" render={() => (
