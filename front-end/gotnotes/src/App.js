@@ -4,9 +4,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import React, { useState } from 'react';
 
 import {
-  mockUniData,
-  mockClassData,
-  mockFileData,
   currentUserID,
   mockUserData,
 } from './assets/mocks/mockData'
@@ -32,6 +29,7 @@ import { AddFile } from './pages/AddFile';
 import { Admin } from './pages/Admin'
 
 import { Account } from './pages/Account/Account';
+import { MobileLayoutSelector } from './layouts/Mobile/MobileLayoutSelector';
 
 
 
@@ -52,7 +50,8 @@ function App() {
         <Redirect exact from="/" to="unis" />
 
         <Route exact path="/unis" render={() => (
-          <Unis />
+          <MobileLayoutSelector Component={Unis} props={{}}/>
+
         )} />
         <Route exact path="/unis/:uniName" render={() => (
           <Courses />

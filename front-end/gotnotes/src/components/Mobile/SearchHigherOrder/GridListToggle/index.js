@@ -23,7 +23,7 @@ export const GridListToggle = ({ props }) => {
             </div>
 
             <div className="list-icon-container" onClick={() => changeLayout()}>
-                {currentLayout === "list" ? <ViewListOutlinedIcon /> : <ViewListIcon />}
+                {currentLayout === "list" ? <ViewListIcon /> : <ViewListOutlinedIcon /> }
             </div>
 
         </div>
