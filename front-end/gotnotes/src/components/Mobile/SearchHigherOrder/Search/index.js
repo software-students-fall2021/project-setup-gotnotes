@@ -11,7 +11,7 @@ export const Search = () => {
 
   return (
 
-    <div className="main-content">
+    <div className="search">
       <SearchBar
         value={searchItem}
         onChange={value => {

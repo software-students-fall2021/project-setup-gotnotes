@@ -16,7 +16,7 @@ export const GridListToggle = ({ props }) => {
     const changeLayout = () => setCurrentLayout(currentLayout === "grid" ? "list" : "grid");
 
     return (
-        <div className="grid-list-toggle-container">
+        <div className="grid-list-toggle">
 
             <div className="grid-icon-container" onClick={() => changeLayout()}>
                 {currentLayout === "grid" ? <GridViewSharpIcon /> : <GridViewIcon />}

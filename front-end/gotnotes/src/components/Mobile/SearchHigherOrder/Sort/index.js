@@ -15,10 +15,10 @@ export const Sort = ({ props }) => {
     const handleChange = (e) => {
         setItems(sortResults(e, items))
     }
-    
+
 
     return (
-        <div className="sort-container">
+        <div className="sort">
 
             <select className="sort-options" onChange={(e) => handleChange(e.target.value)}>
 
