@@ -50,14 +50,14 @@ function App() {
         <Redirect exact from="/" to="unis" />
 
         <Route exact path="/unis" render={() => (
-          <MobileLayoutSelector Component={Unis} props={{}}/>
+          <MobileLayoutSelector Component={Unis} />
 
         )} />
         <Route exact path="/unis/:uniName" render={() => (
-          <Courses />
+          <MobileLayoutSelector Component={Courses} />
         )} />
         <Route exact path="/unis/:uniName/:courseName" render={() => (
-          <Files />
+          <MobileLayoutSelector Component={Files} />
         )} />
         <Route exact path="/unis/:uniName/:courseName/:fileName" render={() => (
           <FileDetails />
