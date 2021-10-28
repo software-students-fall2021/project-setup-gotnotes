@@ -109,7 +109,6 @@ export default function RouterBreadcrumbs() {
                   return last ? (
                     <Typography color="text.primary" key={to}>
                       {breadcrumbNameMap[to]}
-                      console.info('route to uni');
                     </Typography>
                   ) : (
                     <LinkRouter underline="hover" color="inherit" to={to} key={to}>
