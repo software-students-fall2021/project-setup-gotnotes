@@ -86,12 +86,12 @@ function App() {
       </Switch>
 
       <BottomNav />
-      
         <Breadcrumbs/>
         {/*
         <Search/>
         
         */}
+
 
     </div>
   );
