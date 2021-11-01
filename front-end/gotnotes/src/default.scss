@@ -7,9 +7,10 @@ html, body{
     margin: 0;
     padding: 0;
 }
-html, body, #root, .App{
+html, body, #root, .App, .layout-container{
     height: 100%;
     display: flex;
+    flex-direction: column;
 
 }
 

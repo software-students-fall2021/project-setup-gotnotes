@@ -10,18 +10,35 @@ components being styled well
  */
 .list-item{
     display: flex;
+    flex-direction: row;
     width: 100%;
-    height: 10%;
-    border: 1px solid black;
+    height: 5%;
+    border-bottom: 1px solid black;
+    
     .list-item-logo{
         display: flex;
         margin: auto auto auto 10px;
         height: 80%;
+        
     }
     .list-item-name{
         display: flex;
         margin: 10px auto auto auto;
         height: 80%;
+        width: 50%
+    }
+    .info{
+        display: flex;
+        flex-direction: row;
+        line-height: calc(5vh);
+        width: 20%;
+        height: 100%;
+        margin: 0px auto;
+        justify-content: space-between;
+        .course-info{
+            display: flex;
+            flex-direction: row;
+        }
     }
     &:hover{
         cursor: pointer;

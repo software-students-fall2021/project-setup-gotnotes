@@ -1,18 +1,21 @@
 import "./styles.scss";
-const Button = ({ color, text, onClick }) => {
+import Button from "@mui/material/Button";
+
+const newButton = ({ color, text, onClick }) => {
   return (
-    <button
+    <Button
       className="Button"
       onClick={onClick}
       style={{ backgroundColor: color }}
     >
       {text}
-    </button>
+    </Button>
   );
 };
 
-Button.defaultProps = {
+newButton.defaultProps = {
   color: "grey",
-  text: "Button"
+  text: "Button",
 };
-export default Button;
+
+export default newButton;

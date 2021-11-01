@@ -1,0 +1,17 @@
+.breadcrumb-container{
+    display: flex;
+    margin: 5px 2px 5px 0px;
+
+   a{
+     text-decoration: none;
+     color: black;
+     font-size: 1em;
+     
+     &.active{
+       text-decoration: underline;
+     }
+   }
+
+
+}
+
