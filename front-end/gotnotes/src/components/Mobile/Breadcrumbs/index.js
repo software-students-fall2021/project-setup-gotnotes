@@ -1,54 +1,34 @@
 import React from 'react'
 import './styles.scss'
 import { useLocation } from 'react-router-dom';
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
-function handleClick(event) {
-  <Redirect to="${pathname}"/>;
-}
 
-export const Breadcrumbs = props => {
+export const Breadcrumbs = () => {
 
   const { pathname } = useLocation();
   const parsedArray = pathname.split("/");
   const depth = parsedArray.length - 1;
-  console.log(depth);
 
-  if(depth == 2){
-    return (
-      <div className="breadcrumb" onClick={() => handleClick()}>
-        <nav>
-          <Link to="/unis">Uni</Link>
-        </nav>
-      </div>
-    )
-  }
-  else if(depth == 3){
-    return (
-      <div className="breadcrumb" onClick={() => handleClick()}>
-        <nav>
-          <Link to="/unis">Uni</Link>
-          <Link to="/unis/:uniName">/Courses</Link>
-        </nav>
-      </div>
-    )
+
+  const handleClick = () => {
 
   }
-  else{
-    return (
-      <div className="breadcrumb" onClick={() => handleClick()}>
-        <nav>
-          <Link to="/unis">Uni</Link>
-          <Link to="/unis/:uniName">/Courses</Link>
-          <Link to="/unis/:uniName/:courseName">/Files</Link>
-        </nav>
-      </div>
-    )
-  }
 
 
-};
+  return (
+    <div className="breadcrumb-container" onClick={() => handleClick()}>
 
+      {depth === 1 ? <Link className="active" to="/unis">Unis</Link> : <Link to="/unis">Unis</Link>}
+      {depth === 2 ? <>&nbsp;{">"}&nbsp;<Link className="active" to={`/unis/${parsedArray[2]}`}>{`${parsedArray[2]}`}</Link> </>:
+        depth === 3 ? (<>&nbsp;{">"}&nbsp;<Link to={`/unis/${parsedArray[2]}`}>{`${parsedArray[2]}`}</Link>&nbsp;{">"}&nbsp;
+          <Link className="active" to={`/unis/${parsedArray[2]}/${parsedArray[3]}`}>{`${parsedArray[3]}`}</Link></>) :
+          <></>
+      }
+
+    </div >
+  )
+}
 
 export default Breadcrumbs;
