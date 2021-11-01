@@ -33,7 +33,6 @@ function App() {
   //let's focus on overall functionality of individual components,
   //before we tie everything together and code up the app logic
 
-  const [crumbs, setCrumbs] = useState(["Unis", "Uni", "Class"]); //"Uni" needs to be the university that they choose
 
   return (
     <div className="App">
@@ -87,11 +86,7 @@ function App() {
       </Switch>
 
       <BottomNav />
-      {/*
-        <Breadcrumbs/>
-        <Search/>
-        
-        */}
+
     </div>
   );
 }
