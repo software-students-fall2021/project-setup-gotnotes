@@ -10,15 +10,15 @@ import { GridListToggle } from './GridListToggle'
 
 export const SearchHigherOrder = ({ props }) => {
 
-  const { currentLayout, setCurrentLayout, items, setItems, currentPage } = props;
+  const { currentLayout, setCurrentLayout, items, setItems } = props;
 
   return (
     <div className="search-higher-order-container">
       <div className="search-container">
-        <Search />
+        <Search props={{items, setItems}}/>
       </div>
       <div className="sort-container">
-        <Sort props={{ items, setItems, currentPage }} />
+        <Sort props={{ items, setItems }} />
       </div>
       <div className="grid-list-toggle-container">
         <GridListToggle props={{ currentLayout, setCurrentLayout }} />

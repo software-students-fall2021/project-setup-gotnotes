@@ -1,7 +1,9 @@
-.grid-list-toggle-container{
-    display: flex;
-    .grid-list-toggle{
-        display: flex;
-        flex-direction: row;
-    }
+.grid-list-toggle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  div{
+      margin: 0px auto;
+  }
 }

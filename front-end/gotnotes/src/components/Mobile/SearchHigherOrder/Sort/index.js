@@ -16,8 +16,6 @@ export const Sort = ({ props }) => {
 
     const currentPage = (useLocation().pathname.match(/\//g)||[]).length;
 
-    console.log(currentPage)
-
     const handleChange = (e) => {
         setItems(sortResults(e, items))
     }

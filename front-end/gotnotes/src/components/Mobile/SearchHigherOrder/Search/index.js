@@ -1,24 +1,34 @@
 import React, { useState } from "react";
-import SearchBar from "material-ui-search-bar";
 
+import './styles.scss'
 
-export const Search = () => {
+export const Search = ({ props }) => {
 
-  const [criteria, setCriteria] = useState("1");
-  const [searchItem, setSearchItem] = useState("");
+  //const { items, setItems } = props;
 
-  //TODO service functionfor onRequestSearch needs to be created
+  const [search, setSearch] = useState("");
+
+  //TODO get the items drilled down onto this component from the app.js
+  const handleSearchChange = (value) => {
+    setSearch(value);
+
+   /*  if (search.length > 0) {
+      setItems(items.filter((item) =>
+        item.itemName.toLowerCase().match(search)
+      ))
+    } */
+
+  }
 
   return (
 
     <div className="search">
-      <SearchBar
-        value={searchItem}
-        onChange={value => {
-          setSearchItem(value);
-        }}
-        onRequestSearch={() => console.log("onRequestSearch")}
-
+      <input
+        className="search-box"
+        name='password'
+        autoComplete='on'
+        placeholder="Search..."
+        onChange={(e) => handleSearchChange(e.target.value)}
       />
     </div>
 
