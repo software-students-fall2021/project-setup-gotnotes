@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 //HOC
-import { SearchHigherOrder } from './../../components/Mobile/SearchHigherOrder'
+import { SearchHigherOrder } from "./../../components/Mobile/SearchHigherOrder";
+
 
 import { ListItem } from '../../components/Mobile/ListItem';
 import { GridItem } from '../../components/Mobile/GridItem'
 import { Breadcrumbs } from '../../components/Mobile/Breadcrumbs';
 
-export const MobileLayoutSelector = ({ Component }) => {
 
-    const [currentLayout, setCurrentLayout] = useState("list");
+export const MobileLayoutSelector = ({ Component }) => {
+  const [currentLayout, setCurrentLayout] = useState("list");
+
 
     return (
         <div className="layout-container">
@@ -19,3 +21,4 @@ export const MobileLayoutSelector = ({ Component }) => {
         </div>
     )
 }
+
