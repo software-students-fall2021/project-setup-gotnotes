@@ -10,6 +10,8 @@ import { sortResults } from '../../../../services/SortService'
 
 export const Sort = ({ props }) => {
 
+    //TODO get the current page prop from above somehow
+
     const { items, setItems, currentPage } = props;
 
     const handleChange = (e) => {
