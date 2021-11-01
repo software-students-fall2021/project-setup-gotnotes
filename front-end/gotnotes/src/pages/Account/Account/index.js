@@ -15,6 +15,6 @@ export const Account = () => {
                 <Link to= "/deleteAccoutn">DeleteAccount</Link>
             </nav>
         </div>
- 
+
     )
 }
