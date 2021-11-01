@@ -34,6 +34,7 @@ function App() {
   //let's focus on overall functionality of individual components,
   //before we tie everything together and code up the app logic
 
+
   return (
     <div className="App">
       <AdminToolbar
@@ -87,7 +88,7 @@ function App() {
 
       <BottomNav />
       
-        <Breadcrumbs/>
+      <Breadcrumbs/>
         {/*
         <Search/>
         
