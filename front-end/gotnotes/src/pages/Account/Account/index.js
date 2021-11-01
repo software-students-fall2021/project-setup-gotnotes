@@ -12,8 +12,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const Account = () => {
-<<<<<<< HEAD
-    
     return (
         <div>
             <div>"Your Account"</div>
@@ -30,24 +28,3 @@ export const Account = () => {
 
     )
 }
-=======
-  return (
-    <div>
-      <Stack direction="row" spacing={2}>
-        <Avatar
-          alt="Random"
-          src="front-end/gotnotes/src/assets/randomUser.png"
-          sx={{ width: 56, height: 56 }}
-        />
-      </Stack>
-      <Stack spacing={1}>
-        <Item>Change Profile Pic</Item>
-        <Item>Uploaded Files</Item>
-        <Item>Notifiactions</Item>
-        <Item>Settings</Item>
-        <Item>Delete Account</Item>
-      </Stack>
-    </div>
-  );
-};
->>>>>>> f2f006bc93569f4d3f1874f966d47718796707b0
