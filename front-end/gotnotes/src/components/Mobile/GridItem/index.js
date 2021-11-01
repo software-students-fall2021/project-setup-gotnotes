@@ -29,7 +29,7 @@ export const GridItem = ({ props }) => {
                 {itemType === "file" && <img className="grid-item-logo" src={`./fileLogos/${props.fileType}.png`} alt="" />}
 
                 <p className="grid-item-name">{itemName}</p>
-                
+
                 <div className="info">
                     {itemType === "uni" && <p>{courseCount}</p>}
                     {itemType === "class" && <div><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
