@@ -10,14 +10,14 @@ import { Breadcrumbs } from '../../components/Mobile/Breadcrumbs';
 
 
 export const MobileLayoutSelector = ({ Component }) => {
-  const [currentLayout, setCurrentLayout] = useState("list");
+    const [currentLayout, setCurrentLayout] = useState("list");
 
 
     return (
         <div className="layout-container">
             <Breadcrumbs />
             <SearchHigherOrder props={{ currentLayout, setCurrentLayout }} />
-            <Component activeClass={currentLayout === "list" ? "": "grid"}ViewComponent={currentLayout === "list" ? ListItem : GridItem}  />
+            <Component activeClass={currentLayout === "list" ? "" : "grid"} ViewComponent={currentLayout === "list" ? ListItem : GridItem} />
         </div>
     )
 }

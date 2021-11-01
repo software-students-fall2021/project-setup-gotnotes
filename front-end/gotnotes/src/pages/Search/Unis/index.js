@@ -7,7 +7,7 @@ import { mockUniData } from '../../../assets/mocks/mockData'
 export const Unis = ({ ViewComponent, activeClass }) => {
 
     return (
-        <div className={activeClass === "grid" ? "unis grid": "unis"}>
+        <div className={activeClass === "grid" ? "unis grid" : "unis"}>
 
             {mockUniData.map(({ itemID, itemName, itemLogoPath, itemType, courseCount }) => (
                 <ViewComponent

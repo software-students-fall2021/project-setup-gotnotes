@@ -24,9 +24,7 @@ export const GridItem = ({ props }) => {
     return (
 
         <div className="grid-item" onClick={() => handleClick()}>
-            {itemType === "uni" && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
-            {itemType === "course" && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
-            {itemType === "file" && <img className="grid-item-logo" src={`./fileLogos/${props.fileType}.png`} alt="" />}
+            {(itemType === "uni" || itemType === "file") && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
 
             <p className="grid-item-name">{itemName}</p>
 
