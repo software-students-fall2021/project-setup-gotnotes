@@ -1,126 +1,47 @@
-/*export default Breadcrumb;
-
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
+import React from 'react'
+import { useLocation } from 'react-router-dom';
+import {Redirect } from "react-router-dom";
 
 function handleClick(event) {
-  console.info('event:', {event});
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
+  <Redirect to="${pathname}"/>;
+  //history.push(`${pathname}/${itemName}`)
+  //console.log(pathname, itemName)
 }
 
-export default function BasicBreadcrumbs() {
-  return (
-    <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumbs">
-        <Link underline="hover" color="inherit" href="/">
-          Unis
-        </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/getting-started/installation/"
-        >
-          Uni
-        </Link>
-        <Typography color="text.primary">Course</Typography>
-      </Breadcrumbs>
-    </div>
-  );
-}*/
+//create buttons
+//redirect to correct path based on button pressed
 
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Link from '@mui/material/Link';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { Link as RouterLink, Route, MemoryRouter } from 'react-router-dom';
+export const Breadcrumbs = props => {
+  const { pathname } = useLocation();
+  const parsedArray = pathname.split("/");
+  const depth = parsedArray.length - 1;
+  console.log(depth);
 
-const breadcrumbNameMap = {
-  '/Unis': 'Uni',
-  '/Unis/Uni': 'Uni',
-  '/Unis/Uni/Course': 'Course',
-};
+  if(depth == 1){
+    return (
+      <div className="breadcrum" onClick={() => handleClick()}>
+          
+      </div>
+    )
+  }
+  else if(depth == 2){
+    return (
+      <div className="breadcrum" onClick={() => handleClick()}>
+          
+      </div>
+    )
 
-function ListItemLink(props) {
-  const { to, open, ...other } = props;
-  const primary = breadcrumbNameMap[to];
-
-  let icon = null;
-  if (open != null) {
-    icon = open ? <ExpandLess /> : <ExpandMore />;
+  }
+  else{
+    return (
+      <div className="breadcrum" onClick={() => handleClick()}>
+          
+      </div>
+    )
   }
 
-  return (
-    <li>
-      <ListItem button component={RouterLink} to={to} {...other}>
-        <ListItemText primary={primary} />
-        {icon}
-      </ListItem>
-    </li>
-  );
-}
 
-ListItemLink.propTypes = {
-  open: PropTypes.bool,
-  to: PropTypes.string.isRequired,
 };
 
-const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
 
-export default function RouterBreadcrumbs() {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  return (
-    <MemoryRouter initialEntries={['/unis']} initialIndex={0}>
-        <Route>
-          {({ location }) => {
-            const pathnames = location.pathname.split('/').filter((x) => x);
-
-            return (
-              <Breadcrumbs aria-label="breadcrumb">
-                <LinkRouter underline="hover" color="inherit" to="/">
-                  Unis
-                </LinkRouter>
-
-                {/*Take out this part and link below code to specific routes*/}
-                <LinkRouter underline="hover" color="inherit" to="/">
-                  Uni
-                </LinkRouter>
-                <LinkRouter underline="hover" color="inherit" to="/">
-                  Course
-                </LinkRouter>
-
-                
-                {pathnames.map((value, index) => {
-                  const last = index === pathnames.length - 1;
-                  const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-
-                  return last ? (
-                    <Typography color="text.primary" key={to}>
-                      {breadcrumbNameMap[to]}
-                    </Typography>
-                  ) : (
-                    <LinkRouter underline="hover" color="inherit" to={to} key={to}>
-                      {breadcrumbNameMap[to]}
-                      console.info('route to course');
-                    </LinkRouter>
-                  );
-                })}
-              </Breadcrumbs>
-            );
-          }}
-        </Route>
-    </MemoryRouter>
-  );
-}
+export default Breadcrumbs;

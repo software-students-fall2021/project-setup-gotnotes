@@ -8,6 +8,7 @@ import { currentUserID, mockUserData } from "./assets/mocks/mockData";
 //Components
 import AdminToolbar from "./components/AdminToolbar";
 import BottomNav from "./components/Mobile/BottomNav";
+import Breadcrumbs from "./components/Mobile/Breadcrumbs";
 
 //Pages
 import { Unis } from "./pages/Search/Unis";
@@ -87,11 +88,13 @@ function App() {
       </Switch>
 
       <BottomNav />
-      {/*
+      
         <Breadcrumbs/>
+        {/*
         <Search/>
         
         */}
+
     </div>
   );
 }
