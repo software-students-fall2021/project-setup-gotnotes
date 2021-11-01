@@ -3,4 +3,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    &.grid{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }

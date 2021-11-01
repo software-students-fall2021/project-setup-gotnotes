@@ -40,7 +40,7 @@ export const ListItem = ({ props }) => {
             */ }
             <div className="info">
                 {itemType === "uni" && <p>{courseCount}</p>}
-                {itemType === "class" && <div><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
+                {itemType === "class" && <div className="course-info"><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
                 {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
             </div>
 
