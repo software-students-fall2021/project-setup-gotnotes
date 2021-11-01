@@ -35,8 +35,9 @@ components being styled well
         height: 100%;
         margin: 0px auto;
         justify-content: space-between;
-        div{
+        .course-info{
             display: flex;
+            flex-direction: row;
         }
     }
     &:hover{

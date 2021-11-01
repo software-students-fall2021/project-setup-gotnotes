@@ -1,0 +1,25 @@
+.grid-item{
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    height: 150px;
+    margin: 10px 0;
+    
+    justify-content: center;
+    
+    .grid-item-logo{
+        height: 100px;
+        margin: auto ;
+    }
+    .grid-item-name{
+        display: flex;
+        margin: 5px auto;
+        text-align: center;
+        height: 20px;
+    }
+    .info{
+        height: 25px;
+        text-align: center;
+
+    }
+}

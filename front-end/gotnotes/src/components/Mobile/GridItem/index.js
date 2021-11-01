@@ -22,22 +22,20 @@ export const GridItem = ({ props }) => {
     }
 
     return (
-        <div>
-            <div className="grid-item" onClick={() => handleClick()}>
-                {itemType === "uni" && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
-                {itemType === "course" && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
-                {itemType === "file" && <img className="grid-item-logo" src={`./fileLogos/${props.fileType}.png`} alt="" />}
 
-                <p className="grid-item-name">{itemName}</p>
+        <div className="grid-item" onClick={() => handleClick()}>
+            {(itemType === "uni" || itemType === "file") && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
 
-                <div className="info">
-                    {itemType === "uni" && <p>{courseCount}</p>}
-                    {itemType === "class" && <div><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
-                    {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
-                </div>
+            <p className="grid-item-name">{itemName}</p>
 
+            <div className="info">
+                {itemType === "uni" && <p>{courseCount}</p>}
+                {itemType === "class" && <div className="course-info"><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
+                {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
             </div>
 
         </div>
+
+
     )
 }

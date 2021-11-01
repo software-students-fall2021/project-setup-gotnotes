@@ -4,10 +4,10 @@ import './styles.scss'
 //mock data
 import { mockUniData } from '../../../assets/mocks/mockData'
 
-export const Unis = ({ ViewComponent }) => {
+export const Unis = ({ ViewComponent, activeClass }) => {
 
     return (
-        <div className="unis">
+        <div className={activeClass === "grid" ? "unis grid" : "unis"}>
 
             {mockUniData.map(({ itemID, itemName, itemLogoPath, itemType, courseCount }) => (
                 <ViewComponent

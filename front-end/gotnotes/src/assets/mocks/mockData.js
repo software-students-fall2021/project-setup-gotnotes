@@ -2,7 +2,7 @@ export const mockUniData = [
     {
         itemID: 1,
         itemName: "NYU",
-        itemLogoPath: "./uniLogos/nyu.png",
+        itemLogoPath: "/uniLogos/nyu.png",
         itemType: "uni",
         courseCount: 1,
         classes: [
@@ -17,9 +17,25 @@ export const mockUniData = [
     {
         itemID: 3,
         itemName: "Columbia",
-        itemLogoPath: "./uniLogos/columbia.png",
+        itemLogoPath: "/uniLogos/columbia.png",
         itemType: "uni",
         courseCount: 2,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 9,
+        itemName: "CUNY",
+        itemLogoPath: "/uniLogos/cuny.png",
+        itemType: "uni",
+        courseCount: 5,
         classes: [
             {
                 itemID: 4,
@@ -65,6 +81,7 @@ export const mockFileData = [
     {
         itemID: 6,
         itemName: "Data Structures CheatSheet.xls",
+        itemLogoPath: "/fileLogos/xls.png",
         itemType: "file",
         fileType: "xls",
         commentCount: 3,
@@ -75,13 +92,36 @@ export const mockFileData = [
     {
         itemID: 5,
         itemName: "Greek History.pdf",
+        itemLogoPath: "/fileLogos/pdf.png",
         itemType: "file",
         fileType: "pdf",
         commentCount: 7,
         likeCount: 10,
         dislikeCount: 2,
         downloadCount: 25
-    }
+    },
+    {
+        itemID: 9,
+        itemName: "Greek History.xls",
+        itemLogoPath: "/fileLogos/xls.png",
+        itemType: "file",
+        fileType: "xls",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
+    {
+        itemID: 8,
+        itemName: "Greek History.pdf",
+        itemLogoPath: "/fileLogos/pdf.png",
+        itemType: "file",
+        fileType: "pdf",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
 
 
 ]
