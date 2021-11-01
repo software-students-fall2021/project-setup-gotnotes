@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //components
 import PageTitle from '../../components/Mobile/PageTitle'
@@ -6,12 +6,24 @@ import PageTitle from '../../components/Mobile/PageTitle'
 //data
 import { mockUniData, mockClassData } from '../../assets/mocks/mockData'
 
+//styles
+import './styles.scss'
+
 export const AddFile = ({ props }) => {
     const title = "Add File"
 
 
     const handleChange = () => {
 
+    }
+
+    const [file, setFile] = useState('');
+    
+    const uploadHandler = (e) => {
+        //console.log("file: ", file[0])
+        e.preventDefault();
+
+       
     }
 
     return (
@@ -47,13 +59,38 @@ export const AddFile = ({ props }) => {
                         </select>
                     </div>
 
+                    <div className="file-select-container">
+                        <form onSubmit={(e) => uploadHandler(e)}>
 
-                </div>
-                <button className="add-file-submit">Add File</button>
+                            <label className="file-input" >
+                                Choose File!
+                                <input
+                                    className="file"
+                                    type="file"
+                                    name="file"
+                                    onChange={(e) => setFile(e.target.files)}
+                                />
+                            </label>
+                            <label className="file-output">
+                                {file ? file[0]?.name ? file[0].name : 'No File Chosen' : 'No File Chosen'}
+                            </label>
 
-            </div>
+
+                            <input
+                                className="upload-btn"
+                                type="submit"
+                                value="Upload!"
+                            />
+
+                        </form>
+                    </div>
 
 
-        </div>
+                </div >
+
+            </div >
+
+
+        </div >
     )
 }
