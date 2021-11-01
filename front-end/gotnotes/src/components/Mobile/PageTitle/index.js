@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PageTitle = () => {
+const PageTitle = ({ props }) => {
     return (
         <div>
-            
+            Page Title
         </div>
     )
 }
