@@ -1,0 +1,12 @@
+./node_modules
+*node_modules*
+
+
+files/*
+
+*.png
+*.jpg
+*.numbers
+*.docx
+*.xlsx
+*.pdf
