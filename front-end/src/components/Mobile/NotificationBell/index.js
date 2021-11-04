@@ -4,14 +4,14 @@ import './styles.scss'
 
 import { mockUserData, currentUserID } from '../../../assets/mocks/mockData'
 
-import {NotificationsActiveOutlined, NotificationsNoneOutlined} from "@mui/icons-material"
+import {NotificationsActive, NotificationsNoneOutlined } from "@mui/icons-material"
 
 export const NotificationBell = ({props}) => {
 
     //TODO gotta refactor this logic out to a helper function later
 
     const [isActive, setIsActive] = useState(0);
-    const {itemID} = props
+    const {itemID, fontSize} = props
 
     useEffect(() => {
 
@@ -29,7 +29,7 @@ export const NotificationBell = ({props}) => {
     //upon clicking on the bell
     return (
         <div className="notificationBell">
-            {isActive ? <NotificationsActiveOutlined/> : <NotificationsNoneOutlined/>}
+            {isActive ? <NotificationsActive fontSize={fontSize}/> : <NotificationsNoneOutlined fontSize={fontSize}/>}
         </div>
     )
 }

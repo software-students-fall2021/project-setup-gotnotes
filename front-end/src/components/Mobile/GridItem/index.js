@@ -1,12 +1,16 @@
 import React from 'react'
+import "./styles.scss"
 
 //imports
 import { useHistory, useLocation } from "react-router-dom";
 
 //icon
+import { School } from '@mui/icons-material';
 import { NotificationBell } from '../NotificationBell';
+import { LikeIcon } from '../LikeIcon';
+import { DislikeIcon } from '../DislikeIcon';
+import { CommentIcon } from '../CommentIcon';
 
-import "./styles.scss"
 export const GridItem = ({ props }) => {
 
     //TODO in the future we will fetch these data from the api, for now we use mock data
@@ -16,26 +20,54 @@ export const GridItem = ({ props }) => {
     const history = useHistory();
     const { pathname } = useLocation();
 
-    const handleClick = () => {
-        history.push(`${pathname}/${itemName}`)
-        console.log(pathname, itemName)
-    }
+    const handleClick = () => history.push(`${pathname}/${itemName}`);
+
 
     return (
-
         <div className="grid-item" onClick={() => handleClick()}>
-            {(itemType === "uni" || itemType === "file") && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
+            <div className="grid-img-container">
+                {(itemType === "uni" || itemType === "file") && <img className="grid-item-logo" src={itemLogoPath} alt="" />}
+            </div>
 
-            <p className="grid-item-name">{itemName}</p>
+            <div className="grid-item-name-container">
+                <span className="grid-item-name">{itemName}</span>
+            </div>
 
-            <div className="info">
-                {itemType === "uni" && <p>{courseCount}</p>}
-                {itemType === "class" && <div className="course-info"><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
-                {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
+            <div className="grid-info-container">
+                <div className={`grid-info${itemType === "uni" || itemType === "class" ? " single" : ""}`}>
+                    {itemType === "uni" &&
+                        <div className="grid-icon-set">
+                            <School fontSize="large" />
+                            <span>{courseCount}</span>
+                        </div>
+                    }
+                    {itemType === "class" &&
+                        <div className="grid-icon-set">
+                            <NotificationBell props={{ itemID, fontSize: "large" }} />
+                            <span>{enrolledStudents}</span>
+                        </div>
+                    }
+                    {itemType === "file" &&
+                        <>
+                            <div className="grid-icon-set">
+                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{likeCount}</span>
+                            </div>
+                            <div className="grid-icon-set">
+                                <DislikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{dislikeCount}</span>
+                            </div>
+                            <div className="grid-icon-set">
+                                <CommentIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{commentCount}</span>
+                            </div>
+
+                        </>
+                    }
+                </div>
+
             </div>
 
         </div>
-
-
     )
 }

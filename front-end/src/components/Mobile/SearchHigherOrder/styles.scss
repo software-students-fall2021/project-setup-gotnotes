@@ -1,12 +1,19 @@
+@import "./../../../default.scss";
+
 .search-higher-order-container{
+    background-color: $primary_light;
     display: flex;
     flex-direction: row;
-    height: 5%;
-    width: 100%;
+    
+    justify-content: space-around;
+    padding: 2vh 0;
+
+    border-bottom: 1px solid $border_light;
+    border-top: 1px solid $border_light;
 
     .search-container{
         display: flex;
-        width: 70%;
+        width: 60%;
         height: 100%;
         
     }

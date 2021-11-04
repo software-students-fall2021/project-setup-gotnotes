@@ -1,13 +1,15 @@
 import React from 'react'
-
+import "./styles.scss"
 
 //imports
 import { useHistory, useLocation } from "react-router-dom";
 
 //icon
+import { School } from '@mui/icons-material';
 import { NotificationBell } from '../NotificationBell';
-
-import "./styles.scss"
+import { LikeIcon } from '../LikeIcon';
+import { DislikeIcon } from '../DislikeIcon';
+import { CommentIcon } from '../CommentIcon';
 
 export const ListItem = ({ props }) => {
 
@@ -18,21 +20,52 @@ export const ListItem = ({ props }) => {
     const history = useHistory();
     const { pathname } = useLocation();
 
-    const handleClick = () => {
-        history.push(`${pathname}/${itemName}`)
-        console.log(pathname, itemName)
-    }
+    const handleClick = () => history.push(`${pathname}/${itemName}`);
+    
 
     return (
         <div className="list-item" onClick={() => handleClick()}>
-            {(itemType === "uni" || itemType === "file") && <img className="list-item-logo" src={itemLogoPath} alt="" />}
+            <div className="img-container">
+                {(itemType === "uni" || itemType === "file") && <img className="list-item-logo" src={itemLogoPath} alt="" />}
+            </div>
 
-            <p className="list-item-name">{itemName}</p>
-            
-            <div className="info">
-                {itemType === "uni" && <p>{courseCount}</p>}
-                {itemType === "class" && <div className="course-info"><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
-                {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
+            <div className="item-name-container">
+                <span className="list-item-name">{itemName}</span>
+            </div>
+
+            <div className="info-container">
+                <div className={`info${itemType === "uni" || itemType === "class" ? " single" : ""}`}>
+                    {itemType === "uni" &&
+                        <div className="icon-set">
+                            <School fontSize="large" />
+                            <span>{courseCount}</span>
+                        </div>
+                    }
+                    {itemType === "class" &&
+                        <div className="icon-set">
+                            <NotificationBell props={{ itemID, fontSize: "large" }} />
+                            <span>{enrolledStudents}</span>
+                        </div>
+                    }
+                    {itemType === "file" &&
+                        <>
+                            <div className="icon-set">
+                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{likeCount}</span>
+                            </div>
+                            <div className="icon-set">
+                                <DislikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{dislikeCount}</span>
+                            </div>
+                            <div className="icon-set">
+                                <CommentIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{commentCount}</span>
+                            </div>
+
+                        </>
+                    }
+                </div>
+
             </div>
 
         </div>

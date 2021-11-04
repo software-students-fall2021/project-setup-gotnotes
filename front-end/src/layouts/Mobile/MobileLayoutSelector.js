@@ -15,9 +15,12 @@ export const MobileLayoutSelector = ({ Component }) => {
 
     return (
         <div className="layout-container">
-            <Breadcrumbs />
-            <SearchHigherOrder props={{ currentLayout, setCurrentLayout }} />
+            <div className="sticky-top">
+                <Breadcrumbs />
+                <SearchHigherOrder props={{ currentLayout, setCurrentLayout }} />
+            </div>
             <Component activeClass={currentLayout === "list" ? "" : "grid"} ViewComponent={currentLayout === "list" ? ListItem : GridItem} />
+            <div className="clear"></div>
         </div>
     )
 }
