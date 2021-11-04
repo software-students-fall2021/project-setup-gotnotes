@@ -27,11 +27,24 @@ export const FileDetails = ({ props }) => {
     //in the docs array above...
     return (
         <div className="page-container">
-            <PageTitle props={{title, back:true}}/>
+            <PageTitle props={{ title, back: true }} />
             <div className="file-details-container">
-                <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />
+                <DocViewer
+                    documents={docs}
+                    pluginRenderers={DocViewerRenderers}
+                    config={{
+                        header: {
+                            disableHeader: true,
+                            disableFileName: true,
+                        }
+                    }}
+                />
                 <CommentViewer />
                 <MessageInput />
+            </div>
+
+            <div className="clear">
+                
             </div>
 
         </div>
