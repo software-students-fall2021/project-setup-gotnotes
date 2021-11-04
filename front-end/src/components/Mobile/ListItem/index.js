@@ -1,16 +1,15 @@
 import React from 'react'
+import "./styles.scss"
 
 //imports
 import { useHistory, useLocation } from "react-router-dom";
 
 //icon
-import SchoolIcon from '@mui/icons-material/School';
+import { School } from '@mui/icons-material';
 import { NotificationBell } from '../NotificationBell';
 import { LikeIcon } from '../LikeIcon';
 import { DislikeIcon } from '../DislikeIcon';
 import { CommentIcon } from '../CommentIcon';
-
-import "./styles.scss"
 
 export const ListItem = ({ props }) => {
 
@@ -39,7 +38,7 @@ export const ListItem = ({ props }) => {
                 <div className={`info${itemType === "uni" || itemType === "class" ? " single" : ""}`}>
                     {itemType === "uni" &&
                         <div className="icon-set">
-                            <SchoolIcon fontSize="large" />
+                            <School fontSize="large" />
                             <span>{courseCount}</span>
                         </div>
                     }

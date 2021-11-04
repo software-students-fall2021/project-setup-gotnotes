@@ -2,22 +2,26 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 //icons
-import { MoreHorizIcon, ArrowBackIosNew } from '@mui/icons-material';
+import { MoreHoriz, ArrowBackIosNew } from '@mui/icons-material';
 
 //styles
 import './styles.scss'
 
 const PageTitle = ({ props }) => {
-    const { title, options, back } = props;
+    const { back, title, options } = props;
 
     const history = useHistory();
+
+    const handleOptionClick = () => {
+
+    }
 
 
     return (
         <div className="page-title-container">
             {back ? (
                 <div className="back-button" onClick={() => history.goBack()}>
-                    <ArrowBackIosNew fontSize="large"/>
+                    <ArrowBackIosNew fontSize="large" />
                 </div>
             ) : (
                 <div className="back-button">
@@ -32,8 +36,8 @@ const PageTitle = ({ props }) => {
             </div>
             {options && (
                 //TODO fill in the page options with options logo and functionality
-                <div className="page-options">
-
+                <div className="page-options" onClick={() => handleOptionClick()}>
+                    <MoreHoriz fontSize="large" />
                 </div>
 
             )}

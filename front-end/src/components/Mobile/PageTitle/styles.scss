@@ -9,7 +9,8 @@
   border-bottom: 1px solid $border_light;
   background-color: $primary_light;
 
-  .back-button {
+  .back-button,
+  .page-options {
     width: 10%;
     cursor: pointer;
     display: flex;
@@ -22,12 +23,6 @@
   .page-title {
     width: 80%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    
-  }
-  .page-options {
-    width: 10%;
     align-items: center;
     justify-content: space-around;
   }

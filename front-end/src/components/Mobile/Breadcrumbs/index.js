@@ -1,8 +1,10 @@
 import React from 'react'
 import './styles.scss'
+
 import { useLocation } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
+//icons
 import { ArrowRight } from '@mui/icons-material';
 
 export const Breadcrumbs = () => {
@@ -10,7 +12,6 @@ export const Breadcrumbs = () => {
   const { pathname } = useLocation();
   const parsedArray = pathname.split("/");
   const depth = parsedArray.length - 1;
-
 
   return (
     <div className="breadcrumb-container" >
@@ -44,7 +45,6 @@ export const Breadcrumbs = () => {
           :
           <></>
       }
-
     </div >
   )
 }
