@@ -1,0 +1,35 @@
+$small_r: 4em;
+$med_r: 10em;
+$large_r: 25em;
+
+.user-avatar-container {
+  .user-avatar {
+    display: flex;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &.small {
+      height: $small_r;
+      width: $small_r;
+    }
+    &.med {
+      height: $med_r;
+      width: $med_r;
+    }
+    &.large {
+      height: $large_r;
+      width: $large_r;
+    }
+
+    .user-avatar-img {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+  .edit-icon-container {
+    
+  }
+}

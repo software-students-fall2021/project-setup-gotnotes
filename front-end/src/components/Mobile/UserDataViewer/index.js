@@ -1,5 +1,11 @@
 import React from 'react'
 
+import './styles.scss'
+
+//components
+import UserAvatar from '../UserAvatar';
+
+
 const UserDataViewer = ({ props }) => {
 
     const { fileSharedBy } = props;
@@ -8,10 +14,9 @@ const UserDataViewer = ({ props }) => {
     console.log(fileSharedBy)
 
     return (
-        <div>
-            userID: {userID}
-            userAvatarUrl: {userAvatarUrl}
-            username: {username}
+        <div className="user-data-viewer-container">
+            <UserAvatar props={{ userAvatarUrl, size: "large", editActive: "true" }} />
+            <span className="username">{username}</span>
         </div>
     )
 }
