@@ -24,7 +24,10 @@ const PageTitle = ({ props }) => {
                 </div>
             )}
             <div className="page-title">
-                {title}
+                <span className="title-text">
+                    {title}
+                </span>
+
             </div>
             {options && (
 

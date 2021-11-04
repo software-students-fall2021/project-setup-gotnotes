@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 //imports
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -24,7 +23,6 @@ export const ListItem = ({ props }) => {
 
     const handleClick = () => {
         history.push(`${pathname}/${itemName}`)
-        console.log(pathname, itemName)
     }
 
     return (
@@ -59,15 +57,16 @@ export const ListItem = ({ props }) => {
                                 <span>{likeCount}</span>
                             </div>
                             <div className="icon-set">
-                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <DislikeIcon props={{ itemID, fontSize: "large" }} />
                                 <span>{dislikeCount}</span>
                             </div>
                             <div className="icon-set">
-                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <CommentIcon props={{ itemID, fontSize: "large" }} />
                                 <span>{commentCount}</span>
                             </div>
 
-                        </>}
+                        </>
+                    }
                 </div>
 
             </div>
