@@ -39,12 +39,13 @@ export const FileDetails = ({ props }) => {
                         }
                     }}
                 />
+                <FileData />
                 <CommentViewer />
                 <MessageInput />
             </div>
 
             <div className="clear">
-                
+
             </div>
 
         </div>
