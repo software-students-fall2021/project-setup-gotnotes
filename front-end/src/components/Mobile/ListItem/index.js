@@ -6,10 +6,10 @@ import { useHistory, useLocation } from "react-router-dom";
 
 //icon
 import { School } from '@mui/icons-material';
-import { NotificationBell } from '../NotificationBell';
-import { LikeIcon } from '../LikeIcon';
-import { DislikeIcon } from '../DislikeIcon';
-import { CommentIcon } from '../CommentIcon';
+import { NotificationBell } from '../Icons/NotificationBell';
+import { LikeIcon } from '../Icons/LikeIcon';
+import { DislikeIcon } from '../Icons/DislikeIcon';
+import { CommentIcon } from '../Icons/CommentIcon';
 
 export const ListItem = ({ props }) => {
 

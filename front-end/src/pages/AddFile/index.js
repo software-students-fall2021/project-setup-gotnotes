@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 //components
-import PageTitle from '../../components/Mobile/PageTitle'
+import PageTitle from '../../components/Mobile/Navigations/PageTitle'
 
 //data
 import { mockUniData, mockClassData } from '../../assets/mocks/mockData'

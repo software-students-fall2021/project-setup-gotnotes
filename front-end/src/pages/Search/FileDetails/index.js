@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './styles.scss'
+
 
 //third party components
 import DocViewer, { DocViewerRenderers } from 'react-doc-viewer'

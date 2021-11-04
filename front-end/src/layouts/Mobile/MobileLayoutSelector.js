@@ -6,7 +6,7 @@ import { SearchHigherOrder } from "./../../components/Mobile/SearchHigherOrder";
 
 import { ListItem } from '../../components/Mobile/ListItem';
 import { GridItem } from '../../components/Mobile/GridItem'
-import { Breadcrumbs } from '../../components/Mobile/Breadcrumbs';
+import { Breadcrumbs } from '../../components/Mobile/Navigations/Breadcrumbs';
 
 
 export const MobileLayoutSelector = ({ Component }) => {

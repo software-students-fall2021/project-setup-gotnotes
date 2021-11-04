@@ -7,7 +7,7 @@ import { currentUserID, mockUserData } from "./assets/mocks/mockData";
 
 //Components
 import AdminToolbar from "./components/AdminToolbar";
-import BottomNav from "./components/Mobile/BottomNav";
+import BottomNav from "./components/Mobile/Navigations/BottomNav";
 
 //Pages
 import { Unis } from "./pages/Search/Unis";
