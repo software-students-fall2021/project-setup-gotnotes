@@ -1,3 +1,5 @@
+@import "./../../../default.scss";
+
 $small_r: 4em;
 $med_r: 10em;
 $large_r: 25em;
@@ -30,6 +32,23 @@ $large_r: 25em;
     }
   }
   .edit-icon-container {
-    
+    display: flex;
+
+    height: $small_r;
+    width: $small_r;
+    border-radius: 50%;
+
+    position: relative;
+    bottom: 60px;
+    left: 190px;
+
+    background-color: $text_primary_light;
+    color: $primary_light;
+    overflow: hidden;
+
+    cursor: pointer;
+    svg {
+      margin: auto !important;
+    }
   }
 }

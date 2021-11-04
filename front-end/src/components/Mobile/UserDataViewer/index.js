@@ -15,7 +15,7 @@ const UserDataViewer = ({ props }) => {
 
     return (
         <div className="user-data-viewer-container">
-            <UserAvatar props={{ userAvatarUrl, size: "large", editActive: "true" }} />
+            <UserAvatar props={{ userAvatarUrl }} />
             <span className="username">{username}</span>
         </div>
     )
