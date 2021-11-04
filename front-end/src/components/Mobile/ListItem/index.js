@@ -5,7 +5,11 @@ import React from 'react'
 import { useHistory, useLocation } from "react-router-dom";
 
 //icon
+import SchoolIcon from '@mui/icons-material/School';
 import { NotificationBell } from '../NotificationBell';
+import { LikeIcon } from '../LikeIcon';
+import { DislikeIcon } from '../DislikeIcon';
+import { CommentIcon } from '../CommentIcon';
 
 import "./styles.scss"
 
@@ -35,9 +39,37 @@ export const ListItem = ({ props }) => {
             </div>
 
             <div className="info-container">
-                {itemType === "uni" && <p>{courseCount}</p>}
-                {itemType === "class" && <div className="course-info"><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
-                {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
+                <div className="info">
+                    {itemType === "uni" &&
+                        <div className="icon-set">
+                            <SchoolIcon fontSize="large" />
+                            <span>{courseCount}</span>
+                        </div>
+                    }
+                    {itemType === "class" &&
+                        <div className="icon-set">
+                            <NotificationBell props={{ itemID, fontSize: "large" }} />
+                            <span>{enrolledStudents}</span>
+                        </div>
+                    }
+                    {itemType === "file" &&
+                        <>
+                            <div className="icon-set">
+                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{likeCount}</span>
+                            </div>
+                            <div className="icon-set">
+                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{dislikeCount}</span>
+                            </div>
+                            <div className="icon-set">
+                                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                                <span>{commentCount}</span>
+                            </div>
+
+                        </>}
+                </div>
+
             </div>
 
         </div>

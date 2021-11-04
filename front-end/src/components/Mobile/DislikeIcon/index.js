@@ -4,9 +4,9 @@ import './styles.scss'
 
 import { mockUserData, currentUserID } from '../../../assets/mocks/mockData'
 
-import {NotificationsActive, NotificationsNoneOutlined } from "@mui/icons-material"
+import {NotificationsActiveOutlined, NotificationsNoneOutlined} from "@mui/icons-material"
 
-export const NotificationBell = ({props}) => {
+export const DislikeIcon = ({props}) => {
 
     //TODO gotta refactor this logic out to a helper function later
 
@@ -29,7 +29,7 @@ export const NotificationBell = ({props}) => {
     //upon clicking on the bell
     return (
         <div className="notificationBell">
-            {isActive ? <NotificationsActive fontSize={fontSize}/> : <NotificationsNoneOutlined fontSize={fontSize}/>}
+            {isActive ? <NotificationsActiveOutlined fontSize={fontSize}/> : <NotificationsNoneOutlined fontSize={fontSize}/>}
         </div>
     )
 }
