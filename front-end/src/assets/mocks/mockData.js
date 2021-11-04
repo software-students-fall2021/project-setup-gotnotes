@@ -46,6 +46,148 @@ export const mockUniData = [
             },
         ]
     },
+    {
+        itemID: 9,
+        itemName: "CUNY",
+        itemLogoPath: "/uniLogos/cuny.png",
+        itemType: "uni",
+        courseCount: 5,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 1,
+        itemName: "NYU",
+        itemLogoPath: "/uniLogos/nyu.png",
+        itemType: "uni",
+        courseCount: 1,
+        classes: [
+            {
+                itemID: 2,
+                itemName: "CSCI-UA 102",
+                itemType: "class",
+                enrolledStudents: 100
+            },
+        ]
+    },
+    {
+        itemID: 3,
+        itemName: "Columbia",
+        itemLogoPath: "/uniLogos/columbia.png",
+        itemType: "uni",
+        courseCount: 2,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 9,
+        itemName: "CUNY",
+        itemLogoPath: "/uniLogos/cuny.png",
+        itemType: "uni",
+        courseCount: 5,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 9,
+        itemName: "CUNY",
+        itemLogoPath: "/uniLogos/cuny.png",
+        itemType: "uni",
+        courseCount: 5,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 1,
+        itemName: "NYU",
+        itemLogoPath: "/uniLogos/nyu.png",
+        itemType: "uni",
+        courseCount: 1,
+        classes: [
+            {
+                itemID: 2,
+                itemName: "CSCI-UA 102",
+                itemType: "class",
+                enrolledStudents: 100
+            },
+        ]
+    },
+    {
+        itemID: 3,
+        itemName: "Columbia",
+        itemLogoPath: "/uniLogos/columbia.png",
+        itemType: "uni",
+        courseCount: 2,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 9,
+        itemName: "CUNY",
+        itemLogoPath: "/uniLogos/cuny.png",
+        itemType: "uni",
+        courseCount: 5,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
+    {
+        itemID: 9,
+        itemName: "CUNY",
+        itemLogoPath: "/uniLogos/cuny.png",
+        itemType: "uni",
+        courseCount: 5,
+        classes: [
+            {
+                itemID: 4,
+                
+            },
+            {
+                itemID: 7,
+            },
+        ]
+    },
 
 ]
 

@@ -20,9 +20,8 @@ export const ListItem = ({ props }) => {
     const history = useHistory();
     const { pathname } = useLocation();
 
-    const handleClick = () => {
-        history.push(`${pathname}/${itemName}`)
-    }
+    const handleClick = () => history.push(`${pathname}/${itemName}`);
+    
 
     return (
         <div className="list-item" onClick={() => handleClick()}>

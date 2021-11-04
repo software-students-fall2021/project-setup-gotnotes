@@ -1,25 +1,70 @@
-.grid-item{
-    display: flex;
-    flex-direction: column;
-    width: 33.3%;
-    height: 150px;
-    margin: 10px 0;
-    
-    justify-content: center;
-    
-    .grid-item-logo{
-        height: 100px;
-        margin: auto ;
-    }
-    .grid-item-name{
-        display: flex;
-        margin: 5px auto;
-        text-align: center;
-        height: 20px;
-    }
-    .info{
-        height: 25px;
-        text-align: center;
+@import "./../../../default.scss";
 
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  height: 30vh;
+  border: 1px solid $border_light;
+  
+  margin: 10px 0px;
+
+  &:hover {
+    background-color: $primary_light;
+  }
+  .grid-img-container {
+    margin: 10px;
+    height: 80%;
+    width: auto;
+    
+    .grid-item-logo {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
     }
+  }
+
+  .grid-item-name-container {
+    display: flex;
+    height: 100%;
+    width: 50vw;
+
+    .grid-item-name {
+      margin: auto;
+      text-align: center;
+    }
+  }
+
+  .grid-info-container {
+    display: flex;
+
+    width: 20%;
+    height: 100%;
+    .grid-info {
+      display: flex;
+      flex-direction: row;
+      margin: auto 0px;      
+      font-size: 1.2rem;
+      width: 90%;
+      margin-right: 10%;
+      justify-content: space-between;
+
+      &.single{
+        justify-content: flex-end;
+        width: 80%;
+        margin-right: 20%;
+
+      }
+
+      .grid-icon-set{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
 }

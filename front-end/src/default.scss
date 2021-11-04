@@ -15,13 +15,12 @@ html, body{
     margin: 0;
     padding: 0;
 }
-html, body, #root, .App, .layout-container{
+html, body, #root, .App {
     height: 100%;
     display: flex;
     flex-direction: column;
 
 }
-
 
 * ::before, ::after{
     -webkit-box-sizing: border-box;
@@ -46,4 +45,18 @@ a, a:hover{
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+}
+
+.layout-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.sticky-top{
+    position: sticky;
+    top: 0;
+}
+.clear{
+    /*this is the height of our bottom tab navigator*/
+    height: 50px;
 }
