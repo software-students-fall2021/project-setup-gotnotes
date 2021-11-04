@@ -1,5 +1,10 @@
-.user-data-viewer-container{
-    display: flex;
-    flex-direction: row;
-    
+.user-data-viewer-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  .user-avatar-component-container {
+  }
+
+  .username-container {
+  }
 }

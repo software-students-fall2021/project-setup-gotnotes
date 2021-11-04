@@ -26,15 +26,31 @@ export const FileDetails = ({ props }) => {
     ]
 
     //const { file } = props;
-    const { fileName, fileID, fileShareDate, fileSharedBy, fileLikes, fileDislikes, fileDownloads, fileComments } = mockarooFileData[40];
+    const {
+        fileName,
+        fileID,
+        fileShareDate,
+        fileSharedBy,
+        fileLikes,
+        fileDislikes,
+        fileDownloads,
+        fileComments
+    } = mockarooFileData[40];
 
 
-    //turns out this library uses an external service for viewing microsoft documents, and cannot read local documents,
-    //so whenever a document is needed to be read, we will provide the actual storage url of the file from our api
+    //turns out this library uses an external service 
+    //for viewing microsoft documents, and cannot read local documents,
+    //so whenever a document is needed to be read, 
+    //we will provide the actual storage url of the file from our api
     //in the docs array above...
     return (
         <div className="page-container">
-            <PageTitle props={{ title: fileName, back: true }} />
+            <PageTitle
+                props={{
+                    title: fileName,
+                    back: true
+                }}
+            />
             <div className="file-details-container">
                 <DocViewer
                     documents={docs}
@@ -46,15 +62,20 @@ export const FileDetails = ({ props }) => {
                         }
                     }}
                 />
-                <FileData props={{fileShareDate, fileSharedBy, fileLikes, fileDislikes, fileDownloads}} />
+                <FileData
+                    props={{
+                        fileShareDate,
+                        fileSharedBy,
+                        fileLikes,
+                        fileDislikes,
+                        fileDownloads
+                    }}
+                />
                 <CommentViewer props={{ fileComments }} />
                 <MessageInput />
             </div>
 
-            <div className="clear">
-
-            </div>
-
+            <div className="clear"></div>
         </div>
     )
 }

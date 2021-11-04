@@ -10,9 +10,16 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 */
 const UserAvatar = ({ props }) => {
 
-    const { userAvatarUrl, size, editActive, path } = props;
+    const {
+        userAvatarUrl,
+        size,
+        editActive,
+        path
+    } = props;
 
-    const classes = size === "large" ? "large" : (size === "med" ? "med" : "small");
+    const classes = size === "large" ? "large" : (
+        size === "med" ? "med" : "small"
+    );
 
     const history = useHistory();
 
@@ -27,7 +34,10 @@ const UserAvatar = ({ props }) => {
                 />
             </div>
             {editActive && (
-                <div className="edit-icon-container" onClick={() => history.push(`${path}`)}>
+                <div
+                    className="edit-icon-container"
+                    onClick={() => history.push(`${path}`)}
+                >
                     <EditOutlinedIcon fontSize="large" />
                 </div>
             )}
