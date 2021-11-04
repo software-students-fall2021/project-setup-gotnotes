@@ -6,8 +6,9 @@ import DocViewer, { DocViewerRenderers } from 'react-doc-viewer'
 
 //components
 import CommentViewer from '../../../components/Mobile/CommentViewer'
+import { FileData } from '../../../components/Mobile/FileData'
 import { MessageInput } from '../../../components/Mobile/MessageInput'
-import PageTitle from '../../../components/Mobile/PageTitle'
+import PageTitle from '../../../components/Mobile/Navigations/PageTitle'
 
 
 export const FileDetails = ({ props }) => {
