@@ -1,14 +1,39 @@
 import React from 'react'
 
+import { useHistory } from 'react-router-dom'
+
+
+//styles
+import './styles.scss'
+
 const PageTitle = ({ props }) => {
-    const { title } = props;
+    const { title, options, back } = props;
+
+    const history = useHistory();
+
+
     return (
         <div className="page-title-container">
-            <div className="back-button"></div>
+            {back ? (
+                <div className="back-button" onClick={() => history.goBack()}>
+                    <span className="back-arrow">{`${"<"}`}</span>
+                </div>
+            ) : (
+                <div className="back-button">
+
+                </div>
+            )}
             <div className="page-title">
                 {title}
             </div>
-            <div className="page-options"></div>
+            {options && (
+
+                <div className="page-options">
+
+                </div>
+
+            )}
+
         </div>
     )
 }

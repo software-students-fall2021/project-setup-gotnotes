@@ -25,11 +25,16 @@ export const ListItem = ({ props }) => {
 
     return (
         <div className="list-item" onClick={() => handleClick()}>
-            {(itemType === "uni" || itemType === "file") && <img className="list-item-logo" src={itemLogoPath} alt="" />}
+            <div className="img-container">
+                {(itemType === "uni" || itemType === "file") && <img className="list-item-logo" src={itemLogoPath} alt="" />}
+            </div>
 
-            <p className="list-item-name">{itemName}</p>
-            
-            <div className="info">
+            <div className="item-name-container">
+                <span className="list-item-name">{itemName}</span>
+
+            </div>
+
+            <div className="info-container">
                 {itemType === "uni" && <p>{courseCount}</p>}
                 {itemType === "class" && <div className="course-info"><p>{enrolledStudents}</p><NotificationBell props={{ itemID }} /></div>}
                 {itemType === "file" && <p>{likeCount},{dislikeCount},{commentCount}</p>}
