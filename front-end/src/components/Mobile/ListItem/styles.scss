@@ -48,6 +48,13 @@
       margin-right: 10%;
       justify-content: space-between;
 
+      &.single{
+        justify-content: flex-end;
+        width: 80%;
+        margin-right: 20%;
+
+      }
+
       .icon-set{
           display: flex;
           flex-direction: column;

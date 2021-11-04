@@ -33,11 +33,10 @@ export const ListItem = ({ props }) => {
 
             <div className="item-name-container">
                 <span className="list-item-name">{itemName}</span>
-
             </div>
 
             <div className="info-container">
-                <div className="info">
+                <div className={`info${itemType === "uni" || itemType === "class" ? " single" : ""}`}>
                     {itemType === "uni" &&
                         <div className="icon-set">
                             <SchoolIcon fontSize="large" />
