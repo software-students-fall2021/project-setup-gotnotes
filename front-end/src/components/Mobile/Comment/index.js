@@ -14,24 +14,24 @@ const Comment = ({ props }) => {
     return (
         <div className="comment-container">
             <div className="comment-user-data-container">
-                <UserDataViewer props={{ userData: user, shareDate: date, size: "small" }} />
+                <UserDataViewer props={{ userData: user, shareDate: date, avatarSize: "small" }} />
             </div>
-            <div className="comment-container">
-                <span className="comment">{comment}</span>
+            <div className="comment">
+                <span className="comment-text">{comment}</span>
             </div>
             <div className="comment-interaction-data">
+
                 <div className="icon-set">
-                    <div className="icon-set">
-                        <LikeIcon props={{ itemID: 1, fontSize: "large" }} />
-                        <span>{likes}</span>
-                    </div>
-                    {replies &&
-                        <div className="icon-set">
-                            <ReplyIcon props={{ itemID: 1, fontSize: "large" }} />
-                            <span>{replies.length}</span>
-                        </div>
-                    }
+                    <LikeIcon props={{ itemID: 1, fontSize: "large" }} />
+                    <span>{likes}</span>
                 </div>
+                {replies &&
+                    <div className="icon-set">
+                        <ReplyIcon props={{ itemID: 1, fontSize: "large" }} />
+                        <span>{replies.length}</span>
+                    </div>
+                }
+
             </div>
 
         </div>

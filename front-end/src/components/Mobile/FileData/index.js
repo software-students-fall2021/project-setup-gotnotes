@@ -24,7 +24,7 @@ export const FileData = ({ props }) => {
     return (
         <div className="file-data-container">
             <div className="user-share-data">
-                <UserDataViewer props={{ userData: fileSharedBy, shareDate: fileShareDate }} />
+                <UserDataViewer props={{ userData: fileSharedBy, shareDate: fileShareDate, avatarSize: "med" }} />
             </div>
 
             <div className="file-interaction-data">

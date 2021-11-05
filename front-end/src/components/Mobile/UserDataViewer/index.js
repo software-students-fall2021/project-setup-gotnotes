@@ -8,7 +8,7 @@ import UserAvatar from '../UserAvatar';
 
 const UserDataViewer = ({ props }) => {
 
-    const { userData, shareDate } = props;
+    const { userData, shareDate, avatarSize } = props;
     const {
         // userID,
         userAvatarUrl,
@@ -17,9 +17,9 @@ const UserDataViewer = ({ props }) => {
 
     return (
         <div className="user-data-viewer-container">
-            <div className="user-avatar-component-container">
-                <UserAvatar props={{ userAvatarUrl }} />
-            </div>
+            
+                <UserAvatar props={{ userAvatarUrl, size: avatarSize }} />
+            
             <div className={`username-share-date-container ${shareDate && "share-date"}`}>
                 <span className="username">
                     {username}
