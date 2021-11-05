@@ -64,11 +64,12 @@ export const FileDetails = ({ props }) => {
                 />
                 <FileData
                     props={{
+                        fileID,
                         fileShareDate,
                         fileSharedBy,
                         fileLikes,
                         fileDislikes,
-                        fileDownloads
+                        fileDownloads,
                     }}
                 />
                 <CommentViewer props={{ fileComments }} />
