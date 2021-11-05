@@ -25,6 +25,8 @@ export const LikeIcon = ({ props }) => {
 
     //checking if the current user has liked this class
 
+    //needs refactoring for different like checking components
+
     //TODO create a middleware that adds the item to liked list of user
     return (
         <div className="notificationBell">

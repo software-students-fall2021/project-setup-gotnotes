@@ -8,6 +8,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 /*
     editActive will only work with large sizes, default size small
 */
+
 const UserAvatar = ({ props }) => {
 
     const {

@@ -37,6 +37,7 @@ export const FileDetails = ({ props }) => {
         fileComments
     } = mockarooFileData[0];
 
+
     const commentCounter = (commentArr) => {
         
         let count = 0;

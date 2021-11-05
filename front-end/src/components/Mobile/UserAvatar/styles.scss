@@ -1,10 +1,11 @@
 @import "./../../../default.scss";
 
-$small_r: 4em;
-$med_r: 10em;
+$small_r: 2em;
+$med_r: 4em;
 $large_r: 25em;
 
 .user-avatar-container {
+  margin: auto;
   .user-avatar {
     display: flex;
     border-radius: 50%;

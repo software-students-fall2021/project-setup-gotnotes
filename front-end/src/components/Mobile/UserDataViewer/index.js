@@ -8,27 +8,25 @@ import UserAvatar from '../UserAvatar';
 
 const UserDataViewer = ({ props }) => {
 
-    const { fileSharedBy, fileShareDate } = props;
+    const { userData, shareDate, avatarSize } = props;
     const {
-        userID,
+        // userID,
         userAvatarUrl,
         username
-    } = fileSharedBy[0];
-
-    console.log(fileSharedBy)
+    } = userData[0];
 
     return (
         <div className="user-data-viewer-container">
-            <div className="user-avatar-component-container">
-                <UserAvatar props={{ userAvatarUrl }} />
-            </div>
-            <div className={`username-share-date-container ${fileShareDate && "share-date"}`}>
+            
+                <UserAvatar props={{ userAvatarUrl, size: avatarSize }} />
+            
+            <div className={`username-share-date-container ${shareDate && "share-date"}`}>
                 <span className="username">
                     {username}
                 </span>
-                {fileShareDate && (
+                {shareDate && (
                     <span className="file-share-date">
-                        {fileShareDate}
+                        {shareDate}
                     </span>
                 )}
 
