@@ -35,7 +35,20 @@ export const FileDetails = ({ props }) => {
         fileDislikes,
         fileDownloads,
         fileComments
-    } = mockarooFileData[40];
+    } = mockarooFileData[0];
+
+    const commentCounter = (commentArr) => {
+        
+        let count = 0;
+        commentArr.map(item => {
+            count++;
+            item.replies.map(reply => {
+                count++;
+            })
+        })
+
+        return count;
+    }
 
 
     //turns out this library uses an external service 
@@ -69,6 +82,7 @@ export const FileDetails = ({ props }) => {
                         fileSharedBy,
                         fileLikes,
                         fileDislikes,
+                        fileCommentsCount: commentCounter(fileComments),
                         fileDownloads,
                     }}
                 />
