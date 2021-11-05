@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import './styles.scss'
 
-import { mockUserData, currentUserID } from '../../../assets/mocks/mockData'
+import { mockUserData, currentUserID } from '../../../../assets/mocks/mockData'
 
 import {NotificationsActive, NotificationsNoneOutlined } from "@mui/icons-material"
 
