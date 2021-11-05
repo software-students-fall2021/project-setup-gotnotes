@@ -35,7 +35,7 @@ export const FileDetails = ({ props }) => {
         fileDislikes,
         fileDownloads,
         fileComments
-    } = mockarooFileData[40];
+    } = mockarooFileData[0];
 
 
     //turns out this library uses an external service 
