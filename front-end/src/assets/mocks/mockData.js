@@ -216,6 +216,103 @@ export const mockClassData = [
             }
         ]
     },
+    {
+        itemID: 4,
+        itemName: "CLSS 206",
+        itemType: "class",
+        enrolledStudents: 50,
+        files: [
+            {
+                itemID: 5,
+
+            }
+        ]
+    },
+    {
+        itemID: 2,
+        itemName: "CSCI-UA 102",
+        itemType: "class",
+        enrolledStudents: 100,
+        files: [
+            {
+                itemID: 6,
+
+            }
+        ]
+    },
+    {
+        itemID: 4,
+        itemName: "CLSS 206",
+        itemType: "class",
+        enrolledStudents: 50,
+        files: [
+            {
+                itemID: 5,
+
+            }
+        ]
+    },
+    {
+        itemID: 2,
+        itemName: "CSCI-UA 102",
+        itemType: "class",
+        enrolledStudents: 100,
+        files: [
+            {
+                itemID: 6,
+
+            }
+        ]
+    },
+    {
+        itemID: 4,
+        itemName: "CLSS 206",
+        itemType: "class",
+        enrolledStudents: 50,
+        files: [
+            {
+                itemID: 5,
+
+            }
+        ]
+    },
+    {
+        itemID: 2,
+        itemName: "CSCI-UA 102",
+        itemType: "class",
+        enrolledStudents: 100,
+        files: [
+            {
+                itemID: 6,
+
+            }
+        ]
+    },
+    {
+        itemID: 4,
+        itemName: "CLSS 206",
+        itemType: "class",
+        enrolledStudents: 50,
+        files: [
+            {
+                itemID: 5,
+
+            }
+        ]
+    },
+    {
+        itemID: 2,
+        itemName: "CSCI-UA 102",
+        itemType: "class",
+        enrolledStudents: 100,
+        files: [
+            {
+                itemID: 6,
+
+            }
+        ]
+    },
+
 
 ]
 
@@ -320,6 +417,94 @@ export const mockarooFileData = [{"fileID":1,"fileName":"SedNisl.txt","fileType"
 {"fileID":99,"fileName":"IpsumAliquamNon.mp3","fileType":"audio/mpeg3","fileShareDate":"1/30/2021","fileLikes":84,"fileDislikes":66,"fileDownloads":80,"fileSharedBy":[{"username":"taaronson0","userAvatarUrl":"http://dummyimage.com/147x100.png/cc0000/ffffff","userID":264}],"fileComments":[{"comment":"De-engineered context-sensitive secured line","date":"6/19/2021","likes":49,"user":[{"username":"raucoate0","userAvatarUrl":"http://dummyimage.com/232x100.png/dddddd/000000","userID":933}],"replies":[{"comment":"Programmable global flexibility","date":"12/12/2020","likes":4,"user":[{"username":"kfellona0","userAvatarUrl":"http://dummyimage.com/135x100.png/cc0000/ffffff","userID":593}]}]},{"comment":"Implemented incremental local area network","date":"4/30/2021","likes":46,"user":[{"username":"sskyppe0","userAvatarUrl":"http://dummyimage.com/225x100.png/cc0000/ffffff","userID":629}],"replies":[{"comment":"Configurable needs-based framework","date":"2/7/2021","likes":26,"user":[{"username":"lmokes0","userAvatarUrl":"http://dummyimage.com/223x100.png/dddddd/000000","userID":524}]},{"comment":"De-engineered motivating leverage","date":"11/24/2020","likes":20,"user":[{"username":"ctinsley0","userAvatarUrl":"http://dummyimage.com/218x100.png/5fa2dd/ffffff","userID":591}]},{"comment":"Monitored upward-trending algorithm","date":"10/22/2021","likes":12,"user":[{"username":"jmcshirie0","userAvatarUrl":"http://dummyimage.com/146x100.png/ff4444/ffffff","userID":657}]}]},{"comment":"Programmable global implementation","date":"10/12/2021","likes":19,"user":[{"username":"dwackett0","userAvatarUrl":"http://dummyimage.com/228x100.png/cc0000/ffffff","userID":720}],"replies":[]},{"comment":"Multi-layered incremental definition","date":"4/20/2021","likes":41,"user":[{"username":"jcastagnone0","userAvatarUrl":"http://dummyimage.com/182x100.png/cc0000/ffffff","userID":673}],"replies":[{"comment":"Balanced executive capability","date":"6/1/2021","likes":30,"user":[{"username":"lpaulet0","userAvatarUrl":"http://dummyimage.com/224x100.png/cc0000/ffffff","userID":755}]},{"comment":"Multi-layered modular orchestration","date":"8/22/2021","likes":32,"user":[{"username":"edecristoforo0","userAvatarUrl":"http://dummyimage.com/236x100.png/ff4444/ffffff","userID":256}]},{"comment":"Compatible optimal customer loyalty","date":"9/16/2021","likes":33,"user":[{"username":"evernau0","userAvatarUrl":"http://dummyimage.com/242x100.png/dddddd/000000","userID":901}]}]},{"comment":"Object-based methodical initiative","date":"5/2/2021","likes":31,"user":[{"username":"erochell0","userAvatarUrl":"http://dummyimage.com/217x100.png/dddddd/000000","userID":220}],"replies":[{"comment":"Proactive contextually-based analyzer","date":"4/26/2021","likes":14,"user":[{"username":"tedwicker0","userAvatarUrl":"http://dummyimage.com/172x100.png/ff4444/ffffff","userID":492}]},{"comment":"Proactive 24 hour archive","date":"6/4/2021","likes":21,"user":[{"username":"smerrell0","userAvatarUrl":"http://dummyimage.com/128x100.png/5fa2dd/ffffff","userID":177}]},{"comment":"Optional 5th generation application","date":"6/30/2021","likes":41,"user":[{"username":"hmcelory0","userAvatarUrl":"http://dummyimage.com/127x100.png/dddddd/000000","userID":773}]},{"comment":"Multi-channelled cohesive hub","date":"2/13/2021","likes":20,"user":[{"username":"ffrankowski0","userAvatarUrl":"http://dummyimage.com/217x100.png/5fa2dd/ffffff","userID":303}]},{"comment":"Profit-focused local process improvement","date":"10/23/2021","likes":42,"user":[{"username":"dhastilow0","userAvatarUrl":"http://dummyimage.com/166x100.png/ff4444/ffffff","userID":897}]}]},{"comment":"Centralized logistical attitude","date":"7/24/2021","likes":42,"user":[{"username":"cvedeshkin0","userAvatarUrl":"http://dummyimage.com/229x100.png/cc0000/ffffff","userID":566}],"replies":[{"comment":"Horizontal zero defect Graphic Interface","date":"5/7/2021","likes":44,"user":[{"username":"ooliphant0","userAvatarUrl":"http://dummyimage.com/121x100.png/cc0000/ffffff","userID":174}]},{"comment":"Fundamental contextually-based capability","date":"12/8/2020","likes":31,"user":[{"username":"dtomasutti0","userAvatarUrl":"http://dummyimage.com/133x100.png/ff4444/ffffff","userID":718}]}]},{"comment":"Implemented cohesive archive","date":"10/3/2021","likes":24,"user":[{"username":"gclamp0","userAvatarUrl":"http://dummyimage.com/172x100.png/5fa2dd/ffffff","userID":471}],"replies":[]},{"comment":"Up-sized analyzing adapter","date":"8/22/2021","likes":42,"user":[{"username":"rboseley0","userAvatarUrl":"http://dummyimage.com/155x100.png/ff4444/ffffff","userID":428}],"replies":[{"comment":"Self-enabling maximized parallelism","date":"11/8/2020","likes":40,"user":[{"username":"ywillden0","userAvatarUrl":"http://dummyimage.com/149x100.png/5fa2dd/ffffff","userID":116}]},{"comment":"User-friendly bottom-line matrix","date":"5/24/2021","likes":35,"user":[{"username":"bmccomas0","userAvatarUrl":"http://dummyimage.com/104x100.png/cc0000/ffffff","userID":15}]},{"comment":"Innovative optimizing implementation","date":"4/14/2021","likes":43,"user":[{"username":"lpauletti0","userAvatarUrl":"http://dummyimage.com/111x100.png/dddddd/000000","userID":768}]},{"comment":"Reactive radical budgetary management","date":"5/13/2021","likes":36,"user":[{"username":"kbotham0","userAvatarUrl":"http://dummyimage.com/197x100.png/cc0000/ffffff","userID":734}]}]},{"comment":"Fundamental user-facing software","date":"4/11/2021","likes":38,"user":[{"username":"klakenden0","userAvatarUrl":"http://dummyimage.com/195x100.png/ff4444/ffffff","userID":35}],"replies":[{"comment":"Multi-layered motivating frame","date":"11/16/2020","likes":25,"user":[{"username":"jbuche0","userAvatarUrl":"http://dummyimage.com/233x100.png/5fa2dd/ffffff","userID":967}]},{"comment":"Re-engineered fault-tolerant synergy","date":"1/1/2021","likes":21,"user":[{"username":"meldrid0","userAvatarUrl":"http://dummyimage.com/121x100.png/cc0000/ffffff","userID":256}]},{"comment":"Profit-focused full-range circuit","date":"12/21/2020","likes":36,"user":[{"username":"ncaron0","userAvatarUrl":"http://dummyimage.com/221x100.png/5fa2dd/ffffff","userID":17}]},{"comment":"Streamlined background solution","date":"11/18/2020","likes":17,"user":[{"username":"bdeetch0","userAvatarUrl":"http://dummyimage.com/207x100.png/cc0000/ffffff","userID":472}]},{"comment":"Multi-channelled clear-thinking definition","date":"4/2/2021","likes":31,"user":[{"username":"pknappe0","userAvatarUrl":"http://dummyimage.com/239x100.png/5fa2dd/ffffff","userID":167}]}]},{"comment":"Triple-buffered executive access","date":"5/28/2021","likes":25,"user":[{"username":"bstudart0","userAvatarUrl":"http://dummyimage.com/189x100.png/dddddd/000000","userID":654}],"replies":[{"comment":"Programmable heuristic throughput","date":"3/20/2021","likes":30,"user":[{"username":"kmaccorkell0","userAvatarUrl":"http://dummyimage.com/219x100.png/cc0000/ffffff","userID":81}]},{"comment":"Fundamental client-server synergy","date":"4/14/2021","likes":11,"user":[{"username":"cnadin0","userAvatarUrl":"http://dummyimage.com/131x100.png/dddddd/000000","userID":338}]}]},{"comment":"Right-sized 24 hour internet solution","date":"1/16/2021","likes":1,"user":[{"username":"vkincey0","userAvatarUrl":"http://dummyimage.com/198x100.png/cc0000/ffffff","userID":338}],"replies":[{"comment":"Stand-alone secondary middleware","date":"7/20/2021","likes":47,"user":[{"username":"sforryan0","userAvatarUrl":"http://dummyimage.com/231x100.png/cc0000/ffffff","userID":963}]}]},{"comment":"Enterprise-wide encompassing complexity","date":"12/23/2020","likes":28,"user":[{"username":"otassaker0","userAvatarUrl":"http://dummyimage.com/214x100.png/ff4444/ffffff","userID":90}],"replies":[{"comment":"Programmable empowering orchestration","date":"8/26/2021","likes":15,"user":[{"username":"sshemmin0","userAvatarUrl":"http://dummyimage.com/216x100.png/5fa2dd/ffffff","userID":936}]},{"comment":"Extended dedicated middleware","date":"3/10/2021","likes":14,"user":[{"username":"abras0","userAvatarUrl":"http://dummyimage.com/189x100.png/dddddd/000000","userID":490}]},{"comment":"Public-key user-facing knowledge base","date":"5/4/2021","likes":11,"user":[{"username":"rcrossley0","userAvatarUrl":"http://dummyimage.com/232x100.png/ff4444/ffffff","userID":444}]}]},{"comment":"Diverse modular neural-net","date":"10/3/2021","likes":43,"user":[{"username":"icamber0","userAvatarUrl":"http://dummyimage.com/211x100.png/dddddd/000000","userID":633}],"replies":[{"comment":"Stand-alone logistical help-desk","date":"4/29/2021","likes":44,"user":[{"username":"dchismon0","userAvatarUrl":"http://dummyimage.com/106x100.png/5fa2dd/ffffff","userID":609}]},{"comment":"Multi-channelled real-time workforce","date":"3/28/2021","likes":17,"user":[{"username":"mstoile0","userAvatarUrl":"http://dummyimage.com/107x100.png/cc0000/ffffff","userID":782}]},{"comment":"Innovative 3rd generation contingency","date":"5/6/2021","likes":27,"user":[{"username":"cphorsby0","userAvatarUrl":"http://dummyimage.com/142x100.png/5fa2dd/ffffff","userID":351}]},{"comment":"Inverse global capacity","date":"8/30/2021","likes":44,"user":[{"username":"kdewing0","userAvatarUrl":"http://dummyimage.com/167x100.png/cc0000/ffffff","userID":474}]},{"comment":"Adaptive directional budgetary management","date":"2/12/2021","likes":36,"user":[{"username":"ptatham0","userAvatarUrl":"http://dummyimage.com/103x100.png/dddddd/000000","userID":772}]}]},{"comment":"Open-architected mobile adapter","date":"1/9/2021","likes":20,"user":[{"username":"cgormally0","userAvatarUrl":"http://dummyimage.com/112x100.png/5fa2dd/ffffff","userID":649}],"replies":[{"comment":"Profit-focused scalable policy","date":"11/12/2020","likes":2,"user":[{"username":"vgritland0","userAvatarUrl":"http://dummyimage.com/194x100.png/cc0000/ffffff","userID":418}]},{"comment":"Stand-alone systematic installation","date":"8/7/2021","likes":43,"user":[{"username":"ccroley0","userAvatarUrl":"http://dummyimage.com/204x100.png/dddddd/000000","userID":257}]},{"comment":"Persevering zero defect product","date":"2/20/2021","likes":48,"user":[{"username":"svannar0","userAvatarUrl":"http://dummyimage.com/112x100.png/cc0000/ffffff","userID":655}]},{"comment":"Stand-alone full-range application","date":"6/14/2021","likes":12,"user":[{"username":"stitheridge0","userAvatarUrl":"http://dummyimage.com/248x100.png/dddddd/000000","userID":176}]},{"comment":"Synergistic maximized interface","date":"1/27/2021","likes":33,"user":[{"username":"mgilluley0","userAvatarUrl":"http://dummyimage.com/241x100.png/cc0000/ffffff","userID":165}]}]}]},
 {"fileID":100,"fileName":"InHac.mov","fileType":"video/quicktime","fileShareDate":"10/1/2021","fileLikes":72,"fileDislikes":23,"fileDownloads":80,"fileSharedBy":[{"username":"dcamelli0","userAvatarUrl":"http://dummyimage.com/119x100.png/cc0000/ffffff","userID":43}],"fileComments":[]}];
 export const mockFileData = [
+    {
+        itemID: 6,
+        itemName: "Data Structures CheatSheet.xls",
+        itemLogoPath: "/fileLogos/xls.png",
+        itemType: "file",
+        fileType: "xls",
+        commentCount: 3,
+        likeCount: 13,
+        dislikeCount: 1,
+        downloadCount: 10,
+    },
+    {
+        itemID: 5,
+        itemName: "Greek History.pdf",
+        itemLogoPath: "/fileLogos/pdf.png",
+        itemType: "file",
+        fileType: "pdf",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
+    {
+        itemID: 9,
+        itemName: "Greek History.xls",
+        itemLogoPath: "/fileLogos/xls.png",
+        itemType: "file",
+        fileType: "xls",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
+    {
+        itemID: 8,
+        itemName: "Greek History.pdf",
+        itemLogoPath: "/fileLogos/pdf.png",
+        itemType: "file",
+        fileType: "pdf",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
+    {
+        itemID: 6,
+        itemName: "Data Structures CheatSheet.xls",
+        itemLogoPath: "/fileLogos/xls.png",
+        itemType: "file",
+        fileType: "xls",
+        commentCount: 3,
+        likeCount: 13,
+        dislikeCount: 1,
+        downloadCount: 10,
+    },
+    {
+        itemID: 5,
+        itemName: "Greek History.pdf",
+        itemLogoPath: "/fileLogos/pdf.png",
+        itemType: "file",
+        fileType: "pdf",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
+    {
+        itemID: 9,
+        itemName: "Greek History.xls",
+        itemLogoPath: "/fileLogos/xls.png",
+        itemType: "file",
+        fileType: "xls",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
+    {
+        itemID: 8,
+        itemName: "Greek History.pdf",
+        itemLogoPath: "/fileLogos/pdf.png",
+        itemType: "file",
+        fileType: "pdf",
+        commentCount: 7,
+        likeCount: 10,
+        dislikeCount: 2,
+        downloadCount: 25
+    },
     {
         itemID: 6,
         itemName: "Data Structures CheatSheet.xls",

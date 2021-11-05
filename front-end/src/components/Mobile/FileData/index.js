@@ -18,6 +18,7 @@ export const FileData = ({ props }) => {
         fileSharedBy,
         fileLikes,
         fileDislikes,
+        fileCommentsCount,
         fileDownloads
     } = props;
 
@@ -35,6 +36,10 @@ export const FileData = ({ props }) => {
                 <div className="icon-set">
                     <DislikeIcon props={{ itemID: fileID, fontSize: "large" }} />
                     <span>{fileDislikes}</span>
+                </div>
+                <div className="icon-set">
+                    <CommentIcon props={{ itemID: fileID, fontSize: "large" }} />
+                    <span>{fileCommentsCount}</span>
                 </div>
                 <div className="icon-set">
                     <DownloadIcon props={{ itemID: fileID, fontSize: "large" }} />

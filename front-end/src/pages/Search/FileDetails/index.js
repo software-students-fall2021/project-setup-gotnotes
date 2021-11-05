@@ -38,6 +38,20 @@ export const FileDetails = ({ props }) => {
     } = mockarooFileData[0];
 
 
+    const commentCounter = (commentArr) => {
+        
+        let count = 0;
+        commentArr.map(item => {
+            count++;
+            item.replies.map(reply => {
+                count++;
+            })
+        })
+
+        return count;
+    }
+
+
     //turns out this library uses an external service 
     //for viewing microsoft documents, and cannot read local documents,
     //so whenever a document is needed to be read, 
@@ -69,6 +83,7 @@ export const FileDetails = ({ props }) => {
                         fileSharedBy,
                         fileLikes,
                         fileDislikes,
+                        fileCommentsCount: commentCounter(fileComments),
                         fileDownloads,
                     }}
                 />
