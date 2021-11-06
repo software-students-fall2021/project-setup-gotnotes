@@ -19,5 +19,7 @@
   },
   "scripts": {
     "start": "nodemon index.js"
-  }
+  },
+  "description": "The back-end of your project will live in this directory.",
+  "author": ""
 }

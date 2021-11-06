@@ -49,7 +49,7 @@ export const ListItem = ({ props }) => {
                     }
                     {itemType === "file" &&
                         <>
-                            <div className="icon-set">
+                            <div className="icon-set" >
                                 <LikeIcon props={{ itemID, fontSize: "large" }} />
                                 <span>{likeCount}</span>
                             </div>

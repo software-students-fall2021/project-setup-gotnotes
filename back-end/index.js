@@ -23,21 +23,25 @@ app.use(express.urlencoded({ extended: true }))
 
 
 app.get('/unis', (req, res) => {
-
+    console.log(req);
+    res.send('Unis Request Received')
 })
 
 app.get('/unis/:uni', (req, res) => {
-
+    console.log(req.params);
+    res.send(req.params.uni + ' Request Received')
 })
 
 //this post is for subscribing to a class
 app.post('/unis/:uni', (req,res) => {
-
+    console.log(req.params);
+    res.send(req.body.courseID + ' Request Received')
 })
 
 
 app.get('/unis/:uni/:course', (req, res) => {
-
+    console.log(req.params);
+    res.send(req.params.course + ' Request Received')
 })
 
 //this post is for liking, disliking a file
@@ -47,7 +51,8 @@ app.post('/unis/:uni/:course', (req, res) => {
 
 
 app.get('/unis/:uni/:course/:file', (req, res) => {
-
+    console.log(req.params);
+    res.send(req.params.file + ' Request Received')
 })
 //this post is for adding comments to a file, liking, and disliking
 app.post('/unis/:uni/:course/:file', (req, res) => {
@@ -55,19 +60,23 @@ app.post('/unis/:uni/:course/:file', (req, res) => {
 })
 
 app.get('/chats', (req, res) => {
-
+    console.log(req);
+    res.send('Chat Request Received')
 })
 
 app.get('/chats/:chatID', (req, res) => {
-
+    console.log(req.params);
+    res.send(req.params.chatID + ' Request Received')
 })
 
 app.get('/account', (req, res) => {
-
+    console.log(req);
+    res.send('Account Request Received')
 })
 
 app.get('/admin', (req, res) => {
-
+    console.log(req);
+    res.send('Admin Request Received')
 })
 
 app.post('/admin', (req, res) => {
@@ -75,7 +84,8 @@ app.post('/admin', (req, res) => {
 })
 
 app.get('/addFile', (req, res) => {
-
+    console.log(req);
+    res.send('AddFile Request Received')
 })
 app.post('/addFile', (req, res) => {
 
