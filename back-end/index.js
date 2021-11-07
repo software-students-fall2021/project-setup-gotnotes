@@ -13,14 +13,33 @@ const bcrypt = require('bcryptjs')
 const PORT = process.env.PORT
 const JWT_SECRET = process.env.JWT_SECRET
 
-const { accountRouter, addFileRouter, chatRouter, searchRouter } = require('./Routes')
+const {
+    accountRouter,
+    addFileRouter,
+    chatRouter,
+    searchRouter
+} = require('./Routes')
 
 const app = express()
+
+//Set up mongoose connection
+/* 
+var mongoose = require('mongoose');
+var mongoDB = process.env.DB_URL;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+*/
+
 app.use(cors())
 app.use(fileUpload())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use('/unis', searchRouter)
+app.use('/chats', chatRouter)
+app.use('/addFile', addFileRouter)
+app.use('/account', accountRouter)
 
 app.get('/unis', (req, res) => {
     console.log(req);
@@ -33,7 +52,7 @@ app.get('/unis/:uni', (req, res) => {
 })
 
 //this post is for subscribing to a class
-app.post('/unis/:uni', (req,res) => {
+app.post('/unis/:uni', (req, res) => {
     console.log(req.params);
     res.send(req.body.courseID + ' Request Received')
 })
