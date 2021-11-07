@@ -13,7 +13,7 @@ const bcrypt = require('bcryptjs')
 const PORT = process.env.PORT
 const JWT_SECRET = process.env.JWT_SECRET
 
-const { accountRouter, addFileRouter, chatRouter, searchRouter } = require('./routes')
+const { accountRouter, addFileRouter, chatRouter, searchRouter } = require('./Routes')
 
 const app = express()
 app.use(cors())
