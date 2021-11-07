@@ -5,7 +5,7 @@ var router = express.Router({ mergeParams: true });
 var { fileController } = require('../../Controllers');
 
 /// COURSE ROUTES ///
-
+/* 
 // GET catalog home page.
 router.get('/', book_controller.index);
 
@@ -110,5 +110,5 @@ router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
 
 // GET request for list of all BookInstance.
 router.get('/bookinstances', book_instance_controller.bookinstance_list);
-
+ */
 module.exports = router;
