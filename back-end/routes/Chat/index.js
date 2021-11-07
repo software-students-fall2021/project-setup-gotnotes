@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { chatController } = require('./../../Controllers');
+var { chatController } = require('../../Controllers');
 
 /// COURSE ROUTES ///
 

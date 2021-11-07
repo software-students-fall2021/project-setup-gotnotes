@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { userController } = require('./../../Controllers');
+var { userController } = require('../../Controllers');
 
 /// COURSE ROUTES ///
 
