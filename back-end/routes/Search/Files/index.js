@@ -4,6 +4,29 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { filesController } = require('../../../Controllers');
 
+
+
+//list all files under course
+router.get('/', (req, res) => {
+    
+    res.send("list all to course: " + req.params.course )
+})
+
+//create file
+router.post('/create', (req, res) => {
+    res.send("create file: FILE_ID, in course: COURSE_ID, by user: USER_ID")
+})
+
+//edit file (admin or original sharing user)
+router.post('/edit', (req, res) => {
+    res.send("edit file: FILE_ID, in course: COURSE_ID, by user: USER_ID")
+})
+
+//delete file (admin or orignal sharing user)
+router.post('/delete', (req, res) => {
+    res.send("delete file: FILE_ID, in course: COURSE_ID, by user: USER_ID")
+})
+
 /// COURSE ROUTES ///
 /* 
 // GET catalog home page.

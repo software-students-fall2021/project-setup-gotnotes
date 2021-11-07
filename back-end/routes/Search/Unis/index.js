@@ -4,6 +4,34 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { uniController } = require('../../../Controllers');
 
+
+//list all unis
+router.get('/', (req, res) => {
+    
+    res.send('List all Unis Request Received')
+})
+
+
+//create a new uni (admin only)
+router.post('/create', (req, res) => {
+    res.send('Create req new uni:');
+})
+
+//edit a uni (admin only)
+router.post('/edit', (req, res) => {
+    res.send('Edit req to uni:');
+})
+
+//delete a uni (admin only)
+router.post('/delete', (req, res) => {
+    res.send('Delete req to uni:');
+})
+
+//enroll to a uni (logged in user only)
+router.post('/enroll', (req, res) => {
+    res.send('Enroll req to uni: UNI_NAME, by user: USER_ID');
+})
+
 /// COURSE ROUTES ///
 /* 
 // GET catalog home page.

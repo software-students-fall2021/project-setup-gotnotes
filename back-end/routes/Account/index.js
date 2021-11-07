@@ -4,6 +4,18 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { userController } = require('../../Controllers');
 
+
+
+router.get('/', (req, res) => {
+
+    res.send('Account Request Received')
+})
+
+router.post('/edit', (req, res) => {
+    res.send('Account edit req by user: USER_ID')
+})
+
+
 /* /// COURSE ROUTES ///
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
