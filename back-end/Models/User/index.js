@@ -13,7 +13,7 @@ var UserSchema = new Schema({
         unique: true
     },
     passwordHash: { type: String },
-    roles: { type: Boolean },
+    isAdmin: { type: Boolean },
     userAvatarUrl: { type: String },
     firstName: { type: String },
     lastName: { type: String },
@@ -32,6 +32,10 @@ var UserSchema = new Schema({
     userDisliked: [{
         type: Schema.Types.ObjectId,
         ref: 'File'
+    }],
+    userComments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
     }]
 
 });

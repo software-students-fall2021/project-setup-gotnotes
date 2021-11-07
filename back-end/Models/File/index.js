@@ -22,14 +22,6 @@ var FileSchema = new Schema({
         ref: 'User'
     }],
     fileDownloads: { type: Number },
-    courseEnrolledStudents: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    courseSharedFiles: [{
-        type: Schema.Types.ObjectId,
-        ref: 'File'
-    }],
     fileComments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
