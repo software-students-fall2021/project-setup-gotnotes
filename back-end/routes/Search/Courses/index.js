@@ -4,6 +4,44 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { courseController } = require('../../../Controllers');
 
+
+//list all courses under that uni
+router.get('/', (req, res) => {
+    
+    res.send("list all courses req to uni: " + req.params.uni )
+})
+
+//subscribe/unsubscribe to/from course (logged-in user)
+router.post('/subscribe', (req, res) => {
+    
+    res.send("subscribe req to course: COURSE_NAME, by user: USER_ID")
+})
+
+//create course (admin only)
+router.post('/create', (req, res) => {
+    
+    res.send("create req to uni, create course: ")
+})
+
+
+//edit course (admin only)
+router.post('/edit', (req, res) => {
+    
+    res.send("edit req to uni, edit course: ")
+})
+
+//delete course (admin only)
+router.post('/delete', (req, res) => {
+    
+    res.send("delete req to uni, delete course: ")
+})
+
+
+
+
+
+
+
 /// COURSE ROUTES ///
 /* 
 // GET catalog home page.

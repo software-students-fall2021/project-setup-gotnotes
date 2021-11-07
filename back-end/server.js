@@ -15,83 +15,37 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 const {
     accountRouter,
-    addFileRouter,
     chatRouter,
     searchRouter
 } = require('./Routes')
 
 const app = express()
 
-//Set up mongoose connection
-/* 
-var mongoose = require('mongoose');
-var mongoDB = process.env.DB_URL;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
-*/
+
+/**
+ * //Set up mongoose connection
+ * var mongoose = require('mongoose');
+ * var mongoDB = process.env.DB_URL;
+ * mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+ * var db = mongoose.connection;
+ * db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+ * 
+ */
+
 
 app.use(cors())
 app.use(fileUpload())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/unis', searchRouter)
+
+app.use('/unis', searchRouter.unisRouter)
+app.use('/unis/:uni', searchRouter.coursesRouter)
+app.use('/unis/:uni/:course', searchRouter.filesRouter)
+app.use('/unis/:uni/:course/:file', searchRouter.fileRouter)
 app.use('/chats', chatRouter)
-app.use('/addFile', addFileRouter)
 app.use('/account', accountRouter)
 
-app.get('/unis', (req, res) => {
-    console.log(req);
-    res.send('Unis Request Received')
-})
-
-app.get('/unis/:uni', (req, res) => {
-    console.log(req.params);
-    res.send(req.params.uni + ' Request Received')
-})
-
-//this post is for subscribing to a class
-app.post('/unis/:uni', (req, res) => {
-    console.log(req.params);
-    res.send(req.body.courseID + ' Request Received')
-})
-
-
-app.get('/unis/:uni/:course', (req, res) => {
-    console.log(req.params);
-    res.send(req.params.course + ' Request Received')
-})
-
-//this post is for liking, disliking a file
-app.post('/unis/:uni/:course', (req, res) => {
-
-})
-
-
-app.get('/unis/:uni/:course/:file', (req, res) => {
-    console.log(req.params);
-    res.send(req.params.file + ' Request Received')
-})
-//this post is for adding comments to a file, liking, and disliking
-app.post('/unis/:uni/:course/:file', (req, res) => {
-
-})
-
-app.get('/chats', (req, res) => {
-    console.log(req);
-    res.send('Chat Request Received')
-})
-
-app.get('/chats/:chatID', (req, res) => {
-    console.log(req.params);
-    res.send(req.params.chatID + ' Request Received')
-})
-
-app.get('/account', (req, res) => {
-    console.log(req);
-    res.send('Account Request Received')
-})
 
 app.get('/admin', (req, res) => {
     console.log(req);
@@ -102,13 +56,6 @@ app.post('/admin', (req, res) => {
 
 })
 
-app.get('/addFile', (req, res) => {
-    console.log(req);
-    res.send('AddFile Request Received')
-})
-app.post('/addFile', (req, res) => {
-
-})
 
 // app.get('/signup', (req, res) => {
 //     // let token = jwt.sign(
