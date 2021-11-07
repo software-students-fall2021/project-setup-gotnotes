@@ -1,22 +1,3 @@
-import React from 'react';
-import useHistory from "react-router-dom"
-
-const ButtonWithLink = ({ props }) => {
-
-  const history = useHistory();
-    const { pathname } = useLocation();
-
-    const handleClick = () => history.push(`${pathname}/${itemName}`);
-
-  return (
-
-    <button onClick={() => history.push(path_to_page)}> </button >
-
-  )
-
-}
-export default ButtonWithLink
-
 import "./styles.scss";
 import React from "react";
 import Button from "@mui/material/Button";
