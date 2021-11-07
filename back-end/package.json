@@ -18,6 +18,9 @@
     "nodemon": "^2.0.14"
   },
   "scripts": {
-    "start": "nodemon index.js"
-  }
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "description": "The back-end of your project will live in this directory.",
+  "author": ""
 }

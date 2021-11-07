@@ -29,6 +29,7 @@
     "stream-chat": "^4.2.0",
     "stream-chat-react": "^0.6.26",
     "web-vitals": "^1.1.2"
+  
   },
   "scripts": {
     "start": "react-scripts start",
@@ -56,5 +57,9 @@
   },
   "devDependencies": {
     "@mui/material": "^5.0.6"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
