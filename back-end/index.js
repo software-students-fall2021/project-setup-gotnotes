@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const fileUpload = require('express-fileupload')
-const contentDisposition = require('content-disposition')
+
 const cors = require('cors');
 
 const path = require('path')
@@ -10,10 +10,10 @@ const path = require('path')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-const mime = require('mime-types')
-
 const PORT = process.env.PORT
 const JWT_SECRET = process.env.JWT_SECRET
+
+const { accountRouter, addFileRouter, chatRouter, searchRouter } = require('./routes')
 
 const app = express()
 app.use(cors())
