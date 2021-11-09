@@ -8,6 +8,7 @@
     "chai": "^4.3.4",
     "content-disposition": "^0.5.3",
     "cors": "^2.8.5",
+    "deep-equal-in-any-order": "^1.1.15",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",

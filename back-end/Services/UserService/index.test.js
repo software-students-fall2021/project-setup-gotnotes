@@ -1,10 +1,20 @@
-const expect = require('chai').expect;
-var UserServices = require('./index')
+const deepEqualInAnyOrder = require('deep-equal-in-any-order');
+const chai = require('chai');
+const { expect } = chai;
+chai.use(deepEqualInAnyOrder);
 
-describe('UserService', function() {
-  describe('get_user()', function() {
-    it('should return arr with one user obj in it given valid email', function() {
-      expect([1, 2, 3].indexOf(4)).to.equal(-1);
+var UserService = require('./index')
+let userData = require('./../../Mock/UsersMockData/users.json')
+const testUser = userData[0];
+
+describe('UserService', function () {
+    describe('get_user()', function () {
+        it('should return arr with one user obj in it given valid email', function () {
+
+            const user = UserService.get_user(testUser.userID)
+
+            expect(user[0]).to.deep.equalInAnyOrder(testUser);
+
+        });
     });
-  });
 });

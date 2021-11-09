@@ -1,4 +1,5 @@
 let userData = require('./../../Mock/UsersMockData/users.json')
+let FileData = require('./../../Mock/FilesMockData/file.json')
 
 /**
  * Get a user by the email, which is the unique key of users table
@@ -174,7 +175,6 @@ exports.set_user_uni = function (email, newUniId) {
     return 0;
 
 }
-
 
 
 exports.get_user_subscribed = function (email) {
