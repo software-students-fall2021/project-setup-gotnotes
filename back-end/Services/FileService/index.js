@@ -220,7 +220,11 @@ exports.set_fileType = function (fileID, newfileType) {
 
     if (!currentFile) return 1;
 
-    currentFile.fileComments = commentToRemove;
+    currentFile[0].fileComments = currentFile[0].
+    userLiked.
+    filter(comment =>
+        comment.fileComments !== commentToRemove
+    )
 
     fileData.push(currentFile);
 
