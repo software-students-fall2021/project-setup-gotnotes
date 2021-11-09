@@ -39,13 +39,27 @@ const get_user_authority_by_email = function (email) {
     return get_user_by_email(email)[0].isAdmin;
 }
 
+const set_user_authority_by_email = function (email, newAuthority) {
+    const currentUser = get_user_by_email(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser.isAdmin = newAuthority;
+
+    userData.push(currentUser);
+
+    return 0;
+}
+
 /**
  * Return the avatar url of the user with given email
  * @param {*} email 
  * @returns String || null
  */
 const get_user_avatar_url_by_email = function (email) {
-    const user = userData.filter(user => user.userID === email);
+    const user = get_user_by_email(email);
     if (user[0].userAvatarUrl)
         return user[0].userAvatarUrl
     return null;
@@ -58,9 +72,9 @@ const get_user_avatar_url_by_email = function (email) {
  * @returns 1 || 0
  */
 const set_user_avatar_url_by_email = function (email, newAvatarUrl) {
-    const currentUser = userData.filter(user => user.userID === email);
+    const currentUser = get_user_by_email(email);
 
-    if(!currentUser) return 1;
+    if (!currentUser) return 1;
 
     userData = userData.filter(user => user.userID !== email);
 
