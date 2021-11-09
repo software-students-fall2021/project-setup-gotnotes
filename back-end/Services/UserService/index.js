@@ -175,7 +175,7 @@ const get_user_subscribed = function (email) {
     return null;
 }
 
-const set_user_subscribed_add_course = function (email, addedCourseId) {
+const set_user_subscribed_subscribe_course = function (email, addedCourseId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -184,7 +184,7 @@ const set_user_subscribed_add_course = function (email, addedCourseId) {
 
     const addedCourseData = { courseID: addedCourseId }
 
-    currentUser[0].userSubscribed.push(addedCourseId);
+    currentUser[0].userSubscribed.push(addedCourseData);
 
     userData.push(currentUser);
 
@@ -192,7 +192,7 @@ const set_user_subscribed_add_course = function (email, addedCourseId) {
 
 }
 
-const set_user_subscribed_remove_course = function (email, removedCourseId) {
+const set_user_subscribed_unsubscribe_course = function (email, removedCourseId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -210,6 +210,157 @@ const set_user_subscribed_remove_course = function (email, removedCourseId) {
     return 0;
 
 }
+
+
+const get_user_liked = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userLiked)
+        return user.userLiked
+    return null;
+}
+
+const get_user_liked_count = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userLiked)
+        return user.userLiked.length
+    return null;
+}
+const set_user_liked_like_file = function (email, addedFileId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    const addedFileData = { fileID: addedFileId }
+
+    currentUser[0].userLiked.push(addedFileData);
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const set_user_liked_unlike_file = function (email, removedFileId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser[0].userLiked = currentUser[0].
+        userLiked.
+        filter(file =>
+            file.fileID !== removedFileId
+        )
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const get_user_disliked = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userDisliked)
+        return user.userDisliked
+    return null;
+}
+const get_user_disliked_count = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userDisliked)
+        return user.userDisliked.length
+    return null;
+}
+
+const set_user_disliked_dislike_file = function (email, addedFileId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    const addedFileData = { fileID: addedFileId }
+
+    currentUser[0].userDisliked.push(addedFileData);
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const set_user_disliked_undislike_file = function (email, removedFileId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser[0].userDisliked = currentUser[0].
+        userLiked.
+        filter(file =>
+            file.fileID !== removedFileId
+        )
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const get_user_comment = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userComments)
+        return user.userComments
+    return null;
+}
+
+const get_user_comment_count = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userComments)
+        return user.userComments.length
+    return null;
+}
+
+const set_user_comment_add_comment = function (email, addedCommentId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    const addedCommentData = { commentId: addedCommentId }
+
+    currentUser[0].userComments.push(addedCommentData);
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const set_user_comment_delete_comment = function (email, removedCommentId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser[0].userComments = currentUser[0].
+        userLiked.
+        filter(comment =>
+            comment.commentId !== removedCommentId
+        )
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+
 
 const get_users_by_course_id = function (course_id) {
     const students_by_course = [];

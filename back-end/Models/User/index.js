@@ -45,6 +45,7 @@ UserSchema.virtual('email').get(function () {
 });
 
 
+//virtual needed for like dislike comment counts
 
 //Export model
 module.exports = mongoose.model('User', UserSchema);
