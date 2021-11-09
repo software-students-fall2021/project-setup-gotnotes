@@ -158,7 +158,52 @@ const set_user_uni = function (email, newUniId) {
 
     userData = userData.filter(user => user.userID !== email);
 
-    currentUser[0].userUni = newLastName;
+    currentUser[0].userUni = newUniId;
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+
+
+const get_user_subscribed = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userSubscribed)
+        return user.userSubscribed
+    return null;
+}
+
+const set_user_subscribed_add_course = function (email, addedCourseId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    const addedCourseData = { courseID: addedCourseId }
+
+    currentUser[0].userSubscribed.push(addedCourseId);
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const set_user_subscribed_remove_course = function (email, removedCourseId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser[0].userSubscribed = currentUser[0].
+        userSubscribed.
+        filter(course =>
+            course.courseID !== removedCourseId
+        )
 
     userData.push(currentUser);
 
