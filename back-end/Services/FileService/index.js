@@ -5,7 +5,7 @@ let fileData = require('./../../Mock/FilesMockData/file.json')
  * @param {*} fileID 
  * @returns [{userObj}] || []
  */
- const get_file_by_fileID = function (fileID) {
+ exports.get_file_by_fileID = function (fileID) {
     return fileData.filter(file => file.fileID === fileID)
 }
 
@@ -15,7 +15,7 @@ let fileData = require('./../../Mock/FilesMockData/file.json')
  * @param {*} fileName 
  * @returns [{userObj}] || []
  */
- const get_file_by_fileName = function (fileName) {
+ exports.get_file_by_fileName = function (fileName) {
     return fileData.filter(file => file.fileName === fileName)
 }
 
@@ -25,32 +25,67 @@ let fileData = require('./../../Mock/FilesMockData/file.json')
  * @param {*} fileType 
  * @returns [{userObj}] || []
  */
- const get_fileType = function (fileType) {
+ exports.get_fileType = function (fileType) {
     return fileData.filter(file => file.fileType === fileType)
 }
 
+/**
+ * Set a new fileType
+ * @param {*} fileID, newFileType 
+ * @returns [{userObj}] || []
+ */
 exports.set_fileType = function (fileID, newfileType) {
-    const currentFile = get_file_by_fileID(fileID);
+    const currentFile = get_file_by_fileID(fileID)[0];
 
     if (!currentFile) return 1;
-
-    //fileData = fileData.filter(file => file.fileID !== fileName);
 
     currentFile.fileType = newfileType;
 
     fileData.push(currentFile);
 
     return 0;
-
 }
 
+/**
+ * Set fileLikedBy like
+ * @param {*} fileLikedBy, like 
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileType = function (fileLikedBy, like) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileLikedBy = like;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
+
+/**
+ * Set fileLikedBy unlike
+ * @param {*} fileLikedBy, unlike 
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileType = function (fileLikedBy, unlike) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileLikedBy = unlike;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
 
 /**
  * Get a fileShareDate
  * @param {*} fileShareDate 
  * @returns [{userObj}] || []
  */
- const get_fileShareDate = function (fileShareDate) {
+ exports.get_fileShareDate = function (fileShareDate) {
     return fileData.filter(file => file.fileShareDate === fileShareDate)
 }
 
@@ -59,7 +94,7 @@ exports.set_fileType = function (fileID, newfileType) {
  * @param {*} fileSharedBy 
  * @returns [{userObj}] || []
  */
- const get_fileSharedBy = function (fileSharedBy) {
+ exports.get_fileSharedBy = function (fileSharedBy) {
     return fileData.filter(file => file.fileSharedBy === fileSharedBy)
 }
 
@@ -68,7 +103,7 @@ exports.set_fileType = function (fileID, newfileType) {
  * @param {*} fileLikedBy 
  * @returns [{userObj}] || []
  */
- const get_fileLikedBy = function (fileLikedBy) {
+ exports.get_fileLikedBy = function (fileLikedBy) {
     return fileData.filter(file => file.fileLikedBy === fileLikedBy)
 }
 
@@ -77,7 +112,7 @@ exports.set_fileType = function (fileID, newfileType) {
  * @param {*} fileDownloads 
  * @returns [{userObj}] || []
  */
- const get_fileDownloads = function (fileDownloads) {
+ exports.get_fileDownloads = function (fileDownloads) {
     return fileData.filter(file => file.fileDownloads === fileDownloads)
 }
 
