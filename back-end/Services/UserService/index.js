@@ -30,6 +30,21 @@ const get_user_pass_hash_by_email = function (email) {
     return null;
 }
 
+const set_user_pass_hash_by_email = function (email, newPassHash){
+    const currentUser = get_user_by_email(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser.passwordHash = newPassHash;
+
+    userData.push(currentUser);
+
+    return 0;
+}
+
+
 /**
  * Checks whether user with given email is an admin, returns true if admin, false if not
  * @param {*} email 
