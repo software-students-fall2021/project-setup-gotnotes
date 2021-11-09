@@ -16,13 +16,35 @@ import { get_user } from ('./../UserService/index.json')
  * @param {*} fileName 
  * @returns [{userObj}] || []
  */
- const get_file_by_filName = function (fileName) {
+ const get_file_by_fileName = function (fileName) {
     return fileData.filter(file => file.fileName === fileName)
 }
 
-exports.get_user_liked = function (email) {
-    const user = get_user(email)[0];
-    if (user?.userLiked)
-        return user.userLiked
-    return null;
+
+/**
+ * Get a fileType
+ * @param {*} fileType 
+ * @returns [{userObj}] || []
+ */
+ const get_fileType = function (fileType) {
+    return fileData.filter(file => file.fileType === fileType)
+}
+
+
+/**
+ * Get a fileShareDate
+ * @param {*} fileShareDate 
+ * @returns [{userObj}] || []
+ */
+ const get_fileShareDate = function (fileShareDate) {
+    return fileData.filter(file => file.fileShareDate === fileShareDate)
+}
+
+/**
+ * Get a fileSharedBy
+ * @param {*} fileSharedBy 
+ * @returns [{userObj}] || []
+ */
+ const get_fileSharedBy = function (fileSharedBy) {
+    return fileData.filter(file => file.fileSharedBy === fileSharedBy)
 }
