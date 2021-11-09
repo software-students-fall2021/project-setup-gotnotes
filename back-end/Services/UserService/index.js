@@ -5,7 +5,7 @@ let userData = require('./../../Mock/UsersMockData/users.json')
  * @param {email} email 
  * @returns [{userObj}] || []
  */
-const get_user = function (email) {
+exports.get_user = function (email) {
     return userData.filter(user => user.userID === email)
 }
 
@@ -14,7 +14,7 @@ const get_user = function (email) {
  * @param {*} username 
  * @returns [{userObj}] || []
  */
-const get_user_by_username = function (username) {
+exports.get_user_by_username = function (username) {
     return userData.filter(user => user.username === username)
 }
 
@@ -23,7 +23,7 @@ const get_user_by_username = function (username) {
  * @param {*} email 
  * @returns String || null
  */
-const get_user_pass_hash = function (email) {
+exports.get_user_pass_hash = function (email) {
     const user = get_user(email)[0];
     if (user?.passwordHash)
         return user.passwordHash
@@ -36,7 +36,7 @@ const get_user_pass_hash = function (email) {
  * @param {*} newPassHash the new pass hash to be inserted
  * @returns 0 if success, 1 of no such user
  */
-const set_user_pass_hash = function (email, newPassHash) {
+exports.set_user_pass_hash = function (email, newPassHash) {
     const currentUser = get_user(email)[0][0];
 
     if (!currentUser) return 1;
@@ -55,14 +55,14 @@ const set_user_pass_hash = function (email, newPassHash) {
  * @param {*} email 
  * @returns boolean || null, true if user is admin, false otherwise, null if no such user
  */
-const get_user_authority = function (email) {
+exports.get_user_authority = function (email) {
     const user = get_user(email)[0];
     if (user?.isAdmin)
         return user.isAdmin
     return null;
 }
 
-const set_user_authority = function (email, newAuthority) {
+exports.set_user_authority = function (email, newAuthority) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -81,7 +81,7 @@ const set_user_authority = function (email, newAuthority) {
  * @param {*} email 
  * @returns String || null
  */
-const get_user_avatar_url = function (email) {
+exports.get_user_avatar_url = function (email) {
     const user = get_user(email)[0];
     if (user?.userAvatarUrl)
         return user.userAvatarUrl
@@ -94,7 +94,7 @@ const get_user_avatar_url = function (email) {
  * @param {*} newAvatarUrl 
  * @returns 1 || 0
  */
-const set_user_avatar_url = function (email, newAvatarUrl) {
+exports.set_user_avatar_url = function (email, newAvatarUrl) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -109,14 +109,14 @@ const set_user_avatar_url = function (email, newAvatarUrl) {
 
 }
 
-const get_user_first_name = function (email) {
+exports.get_user_first_name = function (email) {
     const user = get_user(email)[0];
     if (user?.firstName)
         return user.firstName
     return null;
 }
 
-const set_user_first_name = function (email, newFirstName) {
+exports.set_user_first_name = function (email, newFirstName) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -131,14 +131,14 @@ const set_user_first_name = function (email, newFirstName) {
 
 }
 
-const get_user_last_name = function (email) {
+exports.get_user_last_name = function (email) {
     const user = get_user(email)[0];
     if (user?.lastName)
         return user.lastName
     return null;
 }
 
-const set_user_last_name = function (email, newLastName) {
+exports.set_user_last_name = function (email, newLastName) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -153,14 +153,14 @@ const set_user_last_name = function (email, newLastName) {
 
 }
 
-const get_user_uni = function (email) {
+exports.get_user_uni = function (email) {
     const user = get_user(email)[0];
     if (user?.userUni)
         return user.userUni
     return null;
 }
 
-const set_user_uni = function (email, newUniId) {
+exports.set_user_uni = function (email, newUniId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -177,14 +177,14 @@ const set_user_uni = function (email, newUniId) {
 
 
 
-const get_user_subscribed = function (email) {
+exports.get_user_subscribed = function (email) {
     const user = get_user(email)[0];
     if (user?.userSubscribed)
         return user.userSubscribed
     return null;
 }
 
-const set_user_subscribed_subscribe_course = function (email, addedCourseId) {
+exports.set_user_subscribed_subscribe_course = function (email, addedCourseId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -201,7 +201,7 @@ const set_user_subscribed_subscribe_course = function (email, addedCourseId) {
 
 }
 
-const set_user_subscribed_unsubscribe_course = function (email, removedCourseId) {
+exports.set_user_subscribed_unsubscribe_course = function (email, removedCourseId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -220,20 +220,20 @@ const set_user_subscribed_unsubscribe_course = function (email, removedCourseId)
 
 }
 
-const get_user_liked = function (email) {
+exports.get_user_liked = function (email) {
     const user = get_user(email)[0];
     if (user?.userLiked)
         return user.userLiked
     return null;
 }
 
-const get_user_liked_count = function (email) {
+exports.get_user_liked_count = function (email) {
     const user = get_user(email)[0];
     if (user?.userLiked)
         return user.userLiked.length
     return null;
 }
-const set_user_liked_like_file = function (email, addedFileId) {
+exports.set_user_liked_like_file = function (email, addedFileId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -250,7 +250,7 @@ const set_user_liked_like_file = function (email, addedFileId) {
 
 }
 
-const set_user_liked_unlike_file = function (email, removedFileId) {
+exports.set_user_liked_unlike_file = function (email, removedFileId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -269,7 +269,7 @@ const set_user_liked_unlike_file = function (email, removedFileId) {
 
 }
 
-const get_user_disliked = function (email) {
+exports.get_user_disliked = function (email) {
     const user = get_user(email)[0];
     if (user?.userDisliked)
         return user.userDisliked
@@ -282,7 +282,7 @@ const get_user_disliked_count = function (email) {
     return null;
 }
 
-const set_user_disliked_dislike_file = function (email, addedFileId) {
+exports.set_user_disliked_dislike_file = function (email, addedFileId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -299,7 +299,7 @@ const set_user_disliked_dislike_file = function (email, addedFileId) {
 
 }
 
-const set_user_disliked_undislike_file = function (email, removedFileId) {
+exports.set_user_disliked_undislike_file = function (email, removedFileId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -318,21 +318,21 @@ const set_user_disliked_undislike_file = function (email, removedFileId) {
 
 }
 
-const get_user_comment = function (email) {
+exports.get_user_comment = function (email) {
     const user = get_user(email)[0];
     if (user?.userComments)
         return user.userComments
     return null;
 }
 
-const get_user_comment_count = function (email) {
+exports.get_user_comment_count = function (email) {
     const user = get_user(email)[0];
     if (user?.userComments)
         return user.userComments.length
     return null;
 }
 
-const set_user_comment_add_comment = function (email, addedCommentId) {
+exports.set_user_comment_add_comment = function (email, addedCommentId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -349,7 +349,7 @@ const set_user_comment_add_comment = function (email, addedCommentId) {
 
 }
 
-const set_user_comment_delete_comment = function (email, removedCommentId) {
+exports.set_user_comment_delete_comment = function (email, removedCommentId) {
     const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
@@ -370,7 +370,7 @@ const set_user_comment_delete_comment = function (email, removedCommentId) {
 
 
 
-const get_users_by_course_id = function (course_id) {
+exports.get_users_by_course_id = function (course_id) {
     const students_by_course = [];
     userData.map((user) => {
         let count = 0;
