@@ -1,4 +1,5 @@
 let uniData = require('./../../Mock/UnisMockData/unis.json')
+<<<<<<< HEAD
 
 // Comment By Kaan Karakas
 
@@ -62,12 +63,15 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
     return "dawda";
 */
 }
+=======
+>>>>>>> 5371164c2ea421db08593ab4161ba0ab04a4b5ae
 
 /**
- * Get a user by the email, which is the unique key of users table
- * @param {email} email 
+ * Get university by ID
+ * @param {*} uniID 
  * @returns [{userObj}] || []
  */
+<<<<<<< HEAD
  exports.get_uni_uniName = function (uniID) {
      const uni= get_uni(uniID);
      if(uni?.uniName){
@@ -79,3 +83,17 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
 
 
 console.log(this.set_uni(101,"KarakasUni", "wadwda"));
+=======
+ exports.get_uni_id = function (uniID) {
+    return uniData.filter(uni => uni.uniID === uniID)
+}
+
+/**
+ * Get university by name
+ * @param {*} uniName 
+ * @returns [{userObj}] || []
+ */
+ exports.get_uni_name = function (uniName) {
+    return uniData.filter(uni => uni.uniName === uniName)
+}
+>>>>>>> 5371164c2ea421db08593ab4161ba0ab04a4b5ae
