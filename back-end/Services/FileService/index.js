@@ -19,6 +19,23 @@ let fileData = require('./../../Mock/FilesMockData/file.json')
     return fileData.filter(file => file.fileName === fileName)
 }
 
+/**
+ * Set fileName
+ * @param {*} fileName
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileName = function (fileName, newFileName) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileName = newFileName;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
+
 
 /**
  * Get a fileType
@@ -51,7 +68,7 @@ exports.set_fileType = function (fileID, newfileType) {
  * @param {*} fileLikedBy, like 
  * @returns [{userObj}] || []
  */
- exports.set_fileType = function (fileLikedBy, like) {
+ exports.set_fileLikedBy_like = function (fileLikedBy, like) {
     const currentFile = get_file_by_fileID(fileID)[0];
 
     if (!currentFile) return 1;
@@ -68,12 +85,46 @@ exports.set_fileType = function (fileID, newfileType) {
  * @param {*} fileLikedBy, unlike 
  * @returns [{userObj}] || []
  */
- exports.set_fileType = function (fileLikedBy, unlike) {
+ exports.set_fileLikedBy_unlike = function (fileLikedBy, unlike) {
     const currentFile = get_file_by_fileID(fileID)[0];
 
     if (!currentFile) return 1;
 
     currentFile.fileLikedBy = unlike;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
+
+/**
+ * Set fileLikedBy unlike
+ * @param {*} fileDislikedBy, dislike 
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileDislikedBy_dislike = function (fileDislikedBy, dislike) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileDislikedBy = dislike;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
+
+/**
+ * Set fileLikedBy undislike
+ * @param {*} fileDislikedBy, undislike 
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileDislikedBy_undislike = function (fileDislikedBy, undislike) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileDislikedBy = undislike;
 
     fileData.push(currentFile);
 
@@ -87,6 +138,23 @@ exports.set_fileType = function (fileID, newfileType) {
  */
  exports.get_fileShareDate = function (fileShareDate) {
     return fileData.filter(file => file.fileShareDate === fileShareDate)
+}
+
+/**
+ * Set fileShareDate
+ * @param {*} fileShareDate
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileShareDate = function (fileShareDate, newFileSharedDate) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileShareDate = newFileSharedDate;
+
+    fileData.push(currentFile);
+
+    return 0;
 }
 
 /**
@@ -114,6 +182,49 @@ exports.set_fileType = function (fileID, newfileType) {
  */
  exports.get_fileDownloads = function (fileDownloads) {
     return fileData.filter(file => file.fileDownloads === fileDownloads)
+}
+
+/**
+ * Get fileComments
+ * @param {*} fileComments 
+ * @returns [{userObj}] || []
+ */
+ exports.get_fileComments = function (fileComments) {
+    return fileData.filter(file => file.fileComments === fileComments)
+}
+
+/**
+ * Set fileAddComments
+ * @param {*} fileComments
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileAddComments = function (fileComments, commentToAdd) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileComments = commentToAdd;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
+
+/**
+ * Set fileRemoveComments
+ * @param {*} fileComments
+ * @returns [{userObj}] || []
+ */
+ exports.set_fileRemoveComments = function (fileComments, commentToRemove) {
+    const currentFile = get_file_by_fileID(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileComments = commentToRemove;
+
+    fileData.push(currentFile);
+
+    return 0;
 }
 
 
