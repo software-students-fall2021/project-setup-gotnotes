@@ -30,7 +30,7 @@ const get_user_pass_hash_by_email = function (email) {
     return null;
 }
 
-const set_user_pass_hash_by_email = function (email, newPassHash){
+const set_user_pass_hash_by_email = function (email, newPassHash) {
     const currentUser = get_user_by_email(email)[0];
 
     if (!currentUser) return 1;
@@ -101,9 +101,49 @@ const set_user_avatar_url_by_email = function (email, newAvatarUrl) {
 
 }
 
+const get_user_first_name_by_email = function (email) {
+    const user = get_user_by_email(email);
+    if (user[0].firstName)
+        return user[0].firstName
+    return null;
+}
 
+const set_user_first_name_by_email = function (email, newFirstName) {
+    const currentUser = get_user_by_email(email);
 
+    if (!currentUser) return 1;
 
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser.firstName = newFirstName;
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
+
+const get_user_last_name_by_email = function (email) {
+    const user = get_user_by_email(email);
+    if (user[0].lastName)
+        return user[0].lastName
+    return null;
+}
+
+const set_user_last_name_by_email = function (email, newLastName) {
+    const currentUser = get_user_by_email(email);
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser.lastName = newLastName;
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
 
 
 const get_users_by_course_id = function (course_id) {
