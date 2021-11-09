@@ -1,5 +1,4 @@
 let uniData = require('./../../Mock/UnisMockData/unis.json')
-<<<<<<< HEAD
 
 // Comment By Kaan Karakas
 
@@ -9,17 +8,18 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
 
 
 /**
- * Get a user by the email, which is the unique key of users table
- * @param {email} email 
- * @returns [{userObj}] || []
+ * Get uni by uniID
+ * @param {uniID} uniID
+ * @returns [{uniObh}] || []
  */
  exports.get_uni = function (uniID) {
     return uniData.filter(uni => uni.uniID === uniID);
 }
 /**
- * Sets a new pass hash for the user with given email
- * @param {*} email the email of the user, praimry key
- * @param {*} newPassHash the new pass hash to be inserted
+ * Adds a new uni to the database 
+ * @param {*} uniID is the primary key
+ * @param {*} uniName is the name of the university 
+ * @param {*} uniLogPath is the path to the logo of the uni
  * @returns 0 if success, 1 of no such user
  */
  exports.set_uni = function (uniID, uniName, uniLogoPath) {
@@ -37,6 +37,7 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
 
       obj.push(newUni);
       jsonStr= JSON.stringify(obj);
+      return 1; 
 
 
      /*
@@ -63,15 +64,12 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
     return "dawda";
 */
 }
-=======
->>>>>>> 5371164c2ea421db08593ab4161ba0ab04a4b5ae
 
 /**
- * Get university by ID
- * @param {*} uniID 
- * @returns [{userObj}] || []
+ * Get uni by its university name
+ * @param {uniID} uniID 
+ * @returns [{uniObj}] || []
  */
-<<<<<<< HEAD
  exports.get_uni_uniName = function (uniID) {
      const uni= get_uni(uniID);
      if(uni?.uniName){
@@ -80,20 +78,3 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
      return null;
 }
 
-
-
-console.log(this.set_uni(101,"KarakasUni", "wadwda"));
-=======
- exports.get_uni_id = function (uniID) {
-    return uniData.filter(uni => uni.uniID === uniID)
-}
-
-/**
- * Get university by name
- * @param {*} uniName 
- * @returns [{userObj}] || []
- */
- exports.get_uni_name = function (uniName) {
-    return uniData.filter(uni => uni.uniName === uniName)
-}
->>>>>>> 5371164c2ea421db08593ab4161ba0ab04a4b5ae
