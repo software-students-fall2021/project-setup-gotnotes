@@ -30,6 +30,12 @@ const get_user_pass_hash = function (email) {
     return null;
 }
 
+/**
+ * Sets a new pass hash for the user with given email
+ * @param {*} email the email of the user, praimry key
+ * @param {*} newPassHash the new pass hash to be inserted
+ * @returns 0 if success, 1 of no such user
+ */
 const set_user_pass_hash = function (email, newPassHash) {
     const currentUser = get_user(email)[0][0];
 
@@ -47,14 +53,17 @@ const set_user_pass_hash = function (email, newPassHash) {
 /**
  * Checks whether user with given email is an admin, returns true if admin, false if not
  * @param {*} email 
- * @returns boolean
+ * @returns boolean || null, true if user is admin, false otherwise, null if no such user
  */
 const get_user_authority = function (email) {
-    return get_user(email)[0][0].isAdmin;
+    const user = get_user(email)[0];
+    if (user?.isAdmin)
+        return user.isAdmin
+    return null;
 }
 
 const set_user_authority = function (email, newAuthority) {
-    const currentUser = get_user(email)[0][0];
+    const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
 
@@ -210,7 +219,6 @@ const set_user_subscribed_unsubscribe_course = function (email, removedCourseId)
     return 0;
 
 }
-
 
 const get_user_liked = function (email) {
     const user = get_user(email)[0];
@@ -372,11 +380,3 @@ const get_users_by_course_id = function (course_id) {
 
     return students_by_course;
 }
-
-
-
-
-//console.log(get_student_by_id(10))
-
-console.log(get_students_by_course_id(11))
-
