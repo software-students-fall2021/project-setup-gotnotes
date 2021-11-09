@@ -5,7 +5,7 @@ let userData = require('./../../Mock/UsersMockData/users.json')
  * @param {email} email 
  * @returns [{userObj}] || []
  */
-const get_user_by_email = function (email) {
+const get_user = function (email) {
     return userData.filter(user => user.userID === email)
 }
 
@@ -23,15 +23,15 @@ const get_user_by_username = function (username) {
  * @param {*} email 
  * @returns String || null
  */
-const get_user_pass_hash_by_email = function (email) {
-    const user = userData.filter(user => user.userID === email);
-    if (user[0].passwordHash)
-        return user[0].passwordHash
+const get_user_pass_hash = function (email) {
+    const user = get_user(email)[0];
+    if (user?.passwordHash)
+        return user.passwordHash
     return null;
 }
 
-const set_user_pass_hash_by_email = function (email, newPassHash) {
-    const currentUser = get_user_by_email(email)[0];
+const set_user_pass_hash = function (email, newPassHash) {
+    const currentUser = get_user(email)[0][0];
 
     if (!currentUser) return 1;
 
@@ -44,18 +44,17 @@ const set_user_pass_hash_by_email = function (email, newPassHash) {
     return 0;
 }
 
-
 /**
  * Checks whether user with given email is an admin, returns true if admin, false if not
  * @param {*} email 
  * @returns boolean
  */
-const get_user_authority_by_email = function (email) {
-    return get_user_by_email(email)[0].isAdmin;
+const get_user_authority = function (email) {
+    return get_user(email)[0][0].isAdmin;
 }
 
-const set_user_authority_by_email = function (email, newAuthority) {
-    const currentUser = get_user_by_email(email)[0];
+const set_user_authority = function (email, newAuthority) {
+    const currentUser = get_user(email)[0][0];
 
     if (!currentUser) return 1;
 
@@ -73,10 +72,10 @@ const set_user_authority_by_email = function (email, newAuthority) {
  * @param {*} email 
  * @returns String || null
  */
-const get_user_avatar_url_by_email = function (email) {
-    const user = get_user_by_email(email);
-    if (user[0].userAvatarUrl)
-        return user[0].userAvatarUrl
+const get_user_avatar_url = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userAvatarUrl)
+        return user.userAvatarUrl
     return null;
 }
 
@@ -86,8 +85,8 @@ const get_user_avatar_url_by_email = function (email) {
  * @param {*} newAvatarUrl 
  * @returns 1 || 0
  */
-const set_user_avatar_url_by_email = function (email, newAvatarUrl) {
-    const currentUser = get_user_by_email(email);
+const set_user_avatar_url = function (email, newAvatarUrl) {
+    const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
 
@@ -101,15 +100,15 @@ const set_user_avatar_url_by_email = function (email, newAvatarUrl) {
 
 }
 
-const get_user_first_name_by_email = function (email) {
-    const user = get_user_by_email(email);
-    if (user[0].firstName)
-        return user[0].firstName
+const get_user_first_name = function (email) {
+    const user = get_user(email)[0];
+    if (user?.firstName)
+        return user.firstName
     return null;
 }
 
-const set_user_first_name_by_email = function (email, newFirstName) {
-    const currentUser = get_user_by_email(email);
+const set_user_first_name = function (email, newFirstName) {
+    const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
 
@@ -123,15 +122,15 @@ const set_user_first_name_by_email = function (email, newFirstName) {
 
 }
 
-const get_user_last_name_by_email = function (email) {
-    const user = get_user_by_email(email);
-    if (user[0].lastName)
-        return user[0].lastName
+const get_user_last_name = function (email) {
+    const user = get_user(email)[0];
+    if (user?.lastName)
+        return user.lastName
     return null;
 }
 
-const set_user_last_name_by_email = function (email, newLastName) {
-    const currentUser = get_user_by_email(email);
+const set_user_last_name = function (email, newLastName) {
+    const currentUser = get_user(email)[0];
 
     if (!currentUser) return 1;
 
@@ -145,6 +144,27 @@ const set_user_last_name_by_email = function (email, newLastName) {
 
 }
 
+const get_user_uni = function (email) {
+    const user = get_user(email)[0];
+    if (user?.userUni)
+        return user.userUni
+    return null;
+}
+
+const set_user_uni = function (email, newUniId) {
+    const currentUser = get_user(email)[0];
+
+    if (!currentUser) return 1;
+
+    userData = userData.filter(user => user.userID !== email);
+
+    currentUser[0].userUni = newLastName;
+
+    userData.push(currentUser);
+
+    return 0;
+
+}
 
 const get_users_by_course_id = function (course_id) {
     const students_by_course = [];
