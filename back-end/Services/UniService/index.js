@@ -1,10 +1,19 @@
-let uniData = require('./../../Mock/UsersMockData/unis.json')
+let uniData = require('./../../Mock/UnisMockData/unis.json')
 
 /**
- * Get a user by the email, which is the unique key of users table
- * @param {email} email 
+ * Get university by ID
+ * @param {*} uniID 
  * @returns [{userObj}] || []
  */
- exports.get_user = function (uniID) {
+ exports.get_uni_id = function (uniID) {
     return uniData.filter(uni => uni.uniID === uniID)
+}
+
+/**
+ * Get university by name
+ * @param {*} uniName 
+ * @returns [{userObj}] || []
+ */
+ exports.get_uni_name = function (uniName) {
+    return uniData.filter(uni => uni.uniName === uniName)
 }
