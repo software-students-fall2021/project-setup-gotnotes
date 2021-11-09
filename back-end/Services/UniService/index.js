@@ -1,4 +1,4 @@
-let uniData = require('./../../Mock/UsersMockData/unis.json')
+let uniData = require('./../../Mock/UnisMockData/unis.json')
 
 /**
  * Get university by ID
