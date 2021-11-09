@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
     "chat-engine": "^0.3.1",
     "chokidar": "^3.5.2",
@@ -29,7 +30,6 @@
     "stream-chat": "^4.2.0",
     "stream-chat-react": "^0.6.26",
     "web-vitals": "^1.1.2"
-  
   },
   "scripts": {
     "start": "react-scripts start",
