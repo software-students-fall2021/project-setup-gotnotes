@@ -11,16 +11,6 @@ let courseData = require('./../../Mock/CoursesMockData/courses.json')
 }
 
 /**
- * Get course by name
- * @param {*} courseName 
- * @returns [{userObj}] || []
- */
- exports.get_course_name = function (courseName) {
-    return uniData.filter(course => course.courseName === courseName)
-}
-
-
-/**
  * Get course enrolled students
  * @param {*} courseID
  * @returns [{courseEnroleldStudentsObj}] || []
@@ -58,7 +48,7 @@ exports.set_course_courseName  = function (courseID, courseName) {
 
     courseData = courseData.filter(course => course.courseID !== courseID);
 
-    currentUser[0].courseName= courseName;
+    course.courseName= courseName;
 
     courseData.push(couse);
 
@@ -81,7 +71,7 @@ exports.set_course_courseName  = function (courseID, courseName) {
 
     const addStudent= {userID: userID }
 
-    course[0].courseEnrolledStudents.push(addStudent);
+    course.courseEnrolledStudents.push(addStudent);
 
     courseData.push(course);
 
