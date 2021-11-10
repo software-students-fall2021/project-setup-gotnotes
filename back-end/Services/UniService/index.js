@@ -78,3 +78,25 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
      return null;
 }
 
+/**
+ * add new student to the uni list
+ * @param {*} uniID
+ * @param {*} studenID
+ * @returns 1 if succesfule addition 0 doesnt happen
+ */
+ exports.add_course_student = function (uniID, userID) {
+    const uni = get_course_id(uniID)[0];
+
+    if (!uni) return 0;
+
+    uniData = uniData.filter(uni => uni.uniID !== uniID);
+
+    const addStudent= {userID: userID }
+
+    uni[0].uniStudents.push(addStudent);
+
+    uniData.push(uni);
+
+    return 1;
+
+}
