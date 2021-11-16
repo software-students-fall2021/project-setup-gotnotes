@@ -7,6 +7,8 @@ const UniService = require("./../../Services/UniService")
 
 // Display list of all courses.
 exports.list = function (req, res) {
+
+    console.log(UniService.get_uni(req.params.uni))
     
     res.send(UniService.get_uni(req.params.uni))
 };

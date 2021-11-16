@@ -12,14 +12,16 @@ import { Breadcrumbs } from '../../components/Mobile/Navigations/Breadcrumbs';
 export const MobileLayoutSelector = ({ Component }) => {
     const [currentLayout, setCurrentLayout] = useState("list");
 
+    const [breadCrumbData, setBreadCrumbData] = useState(null);
+
 
     return (
         <div className="layout-container">
             <div className="sticky-top">
-                <Breadcrumbs />
+                <Breadcrumbs props={breadCrumbData} />
                 <SearchHigherOrder props={{ currentLayout, setCurrentLayout }} />
             </div>
-            <Component activeClass={currentLayout === "list" ? "" : "grid"} ViewComponent={currentLayout === "list" ? ListItem : GridItem} />
+            <Component activeClass={currentLayout === "list" ? "" : "grid"} ViewComponent={currentLayout === "list" ? ListItem : GridItem} BreadCrumbData={breadCrumbData} SetBreadCrumbData={setBreadCrumbData} />
             <div className="clear"></div>
         </div>
     )

@@ -5,7 +5,7 @@ import './styles.scss'
 //mock data
 //import { mockUniData } from '../../../assets/mocks/mockData'
 
-export const Unis = ({ ViewComponent, activeClass }) => {
+export const Unis = ({ ViewComponent, activeClass, BreadCrumbData, SetBreadCrumbData }) => {
 
     const [uniData, setUniData] = useState(null);
 
