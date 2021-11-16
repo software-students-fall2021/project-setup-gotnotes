@@ -9,7 +9,7 @@ exports.userData = userData;
  * @returns [{userObj}] || []
  */
 exports.get_user = function (email) {
-    return userData.filter(user => user.userID === email)
+    return userData.filter(user => user.userID == email)
 }
 
 /**
@@ -18,7 +18,7 @@ exports.get_user = function (email) {
  * @returns [{userObj}] || []
  */
 exports.get_user_by_username = function (username) {
-    return userData.filter(user => user.username === username)
+    return userData.filter(user => user.username == username)
 }
 
 /**
@@ -78,7 +78,7 @@ exports.set_user_authority = function (email, newAuthority) {
  */
 exports.get_user_avatar_url = function (email) {
     const user = exports.get_user(email)[0];
-    if (user?.userAvatarUrl)
+    if (user)
         return user.userAvatarUrl
     return null;
 }
