@@ -4,12 +4,12 @@ const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
 var UserService = require('./index')
-let userData = require('./../../Mock/UsersMockData/users.json')
+let userData = UserService.userData
 const testUser = userData[0];
 
 describe('UserService', function () {
     describe('get_user()', function () {
-        it('should return arr with one user obj in it given valid email', function () {
+        it('Should return [{userObj}] with given email', function () {
 
             const user = UserService.get_user(testUser.userID)
 
@@ -17,14 +17,156 @@ describe('UserService', function () {
 
         });
     });
-    describe('get_user()', function () {
-        it('should return arr with one user obj in it given valid email', function () {
+    describe('get_user_by_username()', function () {
+        it('Should return [{userObj}] with given username', function () {
 
-            const user = UserService.get_user(testUser.userID)
+            const user = UserService.get_user_by_username(testUser.username)
 
             expect(user[0]).to.deep.equalInAnyOrder(testUser);
 
         });
     });
-    
+    describe('get_user_pass_hash()', function () {
+        it('Should return String pass hash of user with given email', function () {
+
+            const pasHash = UserService.get_user_pass_hash(testUser.userID)
+
+            expect(pasHash).to.be.equal(testUser.passwordHash);
+
+        });
+    });
+    describe('set_user_pass_hash()', function () {
+        it('Should return 0 and set user pass hash to newPassHash', function () {
+            const newPassHash = "newPassHash"
+
+            expect(UserService.set_user_pass_hash(testUser.userID, newPassHash)).to.be.equal(0);
+
+            expect(testUser.passwordHash).to.be.equal(newPassHash);
+
+        });
+    });
+    describe('get_user_authority()', function () {
+        it('Should return Bool: user.isAdmin with given email', function () {
+
+            const isAdmin = UserService.get_user_authority(testUser.userID)
+
+            expect(isAdmin).to.be.equal(testUser.isAdmin);
+
+        });
+    });
+    describe('set_user_authority()', function () {
+        it('Should return 0 and set user.isAdmin to newAdmin', function () {
+            const newAdmin = 1
+
+            expect(UserService.set_user_authority(testUser.userID, newAdmin)).to.be.equal(0);
+
+            expect(testUser.isAdmin).to.be.equal(newAdmin);
+
+        });
+    });
+    describe('get_user_avatar_url()', function () {
+        it('Should return String: user.userAvatarUrl with given email', function () {
+
+            const userAvatarUrl = UserService.get_user_avatar_url(testUser.userID)
+
+            expect(userAvatarUrl).to.be.equal(testUser.userAvatarUrl);
+
+        });
+    });
+    describe('set_user_avatar_url()', function () {
+        it('Should return 0 and set user.userAvatarUrl to newAvatarUrl', function () {
+            const newAvatarUrl = "newAvatarUrl"
+
+            expect(UserService.set_user_avatar_url(testUser.userID, newAvatarUrl)).to.be.equal(0);
+
+            expect(testUser.userAvatarUrl).to.be.equal(newAvatarUrl);
+
+        });
+    });
+    describe('get_user_first_name()', function () {
+        it('Should return String: user.firstName with given email', function () {
+
+            const firstName = UserService.get_user_first_name(testUser.userID)
+
+            expect(firstName).to.be.equal(testUser.firstName);
+
+        });
+    });
+    describe('set_user_first_name()', function () {
+        it('Should return 0 and set user.firstName to newFirstName', function () {
+            const newFirstName = "newFirstName"
+
+            expect(UserService.set_user_first_name(testUser.userID, newFirstName)).to.be.equal(0);
+
+            expect(testUser.firstName).to.be.equal(newFirstName);
+
+        });
+    });
+    describe('get_user_last_name()', function () {
+        it('Should return String: user.lastName with given email', function () {
+
+            const lastName = UserService.get_user_last_name(testUser.userID)
+
+            expect(lastName).to.be.equal(testUser.lastName);
+
+        });
+    });
+    describe('set_user_last_name()', function () {
+        it('Should return 0 and set user.lastName to newLastName', function () {
+            const newLastName = "newLastName"
+
+            expect(UserService.set_user_last_name(testUser.userID, newLastName)).to.be.equal(0);
+
+            expect(testUser.lastName).to.be.equal(newLastName);
+
+        });
+    });
+    describe('get_user_uni()', function () {
+        it('Should return String: user.userUni with given email', function () {
+
+            const userUni = UserService.get_user_uni(testUser.userID)
+
+            expect(userUni).to.be.equal(testUser.userUni);
+
+        });
+    });
+    describe('set_user_uni()', function () {
+        it('Should return 0 and set user.userUni to newUserUni', function () {
+            const newUserUni = "newUserUni"
+
+            expect(UserService.set_user_uni(testUser.userID, newUserUni)).to.be.equal(0);
+
+            expect(testUser.userUni).to.be.equal(newUserUni);
+
+        });
+    });
+    describe('get_user_subscribed()', function () {
+        it('Should return String: user.userUni with given email', function () {
+
+            const userSubscribed = UserService.get_user_subscribed(testUser.userID)
+
+            expect(userSubscribed).to.deep.equalInAnyOrder(testUser.userSubscribed);
+
+        });
+    });
+    describe('set_user_subscribed_add()', function () {
+        it('Should return 0 and Add {courseID: 1000} to user.userSubscribed', function () {
+            const addedCourseId = 1000
+
+            expect(UserService.set_user_subscribed_add(testUser.userID, addedCourseId)).to.be.equal(0);
+
+            expect(testUser.userSubscribed).to.deep.include.members([{ courseID: addedCourseId }]);
+
+        });
+    });
+    describe('set_user_subscribed_remove()', function () {
+        it('Should return 0 and Remove {courseID: 1000} from user.userSubscribed', function () {
+            const removedCourseId = 1000
+
+            expect(UserService.set_user_subscribed_remove(testUser.userID, removedCourseId)).to.be.equal(0);
+
+            expect(testUser.userSubscribed).to.not.deep.include.members([{ courseID: removedCourseId }]);
+
+        });
+    });
 });
