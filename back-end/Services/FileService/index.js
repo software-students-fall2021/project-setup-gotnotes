@@ -1,4 +1,5 @@
-let fileData = require('./../../Mock/FilesMockData/file.json')
+const fileData = require('./../../Mock/FilesMockData/file.json');
+exports.fileData = fileData;
 
 /*
 {
@@ -47,13 +48,12 @@ exports.get_file = function (fileID) {
  * @returns boolean, 0 if success, 1 if no such file
  */
 exports.set_fileName = function (fileID, newFileName) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
     currentFile.fileName = newFileName;
 
-    fileData.push(currentFile);
 
     return 0;
 }
@@ -65,13 +65,12 @@ exports.set_fileName = function (fileID, newFileName) {
  * @returns boolean, 0 if success, 1 if no such file
  */
 exports.set_fileType = function (fileID, newFileType) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
     currentFile.fileType = newFileType;
 
-    fileData.push(currentFile);
 
     return 0;
 }
@@ -83,13 +82,11 @@ exports.set_fileType = function (fileID, newFileType) {
  * @returns boolean, 0 if success, 1 if no such file
  */
 exports.set_fileShareDate = function (fileID, newFileShareDate) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
     currentFile.fileShareDate = newFileShareDate;
-
-    fileData.push(currentFile);
 
     return 0;
 }
@@ -101,13 +98,11 @@ exports.set_fileShareDate = function (fileID, newFileShareDate) {
  * @returns boolean, 0 if success, 1 if no such file
  */
 exports.set_fileSharedBy = function (fileID, newFileSharedById) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
     currentFile.fileSharedBy = [{ userID: newFileSharedById }];
-
-    fileData.push(currentFile);
 
     return 0;
 }
@@ -118,7 +113,7 @@ exports.set_fileSharedBy = function (fileID, newFileSharedById) {
  * @returns number || -1
  */
 exports.get_fileDownloads = function (fileID) {
-    const file = get_file(fileID)[0]
+    const file = exports.get_file(fileID)[0]
     if (!file)
         return -1
     return file.fileDownloads
@@ -130,13 +125,12 @@ exports.get_fileDownloads = function (fileID) {
  * @returns boolean, 0 if success, 1 if no such file
  */
 exports.set_fileDownloads_increase = function (fileID) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
-    currentFile.fileShareDate = currentFile.fileShareDate + 1;
+    currentFile.fileDownloads += 1;
 
-    fileData.push(currentFile);
 
     return 0;
 }
@@ -147,13 +141,11 @@ exports.set_fileDownloads_increase = function (fileID) {
  * @returns [{fileObj}] || []
  */
 exports.set_fileLikedBy_like = function (fileID, likedById) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
     currentFile.fileLikedBy.push({ userId: likedById });
-
-    fileData.push(currentFile);
 
     return 0;
 }
@@ -164,7 +156,7 @@ exports.set_fileLikedBy_like = function (fileID, likedById) {
  * @returns [{fileObj}] || []
  */
 exports.set_fileLikedBy_unlike = function (fileID, unlikedById) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -178,12 +170,12 @@ exports.set_fileLikedBy_unlike = function (fileID, unlikedById) {
 }
 
 /**
- * Set fileLikedBy like
+ * Set fileDislikedBy like
  * @param {*} fileDislikedBy, like 
  * @returns [{fileObj}] || []
  */
-exports.set_fileLikedBy_dislike = function (fileID, dislikedById) {
-    const currentFile = get_file(fileID)[0];
+exports.set_fileDislikedBy_dislike = function (fileID, dislikedById) {
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -195,12 +187,12 @@ exports.set_fileLikedBy_dislike = function (fileID, dislikedById) {
 }
 
 /**
- * Set fileLikedBy unlike
+ * Set fileDislikedBy unlike
  * @param {*} fileDislikedBy, unlike 
  * @returns [{fileObj}] || []
  */
-exports.set_fileLikedBy_undislike = function (fileID, undislikedById) {
-    const currentFile = get_file(fileID)[0];
+exports.set_fileDislikedBy_undislike = function (fileID, undislikedById) {
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -221,7 +213,7 @@ exports.set_fileLikedBy_undislike = function (fileID, undislikedById) {
  * @returns [{fileObj}] || []
  */
 exports.set_fileComments_add = function (fileID, commentId) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -238,7 +230,7 @@ exports.set_fileComments_add = function (fileID, commentId) {
  * @returns [{fileObj}] || []
  */
 exports.set_fileComments_remove = function (fileID, commentId) {
-    const currentFile = get_file(fileID)[0];
+    const currentFile = exports.get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
