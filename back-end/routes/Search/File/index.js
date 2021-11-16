@@ -6,10 +6,7 @@ var { fileController } = require('../../../Controllers');
 
 
 //list file
-router.get('/', (req, res) => {
-    
-    res.send("List file details, on file: " + req.params.file)
-})
+router.get('/', fileController.file_list)
 
 //like file
 router.post('/like', (req, res) => {
