@@ -169,4 +169,118 @@ describe('UserService', function () {
 
         });
     });
+    describe('get_user_liked()', function () {
+        it('Should return Arr user.userLiked with given email', function () {
+
+            const userLiked = UserService.get_user_liked(testUser.userID)
+
+            expect(userLiked).to.deep.equalInAnyOrder(testUser.userLiked);
+
+        });
+    });
+    describe('get_user_liked_count()', function () {
+        it('Should return Number: lenght of Arr user.userLiked with given email', function () {
+
+            const userLikedCount = UserService.get_user_liked_count(testUser.userID)
+
+            expect(userLikedCount).to.deep.equalInAnyOrder(testUser.userLiked.length);
+
+        });
+    });
+    describe('set_user_liked_add()', function () {
+        it('Should return 0 and Add {fileID: 1000} to user.userLiked', function () {
+            const addedFileeId = 1000
+
+            expect(UserService.set_user_liked_add(testUser.userID, addedFileeId)).to.be.equal(0);
+
+            expect(testUser.userLiked).to.deep.include.members([{ fileID: addedFileeId }]);
+
+        });
+    });
+    describe('set_user_liked_remove()', function () {
+        it('Should return 0 and Remove {fileID: 1000} from user.userLiked', function () {
+            const removedFileId = 1000
+
+            expect(UserService.set_user_liked_remove(testUser.userID, removedFileId)).to.be.equal(0);
+
+            expect(testUser.userLiked).to.not.deep.include.members([{ fileID: removedFileId }]);
+
+        });
+    });
+    describe('get_user_disliked()', function () {
+        it('Should return Arr user.userDisliked with given email', function () {
+
+            const userDisliked = UserService.get_user_disliked(testUser.userID)
+
+            expect(userDisliked).to.deep.equalInAnyOrder(testUser.userDisliked);
+
+        });
+    });
+    describe('get_user_disliked_count()', function () {
+        it('Should return Number: lenght of Arr user.userDisliked with given email', function () {
+
+            const userDislikedCount = UserService.get_user_disliked_count(testUser.userID)
+
+            expect(userDislikedCount).to.deep.equalInAnyOrder(testUser.userDisliked.length);
+
+        });
+    });
+    describe('set_user_disliked_add()', function () {
+        it('Should return 0 and Add {fileID: 1000} to user.userDisliked', function () {
+            const addedFileId = 1000
+
+            expect(UserService.set_user_disliked_add(testUser.userID, addedFileId)).to.be.equal(0);
+
+            expect(testUser.userDisliked).to.deep.include.members([{ fileID: addedFileId }]);
+
+        });
+    });
+    describe('set_user_disliked_remove()', function () {
+        it('Should return 0 and Remove {fileID: 1000} from user.userDisliked', function () {
+            const removedFileId = 1000
+
+            expect(UserService.set_user_disliked_remove(testUser.userID, removedFileId)).to.be.equal(0);
+
+            expect(testUser.userDisliked).to.not.deep.include.members([{ fileID: removedFileId }]);
+
+        });
+    });
+    describe('get_user_comment()', function () {
+        it('Should return Arr user.userComments with given email', function () {
+
+            const userComments = UserService.get_user_comment(testUser.userID)
+
+            expect(userComments).to.deep.equalInAnyOrder(testUser.userComments);
+
+        });
+    });
+    describe('get_user_comment_count()', function () {
+        it('Should return Number: lenght of Arr user.userComments with given email', function () {
+
+            const userCommentsCount = UserService.get_user_comment_count(testUser.userID)
+
+            expect(userCommentsCount).to.deep.equalInAnyOrder(testUser.userComments.length);
+
+        });
+    });
+    describe('set_user_comment_add()', function () {
+        it('Should return 0 and Add {commentId: 1000} to user.userComments', function () {
+            const addedCommentId = 1000
+
+            expect(UserService.set_user_comment_add(testUser.userID, addedCommentId)).to.be.equal(0);
+
+            expect(testUser.userComments).to.deep.include.members([{ commentId: addedCommentId }]);
+
+        });
+    });
+    describe('set_user_comment_remove()', function () {
+        it('Should return 0 and Remove {commentId: 1000} from user.userComments', function () {
+            const removedCommentId = 1000
+
+            expect(UserService.set_user_comment_remove(testUser.userID, removedCommentId)).to.be.equal(0);
+
+            expect(testUser.userComments).to.not.deep.include.members([{ commentId: removedCommentId }]);
+
+        });
+    });
 });

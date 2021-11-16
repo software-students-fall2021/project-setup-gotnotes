@@ -237,7 +237,7 @@ exports.get_user_disliked = function (email) {
         return user.userDisliked
     return null;
 }
-const get_user_disliked_count = function (email) {
+exports.get_user_disliked_count = function (email) {
     const user = exports.get_user(email)[0];
     if (user?.userDisliked)
         return user.userDisliked.length
@@ -296,8 +296,6 @@ exports.set_user_comment_add = function (email, addedCommentId) {
     const addedCommentData = { commentId: addedCommentId }
 
     currentUser.userComments.push(addedCommentData);
-
-
 
     return 0;
 
