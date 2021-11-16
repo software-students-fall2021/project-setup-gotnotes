@@ -1,31 +1,53 @@
 let fileData = require('./../../Mock/FilesMockData/file.json')
 
+/*
+{
+    "fileID":1,
+    "fileName":"VestibulumSedMagna.ppt",
+    "fileType":"application/powerpoint",
+    "fileShareDate":"1/31/2021",
+    "fileSharedBy":[
+        {
+            "userID":75
+        }
+    ],
+    "fileDownloads":46,
+    "fileLikedBy":[
+        {"userId":24},{"userId":86},{"userId":82},
+        {"userId":12},{"userId":14},{"userId":34},
+        {"userId":89},{"userId":23},{"userId":40},
+        {"userId":60},{"userId":70},{"userId":89},
+        {"userId":91},{"userId":42},{"userId":38},
+        {"userId":78}
+    ],
+    "fileDislikedBy":[
+        {"userId":78}
+    ],
+    "fileComments":[
+        {"commentId":29},{"commentId":14},{"commentId":50},
+        {"commentId":19},{"commentId":72},{"commentId":78},
+        {"commentId":33},{"commentId":37},{"commentId":29},
+        {"commentId":19}
+    ]
+}
+ */
 /**
  * Get a file by the fileID
  * @param {*} fileID 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
- exports.get_file_by_fileID = function (fileID) {
+ exports.get_file = function (fileID) {
     return fileData.filter(file => file.fileID === fileID)
-}
-
-
-/**
- * Get a file by the fileName
- * @param {*} fileName 
- * @returns [{userObj}] || []
- */
- exports.get_file_by_fileName = function (fileName) {
-    return fileData.filter(file => file.fileName === fileName)
 }
 
 /**
  * Set fileName
- * @param {*} fileName
- * @returns [{userObj}] || []
+ * @param {*} fileID
+ * @param {*} newFileName
+ * @returns boolean, 0 if success, 1 if no such file
  */
- exports.set_fileName = function (fileName, newFileName) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+ exports.set_fileName = function (fileID, newFileName) {
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -36,27 +58,54 @@ let fileData = require('./../../Mock/FilesMockData/file.json')
     return 0;
 }
 
-
 /**
- * Get a fileType
- * @param {*} fileType 
- * @returns [{userObj}] || []
+ * Set a new fileType
+ * @param {*} fileID
+ * * @param {*} newFileType 
+ * @returns boolean, 0 if success, 1 if no such file
  */
- exports.get_fileType = function (fileType) {
-    return fileData.filter(file => file.fileType === fileType)
+exports.set_fileType = function (fileID, newFileType) {
+    const currentFile = get_file(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileType = newFileType;
+
+    fileData.push(currentFile);
+
+    return 0;
 }
 
 /**
  * Set a new fileType
- * @param {*} fileID, newFileType 
- * @returns [{userObj}] || []
+ * @param {*} fileID
+ * * @param {*} newFileShareDate 
+ * @returns boolean, 0 if success, 1 if no such file
  */
-exports.set_fileType = function (fileID, newfileType) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+ exports.set_fileShareDate = function (fileID, newFileShareDate) {
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
-    currentFile.fileType = newfileType;
+    currentFile.fileShareDate = newFileShareDate;
+
+    fileData.push(currentFile);
+
+    return 0;
+}
+
+/**
+ * Set a new fileType
+ * @param {*} fileID
+ * * @param {*} newFileSharedBy 
+ * @returns boolean, 0 if success, 1 if no such file
+ */
+ exports.set_fileSharedBy = function (fileID, newFileSharedBy) {
+    const currentFile = get_file(fileID)[0];
+
+    if (!currentFile) return 1;
+
+    currentFile.fileSharedBy = newFileSharedBy;
 
     fileData.push(currentFile);
 
@@ -66,10 +115,10 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Set fileLikedBy like
  * @param {*} fileLikedBy, like 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.set_fileLikedBy_like = function (fileLikedBy, like) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -83,10 +132,10 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Set fileLikedBy unlike
  * @param {*} fileLikedBy, unlike 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.set_fileLikedBy_unlike = function (fileLikedBy, unlike) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -100,10 +149,10 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Set fileLikedBy unlike
  * @param {*} fileDislikedBy, dislike 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.set_fileDislikedBy_dislike = function (fileDislikedBy, dislike) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -117,10 +166,10 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Set fileLikedBy undislike
  * @param {*} fileDislikedBy, undislike 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.set_fileDislikedBy_undislike = function (fileDislikedBy, undislike) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -134,33 +183,17 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Get a fileShareDate
  * @param {*} fileShareDate 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.get_fileShareDate = function (fileShareDate) {
     return fileData.filter(file => file.fileShareDate === fileShareDate)
 }
 
-/**
- * Set fileShareDate
- * @param {*} fileShareDate
- * @returns [{userObj}] || []
- */
- exports.set_fileShareDate = function (fileShareDate, newFileSharedDate) {
-    const currentFile = get_file_by_fileID(fileID)[0];
-
-    if (!currentFile) return 1;
-
-    currentFile.fileShareDate = newFileSharedDate;
-
-    fileData.push(currentFile);
-
-    return 0;
-}
 
 /**
  * Get a fileSharedBy
  * @param {*} fileSharedBy 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.get_fileSharedBy = function (fileSharedBy) {
     return fileData.filter(file => file.fileSharedBy === fileSharedBy)
@@ -169,7 +202,7 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Get fileLikedBy
  * @param {*} fileLikedBy 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.get_fileLikedBy = function (fileLikedBy) {
     return fileData.filter(file => file.fileLikedBy === fileLikedBy)
@@ -178,7 +211,7 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Get fileDownloads
  * @param {*} fileDownloads 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.get_fileDownloads = function (fileDownloads) {
     return fileData.filter(file => file.fileDownloads === fileDownloads)
@@ -187,7 +220,7 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Get fileComments
  * @param {*} fileComments 
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.get_fileComments = function (fileComments) {
     return fileData.filter(file => file.fileComments === fileComments)
@@ -196,10 +229,10 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Set fileAddComments
  * @param {*} fileComments
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.set_fileAddComments = function (fileComments, commentToAdd) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
@@ -213,10 +246,10 @@ exports.set_fileType = function (fileID, newfileType) {
 /**
  * Set fileRemoveComments
  * @param {*} fileComments
- * @returns [{userObj}] || []
+ * @returns [{fileObj}] || []
  */
  exports.set_fileRemoveComments = function (fileComments, commentToRemove) {
-    const currentFile = get_file_by_fileID(fileID)[0];
+    const currentFile = get_file(fileID)[0];
 
     if (!currentFile) return 1;
 
