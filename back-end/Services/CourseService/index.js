@@ -30,7 +30,7 @@ exports.courseData = courseData
  * @returns [{courseObj}] || []
  */
 exports.get_course = function (courseID) {
-    return uniData.filter(course => course.courseID === courseID)
+    return courseData.filter(course => course.courseID === courseID)
 }
 
 /**
@@ -57,11 +57,11 @@ exports.set_courseName = function (courseID, newCourseName) {
 exports.set_courseEnrolledStudents_add = function (courseID, enrolledStudentId) {
     const course = exports.get_course(courseID)[0];
 
-    if (!course) return 0;
+    if (!course) return 1;
 
     course.courseEnrolledStudents.push({ userId: enrolledStudentId })
 
-    return 1;
+    return 0;
 
 }
 
@@ -74,13 +74,13 @@ exports.set_courseEnrolledStudents_add = function (courseID, enrolledStudentId) 
 exports.set_courseEnrolledStudents_remove = function (courseID, removedStudentId) {
     const course = exports.get_course(courseID)[0];
 
-    if (!course) return 0;
+    if (!course) return 1;
 
     const newEnrolledStudents = course.courseEnrolledStudents.filter(student => student.userId !== removedStudentId)
 
     course.courseEnrolledStudents = newEnrolledStudents
 
-    return 1;
+    return 0;
 
 }
 
@@ -93,11 +93,11 @@ exports.set_courseEnrolledStudents_remove = function (courseID, removedStudentId
 exports.set_courseSharedFiles_add = function (courseID, sharedFileId) {
     const course = exports.get_course(courseID)[0];
 
-    if (!course) return 0;
+    if (!course) return 1;
 
     course.courseSharedFiles.push({ fileID: sharedFileId })
 
-    return 1;
+    return 0;
 
 }
 
@@ -107,16 +107,16 @@ exports.set_courseSharedFiles_add = function (courseID, sharedFileId) {
  * @param {*} removedFileId
  * @returns boolean: 0 if success, 1 if no such course
  */
-exports.set_courseEnrolledStudents_remove = function (courseID, removedFileId) {
+exports.set_courseSharedFiles_remove = function (courseID, removedFileId) {
     const course = exports.get_course(courseID)[0];
 
-    if (!course) return 0;
+    if (!course) return 1;
 
     const newSharedFiles = course.courseSharedFiles.filter(file => file.fileID !== removedFileId)
 
     course.courseSharedFiles = newSharedFiles
 
-    return 1;
+    return 0;
 
 }
 
