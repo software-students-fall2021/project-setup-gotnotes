@@ -4,13 +4,29 @@
  * */
 
 const UniService = require("./../../Services/UniService")
+const CourseService = require("./../../Services/CourseService")
 
 // Display list of all courses.
 exports.list = function (req, res) {
 
     console.log(UniService.get_uni(req.params.uni))
+
+    const uniDataRaw = UniService.get_uni(req.params.uni);
+    const uniDataFull = uniDataRaw.map(uni => {
+
+        return {
+            ...uni,
+            uniCourses: uni.uniCourses.map(({courseID}) => {
+                return {
+                    courseID,
+                    courseName: CourseService.get_course(courseID)[0].courseName,
+                    courseSharedFileCount : CourseService.get_course(courseID)[0].courseSharedFiles.length
+                }
+            })
+        }
+    })
     
-    res.send(UniService.get_uni(req.params.uni))
+    res.send(uniDataFull)
 };
 
 // Display detail page for a specific course.
