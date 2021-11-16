@@ -1,83 +1,123 @@
-let courseData = require('./../../Mock/CoursesMockData/courses.json')
-//Although we can get by id or course name the primary keys are courseID
+const courseData = require('./../../Mock/CoursesMockData/courses.json')
+exports.courseData = courseData
+
+/*
+{
+    "courseID":1,
+    "courseName":"Glamour",
+    "courseEnrolledStudents":[
+        {"userId":32},
+        {"userId":87}
+    ],
+    "courseSharedFiles":[
+        {"fileID":51},{"fileID":70},{"fileID":38},{"fileID":95},{"fileID":85},
+        {"fileID":26},{"fileID":20},{"fileID":45},{"fileID":11},{"fileID":24},
+        {"fileID":87},{"fileID":25},{"fileID":14},{"fileID":60},{"fileID":10},
+        {"fileID":97},{"fileID":91},{"fileID":33},{"fileID":21},{"fileID":10},
+        {"fileID":12},{"fileID":90},{"fileID":47},{"fileID":49},{"fileID":15},
+        {"fileID":98},{"fileID":70},{"fileID":79},{"fileID":68},{"fileID":30},
+        {"fileID":22},{"fileID":14},{"fileID":98},{"fileID":12},{"fileID":95},
+        {"fileID":56},{"fileID":67},{"fileID":17},{"fileID":99},{"fileID":89},
+        {"fileID":30},{"fileID":32},{"fileID":47},{"fileID":93},{"fileID":92},
+        {"fileID":16},{"fileID":79},{"fileID":69}
+    ]
+},
+*/
 
 /**
  * Get course by ID
- * @param {*} uniID 
- * @returns [{userObj}] || []
- */
- exports.get_course_id = function (courseID) {
-    return uniData.filter(course => course.courseID === courseID)
-}
-
-/**
- * Get course enrolled students
  * @param {*} courseID
- * @returns [{courseEnroleldStudentsObj}] || []
+ * @returns [{courseObj}] || []
  */
- exports.get_course_enrolled  = function (courseID) {
-    const course = get_course_id(courseID)[0];
-    if (course?.courseEnrolledStudents)
-        return user.courseEnrolledStudents;
-    return null;
+exports.get_course = function (courseID) {
+    return courseData.filter(course => course.courseID === courseID)
 }
 
 /**
- * Get course shared files
- * @param {*} courseID 
- * @returns [{courseEnroleldStudentsObj}] || []
+ * Get course by ID
+ * @param {*} courseID, the ID of the course to be edited
+ * @param {*} newCourseName, the new course name to be given
+ * @returns boolean: 0 if success, 1 if course not found
  */
- exports.get_course_files = function (courseID) {
-    const course = get_course_id(courseID)[0];
-    if (course?.courseSharedFiles)
-        return course.courseSharedFiles;
-    return null;
+exports.set_courseName = function (courseID, newCourseName) {
+    const course = exports.get_course(courseID)[0]
+    if (!course) return 1
+
+    course.courseName = newCourseName
+
+    return 0
 }
 
-
 /**
- * Set course name- it might be updated
+ * add new student to the course list
  * @param {*} courseID 
- * @param {*} courseName 
- * @returns 1 if succesfule edit 0 doesnt happen
+ * @param {*} enrolledStudentId  
+ * @returns boolean: 0 if success, 1 if no such course
  */
-exports.set_course_courseName  = function (courseID, courseName) {
-    const course = get_course_id(courseID)[0];
+exports.set_courseEnrolledStudents_add = function (courseID, enrolledStudentId) {
+    const course = exports.get_course(courseID)[0];
 
-    if (!course) return 0;
+    if (!course) return 1;
 
-    courseData = courseData.filter(course => course.courseID !== courseID);
+    course.courseEnrolledStudents.push({ userId: enrolledStudentId })
 
-    course.courseName= courseName;
-
-    courseData.push(couse);
-
-    return 1;
+    return 0;
 
 }
 
 /**
  * add new student to the course list
  * @param {*} courseID 
- * @param {*} studentID  
- * @returns 1 if succesfule addition 0 doesnt happen
+ * @param {*} removedStudentId  
+ * @returns boolean: 0 if success, 1 if no such course
  */
- exports.add_course_student = function (courseID, userID) {
-    const course = get_course_id(courseID)[0];
+exports.set_courseEnrolledStudents_remove = function (courseID, removedStudentId) {
+    const course = exports.get_course(courseID)[0];
 
-    if (!course) return 0;
+    if (!course) return 1;
 
-    courseData = courseData.filter(course => course.courseID !== courseID);
+    const newEnrolledStudents = course.courseEnrolledStudents.filter(student => student.userId !== removedStudentId)
 
-    const addStudent= {userID: userID }
+    course.courseEnrolledStudents = newEnrolledStudents
 
-    course.courseEnrolledStudents.push(addStudent);
-
-    courseData.push(course);
-
-    return 1;
+    return 0;
 
 }
 
+/**
+ * add new file to the course shared file list
+ * @param {*} courseID 
+ * @param {*} sharedFileId  
+ * @returns boolean: 0 if success, 1 if no such course
+ */
+exports.set_courseSharedFiles_add = function (courseID, sharedFileId) {
+    const course = exports.get_course(courseID)[0];
+
+    if (!course) return 1;
+
+    course.courseSharedFiles.push({ fileID: sharedFileId })
+
+    return 0;
+
+}
+
+/**
+ * remove file from course shared file list
+ * @param {*} courseID 
+ * @param {*} removedFileId
+ * @returns boolean: 0 if success, 1 if no such course
+ */
+exports.set_courseSharedFiles_remove = function (courseID, removedFileId) {
+    const course = exports.get_course(courseID)[0];
+
+    if (!course) return 1;
+
+    const newSharedFiles = course.courseSharedFiles.filter(file => file.fileID !== removedFileId)
+
+    course.courseSharedFiles = newSharedFiles
+
+    return 0;
+
+}
 
 
