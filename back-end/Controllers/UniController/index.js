@@ -4,9 +4,11 @@
  * */
 
 
+const UniService = require("./../../Services/UniService")
+
 // Display list of all unis.
 exports.uni_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: uni list');
+    res.send(UniService.uniData)
 };
 
 // Display detail page for a specific uni.

@@ -7,7 +7,8 @@ const UniService = require("./../../Services/UniService")
 
 // Display list of all courses.
 exports.list = function (req, res) {
-    res.send('NOT IMPLEMENTED: course list');
+    
+    res.send(UniService.get_uni(req.params.uni))
 };
 
 // Display detail page for a specific course.

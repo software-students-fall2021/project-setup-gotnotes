@@ -3,9 +3,12 @@
  * we will implement this when we have the mongodb models, schemas ...
  * */
 
+ const CourseService = require("./../../Services/CourseService")
+
 // Display list of all filess.
 exports.files_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: files list');
+    console.log(req.params)
+    res.send(CourseService.get_course(req.params.uni))
 };
 
 // Display detail page for a specific files.

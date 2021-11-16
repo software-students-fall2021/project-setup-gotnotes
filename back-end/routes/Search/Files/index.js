@@ -7,11 +7,9 @@ var { filesController } = require('../../../Controllers');
 
 
 //list all files under course
-router.get('/', (req, res) => {
-    
-    res.send("list all to course: " + req.params.course )
-})
+router.get('/', filesController.files_list)
 
+/*
 //create file
 router.post('/create', (req, res) => {
     res.send("create file: FILE_ID, in course: COURSE_ID, by user: USER_ID")
@@ -26,6 +24,8 @@ router.post('/edit', (req, res) => {
 router.post('/delete', (req, res) => {
     res.send("delete file: FILE_ID, in course: COURSE_ID, by user: USER_ID")
 })
+
+*/
 
 /// COURSE ROUTES ///
 /* 

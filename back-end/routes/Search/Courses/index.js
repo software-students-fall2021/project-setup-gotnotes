@@ -7,7 +7,7 @@ var { courseController } = require('../../../Controllers');
 
 //list all courses under that uni
 router.get('/', courseController.list)
-
+/*
 //subscribe/unsubscribe to/from course (logged-in user)
 router.post('/subscribe', courseController.subscribtion)
 
@@ -20,7 +20,7 @@ router.post('/edit', courseController.edit)
 //delete course (admin only)
 router.post('/delete', courseController.delete)
 
-
+*/
 
 
 

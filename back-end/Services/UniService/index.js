@@ -1,4 +1,5 @@
-let uniData = require('./../../Mock/UnisMockData/unis.json')
+const uniData = require('./../../Mock/UnisMockData/unis.json')
+exports.uniData = uniData
 
 // Comment By Kaan Karakas
 
@@ -12,8 +13,10 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
  * @param {uniID} uniID
  * @returns [{uniObh}] || []
  */
- exports.get_uni = function (uniID) {
-    return uniData.filter(uni => uni.uniID === uniID);
+exports.get_uni = function (uniID) {
+  const uni = uniData.filter(uni => uni.uniID == uniID);
+  
+  return uniData.filter(uni => uni.uniID === uniID);
 }
 /**
  * Adds a new uni to the database 
@@ -22,46 +25,46 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
  * @param {*} uniLogPath is the path to the logo of the uni
  * @returns 0 if success, 1 of no such user
  */
- exports.set_uni = function (uniID, uniName, uniLogoPath) {
-     //its not gone be like this when
+exports.set_uni = function (uniID, uniName, uniLogoPath) {
+  //its not gone be like this when
 
-     var jsonFile= uniData;
-     var obj= JSON.parse(JSON.stringify(jsonFile));
-     let newUni = {
-        "uniID": uniID,
-        "uniName": uniName,
-        "uniLogoPath": uniLogoPath,
-        "uniStudents": null,
-        "uniCourses": null,
-      };
+  var jsonFile = uniData;
+  var obj = JSON.parse(JSON.stringify(jsonFile));
+  let newUni = {
+    "uniID": uniID,
+    "uniName": uniName,
+    "uniLogoPath": uniLogoPath,
+    "uniStudents": null,
+    "uniCourses": null,
+  };
 
-      obj.push(newUni);
-      jsonStr= JSON.stringify(obj);
-      return 1; 
+  obj.push(newUni);
+  jsonStr = JSON.stringify(obj);
+  return 1;
 
 
-     /*
-    const fs = require("fs");
-    var data = fs.readFileSync('./../../Mock/UnisMockData/unis.json');
-    var myObject = JSON.parse(data);
-       let newUni = {
-        "uniID": uniID,
-        "uniName": uniName,
-        "uniLogoPath": uniLogoPath,
-        "uniStudents": null,
-        "uniCourses": null,
-      };
+  /*
+ const fs = require("fs");
+ var data = fs.readFileSync('./../../Mock/UnisMockData/unis.json');
+ var myObject = JSON.parse(data);
+    let newUni = {
+     "uniID": uniID,
+     "uniName": uniName,
+     "uniLogoPath": uniLogoPath,
+     "uniStudents": null,
+     "uniCourses": null,
+   };
  
 
-    myObject.push(newUni);
+ myObject.push(newUni);
 
-    var newData2 = JSON.stringify(myObject);
-    fs.writeFile("data2.json", newData2, (err) => {
-      // Error checking
-      if (err) throw err;
-      console.log("New data added");
-    });
-    return "dawda";
+ var newData2 = JSON.stringify(myObject);
+ fs.writeFile("data2.json", newData2, (err) => {
+   // Error checking
+   if (err) throw err;
+   console.log("New data added");
+ });
+ return "dawda";
 */
 }
 
@@ -70,12 +73,12 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
  * @param {uniID} uniID 
  * @returns [{uniObj}] || []
  */
- exports.get_uni_uniName = function (uniID) {
-     const uni= get_uni(uniID);
-     if(uni?.uniName){
-         return uni.uniName;
-     }
-     return null;
+exports.get_uni_uniName = function (uniID) {
+  const uni = get_uni(uniID);
+  if (uni?.uniName) {
+    return uni.uniName;
+  }
+  return null;
 }
 
 /**
@@ -84,19 +87,19 @@ let uniData = require('./../../Mock/UnisMockData/unis.json')
  * @param {*} studenID
  * @returns 1 if succesfule addition 0 doesnt happen
  */
- exports.add_course_student = function (uniID, userID) {
-    const uni = get_course_id(uniID)[0];
+exports.add_course_student = function (uniID, userID) {
+  const uni = get_course_id(uniID)[0];
 
-    if (!uni) return 0;
+  if (!uni) return 0;
 
-    uniData = uniData.filter(uni => uni.uniID !== uniID);
+  uniData = uniData.filter(uni => uni.uniID !== uniID);
 
-    const addStudent= {userID: userID }
+  const addStudent = { userID: userID }
 
-    uni[0].uniStudents.push(addStudent);
+  uni[0].uniStudents.push(addStudent);
 
-    uniData.push(uni);
+  uniData.push(uni);
 
-    return 1;
+  return 1;
 
 }
