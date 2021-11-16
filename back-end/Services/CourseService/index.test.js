@@ -3,15 +3,15 @@ const chai = require('chai');
 const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
-var courseService = require('./index')
-let uniData = require('./../../Mock/CoursesMockData/courses.json')
+const courseService = require('./index')
+const courseData = courseService.courseData 
 const testCourse = courseData[0];
 
-describe('courseService', function () {
-    describe('get_course_id()', function () {
+describe('CourseService', function () {
+    describe('get_course()', function () {
         it('should return arr with one course obj in it given valid courseID', function () {
 
-            const course = courseService.get_course_id(testCourse.courseID)
+            const course = courseService.get_course(testCourse.courseID)
 
             expect(course[0]).to.deep.equalInAnyOrder(testCourse);
 

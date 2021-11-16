@@ -1,6 +1,5 @@
 const courseData = require('./../../Mock/CoursesMockData/courses.json')
 exports.courseData = courseData
-//Although we can get by id or course name the primary keys are courseID
 
 /*
 {
@@ -24,56 +23,43 @@ exports.courseData = courseData
     ]
 },
 */
+
 /**
  * Get course by ID
- * @param {*} uniID 
- * @returns [{userObj}] || []
+ * @param {*} courseID
+ * @returns [{courseObj}] || []
  */
-exports.get_course_id = function (courseID) {
+exports.get_course = function (courseID) {
     return uniData.filter(course => course.courseID === courseID)
 }
 
 /**
- * Get course enrolled students
- * @param {*} courseID
- * @returns [{courseEnroleldStudentsObj}] || []
+ * Get course by ID
+ * @param {*} courseID, the ID of the course to be edited
+ * @param {*} newCourseName, the new course name to be given
+ * @returns boolean: 0 if success, 1 if course not found
  */
-exports.get_course_enrolled = function (courseID) {
-    const course = get_course_id(courseID)[0];
-    if (course?.courseEnrolledStudents)
-        return user.courseEnrolledStudents;
-    return null;
+exports.set_courseName = function (courseID, newCourseName) {
+    const course = exports.get_course(courseID)[0]
+    if (!course) return 1
+
+    course.courseName = newCourseName
+
+    return 0
 }
 
 /**
- * Get course shared files
+ * add new student to the course list
  * @param {*} courseID 
- * @returns [{courseEnroleldStudentsObj}] || []
+ * @param {*} enrolledStudentId  
+ * @returns boolean: 0 if success, 1 if no such course
  */
-exports.get_course_files = function (courseID) {
-    const course = get_course_id(courseID)[0];
-    if (course?.courseSharedFiles)
-        return course.courseSharedFiles;
-    return null;
-}
-
-
-/**
- * Set course name- it might be updated
- * @param {*} courseID 
- * @param {*} courseName 
- * @returns 1 if succesfule edit 0 doesnt happen
- */
-exports.set_course_courseName = function (courseID, courseName) {
-    const course = get_course_id(courseID)[0];
+exports.set_courseEnrolledStudents_add = function (courseID, enrolledStudentId) {
+    const course = exports.get_course(courseID)[0];
 
     if (!course) return 0;
 
-    courseData = courseData.filter(course => course.courseID !== courseID);
-
-    course.courseName = courseName;
-
-    courseData.push(couse);
+    course.courseEnrolledStudents.push({ userId: enrolledStudentId })
 
     return 1;
 
@@ -82,25 +68,56 @@ exports.set_course_courseName = function (courseID, courseName) {
 /**
  * add new student to the course list
  * @param {*} courseID 
- * @param {*} studentID  
- * @returns 1 if succesfule addition 0 doesnt happen
+ * @param {*} removedStudentId  
+ * @returns boolean: 0 if success, 1 if no such course
  */
-exports.add_course_student = function (courseID, userID) {
-    const course = get_course_id(courseID)[0];
+exports.set_courseEnrolledStudents_remove = function (courseID, removedStudentId) {
+    const course = exports.get_course(courseID)[0];
 
     if (!course) return 0;
 
-    courseData = courseData.filter(course => course.courseID !== courseID);
+    const newEnrolledStudents = course.courseEnrolledStudents.filter(student => student.userId !== removedStudentId)
 
-    const addStudent = { userID: userID }
-
-    course.courseEnrolledStudents.push(addStudent);
-
-    courseData.push(course);
+    course.courseEnrolledStudents = newEnrolledStudents
 
     return 1;
 
 }
 
+/**
+ * add new file to the course shared file list
+ * @param {*} courseID 
+ * @param {*} sharedFileId  
+ * @returns boolean: 0 if success, 1 if no such course
+ */
+exports.set_courseSharedFiles_add = function (courseID, sharedFileId) {
+    const course = exports.get_course(courseID)[0];
+
+    if (!course) return 0;
+
+    course.courseSharedFiles.push({ fileID: sharedFileId })
+
+    return 1;
+
+}
+
+/**
+ * remove file from course shared file list
+ * @param {*} courseID 
+ * @param {*} removedFileId
+ * @returns boolean: 0 if success, 1 if no such course
+ */
+exports.set_courseEnrolledStudents_remove = function (courseID, removedFileId) {
+    const course = exports.get_course(courseID)[0];
+
+    if (!course) return 0;
+
+    const newSharedFiles = course.courseSharedFiles.filter(file => file.fileID !== removedFileId)
+
+    course.courseSharedFiles = newSharedFiles
+
+    return 1;
+
+}
 
 
