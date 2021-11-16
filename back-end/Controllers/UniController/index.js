@@ -8,7 +8,7 @@ const UniService = require("./../../Services/UniService")
 
 // Display list of all unis.
 exports.uni_list = function (req, res) {
-    res.send(UniService.uniData)
+    res.send(UniService.uniData.map(uni => ({uniID: uni.uniID, uniLogoPath: uni.uniLogoPath, uniName: uni.uniName, uniStudentCount: uni.uniStudents.length})))
 };
 
 // Display detail page for a specific uni.

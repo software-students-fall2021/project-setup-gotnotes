@@ -6,10 +6,7 @@ var { uniController } = require('../../../Controllers');
 
 
 //list all unis
-router.get('/', (req, res) => {
-    
-    res.send('List all Unis Request Received')
-})
+router.get('/', uniController.uni_list)
 
 
 //create a new uni (admin only)

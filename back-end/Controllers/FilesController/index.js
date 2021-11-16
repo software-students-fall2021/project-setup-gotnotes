@@ -7,8 +7,8 @@
 
 // Display list of all filess.
 exports.files_list = function (req, res) {
-    console.log(req.params)
-    res.send(CourseService.get_course(req.params.uni))
+    
+    res.send(CourseService.get_course(req.params.course))
 };
 
 // Display detail page for a specific files.

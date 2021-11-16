@@ -14,9 +14,8 @@ exports.uniData = uniData
  * @returns [{uniObh}] || []
  */
 exports.get_uni = function (uniID) {
-  const uni = uniData.filter(uni => uni.uniID == uniID);
   
-  return uniData.filter(uni => uni.uniID === uniID);
+  return uniData.filter(uni => uni.uniID == uniID);
 }
 /**
  * Adds a new uni to the database 
