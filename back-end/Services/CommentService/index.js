@@ -67,12 +67,12 @@ exports.get_comment = (commentID) => {
 
 
 
-
-/**
- * Get a file by the fileID
- * @param {*} fileID 
- * @returns [{fileObj}] || []
- */
-exports.get_comment = function (commentId) {
-    return commentData.filter(comment => comment.commentId == commentId)
-}
+// NON DB FUNCTIONS
+// /**
+//  * Get a file by the fileID
+//  * @param {*} fileID 
+//  * @returns [{fileObj}] || []
+//  */
+// exports.get_comment = function (commentId) {
+//     return commentData.filter(comment => comment.commentId == commentId)
+// }
