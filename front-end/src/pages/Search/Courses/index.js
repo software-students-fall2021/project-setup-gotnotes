@@ -17,7 +17,6 @@ export const Courses = ({ ViewComponent, activeClass }) => {
 
     const { pathname } = useLocation();
 
-    console.log(pathname)
 
     useEffect(async () => {
         const result = await axios(
@@ -30,10 +29,10 @@ export const Courses = ({ ViewComponent, activeClass }) => {
     return (
         <div className={activeClass === "grid" ? "courses grid" : "courses"}>
 
-            {mockClassData.map(({ itemID, itemName, itemLogoPath, itemType, enrolledStudents }) => (
+            {courseData && courseData[0].uniCourses.map(({ courseID: itemID, courseName: itemName, courseSharedFileCount: enrolledStudents }) => (
                 <ViewComponent
                     key={itemID}
-                    props={{ itemID, itemName, itemLogoPath, itemType, enrolledStudents, interactionHandler: subscribeToCourse }}
+                    props={{ itemID, itemName, itemLogoPath: "", itemType: "course", enrolledStudents, interactionHandler: subscribeToCourse }}
                 />
 
             ))}
