@@ -3,9 +3,12 @@
  * we will implement this when we have the mongodb models, schemas ...
  * */
 
+
+const UniService = require("./../../Services/UniService")
+
 // Display list of all unis.
 exports.uni_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: uni list');
+    res.send(UniService.uniData.map(uni => ({uniID: uni.uniID, uniLogoPath: uni.uniLogoPath, uniName: uni.uniName, uniStudentCount: uni.uniStudents.length})))
 };
 
 // Display detail page for a specific uni.

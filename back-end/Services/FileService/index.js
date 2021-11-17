@@ -38,7 +38,7 @@ exports.fileData = fileData;
  * @returns [{fileObj}] || []
  */
 exports.get_file = function (fileID) {
-    return fileData.filter(file => file.fileID === fileID)
+    return fileData.filter(file => file.fileID == fileID)
 }
 
 /**

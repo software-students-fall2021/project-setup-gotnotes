@@ -30,7 +30,8 @@ exports.courseData = courseData
  * @returns [{courseObj}] || []
  */
 exports.get_course = function (courseID) {
-    return courseData.filter(course => course.courseID === courseID)
+    console.log(courseID)
+    return courseData.filter(course => course.courseID == courseID)
 }
 
 /**

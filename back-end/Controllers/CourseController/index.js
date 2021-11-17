@@ -3,9 +3,12 @@
  * we will implement this when we have the mongodb models, schemas ...
  * */
 
+const UniService = require("./../../Services/UniService")
+
 // Display list of all courses.
-exports.course_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: course list');
+exports.list = function (req, res) {
+    
+    res.send(UniService.get_uni(req.params.uni))
 };
 
 // Display detail page for a specific course.
