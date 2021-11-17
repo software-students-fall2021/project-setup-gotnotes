@@ -1,14 +1,15 @@
 const commentData = require('./../../Mock/CommentsMockData/comments.json');
 import comment from '../../Models/Comment/index'
 exports.commentData = commentData;
-exports.count_comment = (comment) => {
+exports.count_comment = () => {
     return comment.countDocuments({});
 }
 
 exports.make_comment = (Comment, commentedBy, parentCommentID) => {
+    let id = count_comment(comment)+ 1;
     if (parentCommentID != null && parentCommentID != undefined && parentCommentID != '' && parentCommentID != 0) {
         let newComment = new comment({
-            commentID: count_comment(comment) + 1,
+            commentID: id,
             comment: Comment,
             commentedBy: commentedBy,
             parentCommentID: parentCommentID,
@@ -17,7 +18,7 @@ exports.make_comment = (Comment, commentedBy, parentCommentID) => {
     }
     else {
         let newComment = new comment({
-            commentID: count_comment(comment) + 1,
+            commentID: id,
             comment: Comment,
             commentedBy: commentedBy,
             commentedAt: new Date()
@@ -28,7 +29,21 @@ exports.make_comment = (Comment, commentedBy, parentCommentID) => {
             console.log(err);
         }
     })
+    return id
 }
+exports.remove_comment = (commentID) => {
+    comment.findOneAndDelete({commentID: commentID}, (err, comment) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            comment.save(err => {
+                console.log(err)
+            })
+        }
+    })
+}
+
 
 exports.like_comment = (commentID, likedBy) => {
     comment.findOne({ commentID: commentID }, (err, comment) => {
@@ -75,4 +90,4 @@ exports.get_comment = (commentID) => {
 //  */
 // exports.get_comment = function (commentId) {
 //     return commentData.filter(comment => comment.commentId == commentId)
-// }
+
