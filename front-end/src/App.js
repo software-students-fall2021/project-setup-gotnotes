@@ -67,12 +67,11 @@ function App() {
         />
 
         <Route path="/signup" render={() => <SignUp />} />
-        <Route path="/chat" render={() => <ChatApp />} />
         <Route path="/login" render={() => <Login />} />
 
         <Route path="/resetpass" render={() => <ResetPass />} />
 
-        <Route path="/chat" render={() => <ChatSearch />} />
+        <Route path="/chat" render={() => <ChatList />} />
 
         <Route path="/addFile" render={() => <AddFile />} />
 

@@ -1,31 +1,50 @@
-import React from "react";
-import {Link} from 'react-router-dom'
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
+import React, { useEffect, useState } from "react";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import axios from 'axios';
 
-export const Account = () => {
-    return (
+export const Account = ({ props }) => {
+
+    const userID = "randpmEmail@email.com"
+
+    //const [isEditActive, setIsEditActive] = useState(false);
+
+    //const [userData, setUserData] = useState(null);
+
+    useEffect(async () => {
+        //post request with userID: userID to http://localhost/4000/account
+        //const result = axios.blah blah
+
+        //setUserData(result.data)
+    }, [])
+
+    return userData ? (
+
         <div>
-            <div>"Your Account"</div>
-            <p>Account</p>
-            <nav>
-                <Link to= "/">PictureGrid</Link>
-                <Link to= "/changeProfilePicture">ChangeProfilePicture</Link>
-                <Link to= "/upload">Upload</Link>
-                <Link to= "/notifications">Notifications</Link>
-                <Link to= "/settings">Settings</Link>
-                <Link to= "/deleteAccoutn">DeleteAccount</Link>
-            </nav>
-        </div>
+            Account Page
+            {
+                isEditActive && (
+                    <div className="random">
 
-    )
+
+
+                    </div>
+                )
+            }
+            {
+                !isEditActive && (
+                    <div className="random">
+
+                    </div>
+                )
+            }
+            {/*
+            You might wanna have a look at the UserAvatar component that I wrote a while back
+            skeleton of account page:
+            <UserAvatar />
+            <UserName />
+            <UserLikes />
+            */}
+        </div >
+
+    ) : ""
 }

@@ -6,7 +6,7 @@ var { userController } = require('../../Controllers');
 
 
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
 
     res.send('Account Request Received')
 })

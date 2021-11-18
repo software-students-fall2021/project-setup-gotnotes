@@ -23,7 +23,7 @@ router.post('/:chatID/newMessage', (req, res) => {
 })
 
 //chat like/unlike message
-router.post('/:chatID/newMessage', (req, res) => {
+router.post('/:chatID/likeMessage', (req, res) => {
     
     res.send("Chat add messages req for chat: CHAT_ID, by user: USER_ID, message: message_id")
 })
