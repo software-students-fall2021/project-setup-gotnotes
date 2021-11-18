@@ -7,6 +7,8 @@ exports.uniData = uniData
 //everything containing uniID, uniName, uniLogoPath but it doesnt need uniStudent[] and UniCourses[]
 // as there might not be any student registered. 
 
+//TODO we should have a mongoose instance here for all the 
+//post requests that are going to be processed by the srevices
 
 /**
  * Get uni by uniID
