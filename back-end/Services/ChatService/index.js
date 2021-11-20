@@ -32,6 +32,7 @@ exports.addChat = (courseID, chatName) => {
  * @param {messageBy} messageBy
  */
 exports.addMessage = (courseID, chatName, message, messageBy) => {
+    // course ID and chat name are the same
     chat.findOne({ courseID: courseID, chatName: chatName }, function (err, chat) {
         if (err) {
             console.log(err);
@@ -59,6 +60,7 @@ exports.addMessage = (courseID, chatName, message, messageBy) => {
  * @param {userID} userID
  */
 exports.like_message = (courseID, chatName, message, userID) => {
+    // add try catch
     chat.findOne({ courseID: courseID, chatName: chatName }, function (err, chat) {
         if (err) {
             console.log(err);
@@ -91,11 +93,7 @@ exports.get_chatName = (courseID) => {
             console.log(err);
         }
         else {
-            chatNames = []
-            for (let i = 0; i < chat.length; i++) {
-                chatNames.push(chat[i].chatName)
-            }
-            return chatNames
+            return chat.chatName
         }
     })
 }

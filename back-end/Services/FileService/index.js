@@ -35,16 +35,13 @@ import make_comment from '../CommentService/index'
  */
 
 exports.get_file = (fileID) => {
-    return file.findOne({fileID: fileID})
+    return file.findOne({_id: fileID})
 }
-exports.get_file_length = () => {
-    return file.countDocuments({})
-}
+
 
 
 exports.post_file = (fileName, fileType) => {
     let newFile = new file({
-        fileID: get_file_length() + 1,
         fileName: fileName,
         fileType: fileType,
         fileShareDate: new Date(),
@@ -54,28 +51,30 @@ exports.post_file = (fileName, fileType) => {
         fileDislikedBy: [],
         fileComments: []
     })
-    return newFile.save(err => {
+    newFile.save(err, file => {
         if (err) {
             console.log(err)
         }
+        let id = file._id
     })
+    return id
 }
 
 exports.set_fileSharedBy = (userID, fileID) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$push: {fileSharedBy: {userID: userID}}}, {new: true})
+    return file.findOneAndUpdate({_id: fileID}, {$push: {fileSharedBy: {_id: userID}}}, {new: true})
 }
 exports.like_file = (fileID, likedById) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$push: {fileLikedBy: likedById}}, {new: true})
+    return file.findOneAndUpdate({_id: fileID}, {$push: {fileLikedBy: {_id: likedById}}}, {new: true})
 }
 exports.dislike_file = (fileID, dislikedById) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$push: {fileDislikedBy: dislikedById}}, {new: true})
+    return file.findOneAndUpdate({_id: fileID}, {$push: {fileDislikedBy: {_id: dislikedById}}}, {new: true})
 }
 exports.set_fileName = (fileID) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$set: {fileName: fileData.fileName}}, {new: true})
+    return file.findOneAndUpdate({_id: fileID}, {$set: {fileName: fileData.fileName}}, {new: true})
 }
 exports.comment_on_file = (fileID, comment, userID) => {
     id = make_comment(comment, userID, null)
-    return file.findOneAndUpdate({fileID: fileID}, {$push: {fileComments: id}}, {new: true})
+    return file.findOneAndUpdate({_id: fileID}, {$push: {fileComments: id}}, {new: true})
 }
 exports.increase_fileDownloads = (fileID) => {
     return file.findOneAndUpdate({fileID: fileID}, {$inc: {fileDownloads: 1}}, {new: true})
@@ -168,10 +167,11 @@ exports.file_undislike = (fileID, userID) => {
 //  * @param {*} fileID 
 //  * @returns number || -1
 //  */
-exports.get_fileDownloads = function (fileID) {
+exports.get_fileDownloads = (fileID) =>  {
     const file = exports.get_file(fileID)[0]
-    if (!file)
+    if (!file){
         return -1
+    }
     return file.fileDownloads
 }
 
@@ -280,22 +280,33 @@ exports.get_fileDownloads = function (fileID) {
 //     return 0;
 // }
 
-/**
- * Set fileRemoveComments
- * @param {*} fileComments
- * @returns [{fileObj}] || []
- */
-exports.set_fileComments_remove = function (fileID, commentId) {
-    const currentFile = exports.get_file(fileID)[0];
+// /**
+//  * Set fileRemoveComments
+//  * @param {*} fileComments
+//  * @returns [{fileObj}] || []
+//  */
+// exports.set_fileComments_remove = function (fileID, commentId) {
+//     const currentFile = exports.get_file(fileID)[0];
 
-    if (!currentFile) return 1;
+//     if (!currentFile) return 1;
 
-    const newComments = currentFile.fileComments.filter(comment => comment.commentId !== commentId)
-    currentFile.fileComments = newComments;
+//     const newComments = currentFile.fileComments.filter(comment => comment.commentId !== commentId)
+//     currentFile.fileComments = newComments;
 
-    fileData.push(currentFile);
+//     fileData.push(currentFile);
 
-    return 0;
+//     return 0;
+// }
+exports.delete_file_comment = (fileID, commentId) => {
+    file.findOneAndDelete({_id: fileID, fileComments: {$elemMatch: {_id: commentId}}}, (err, doc) => {
+        if (err) {
+            console.log(err)
+        }
+        console.log(doc)
+    })
+    file.save()
+
 }
-
+    
+    
 

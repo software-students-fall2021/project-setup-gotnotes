@@ -24,33 +24,32 @@ import Course from './../../Models/Course'
     ]
 },
 */
-exports.get_length = (Course) => {
-    return Course.countDocuments({})
-}
 
 exports.get_course = (courseID) => {
-    return Course.findOne({courseID: courseID})
+    return Course.findOne({_id: courseID})
 }
 
 exports.add_course = (courseName) => {
     let course = new Course({
-        courseID: courseData.length + 1,
         courseName: courseName,
         courseEnrolledStudents: [],
         courseSharedFiles: []
     })
-    course.save(err => {
-        console.log(err)
+    course.save(err, newCourse => {
+        if (err) {
+            console.log(err)}
+        let id = newCourse._id
     })
+    return id
 }
 
 exports.add_student = (courseID, studentID) => {
-    Course.findOne({courseID: courseID}, (err, course) => {
+    Course.findOne({_id: courseID}, (err, course) => {
         if (err) {
             console.log(err)
         }
         else {
-            course.courseEnrolledStudents.push({userId: studentID})
+            course.courseEnrolledStudents.push({_id: studentID})
             course.save(err => {
                 console.log(err)
             })
@@ -58,12 +57,12 @@ exports.add_student = (courseID, studentID) => {
     })
 }
 exports.remove_student = (courseID, studentID) => {
-    Course.findOne({courseID: courseID}, (err, course) => {
+    Course.findOne({_id: courseID}, (err, course) => {
         if (err) {
             console.log(err)
         }
         else {
-            course.courseEnrolledStudents.pull({userId: studentID})
+            course.courseEnrolledStudents.pull({_id: studentID})
             course.save(err => {
                 console.log(err)
             })
@@ -71,12 +70,12 @@ exports.remove_student = (courseID, studentID) => {
     })
 }
 exports.add_file = (courseID, fileID) => {
-    Course.findOne({courseID: courseID}, (err, course) => {
+    Course.findOne({_id: courseID}, (err, course) => {
         if (err) {
             console.log(err)
         }
         else {
-            course.courseSharedFiles.push({fileID: fileID})
+            course.courseSharedFiles.push({_id: fileID})
             course.save(err => {
                 console.log(err)
             })
@@ -84,12 +83,12 @@ exports.add_file = (courseID, fileID) => {
     })
 }
 exports.remove_file = (courseID, fileID) => {
-    Course.findOne({courseID: courseID}, (err, course) => {
+    Course.findOne({_id: courseID}, (err, course) => {
         if (err) {
             console.log(err)
         }
         else {
-            course.courseSharedFiles.pull({fileID: fileID})
+            course.courseSharedFiles.pull({_id: fileID})
             course.save(err => {
                 console.log(err)
             })

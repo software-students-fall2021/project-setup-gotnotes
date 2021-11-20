@@ -1,15 +1,13 @@
 const commentData = require('./../../Mock/CommentsMockData/comments.json');
 import comment from '../../Models/Comment/index'
 exports.commentData = commentData;
-exports.count_comment = () => {
-    return comment.countDocuments({});
-}
 
 exports.make_comment = (Comment, commentedBy, parentCommentID) => {
+
+    // Look for _id
     let id = count_comment(comment)+ 1;
     if (parentCommentID != null && parentCommentID != undefined && parentCommentID != '' && parentCommentID != 0) {
         let newComment = new comment({
-            commentID: id,
             comment: Comment,
             commentedBy: commentedBy,
             parentCommentID: parentCommentID,
@@ -18,21 +16,21 @@ exports.make_comment = (Comment, commentedBy, parentCommentID) => {
     }
     else {
         let newComment = new comment({
-            commentID: id,
             comment: Comment,
             commentedBy: commentedBy,
             commentedAt: new Date()
         })
     }
-    newComment.save(err => {
+    newComment.save(err,comment => {
         if (err) {
             console.log(err);
         }
+        let id = comment._id
     })
     return id
 }
 exports.remove_comment = (commentID) => {
-    comment.findOneAndDelete({commentID: commentID}, (err, comment) => {
+    comment.findOneAndDelete({_id: commentID}, (err, comment) => {
         if (err) {
             console.log(err);
         }
@@ -46,7 +44,7 @@ exports.remove_comment = (commentID) => {
 
 
 exports.like_comment = (commentID, likedBy) => {
-    comment.findOne({ commentID: commentID }, (err, comment) => {
+    comment.findOne({ _id: commentID }, (err, comment) => {
         if (err) {
             console.log(err);
         }
@@ -61,7 +59,7 @@ exports.like_comment = (commentID, likedBy) => {
     })
 }
 exports.dislike_comment = (commentID, dislikedBy) => {
-    comment.findOne({ commentID: commentID }, (err, comment) => {
+    comment.findOne({ _id: commentID }, (err, comment) => {
         if (err) {
             console.log(err);
         }
@@ -77,7 +75,7 @@ exports.dislike_comment = (commentID, dislikedBy) => {
 }
 
 exports.get_comment = (commentID) => {
-    return comment.findOne({ commentID: commentID });
+    return comment.findOne({ _id: commentID });
 }
 
 
