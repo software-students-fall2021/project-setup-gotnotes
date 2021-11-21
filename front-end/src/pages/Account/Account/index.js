@@ -11,35 +11,31 @@ export const Account = ({ props }) => {
   const [isEditActive, setIsEditActive] = useState(false);
   const [userData, setUserData] = useState(null);
 
-  useEffect(async () => {
+  useEffect( () => {
     //post request with userID: userID to http://localhost/4000/account
-    const result = await axios("http://localhost:4000/account", {
+    axios("http://localhost:4000/account", {
       method: "POST",
-      body: {
+      data: {
         userID: userID
       }
-    });
+    }).then(res => setUserData(res.data[0]))
+    .catch(err => console.log(err))
 
-    console.log(result.data);
-    setUserData(result.data);
+    //console.log(result);
+    //setUserData(result.data[0]);
     console.log("test");
     //setUserData(result.data)
   }, []);
 
-  const {
-    //userID,
-    userAvatarUrl,
-    username
-  } = userID;
+  
 
-  //should not be !
-  return !userData ? (
+  return userData ? (
     <div>
       Account Page
       {isEditActive && <div className="random"></div>}
       {!isEditActive && (
         <div className="accountList">
-          <UserAvatar props={{ userAvatarUrl, size: "large", editActive: isEditActive }} />
+          <UserAvatar props={{ userAvatarUrl: userData.userAvatarUrl, size: "large", editActive: isEditActive }} />
           <UserDataViewer props={{ userData: userID, avatarSize: "large" }} />
 
           {userID}
