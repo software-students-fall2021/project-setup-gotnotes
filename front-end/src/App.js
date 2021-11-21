@@ -15,11 +15,12 @@ import { Courses } from "./pages/Search/Courses";
 import { Files } from "./pages/Search/Files";
 import { FileDetails } from "./pages/Search/FileDetails";
 import ChatApp from "./pages/Chat/ChatMessages";
+import ChatList from "./pages/Chat/ChatList";
 import { SignUp } from "./pages/Login/SignUp";
 import { Login } from "./pages/Login/Login";
 import { ResetPass } from "./pages/Login/ResetPass";
 
-import { ChatSearch } from "./pages/Chat/ChatSearch";
+//import { ChatSearch } from "./pages/Chat/ChatSearch";
 
 import { AddFile } from "./pages/AddFile";
 

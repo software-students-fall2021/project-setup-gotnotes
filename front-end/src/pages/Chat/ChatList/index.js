@@ -4,7 +4,7 @@ import React from 'react'
 const ChatList = () => {
     return (
         <div>
-            
+            <p> Hello world</p>
         </div>
     )
 }
