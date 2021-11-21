@@ -3,13 +3,17 @@
  * we will implement this when we have the mongodb models, schemas ...
  * */
 
+const UserService  = require('./../../Services/UserService')
+
 // Display list of all users.
 exports.user_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: user list');
+    const currentUser = UserService.get_user(req.body.userId)
+    res.send(currentUser);
 };
 
 // Display detail page for a specific user.
 exports.user_detail = function (req, res) {
+
     res.send('NOT IMPLEMENTED: user detail: ' + req.params.id);
 };
 

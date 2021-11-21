@@ -13,7 +13,12 @@ export const Account = ({ props }) => {
 
   useEffect(async () => {
     //post request with userID: userID to http://localhost/4000/account
-    const result = await axios("http://localhost:4000/account");
+    const result = await axios("http://localhost:4000/account", {
+      method: "POST",
+      body: {
+        userID: userID
+      }
+    });
 
     console.log(result.data);
     setUserData(result.data);
@@ -25,7 +30,7 @@ export const Account = ({ props }) => {
     //userID,
     userAvatarUrl,
     username
-} = userID;
+  } = userID;
 
   //should not be !
   return !userData ? (
@@ -34,10 +39,10 @@ export const Account = ({ props }) => {
       {isEditActive && <div className="random"></div>}
       {!isEditActive && (
         <div className="accountList">
-            <UserAvatar props={{userAvatarUrl, size: "large", editActive: isEditActive}}/>
-            <UserDataViewer props={{ userData: userID, avatarSize: "large" }} />
+          <UserAvatar props={{ userAvatarUrl, size: "large", editActive: isEditActive }} />
+          <UserDataViewer props={{ userData: userID, avatarSize: "large" }} />
 
-            {userID}
+          {userID}
         </div>)}
       {/*
             You might wanna have a look at the UserAvatar component that I wrote a while back
