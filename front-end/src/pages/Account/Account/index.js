@@ -1,31 +1,25 @@
 import React from "react";
-import {Link} from 'react-router-dom'
-import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button"
 import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 export const Account = () => {
-    return (
-        <div>
-            <div>"Your Account"</div>
-            <p>Account</p>
-            <nav>
-                <Link to= "/">PictureGrid</Link>
-                <Link to= "/changeProfilePicture">ChangeProfilePicture</Link>
-                <Link to= "/upload">Upload</Link>
-                <Link to= "/notifications">Notifications</Link>
-                <Link to= "/settings">Settings</Link>
-                <Link to= "/deleteAccoutn">DeleteAccount</Link>
-            </nav>
-        </div>
-
-    )
-}
+  return (
+    <div>
+      <Stack direction="row" spacing={2}>
+        <Avatar
+          alt="Random"
+          src="front-end/gotnotes/src/assets/randomUser.png"
+          sx={{ width: 56, height: 56 }}
+        />
+      </Stack>
+      <Stack spacing={2}>
+        <Button variant="outlined" size="large" onClick={() => { console.log('Change PFP'); }}>Change Profile Pic</Button>
+        <Button variant="outlined" size="large" onClick={() => { console.log('Upload Files'); }}>Uploaded Files</Button>
+        <Button variant="outlined" size="large" onClick={() => { console.log('Notifications'); }}>Notifiactions</Button>
+        <Button variant="outlined" size="large" onClick={() => { console.log('Settings'); }}>Settings</Button>
+        <Button variant="outlined" size="large" onClick={() => { console.log('Delete Account'); }}>Delete Account</Button>
+      </Stack>
+    </div>
+  );
+};

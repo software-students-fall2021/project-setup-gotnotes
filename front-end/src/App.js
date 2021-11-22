@@ -1,7 +1,8 @@
 import "./default.scss";
 
 import { Switch, Route, Redirect } from "react-router-dom";
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from "react";
 
 import { currentUserID, mockUserData } from "./assets/mocks/mockData";
 
@@ -29,7 +30,6 @@ import { Account } from "./pages/Account/Account";
 import { MobileLayoutSelector } from "./layouts/Mobile/MobileLayoutSelector";
 
 function App() {
-
   return (
     <div className="App">
       <AdminToolbar
@@ -59,7 +59,7 @@ function App() {
           path="/unis/:uniName/:courseName"
           render={() => <MobileLayoutSelector Component={Files} />}
         />
-        
+
         <Route
           exact
           path="/unis/:uniName/:courseName/:fileName"

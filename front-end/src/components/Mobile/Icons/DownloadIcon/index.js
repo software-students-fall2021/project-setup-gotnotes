@@ -1,19 +1,18 @@
-import React from 'react'
+import React from "react";
 
-import './styles.scss'
+import "./styles.scss";
 
-import { DownloadOutlined } from '@mui/icons-material';
+import { DownloadOutlined } from "@mui/icons-material";
 
 export const DownloadIcon = ({ props }) => {
+  //TODO gotta refactor this logic out to a helper function later
 
-    //TODO gotta refactor this logic out to a helper function later
+//   const { itemID, fontSize } = props;
+  const { fontSize } = props;
 
-    const { itemID, fontSize } = props
-
-
-    return (
-        <div className="notificationBell" >
-            <DownloadOutlined fontSize={ fontSize } />
-        </div>
-    )
-}
+  return (
+    <div className="notificationBell">
+      <DownloadOutlined fontSize={fontSize} />
+    </div>
+  );
+};
