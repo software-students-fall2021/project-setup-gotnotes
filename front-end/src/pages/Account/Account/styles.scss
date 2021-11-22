@@ -1,0 +1,34 @@
+@import "./../../../default.scss";
+
+.edit-page {
+  .submit-button {
+  }
+}
+
+.account-list {
+  .user-avatar-component-container {
+    //text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    
+  }
+
+  .display-user-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+  }
+
+  .user-data-viewer-container {
+  }
+
+  .submit-button {
+  }
+}

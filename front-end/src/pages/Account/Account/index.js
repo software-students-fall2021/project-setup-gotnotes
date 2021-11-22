@@ -34,7 +34,7 @@ export const Account = ({ props }) => {
 
     //console.log(result);
     //setUserData(result.data[0]);
-    console.log("test");
+    //console.log("userData: ", userData);
     //setUserData(result.data)
   }, []);
 
@@ -74,7 +74,8 @@ export const Account = ({ props }) => {
                 e.preventDefault();
                 editUserData(userInputState);
                 setIsEditActive(false);
-              }}>
+              }}
+            >
               <input type="submit" value="Done" />
             </form>
           </div>
@@ -92,8 +93,21 @@ export const Account = ({ props }) => {
             />
           </div>
 
+          <div classname="display-user-data">
+            <h4>{userData.username}</h4>
+            <h4>{userData.firstName}</h4>
+            <h4>{userData.lastName}</h4>
+            <h4>{userData.userID}</h4>
+          </div>
+
           <div className="user-data-viewer-container">
-            <UserDataViewer props={{ userData: userID, avatarSize: "large" }} />
+            <UserDataViewer
+              props={{
+                userData: userData.userID,
+                avatarSize: "large",
+                username: userData.username,
+              }}
+            />
           </div>
 
           <div classname="submit-button">
@@ -102,10 +116,12 @@ export const Account = ({ props }) => {
                 e.preventDefault();
                 editUserData(userInputState);
                 setIsEditActive(true);
-              }}>
+              }}
+            >
               <input type="submit" value="Edit" />
             </form>
           </div>
+          <view>{console.log("userData: ", userData.firstName)}</view>
         </div>
       )}
       {/*
