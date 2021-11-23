@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   build-and-test-express-js:
     docker:
-      - image: cimg/node:16.13.0 # latest stable node at the time of writing
+      - image: cimg/node:14.18.1 # latest stable node at the time of writing
         # auth:
         #   username: mydockerhub-user
         #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -23,7 +23,7 @@ jobs:
           npm test # run all unit tests
   build-react-js:
     docker:
-      - image: cimg/node:16.13.0 # latest stable node at the time of writing
+      - image: cimg/node:14.18.1 # latest stable node at the time of writing
         # auth:
         #   username: mydockerhub-user
         #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
