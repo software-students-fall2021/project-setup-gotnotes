@@ -1,6 +1,134 @@
-const userData = require('./../../Mock/UsersMockData/users.json');
+// const userData = require('./../../Mock/UsersMockData/users.json');
+const db = require('../Database/index.js');
+const users = require('../../Models/User/index.js')
+// exports.userData = userData;
 
-exports.userData = userData;
+exports.create_user = (username, firstName, lastName) => {
+    let new_user = new users({
+        username: username,
+        email: "test",
+        firstName: firstName,
+        lastName: lastName,
+        // Not to sure what to do about the passwordHash
+        // isAdmin: false,
+        // userAvatarUrl: "",
+        // userUni: "",
+        // passwordHash: "",
+        // userSubscribed: [],
+        // userLiked: [],
+        // userDisliked: [],
+        // userComments: [],
+    })
+    new_user.save((err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            let id = user._id;
+            return id;
+        }
+    })
+}
+create_user("admin", "admin", "admin");
+
+exports.make_admin = (userID) => {
+    users.findOneAndUpdate({_id: userID}, {$set: {isAdmin: true}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })    
+}
+exports.set_user_avatar_url = (userID, newAvatarUrl) => {
+    users.findOneAndUpdate({_id: userID}, {$set: {userAvatarUrl: newAvatarUrl}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.add_user_uni = (userID, newUni) => {
+    users.findOneAndUpdate({_id: userID}, {$push: {userUni: newUni}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.add_user_subscribed = (userID, newSubscribed) => {
+    users.findOneAndUpdate({_id: userID}, {$push: {userSubscribed: newSubscribed}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.delete_user_subscribed = (userID, newSubscribed) => {
+    users.findOneAndUpdate({_id: userID}, {$pull: {userSubscribed: newSubscribed}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+
+
+exports.user_liked = (userID, newLiked) => {
+    users.findOneAndUpdate({_id: userID}, {$push: {userLiked: newLiked}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.user_disliked = ( userID, newDisliked) => {
+    users.findOneAndUpdate({_id: userID}, {$push: {userDisliked: newDisliked}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.user_unliked = (userID, newUnliked) => {
+    users.findOneAndUpdate({_id: userID}, {$pull: {userLiked: newUnliked}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.user_undisliked = (userID, newUndisliked) => {
+    users.findOneAndUpdate({_id: userID}, {$pull: {userDisliked: newUndisliked}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.user_comment = (userID, newComment) => {
+    users.findOneAndUpdate({_id: userID}, {$push: {userComments: newComment}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.user_uncomment = (userID, newComment) => {
+    users.findOneAndUpdate({_id: userID}, {$pull: {userComments: newComment}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.delete_user = (userID) => {
+    users.findOneAndDelete({_id: userID}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+
 
 
 /**
@@ -8,8 +136,15 @@ exports.userData = userData;
  * @param {email} email 
  * @returns [{userObj}] || []
  */
-exports.get_user = function (email) {
-    return userData.filter(user => user.userID == email)
+exports.get_user = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user;
+        }
+    })
 }
 
 /**
@@ -17,8 +152,15 @@ exports.get_user = function (email) {
  * @param {*} username 
  * @returns [{userObj}] || []
  */
-exports.get_user_by_username = function (username) {
-    return userData.filter(user => user.username == username)
+exports.get_user_by_id = (userID) => {
+    users.findOne({_id: userID}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user;
+        }
+    })
 }
 
 /**
@@ -26,12 +168,18 @@ exports.get_user_by_username = function (username) {
  * @param {*} email 
  * @returns String || null
  */
-exports.get_user_pass_hash = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.passwordHash)
-        return user.passwordHash
-    return null;
+exports.get_user_pass_hash = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.passwordHash;
+        }
+    })
 }
+
+
 
 /**
  * Sets a new pass hash for the user with given email
@@ -39,14 +187,12 @@ exports.get_user_pass_hash = function (email) {
  * @param {*} newPassHash the new pass hash to be inserted
  * @returns 0 if success, 1 of no such user
  */
-exports.set_user_pass_hash = function (email, newPassHash) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.passwordHash = newPassHash;
-
-    return 0;
+exports.set_user_pass_hash = (email, newPassHash) => {
+    users.findOneAndUpdate({email: email}, {$set: {passwordHash: newPassHash}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
 }
 
 /**
@@ -54,34 +200,43 @@ exports.set_user_pass_hash = function (email, newPassHash) {
  * @param {*} email 
  * @returns boolean || null, true if user is admin, false otherwise, null if no such user
  */
-exports.get_user_authority = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.isAdmin)
-        return user.isAdmin
-    return null;
+exports.get_user_authority = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.isAdmin;
+        }
+    })
 }
 
-exports.set_user_authority = function (email, newAuthority) {
-    const currentUser = exports.get_user(email)[0];
 
-    if (!currentUser) return 1;
-
-    currentUser.isAdmin = newAuthority;
-
-    return 0;
+exports.set_user_authority = (email, newAuthority) => {
+    users.findOneAndUpdate({email: email}, {$set: {isAdmin: newAuthority}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
 }
+
 
 /**
  * Return the avatar url of the user with given email
  * @param {*} email 
  * @returns String || null
  */
-exports.get_user_avatar_url = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user)
-        return user.userAvatarUrl
-    return null;
+exports.get_user_avatar_url = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userAvatarUrl;
+        }
+    })
 }
+
 
 /**
  * sets the new user avatar url for the user with given email, returns 0 if success, 1 if no such user
@@ -89,242 +244,226 @@ exports.get_user_avatar_url = function (email) {
  * @param {*} newAvatarUrl 
  * @returns 1 || 0
  */
-exports.set_user_avatar_url = function (email, newAvatarUrl) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.userAvatarUrl = newAvatarUrl;
-
-    return 0;
-
-}
-
-exports.get_user_first_name = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.firstName)
-        return user.firstName
-    return null;
-}
-
-exports.set_user_first_name = function (email, newFirstName) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.firstName = newFirstName;
-
-    return 0;
-
-}
-
-exports.get_user_last_name = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.lastName)
-        return user.lastName
-    return null;
-}
-
-exports.set_user_last_name = function (email, newLastName) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.lastName = newLastName;
-
-    return 0;
-
-}
-
-exports.get_user_uni = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userUni)
-        return user.userUni
-    return null;
-}
-
-exports.set_user_uni = function (email, newUniId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.userUni = newUniId;
-
-    return 0;
-
-}
-
-
-exports.get_user_subscribed = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userSubscribed)
-        return user.userSubscribed
-    return null;
-}
-
-exports.set_user_subscribed_add = function (email, addedCourseId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    const addedCourseData = { courseID: addedCourseId }
-
-    currentUser.userSubscribed.push(addedCourseData);
-
-    return 0;
-
-}
-
-exports.set_user_subscribed_remove = function (email, removedCourseId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.userSubscribed = currentUser.
-        userSubscribed.
-        filter(course =>
-            course.courseID !== removedCourseId
-        )
-
-    return 0;
-
-}
-
-exports.get_user_liked = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userLiked)
-        return user.userLiked
-    return null;
-}
-
-exports.get_user_liked_count = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userLiked)
-        return user.userLiked.length
-    return null;
-}
-exports.set_user_liked_add = function (email, addedFileId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    const addedFileData = { fileID: addedFileId }
-
-    currentUser.userLiked.push(addedFileData);
-
-    return 0;
-
-}
-
-exports.set_user_liked_remove = function (email, removedFileId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.userLiked = currentUser.
-        userLiked.
-        filter(file =>
-            file.fileID !== removedFileId
-        )
-
-    return 0;
-
-}
-
-exports.get_user_disliked = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userDisliked)
-        return user.userDisliked
-    return null;
-}
-exports.get_user_disliked_count = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userDisliked)
-        return user.userDisliked.length
-    return null;
-}
-
-exports.set_user_disliked_add = function (email, addedFileId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    const addedFileData = { fileID: addedFileId }
-
-    currentUser.userDisliked.push(addedFileData);
-
-    return 0;
-
-}
-
-exports.set_user_disliked_remove = function (email, removedFileId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-
-    currentUser.userDisliked = currentUser.
-        userLiked.
-        filter(file =>
-            file.fileID !== removedFileId
-        )
-
-
-    return 0;
-
-}
-
-exports.get_user_comment = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userComments)
-        return user.userComments
-    return null;
-}
-
-exports.get_user_comment_count = function (email) {
-    const user = exports.get_user(email)[0];
-    if (user?.userComments)
-        return user.userComments.length
-    return null;
-}
-
-exports.set_user_comment_add = function (email, addedCommentId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    const addedCommentData = { commentId: addedCommentId }
-
-    currentUser.userComments.push(addedCommentData);
-
-    return 0;
-
-}
-
-exports.set_user_comment_remove = function (email, removedCommentId) {
-    const currentUser = exports.get_user(email)[0];
-
-    if (!currentUser) return 1;
-
-    currentUser.userComments = currentUser.
-        userLiked.
-        filter(comment =>
-            comment.commentId !== removedCommentId
-        )
-
-    return 0;
-
-}
-
-
-
-exports.get_users_by_course_id = function (course_id) {
-    const students_by_course = [];
-    userData.map((user) => {
-        let count = 0;
-        user.userSubscribed.map((course) => course.courseID === course_id && count++)
-        count > 0 && students_by_course.push({ username: user.username, userSubscribed: user.userSubscribed })
+exports.set_user_avatar_url = (email, newAvatarUrl) => {
+    users.findOneAndUpdate({email: email}, {$set: {userAvatarUrl: newAvatarUrl}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
     })
+}   
 
-    return students_by_course;
+exports.get_user_first_name = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.firstName;
+        }
+    })
+}
+
+exports.set_user_first_name = (email, newFirstName) => {
+    users.findOneAndUpdate({email: email}, {$set: {firstName: newFirstName}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.get_user_last_name = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.lastName;
+        }
+    })
+}
+
+exports.set_user_last_name = (email, newLastName) => {
+    users.findOneAndUpdate({email: email}, {$set: {lastName: newLastName}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.get_user_uni = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.uni;
+        }
+    })
+}
+
+exports.set_user_uni = (email, newUni) => {
+    users.findOneAndUpdate({email: email}, {$set: {uni: newUni}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+
+exports.get_user_subscribed = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userSubscribed;
+        }
+    })
+}
+
+
+exports.set_user_subscribed_add = (email, addedCourseId) => {
+    users.findOneAndUpdate({email: email}, {$addToSet: {userSubscribed: addedCourseId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.set_user_subscribed_remove =  (email, removedCourseId) => {
+    users.findOneAndUpdate({email: email}, {$pull: {userSubscribed: removedCourseId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.get_user_liked = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userLiked;
+        }
+    })
+}
+
+exports.get_user_liked_count = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userLiked.length;
+        }
+    })
+}
+
+
+exports.set_user_liked_add = (email, addedFileId) =>{
+    users.findOneAndUpdate({email: email}, {$addToSet: {userLiked: addedFileId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.set_user_liked_remove = (email, removedFileId) => {
+    users.findOneAndUpdate({email: email}, {$pull: {userLiked: removedFileId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.get_user_disliked = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userDisliked;
+        }
+    })
+}
+
+
+exports.get_user_disliked_count = (email) =>{
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userDisliked.length;
+        }
+    })
+}
+
+exports.set_user_disliked_add = (email, addedFileId) => {
+    users.findOneAndUpdate({email: email}, {$addToSet: {userDisliked: addedFileId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.set_user_disliked_remove = (email, removedFileId) => {
+    users.findOneAndUpdate({email: email}, {$pull: {userDisliked: removedFileId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+
+exports.get_user_comment = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userComment;
+        }
+    })
+}
+
+exports.get_user_comment_count = (email) => {
+    users.findOne({email: email}, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return user.userComment.length;
+        }
+    })
+}
+
+exports.set_user_comment_add = (email, addedCommentId) => {
+    users.findOneAndUpdate({email: email}, {$addToSet: {userComment: addedCommentId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+exports.set_user_comment_remove = (email, removedCommentId) => {
+    users.findOneAndUpdate({email: email}, {$pull: {userComment: removedCommentId}}, {new: true}, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
+
+
+exports.get_users_by_course_id = (courseID) => {
+    users.find({userSubscribed: courseID}, (err, users) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            return users;
+        }
+    })
 }

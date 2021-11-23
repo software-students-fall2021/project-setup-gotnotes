@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    _id: {
+    email: {
         type: String,
         required: "Email cannot be empty"
     },
@@ -41,7 +41,7 @@ var UserSchema = new Schema({
 });
 
 UserSchema.virtual('email').get(function () {
-    return this._id;
+    return this.email;
 });
 
 
