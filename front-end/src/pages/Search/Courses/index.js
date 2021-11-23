@@ -1,44 +1,60 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import axios from 'axios'
-import { subscribeToCourse } from '../../../services/SearchTabServices/CourseInteractionHandler'
+import axios from "axios";
+import { subscribeToCourse } from "../../../services/SearchTabServices/CourseInteractionHandler";
 
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from "react-router-dom";
 
-import './styles.scss'
+import "./styles.scss";
 
-import { mockClassData } from '../../../assets/mocks/mockData'
-
+// import { mockClassData } from "../../../assets/mocks/mockData";
 
 export const Courses = ({ ViewComponent, activeClass }) => {
+  const [courseData, setCourseData] = useState(null);
 
+  // const { pathname } = useLocation();
 
-    const [courseData, setCourseData] = useState(null);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:4000${pathname}`, { crossdomain: true })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setCourseData(res.data);
+  //     });
+  // }, []);
 
-    const { pathname } = useLocation();
+  // another temporary fix as pathname is seemingly not being recognized
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/courses`, { crossdomain: true })
+      .then((res) => {
+        console.log(res.data);
+        setCourseData(res.data);
+      });
+  }, []);
 
-
-    useEffect(async () => {
-        const result = await axios(
-            `http://localhost:4000${pathname}`,
-        );
-        console.log(result.data)
-        setCourseData(result.data);
-    }, [])
-
-    return (
-        <div className={activeClass === "grid" ? "courses grid" : "courses"}>
-
-            {courseData && courseData[0].uniCourses.map(({ courseID: itemID, courseName: itemName, courseSharedFileCount: enrolledStudents }) => (
-                <ViewComponent
-                    key={itemID}
-                    props={{ itemID, itemName, itemLogoPath: "", itemType: "course", enrolledStudents, interactionHandler: subscribeToCourse }}
-                />
-
-            ))}
-
-
-        </div>
-    )
-}
-
+  return (
+    <div className={activeClass === "grid" ? "courses grid" : "courses"}>
+      {courseData &&
+        courseData[0].uniCourses.map(
+          ({
+            courseID: itemID,
+            courseName: itemName,
+            courseSharedFileCount: enrolledStudents,
+          }) => (
+            <ViewComponent
+              key={itemID}
+              props={{
+                itemID,
+                itemName,
+                itemLogoPath: "",
+                itemType: "course",
+                enrolledStudents,
+                interactionHandler: subscribeToCourse,
+              }}
+            />
+          )
+        )}
+    </div>
+  );
+};

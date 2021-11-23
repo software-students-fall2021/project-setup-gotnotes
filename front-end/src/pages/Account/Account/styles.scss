@@ -1,19 +1,33 @@
-nav {
-  border: 1px solid black;
-  border-width: 1px 0 1px 19px; /* no border on left or right */
-  font-family: georgia;
-  padding: 20px;
-  margin: 20px 0; /* no margin on left or right */
-  text-align: center;
+@import "./../../../default.scss";
+
+.edit-page {
+  .submit-button {
+  }
 }
 
-nav a {
-  text-decoration: none;
-  color: black;
-  margin: 20px;
-}
+.account-list {
+  .user-avatar-component-container {
+    //text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+  }
 
-nav a:hover {
-  text-decoration: underline;
-  background-color: yellow;
+  .display-user-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+  }
+
+  .user-data-viewer-container {
+  }
+
+  .submit-button {
+  }
 }

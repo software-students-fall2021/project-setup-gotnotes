@@ -1,31 +1,138 @@
-import React from "react";
-import {Link} from 'react-router-dom'
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import UserAvatar from "../../../components/Mobile/UserAvatar";
+import UserDataViewer from "../../../components/Mobile/UserDataViewer";
+import "./styles.scss";
+// import { DonutLarge } from "@mui/icons-material";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+const editUserData = () => {
+  console.log("submit the edits to the server");
+  return true;
+};
 
-export const Account = () => {
-    return (
-        <div>
-            <div>"Your Account"</div>
-            <p>Account</p>
-            <nav>
-                <Link to= "/">PictureGrid</Link>
-                <Link to= "/changeProfilePicture">ChangeProfilePicture</Link>
-                <Link to= "/upload">Upload</Link>
-                <Link to= "/notifications">Notifications</Link>
-                <Link to= "/settings">Settings</Link>
-                <Link to= "/deleteAccoutn">DeleteAccount</Link>
-            </nav>
+export const Account = ({ props }) => {
+  const userID = "cdies0@netlog.com";
+
+  const [isEditActive, setIsEditActive] = useState(null);
+  const [userData, setUserData] = useState(null);
+
+  const [userInputState, setUserInputState] = useState({
+    firstName: "",
+    lastName: "",
+  });
+
+  useEffect(() => {
+    //post request with userID: userID to http://localhost/4000/account
+    axios("http://localhost:4000/account", {
+      method: "POST",
+      data: {
+        userID: userID,
+      },
+    })
+      .then((res) => setUserData(res.data[0]))
+      .catch((err) => console.log(err));
+
+    //console.log(result);
+    //setUserData(result.data[0]);
+    //console.log("userData: ", userData);
+    //setUserData(result.data)
+  }, []);
+
+  return userData ? (
+    <div>
+      Account Page
+      {isEditActive && (
+        <div className="edit-page">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              editUserData(userInputState);
+              setUserInputState({
+                firstName: "",
+                lastName: "",
+              });
+            }}
+          >
+            <input
+              type="text"
+              placeholder={userData.firstName}
+              value={userInputState.firstName}
+              onChange={(e) =>
+                setUserInputState({
+                  ...userInputState,
+                  firstName: e.target.value,
+                })
+              }
+            />
+
+            <input type="submit" value="Submit Edits" />
+          </form>
+
+          <div classname="submit-button">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                editUserData(userInputState);
+                setIsEditActive(false);
+              }}
+            >
+              <input type="submit" value="Done" />
+            </form>
+          </div>
         </div>
+      )}
+      {!isEditActive && (
+        <div className="account-list">
+          <div className="user-avatar-component-container">
+            <UserAvatar
+              props={{
+                userAvatarUrl: userData.userAvatarUrl,
+                size: "large",
+                editActive: isEditActive,
+              }}
+            />
+          </div>
 
-    )
-}
+          <div classname="display-user-data">
+            <h4>{userData.username}</h4>
+            <h4>{userData.firstName}</h4>
+            <h4>{userData.lastName}</h4>
+            <h4>{userData.userID}</h4>
+          </div>
+
+          <div className="user-data-viewer-container">
+            <UserDataViewer
+              props={{
+                userData: userData.userID,
+                avatarSize: "large",
+                username: userData.username,
+              }}
+            />
+          </div>
+
+          <div classname="submit-button">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                editUserData(userInputState);
+                setIsEditActive(true);
+              }}
+            >
+              <input type="submit" value="Edit" />
+            </form>
+          </div>
+          <view>{console.log("userData: ", userData.firstName)}</view>
+        </div>
+      )}
+      {/*
+            You might wanna have a look at the UserAvatar component that I wrote a while back
+            skeleton of account page:
+            <UserAvatar />
+            <UserName />
+            <UserLikes />
+            */}
+    </div>
+  ) : (
+    ""
+  );
+};

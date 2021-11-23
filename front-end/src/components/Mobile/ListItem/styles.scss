@@ -42,24 +42,22 @@
     .info {
       display: flex;
       flex-direction: row;
-      margin: auto 0px;      
+      margin: auto 0px;
       font-size: 1.2rem;
       width: 90%;
       margin-right: 10%;
       justify-content: space-between;
 
-      &.single{
+      &.single {
         justify-content: flex-end;
         width: 80%;
         margin-right: 20%;
-
       }
 
-      .icon-set{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          
+      .icon-set {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     }
   }

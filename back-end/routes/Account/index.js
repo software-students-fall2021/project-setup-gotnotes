@@ -5,11 +5,7 @@ var router = express.Router({ mergeParams: true });
 var { userController } = require('../../Controllers');
 
 
-
-router.get('/', (req, res) => {
-
-    res.send('Account Request Received')
-})
+router.post('/', userController.user_detail)
 
 router.post('/edit', (req, res) => {
     res.send('Account edit req by user: USER_ID')

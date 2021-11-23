@@ -1,24 +1,24 @@
-.whole{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.whole {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-.image{
+  .image {
     // display: flex;
     // flex-direction: column;
     // align-items: center;
     // justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    
+
     width: 40%;
-}
-.login{
+  }
+  .login {
     margin-top: 5%;
-}
-.reset{
+  }
+  .reset {
     margin-top: 5%;
     // margin-bottom: 100%
-
-}}
+  }
+}

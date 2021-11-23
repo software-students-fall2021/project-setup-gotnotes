@@ -1,5 +1,6 @@
 const uniData = require('./../../Mock/UnisMockData/unis.json')
-import uni from '../../Models/Uni/index'
+const uni = require('../../Models/Uni/index')
+const db = require('../Database/index')
 exports.uniData = uniData
 
 
@@ -22,6 +23,8 @@ return id
 exports.get_uni = (uniID) => {
   return uni.findOne({_id: uniID})
 }
+//TODO we should have a mongoose instance here for all the 
+//post requests that are going to be processed by the srevices
 
 exports.get_uniName = (uniID) => {
   uni.findOne({_id: uniID}).then(uni => {
