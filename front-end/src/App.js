@@ -1,7 +1,7 @@
 import "./default.scss";
 
 import { Switch, Route, Redirect } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 
 import { currentUserID, mockUserData } from "./assets/mocks/mockData";
 
@@ -14,7 +14,7 @@ import { Unis } from "./pages/Search/Unis";
 import { Courses } from "./pages/Search/Courses";
 import { Files } from "./pages/Search/Files";
 import { FileDetails } from "./pages/Search/FileDetails";
-import ChatApp from "./pages/Chat/ChatMessages";
+// import ChatApp from "./pages/Chat/ChatMessages";
 import ChatList from "./pages/Chat/ChatList";
 import { SignUp } from "./pages/Login/SignUp";
 import { Login } from "./pages/Login/Login";
@@ -30,7 +30,6 @@ import { Account } from "./pages/Account/Account";
 import { MobileLayoutSelector } from "./layouts/Mobile/MobileLayoutSelector";
 
 function App() {
-
   return (
     <div className="App">
       <AdminToolbar
@@ -60,7 +59,7 @@ function App() {
           path="/unis/:uniName/:courseName"
           render={() => <MobileLayoutSelector Component={Files} />}
         />
-        
+
         <Route
           exact
           path="/unis/:uniName/:courseName/:fileName"

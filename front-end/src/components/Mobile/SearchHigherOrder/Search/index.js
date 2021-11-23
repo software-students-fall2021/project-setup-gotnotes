@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import './styles.scss'
+import "./styles.scss";
 
 export const Search = ({ props }) => {
-
   //const { items, setItems } = props;
 
   const [search, setSearch] = useState("");
@@ -12,26 +11,23 @@ export const Search = ({ props }) => {
   const handleSearchChange = (value) => {
     setSearch(value);
 
-   /*  if (search.length > 0) {
+    /*  if (search.length > 0) {
       setItems(items.filter((item) =>
         item.itemName.toLowerCase().match(search)
       ))
     } */
-
-  }
+  };
 
   return (
-
     <div className="search">
       <input
         className="search-box"
-        name='password'
-        autoComplete='on'
+        name="password"
+        autoComplete="on"
         placeholder="Search..."
         onChange={(e) => handleSearchChange(e.target.value)}
       />
+      <p>{search}</p>
     </div>
-
-
-  )
-}
+  );
+};
