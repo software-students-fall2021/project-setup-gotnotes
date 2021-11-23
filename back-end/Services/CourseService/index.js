@@ -1,6 +1,7 @@
 const courseData = require('./../../Mock/CoursesMockData/courses.json')
 exports.courseData = courseData
-import Course from './../../Models/Course'
+const db = require('../Database/index.js');
+const Course = require('./../../Models/Course')
 
 /*
 {

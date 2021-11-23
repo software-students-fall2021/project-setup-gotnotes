@@ -1,5 +1,6 @@
 const commentData = require('./../../Mock/CommentsMockData/comments.json');
-import comment from '../../Models/Comment/index'
+const db = require('../Database/index')
+const comment = require('../../Models/Comment/index')
 exports.commentData = commentData;
 
 exports.make_comment = (Comment, commentedBy, parentCommentID) => {

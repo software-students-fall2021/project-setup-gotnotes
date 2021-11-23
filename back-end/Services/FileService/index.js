@@ -1,7 +1,8 @@
 const fileData = require('./../../Mock/FilesMockData/file.json');
 exports.fileData = fileData;
-import file from '../../Models/File/index'
-import make_comment from '../CommentService/index'
+const db = require('../Database/index.js');
+const file = require('../../Models/File/index')
+const make_comment = require('../CommentService/index').make_comment
 /*
 {
     "fileID":1,

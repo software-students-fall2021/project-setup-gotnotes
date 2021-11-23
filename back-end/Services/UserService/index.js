@@ -1,23 +1,25 @@
-const userData = require('./../../Mock/UsersMockData/users.json');
-import users from '../../Models/User/index'
-exports.userData = userData;
+// const userData = require('./../../Mock/UsersMockData/users.json');
+const db = require('../Database/index.js');
+const users = require('../../Models/User/index.js')
+// exports.userData = userData;
 
 exports.create_user = (username, firstName, lastName) => {
-    new_user = new users({
+    let new_user = new users({
         username: username,
+        email: "test",
         firstName: firstName,
         lastName: lastName,
         // Not to sure what to do about the passwordHash
-        isAdmin: false,
-        userAvatarUrl: "",
-        userUni: "",
-        passwordHash: "",
-        userSubscribed: [],
-        userLiked: [],
-        userDisliked: [],
-        userComments: [],
+        // isAdmin: false,
+        // userAvatarUrl: "",
+        // userUni: "",
+        // passwordHash: "",
+        // userSubscribed: [],
+        // userLiked: [],
+        // userDisliked: [],
+        // userComments: [],
     })
-    new_user.save(err, user => {
+    new_user.save((err, user) => {
         if (err) {
             console.log(err);
         }
@@ -27,6 +29,7 @@ exports.create_user = (username, firstName, lastName) => {
         }
     })
 }
+create_user("admin", "admin", "admin");
 
 exports.make_admin = (userID) => {
     users.findOneAndUpdate({_id: userID}, {$set: {isAdmin: true}}, {new: true}, (err) => {

@@ -1,9 +1,7 @@
 const { use } = require('chai');
 let chatData = require('./../../Mock/ChatsMockData/chats.json')
-var mongoose = require("mongoose");
-var axios = require("axios");
-var db = mongoose.connection;
-import chat from '../../Models/Chat/index'
+const db = require('../Database/index')
+const chat = require('../../Models/Chat/index')
 // Comment By Mark Zarutin
 /**
  * Get chat by courseID and chatName
@@ -11,7 +9,7 @@ import chat from '../../Models/Chat/index'
  * @param {chatName} chatName
  */
 
-exports.addChat = (courseID, chatName) => {
+let addChat = (courseID, chatName) => {
     let chat_instance = new chat({
         courseID: courseID,
         chatName: chatName,
@@ -24,6 +22,7 @@ exports.addChat = (courseID, chatName) => {
         }
     })
 }
+addChat("courseID","chatName")
 /**
  * Adds message by courseID and chatName
  * @param {courseID} courseID
