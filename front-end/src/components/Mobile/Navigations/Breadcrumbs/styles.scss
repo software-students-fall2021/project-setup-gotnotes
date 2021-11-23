@@ -1,26 +1,22 @@
 @import "./../../../../default.scss";
 
+.breadcrumb-container {
+  display: flex;
+  padding: 5px 10px;
 
-.breadcrumb-container{
-    display: flex;
-    padding: 5px 10px;
+  background-color: $secondary_light;
 
-    background-color: $secondary_light;
+  font-size: 1.5rem;
+  color: $text_primary_light;
 
-    font-size: 1.5rem;
-    color: $text_primary_light;
-
-   a{
-     text-decoration: none;
-     color: inherit;
-     &:hover{
-       color: $text_secondary_light;
-     }
-     &.active{
-       text-decoration: underline;
-     }
-   }
-
-
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      color: $text_secondary_light;
+    }
+    &.active {
+      text-decoration: underline;
+    }
+  }
 }
-

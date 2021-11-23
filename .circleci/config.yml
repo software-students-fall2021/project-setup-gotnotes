@@ -36,6 +36,7 @@ jobs:
           ls # for debugging: show sub-directories in here
       - run: |
           cd front-end
+          npm config set legacy-peer-deps true # use legacy peer deps for real fix
           npm install # install all dependencies listed in package.json
           npm run build # have react build the stand-alone front-end code
 

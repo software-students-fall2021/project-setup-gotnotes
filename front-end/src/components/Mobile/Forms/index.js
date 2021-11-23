@@ -1,17 +1,15 @@
-
 import "./styles.scss";
 import Button from "../Button/index.js";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Form = ({ placeholder1, placeholder2, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const printCon = () => {  
+  const printCon = () => {
     console.log(email, pass);
   };
   onSubmit = printCon;
   return (
-    
     <form className="EmailPassword" onSubmit={onSubmit}>
       <label className="email">
         <input
@@ -29,7 +27,7 @@ const Form = ({ placeholder1, placeholder2, onSubmit }) => {
           onChange={(e) => setPass(e.target.value)}
         />
       </label>
-      <Button onClick={onSubmit} text = "Submit"/>
+      <Button onClick={onSubmit} text="Submit" />
     </form>
   );
 };

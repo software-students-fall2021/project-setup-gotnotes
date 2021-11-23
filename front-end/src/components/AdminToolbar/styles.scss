@@ -1,41 +1,40 @@
 .adminToolbar {
-    display: inline-block;
-    width: 100%;
-    height: 3rem;
-    background-color: rgb(202, 0, 0);
-    margin: 0 auto;
-  
-    ul,
+  display: inline-block;
+  width: 100%;
+  height: 3rem;
+  background-color: rgb(202, 0, 0);
+  margin: 0 auto;
+
+  ul,
+  li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  ul {
+    float: right;
     li {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
+      display: inline-block;
+      padding: 0px 10px;
+      margin: auto 0px;
       height: 100%;
-    }
-  
-    ul {
-      float: right;
-      li {
-        display: inline-block;
-        padding: 0px 10px;
-        margin: auto 0px;
-        height: 100%;
-        justify-content: center;
+      justify-content: center;
+      a {
+        height: 3rem;
+        font-size: 1.6rem;
+        line-height: 3rem;
+        color: white;
+        transition: all 0.4s ease-in-out;
+      }
+      &:hover {
+        background-color: rgba($color: #fff, $alpha: 0.6);
         a {
-          height: 3rem;
-          font-size: 1.6rem;
-          line-height: 3rem;
-          color: white;
-          transition: all 0.4s ease-in-out;
+          color: rgb(202, 0, 0);
         }
-        &:hover {
-          background-color: rgba($color: #fff, $alpha: 0.6);
-          a {
-            color: rgb(202, 0, 0);
-          }
-          transition: all 0.4s ease-in-out;
-        }
+        transition: all 0.4s ease-in-out;
       }
     }
   }
-  
+}
