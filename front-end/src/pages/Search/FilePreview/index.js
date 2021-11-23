@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const FilePreview = () => {
-    return (
-        <div>
-            file preview
-        </div>
-    )
-}
+  return <div>file preview</div>;
+};

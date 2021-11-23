@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 export const Login = () => {
   return (
     <div className="whole">
-      <img src={logo} className="image" alt="logo"/>
+      <img src={logo} className="image" alt="logo" />
       <h2 className="login"> Login</h2>
       <div>
         <text enableBackground="false"> Don't have an account? </text>

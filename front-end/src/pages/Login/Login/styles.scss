@@ -1,22 +1,21 @@
-.whole{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.whole {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-.image{
+  .image {
     margin-left: auto;
     margin-right: auto;
     size: 20%;
-    
+
     // width: 20%;
-}
-.login{
+  }
+  .login {
     margin-top: 5%;
-}
-.reset{
+  }
+  .reset {
     margin-top: 2%;
     // margin-bottom: 100%
-
-}}
-
+  }
+}
