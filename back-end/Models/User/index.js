@@ -51,7 +51,7 @@ var UserSchema = new Schema({
 //   return this.email;
 // });
 
-// virtual needed for like dislike comment counts 
+// virtual needed for like dislike comment counts
 // ^^note from apuya, virtual not needed because it's a real path in schema?
 
 //Export model

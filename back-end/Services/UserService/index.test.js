@@ -4,7 +4,7 @@ const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
 var UserService = require("./index");
-let userData = UserService.userData;
+const userData = require("./../../Mock/UsersMockData/users.json");
 const testUser = userData[0];
 
 describe("UserService", function () {
