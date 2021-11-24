@@ -1,7 +1,7 @@
-const courseData = require('./../../Mock/CoursesMockData/courses.json')
-exports.courseData = courseData
-const db = require('../Database/index.js');
-const Course = require('./../../Models/Course')
+const courseData = require("./../../Mock/CoursesMockData/courses.json");
+exports.courseData = courseData;
+const db = require("../Database/index.js");
+const Course = require("./../../Models/Course");
 
 /*
 {
@@ -27,75 +27,72 @@ const Course = require('./../../Models/Course')
 */
 
 exports.get_course = (courseID) => {
-    return Course.findOne({_id: courseID})
-}
+  return Course.findOne({ _id: courseID });
+};
 
 exports.add_course = (courseName) => {
-    let course = new Course({
-        courseName: courseName,
-        courseEnrolledStudents: [],
-        courseSharedFiles: []
-    })
-    course.save(err, newCourse => {
-        if (err) {
-            console.log(err)}
-        let id = newCourse._id
-    })
-    return id
-}
+  let course = new Course({
+    courseName: courseName,
+    courseEnrolledStudents: [],
+    courseSharedFiles: [],
+  });
+  course.save(err, (newCourse) => {
+    if (err) {
+      console.log(err);
+    }
+    let id = newCourse._id;
+  });
+  return id;
+};
 
 exports.add_student = (courseID, studentID) => {
-    Course.findOne({_id: courseID}, (err, course) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            course.courseEnrolledStudents.push({_id: studentID})
-            course.save(err => {
-                console.log(err)
-            })
-        }
-    })
-}
+  Course.findOne({ _id: courseID }, (err, course) => {
+    if (err) {
+      console.log(err);
+    } else {
+      course.courseEnrolledStudents.push({ _id: studentID });
+      course.save((err) => {
+        console.log(err);
+      });
+    }
+  });
+};
 exports.remove_student = (courseID, studentID) => {
-    Course.findOne({_id: courseID}, (err, course) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            course.courseEnrolledStudents.pull({_id: studentID})
-            course.save(err => {
-                console.log(err)
-            })
-        }
-    })
-}
+  Course.findOne({ _id: courseID }, (err, course) => {
+    if (err) {
+      console.log(err);
+    } else {
+      course.courseEnrolledStudents.pull({ _id: studentID });
+      course.save((err) => {
+        console.log(err);
+      });
+    }
+  });
+};
 exports.add_file = (courseID, fileID) => {
-    Course.findOne({_id: courseID}, (err, course) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            course.courseSharedFiles.push({_id: fileID})
-            course.save(err => {
-                console.log(err)
-            })
-        }
-    })
-}
+  Course.findOne({ _id: courseID }, (err, course) => {
+    if (err) {
+      console.log(err);
+    } else {
+      course.courseSharedFiles.push({ _id: fileID });
+      course.save((err) => {
+        console.log(err);
+      });
+    }
+  });
+};
 exports.remove_file = (courseID, fileID) => {
-    Course.findOne({_id: courseID}, (err, course) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            course.courseSharedFiles.pull({_id: fileID})
-            course.save(err => {
-                console.log(err)
-            })
-        }
-    })
-}
+  Course.findOne({ _id: courseID }, (err, course) => {
+    if (err) {
+      console.log(err);
+    } else {
+      course.courseSharedFiles.pull({ _id: fileID });
+      course.save((err) => {
+        console.log(err);
+      });
+    }
+  });
+};
 
 // NON DB FUNCTIONS
 
@@ -126,8 +123,8 @@ exports.remove_file = (courseID, fileID) => {
 
 // /**
 //  * add new student to the course list
-//  * @param {*} courseID 
-//  * @param {*} enrolledStudentId  
+//  * @param {*} courseID
+//  * @param {*} enrolledStudentId
 //  * @returns boolean: 0 if success, 1 if no such course
 //  */
 // exports.set_courseEnrolledStudents_add = function (courseID, enrolledStudentId) {
@@ -143,8 +140,8 @@ exports.remove_file = (courseID, fileID) => {
 
 // /**
 //  * add new student to the course list
-//  * @param {*} courseID 
-//  * @param {*} removedStudentId  
+//  * @param {*} courseID
+//  * @param {*} removedStudentId
 //  * @returns boolean: 0 if success, 1 if no such course
 //  */
 // exports.set_courseEnrolledStudents_remove = function (courseID, removedStudentId) {
@@ -162,8 +159,8 @@ exports.remove_file = (courseID, fileID) => {
 
 // /**
 //  * add new file to the course shared file list
-//  * @param {*} courseID 
-//  * @param {*} sharedFileId  
+//  * @param {*} courseID
+//  * @param {*} sharedFileId
 //  * @returns boolean: 0 if success, 1 if no such course
 //  */
 // exports.set_courseSharedFiles_add = function (courseID, sharedFileId) {
@@ -179,7 +176,7 @@ exports.remove_file = (courseID, fileID) => {
 
 // /**
 //  * remove file from course shared file list
-//  * @param {*} courseID 
+//  * @param {*} courseID
 //  * @param {*} removedFileId
 //  * @returns boolean: 0 if success, 1 if no such course
 //  */
@@ -195,5 +192,3 @@ exports.remove_file = (courseID, fileID) => {
 //     return 0;
 
 // }
-
-

@@ -1,16 +1,14 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { userController } = require('../../Controllers');
+var { userController } = require("../../Controllers");
 
+router.post("/", userController.user_detail);
 
-router.post('/', userController.user_detail)
-
-router.post('/edit', (req, res) => {
-    res.send('Account edit req by user: USER_ID')
-})
-
+router.post("/edit", (req, res) => {
+  res.send("Account edit req by user: USER_ID");
+});
 
 /* /// COURSE ROUTES ///
 

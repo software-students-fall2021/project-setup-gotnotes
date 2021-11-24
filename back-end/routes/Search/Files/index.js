@@ -1,13 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { filesController } = require('../../../Controllers');
-
-
+var { filesController } = require("../../../Controllers");
 
 //list all files under course
-router.get('/', filesController.files_list)
+router.get("/", filesController.files_list);
 
 /*
 //create file
