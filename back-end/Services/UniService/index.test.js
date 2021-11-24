@@ -19,3 +19,15 @@ describe('uniService', function () {
     });
 });
 
+describe('uniService', function () {
+    describe('get_uniName()', function () {
+        it('should return uni with the exact name', function () {
+
+            const uni = UniService.get_uniName(testUni.uniID)
+
+            expect(uni[0]).to.deep.equalInAnyOrder(testUni);
+
+        });
+    });
+});
+
