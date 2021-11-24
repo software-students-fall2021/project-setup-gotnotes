@@ -4,7 +4,7 @@ const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
 var CommentService = require('./index')
-let uniData = CommentService.commentData
+let commentData = CommentService.commentData
 const testComment = commentData[0];
 
 describe('uniService', function () {
