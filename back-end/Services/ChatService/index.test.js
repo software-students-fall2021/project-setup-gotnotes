@@ -32,4 +32,15 @@ describe('ChatService', function () {
 });
 
 
+describe('ChatService', function () {
+    describe('get_chat()', function () {
+        it('Should return chat ', function () {
+
+            const chat = ChatService.get_chat(testChat.courseID,testChat.chatName)
+
+            expect(chat[0]).to.deep.equalInAnyOrder(testChat);
+
+        });
+    });
+});
 
