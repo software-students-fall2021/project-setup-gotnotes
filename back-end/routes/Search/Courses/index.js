@@ -1,12 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { courseController } = require('../../../Controllers');
-
+var { courseController } = require("../../../Controllers");
 
 //list all courses under that uni
-router.get('/', courseController.list)
+router.get("/", courseController.list);
 /*
 //subscribe/unsubscribe to/from course (logged-in user)
 router.post('/subscribe', courseController.subscribtion)
@@ -21,10 +20,6 @@ router.post('/edit', courseController.edit)
 router.post('/delete', courseController.delete)
 
 */
-
-
-
-
 
 /// COURSE ROUTES ///
 /* 

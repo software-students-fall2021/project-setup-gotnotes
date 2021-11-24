@@ -1,7 +1,7 @@
-const { use } = require('chai');
-let chatData = require('./../../Mock/ChatsMockData/chats.json')
-const db = require('../Database/index')
-const chat = require('../../Models/Chat/index')
+const { use } = require("chai");
+let chatData = require("./../../Mock/ChatsMockData/chats.json");
+const db = require("../Database/index");
+const chat = require("../../Models/Chat/index");
 // Comment By Mark Zarutin
 /**
  * Get chat by courseID and chatName
@@ -10,19 +10,19 @@ const chat = require('../../Models/Chat/index')
  */
 
 let addChat = (courseID, chatName) => {
-    let chat_instance = new chat({
-        courseID: courseID,
-        chatName: chatName,
-        chatMembers: [],
-        chatContent: []
-    })
-    chat_instance.save(function (err) {
-        if (err) {
-            console.log(err);
-        }
-    })
-}
-addChat("courseID","chatName")
+  let chat_instance = new chat({
+    courseID: courseID,
+    chatName: chatName,
+    chatMembers: [],
+    chatContent: [],
+  });
+  chat_instance.save(function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+};
+addChat("courseID", "chatName");
 /**
  * Adds message by courseID and chatName
  * @param {courseID} courseID
@@ -31,26 +31,28 @@ addChat("courseID","chatName")
  * @param {messageBy} messageBy
  */
 exports.addMessage = (courseID, chatName, message, messageBy) => {
-    // course ID and chat name are the same
-    chat.findOne({ courseID: courseID, chatName: chatName }, function (err, chat) {
-        if (err) {
+  // course ID and chat name are the same
+  chat.findOne(
+    { courseID: courseID, chatName: chatName },
+    function (err, chat) {
+      if (err) {
+        console.log(err);
+      } else {
+        chat.chatContent.push({
+          message: message,
+          messageBy: messageBy,
+          messageDate: new Date(),
+          messageLikedBy: [],
+        });
+        chat.save(function (err) {
+          if (err) {
             console.log(err);
-        }
-        else {
-            chat.chatContent.push({
-                message: message,
-                messageBy: messageBy,
-                messageDate: new Date(),
-                messageLikedBy: []
-            })
-            chat.save(function (err) {
-                if (err) {
-                    console.log(err);
-                }
-            })
-        }
-    })
-}
+          }
+        });
+      }
+    }
+  );
+};
 /**
  * Likes message by courseID, chatName, userID, and message
  * @param {courseID} courseID
@@ -59,43 +61,43 @@ exports.addMessage = (courseID, chatName, message, messageBy) => {
  * @param {userID} userID
  */
 exports.like_message = (courseID, chatName, message, userID) => {
-    // add try catch
-    chat.findOne({ courseID: courseID, chatName: chatName }, function (err, chat) {
-        if (err) {
+  // add try catch
+  chat.findOne(
+    { courseID: courseID, chatName: chatName },
+    function (err, chat) {
+      if (err) {
+        console.log(err);
+      } else {
+        chat.chatContent.findOne({ message: message }, function (err, content) {
+          if (err) {
             console.log(err);
-        }
-        else {
-            chat.chatContent.findOne({ message: message }, function (err, content) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    content.messageLikedBy.push(userID)
-                    chat.save(function (err) {
-                        if (err) {
-                            console.log(err);
-                        }
-                    })
-                }
-            })
-        }
-    })
-}
+          } else {
+            content.messageLikedBy.push(userID);
+            chat.save(function (err) {
+              if (err) {
+                console.log(err);
+              }
+            });
+          }
+        });
+      }
+    }
+  );
+};
 /**
  * Gets all chats for a courseID
  * @param {courseID} courseID
  * @returns {chat} || null
  */
 exports.get_chatName = (courseID) => {
-    chat.find({ courseID: courseID }, function (err, chat) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            return chat.chatName
-        }
-    })
-}
+  chat.find({ courseID: courseID }, function (err, chat) {
+    if (err) {
+      console.log(err);
+    } else {
+      return chat.chatName;
+    }
+  });
+};
 /**
  * Gets all chat users for a courseID and chatName
  * @param {courseID} courseID
@@ -103,15 +105,17 @@ exports.get_chatName = (courseID) => {
  * @returns {chat.chatMembers} || null
  */
 exports.get_Chat_Users = (courseID, chatName) => {
-    chat.findOne({ courseID: courseID, chatName: chatName }, function (err, chat) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            return chat.chatMembers
-        }
-    })
-}
+  chat.findOne(
+    { courseID: courseID, chatName: chatName },
+    function (err, chat) {
+      if (err) {
+        console.log(err);
+      } else {
+        return chat.chatMembers;
+      }
+    }
+  );
+};
 /**
  * gets the entire chat object for a courseID and chatName
  * @param {courseID} courseID
@@ -119,17 +123,17 @@ exports.get_Chat_Users = (courseID, chatName) => {
  * @returns {chat} || null
  */
 exports.get_chat = (courseID, chatName) => {
-    chat.findOne({ courseID: courseID, chatName: chatName }, function (err, chat) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            return chat
-        }
-    })
-}
-
-
+  chat.findOne(
+    { courseID: courseID, chatName: chatName },
+    function (err, chat) {
+      if (err) {
+        console.log(err);
+      } else {
+        return chat;
+      }
+    }
+  );
+};
 
 // THESE ARE THE NON-DB FUNCTIONS
 // /**
@@ -141,9 +145,9 @@ exports.get_chat = (courseID, chatName) => {
 //     return chatData.filter(chat => chat.chatID === chatID);
 // }
 // /**
-//  * Adds a new uni to the database 
+//  * Adds a new uni to the database
 //  * @param {*} chatID is the primary key
-//  * @param {*} uniID is the id of the university 
+//  * @param {*} uniID is the id of the university
 //  * @returns 0 if success, 1 of no such user
 //  */
 // exports.create_chat = function (uniID, chatName) {
@@ -161,7 +165,7 @@ exports.get_chat = (courseID, chatName) => {
 
 //       obj.push(newChat);
 //       jsonStr= JSON.stringify(obj);
-//       return 1; 
+//       return 1;
 // }
 
 // exports.add_student_to_chat = function (chatID, userID, userName) {
@@ -175,7 +179,7 @@ exports.get_chat = (courseID, chatName) => {
 
 // /**
 //  * Get uni by its university name
-//  * @param {chatID} chatID 
+//  * @param {chatID} chatID
 //  * @returns [{uniObj}] || []
 //  */
 //  exports.get_chat_chatName = function (chaID) {

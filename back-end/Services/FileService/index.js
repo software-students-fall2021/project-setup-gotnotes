@@ -1,8 +1,8 @@
-const fileData = require('./../../Mock/FilesMockData/file.json');
+const fileData = require("./../../Mock/FilesMockData/file.json");
 exports.fileData = fileData;
-const db = require('../Database/index.js');
-const file = require('../../Models/File/index')
-const make_comment = require('../CommentService/index').make_comment
+const db = require("../Database/index.js");
+const file = require("../../Models/File/index");
+const make_comment = require("../CommentService/index").make_comment;
 /*
 {
     "fileID":1,
@@ -36,61 +36,90 @@ const make_comment = require('../CommentService/index').make_comment
  */
 
 exports.get_file = (fileID) => {
-    return file.findOne({_id: fileID})
-}
-
-
+  return file.findOne({ _id: fileID });
+};
 
 exports.post_file = (fileName, fileType) => {
-    let newFile = new file({
-        fileName: fileName,
-        fileType: fileType,
-        fileShareDate: new Date(),
-        fileSharedBy: [],
-        fileDownloads: 0,
-        fileLikedBy: [],
-        fileDislikedBy: [],
-        fileComments: []
-    })
-    newFile.save(err, file => {
-        if (err) {
-            console.log(err)
-        }
-        let id = file._id
-    })
-    return id
-}
+  let newFile = new file({
+    fileName: fileName,
+    fileType: fileType,
+    fileShareDate: new Date(),
+    fileSharedBy: [],
+    fileDownloads: 0,
+    fileLikedBy: [],
+    fileDislikedBy: [],
+    fileComments: [],
+  });
+  newFile.save(err, (file) => {
+    if (err) {
+      console.log(err);
+    }
+    let id = file._id;
+  });
+  return id;
+};
 
 exports.set_fileSharedBy = (userID, fileID) => {
-    return file.findOneAndUpdate({_id: fileID}, {$push: {fileSharedBy: {_id: userID}}}, {new: true})
-}
+  return file.findOneAndUpdate(
+    { _id: fileID },
+    { $push: { fileSharedBy: { _id: userID } } },
+    { new: true }
+  );
+};
 exports.like_file = (fileID, likedById) => {
-    return file.findOneAndUpdate({_id: fileID}, {$push: {fileLikedBy: {_id: likedById}}}, {new: true})
-}
+  return file.findOneAndUpdate(
+    { _id: fileID },
+    { $push: { fileLikedBy: { _id: likedById } } },
+    { new: true }
+  );
+};
 exports.dislike_file = (fileID, dislikedById) => {
-    return file.findOneAndUpdate({_id: fileID}, {$push: {fileDislikedBy: {_id: dislikedById}}}, {new: true})
-}
+  return file.findOneAndUpdate(
+    { _id: fileID },
+    { $push: { fileDislikedBy: { _id: dislikedById } } },
+    { new: true }
+  );
+};
 exports.set_fileName = (fileID) => {
-    return file.findOneAndUpdate({_id: fileID}, {$set: {fileName: fileData.fileName}}, {new: true})
-}
+  return file.findOneAndUpdate(
+    { _id: fileID },
+    { $set: { fileName: fileData.fileName } },
+    { new: true }
+  );
+};
 exports.comment_on_file = (fileID, comment, userID) => {
-    id = make_comment(comment, userID, null)
-    return file.findOneAndUpdate({_id: fileID}, {$push: {fileComments: id}}, {new: true})
-}
+  id = make_comment(comment, userID, null);
+  return file.findOneAndUpdate(
+    { _id: fileID },
+    { $push: { fileComments: id } },
+    { new: true }
+  );
+};
 exports.increase_fileDownloads = (fileID) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$inc: {fileDownloads: 1}}, {new: true})
-}
+  return file.findOneAndUpdate(
+    { fileID: fileID },
+    { $inc: { fileDownloads: 1 } },
+    { new: true }
+  );
+};
 exports.file_unlike = (fileID, userID) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$pull: {fileLikedBy: {userID: userID}}}, {new: true})
-}
+  return file.findOneAndUpdate(
+    { fileID: fileID },
+    { $pull: { fileLikedBy: { userID: userID } } },
+    { new: true }
+  );
+};
 exports.file_undislike = (fileID, userID) => {
-    return file.findOneAndUpdate({fileID: fileID}, {$pull: {fileDislikedBy: {userID: userID}}}, {new: true})
-}
-
+  return file.findOneAndUpdate(
+    { fileID: fileID },
+    { $pull: { fileDislikedBy: { userID: userID } } },
+    { new: true }
+  );
+};
 
 // /**
 //  * Get a file by the fileID
-//  * @param {*} fileID 
+//  * @param {*} fileID
 //  * @returns [{fileObj}] || []
 //  */
 // exports.get_file = function (fileID) {
@@ -110,14 +139,13 @@ exports.file_undislike = (fileID, userID) => {
 
 //     currentFile.fileName = newFileName;
 
-
 //     return 0;
 // }
 
 // /**
 //  * Set a new fileType
 //  * @param {*} fileID
-//  * * @param {*} newFileType 
+//  * * @param {*} newFileType
 //  * @returns boolean, 0 if success, 1 if no such file
 //  */
 // exports.set_fileType = function (fileID, newFileType) {
@@ -127,14 +155,13 @@ exports.file_undislike = (fileID, userID) => {
 
 //     currentFile.fileType = newFileType;
 
-
 //     return 0;
 // }
 
 // /**
 //  * Set a new fileType
 //  * @param {*} fileID
-//  * * @param {*} newFileShareDate 
+//  * * @param {*} newFileShareDate
 //  * @returns boolean, 0 if success, 1 if no such file
 //  */
 // exports.set_fileShareDate = function (fileID, newFileShareDate) {
@@ -150,7 +177,7 @@ exports.file_undislike = (fileID, userID) => {
 // /**
 //  * Set a new fileType
 //  * @param {*} fileID, file id
-//  * * @param {*} newFileSharedBy, a user obj 
+//  * * @param {*} newFileSharedBy, a user obj
 //  * @returns boolean, 0 if success, 1 if no such file
 //  */
 // exports.set_fileSharedBy = function (fileID, newFileSharedById) {
@@ -165,20 +192,20 @@ exports.file_undislike = (fileID, userID) => {
 
 // /**
 //  * Get file downloads
-//  * @param {*} fileID 
+//  * @param {*} fileID
 //  * @returns number || -1
 //  */
-exports.get_fileDownloads = (fileID) =>  {
-    const file = exports.get_file(fileID)[0]
-    if (!file){
-        return -1
-    }
-    return file.fileDownloads
-}
+exports.get_fileDownloads = (fileID) => {
+  const file = exports.get_file(fileID)[0];
+  if (!file) {
+    return -1;
+  }
+  return file.fileDownloads;
+};
 
 // /**
 //  * Increase file download counter by one
-//  * @param {*} fileID 
+//  * @param {*} fileID
 //  * @returns boolean, 0 if success, 1 if no such file
 //  */
 // exports.set_fileDownloads_increase = function (fileID) {
@@ -188,13 +215,12 @@ exports.get_fileDownloads = (fileID) =>  {
 
 //     currentFile.fileDownloads += 1;
 
-
 //     return 0;
 // }
 
 // /**
 //  * Set fileLikedBy like
-//  * @param {*} fileLikedBy, like 
+//  * @param {*} fileLikedBy, like
 //  * @returns [{fileObj}] || []
 //  */
 // exports.set_fileLikedBy_like = function (fileID, likedById) {
@@ -209,7 +235,7 @@ exports.get_fileDownloads = (fileID) =>  {
 
 // /**
 //  * Set fileLikedBy unlike
-//  * @param {*} fileLikedBy, unlike 
+//  * @param {*} fileLikedBy, unlike
 //  * @returns [{fileObj}] || []
 //  */
 // exports.set_fileLikedBy_unlike = function (fileID, unlikedById) {
@@ -228,7 +254,7 @@ exports.get_fileDownloads = (fileID) =>  {
 
 // /**
 //  * Set fileDislikedBy like
-//  * @param {*} fileDislikedBy, like 
+//  * @param {*} fileDislikedBy, like
 //  * @returns [{fileObj}] || []
 //  */
 // exports.set_fileDislikedBy_dislike = function (fileID, dislikedById) {
@@ -245,7 +271,7 @@ exports.get_fileDownloads = (fileID) =>  {
 
 // /**
 //  * Set fileDislikedBy unlike
-//  * @param {*} fileDislikedBy, unlike 
+//  * @param {*} fileDislikedBy, unlike
 //  * @returns [{fileObj}] || []
 //  */
 // exports.set_fileDislikedBy_undislike = function (fileID, undislikedById) {
@@ -261,8 +287,6 @@ exports.get_fileDownloads = (fileID) =>  {
 
 //     return 0;
 // }
-
-
 
 // /**
 //  * Set fileAddComments
@@ -299,15 +323,14 @@ exports.get_fileDownloads = (fileID) =>  {
 //     return 0;
 // }
 exports.delete_file_comment = (fileID, commentId) => {
-    file.findOneAndDelete({_id: fileID, fileComments: {$elemMatch: {_id: commentId}}}, (err, doc) => {
-        if (err) {
-            console.log(err)
-        }
-        console.log(doc)
-    })
-    file.save()
-
-}
-    
-    
-
+  file.findOneAndDelete(
+    { _id: fileID, fileComments: { $elemMatch: { _id: commentId } } },
+    (err, doc) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(doc);
+    }
+  );
+  file.save();
+};
