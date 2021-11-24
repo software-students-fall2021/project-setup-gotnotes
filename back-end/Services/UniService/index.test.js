@@ -31,3 +31,13 @@ describe('uniService', function () {
     });
 });
 
+describe('set_uniName()', function () {
+    it('Should return 0 and set user.lastName to newLastName', function () {
+        const uniName = "Ankara University"
+
+        expect(UniService.set_UniName(testUni.uniID, uniName)).to.be.equal(0);
+
+        expect(testUni.uniName).to.be.equal(uniName);
+
+    });
+});
