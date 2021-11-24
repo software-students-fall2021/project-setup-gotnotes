@@ -11,10 +11,13 @@ describe('ChatService', function () {
     describe('get_chatName()', function () {
         it('Should return chat data ', function () {
 
-            const chat = UniService.get_chatName(testChat.chatID)
+            const chat = ChatService.get_chatName(testChat.courseID)
 
             expect(chat[0]).to.deep.equalInAnyOrder(testChat);
 
         });
     });
 });
+
+
+
