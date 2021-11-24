@@ -19,5 +19,17 @@ describe('ChatService', function () {
     });
 });
 
+describe('ChatService', function () {
+    describe('get_Chat_Users()', function () {
+        it('Should return chat users ', function () {
+
+            const chat = ChatService.get_Chat_Users(testChat.courseID,testChat.chatName)
+
+            expect(chat[0]).to.deep.equalInAnyOrder(testChat);
+
+        });
+    });
+});
+
 
 
