@@ -12,7 +12,36 @@ describe("ChatService", function () {
     it("Should return chat data ", function () {
       const chat = UniService.get_chatName(testChat.chatID);
 
-      expect(chat[0]).to.deep.equalInAnyOrder(testChat);
+            const chat = ChatService.get_chatName(testChat.courseID)
+
+            expect(chat[0]).to.deep.equalInAnyOrder(testChat);
+
+        });
     });
-  });
 });
+
+describe('ChatService', function () {
+    describe('get_Chat_Users()', function () {
+        it('Should return chat users ', function () {
+
+            const chat = ChatService.get_Chat_Users(testChat.courseID,testChat.chatName)
+
+            expect(chat[0]).to.deep.equalInAnyOrder(testChat);
+
+        });
+    });
+});
+
+
+describe('ChatService', function () {
+    describe('get_chat()', function () {
+        it('Should return chat ', function () {
+
+            const chat = ChatService.get_chat(testChat.courseID,testChat.chatName)
+
+            expect(chat[0]).to.deep.equalInAnyOrder(testChat);
+
+        });
+    });
+});
+
