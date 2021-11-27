@@ -19,7 +19,7 @@
       padding: 10px 18px;
       position: relative;
       vertical-align: top;
-      color: white;
+      color: black;
       word-wrap: break-word;
   }
   
@@ -39,7 +39,7 @@
   }
   
   .me {
-      background-color: #8f5db7;
+      background-color: #c7c7c7;
       margin-left: 18px;
       margin-right:60px;
   }
@@ -47,11 +47,11 @@
   .me::before {
       box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
       left: -9px;
-      background-color: #8f5db7;
+      background-color: #c7c7c7;
   }
   
   .you {
-      background-color: #087FFE;
+      background-color: #4da3ff;
       margin-left: 60px;
       margin-right:18px;
   }
@@ -59,7 +59,7 @@
   .you::before {
       box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
       right: -9px;
-      background-color: #087FFE;
+      background-color: #4da3ff;
   }
   
   .img-circle {

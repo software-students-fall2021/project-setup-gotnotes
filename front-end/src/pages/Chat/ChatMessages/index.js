@@ -1,53 +1,109 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import ReactDOM from "react-dom";
 import ChatBubble from "../../../components/Mobile/ChatBubble/index";
+import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 
+const image =
+  "http://www.bradfordwhite.com/sites/default/files/images/corporate_imgs/iStock_000012107870XSmall.jpg";
 
-const image = 'http://www.bradfordwhite.com/sites/default/files/images/corporate_imgs/iStock_000012107870XSmall.jpg';
+//make it look like mongo db, or the mock data
+//maybe ask mark
+const messages = [
+  {
+    type: 0,
+    image,
+    text: "Hello! Good Morning!",
+  },
+  {
+    type: 1,
+    image,
+    text: "Hello! Good Afternoon!",
+  },
+];
 
-class ChatMessages extends Component {
-  state = {
-    messages: [
-      {
-        type: 0,
-        image,
-        text: "Hello! Good Morning!"
-      },
-      {
-        type: 1,
-        image,
-        text: "Hello! Good Afternoon!"
-      }
-    ],
-  };
+const userID = "some email from the messages array above"
 
-  handleNewMessage = text =>
-    this.setState({
-      messages: this.state.messages.concat([{
-        text,
-        type: 0,
-        image,
-      }])
-    });
+const ChatMessages = ({ props }) => {
+  const [userInputState, setUserInputState] = useState("");
 
-  render() {
-    return (
-      <ChatBubble
-        messages={this.state.messages}
-        onNewMessage={this.handleNewMessage}
-      />
-    );
-  }
-}
+  return (
+    <div className="chat-messages-container">
+      <div className="chat-bubbles-container">
+        {messages.map((message) => <ChatBubble props={{ message, userID }} />)}
+      </div>
+    </div>
+  );
+};
 
-/*ReactDOM.render(
-  <ChatMessages/>,
-  document.getElementById('root')
-);*/
+// class ChatMessages extends Component {
+//   state = {
+//     messages: [
+//       {
+//         type: 0,
+//         image,
+//         text: "Hello! Good Morning!",
+//       },
+//       {
+//         type: 1,
+//         image,
+//         text: "Hello! Good Afternoon!",
+//       },
+//     ],
+//   };
 
-export default ChatMessages
+//   handleNewMessage = (text) =>
+//     this.setState({
+//       messages: this.state.messages.concat([
+//         {
+//           text,
+//           type: 0,
+//           image,
+//         },
+//       ]),
+//     });
 
+//   render() {
+//     return (
+//       <ChatBubble
+//         messages={this.state.messages}
+//         onNewMessage={this.handleNewMessage}
+//       />
+//       //   {
+//       //     <div className="input-form">
+//       //       <form
+//       //         onSubmit={(e) => {
+//       //           e.preventDefault();
+//       //           editMessage(userInputState);
+//       //           setUserInputState({
+//       //             message: ""
+//       //           });
+//       //         }}
+//       //       >
+//       //         <input
+//       //           type="text"
+//       //           placeholder={""}
+//       //           value={userInputState.message}
+//       //           onChange={(e) =>
+//       //             setUserInputState({
+//       //               ...userInputState,
+//       //               message: e.target.value,
+//       //             })
+//       //           }
+//       //         />
+//       //         <input type="submit" value="Type Message" />
+//       //       </form>
+//       //     </div>
+//       //   }
+//     );
+//   }
+// }
 
+// /*ReactDOM.render(
+//   <ChatMessages/>,
+//   document.getElementById('root')
+// );*/
+
+export default ChatMessages;
 
 /*import React from "react";
 import { StreamChat } from "stream-chat";
