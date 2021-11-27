@@ -3,7 +3,6 @@ import axios from "axios";
 import UserAvatar from "../../../components/Mobile/UserAvatar";
 import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 import "./styles.scss";
-// import { DonutLarge } from "@mui/icons-material";
 
 const editUserData = () => {
   console.log("submit the edits to the server");
@@ -34,7 +33,7 @@ export const Account = ({ props }) => {
 
     //console.log(result);
     //setUserData(result.data[0]);
-    //console.log("userData: ", userData);
+    console.log("userData: ", userData);
     //setUserData(result.data)
   }, []);
 
