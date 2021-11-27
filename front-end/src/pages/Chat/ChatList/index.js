@@ -9,7 +9,7 @@ export const ChatList = ({ ViewComponent, activeClass }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/course`, { crossdomain: true })
+      .get(`http://localhost:4000/courses`, { crossdomain: true })
       .then((res) => {
         console.log(res.data);
         setCourseData(res.data);
