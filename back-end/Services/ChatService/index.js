@@ -9,7 +9,7 @@ const chat = require("../../Models/Chat/index");
  * @param {chatName} chatName
  */
 
-let addChat = (courseID, chatName) => {
+exports.addChat = (courseID, chatName) => {
   let chat_instance = new chat({
     courseID: courseID,
     chatName: chatName,
@@ -22,7 +22,7 @@ let addChat = (courseID, chatName) => {
     }
   });
 };
-addChat("courseID", "chatName");
+// addChat("courseID", "chatName");
 /**
  * Adds message by courseID and chatName
  * @param {courseID} courseID
@@ -60,10 +60,10 @@ exports.addMessage = (courseID, chatName, message, messageBy) => {
  * @param {message} message
  * @param {userID} userID
  */
-exports.like_message = (courseID, chatName, message, userID) => {
+exports.like_message = (courseID, message, userID) => {
   // add try catch
   chat.findOne(
-    { courseID: courseID, chatName: chatName },
+    { courseID: courseID },
     function (err, chat) {
       if (err) {
         console.log(err);
@@ -104,9 +104,9 @@ exports.get_chatName = (courseID) => {
  * @param {chatName} chatName
  * @returns {chat.chatMembers} || null
  */
-exports.get_Chat_Users = (courseID, chatName) => {
+exports.get_Chat_Users = (courseID) => {
   chat.findOne(
-    { courseID: courseID, chatName: chatName },
+    { courseID: courseID},
     function (err, chat) {
       if (err) {
         console.log(err);
@@ -134,6 +134,18 @@ exports.get_chat = (courseID, chatName) => {
     }
   );
 };
+
+exports.get_all_chats = (userID) => {
+
+  chat.find({chatMembers: userID}, function(err, chat){
+    if(err){
+      console.log(err);
+    }else{
+      return chat;
+    }
+  })
+}
+
 
 // THESE ARE THE NON-DB FUNCTIONS
 // /**

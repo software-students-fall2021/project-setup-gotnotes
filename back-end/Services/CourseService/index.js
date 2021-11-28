@@ -30,8 +30,9 @@ exports.get_course = (courseID) => {
   return Course.findOne({ _id: courseID });
 };
 
-exports.add_course = (courseName) => {
+exports.add_course = (courseName, uniID) => {
   let course = new Course({
+    uniID: uniID,
     courseName: courseName,
     courseEnrolledStudents: [],
     courseSharedFiles: [],

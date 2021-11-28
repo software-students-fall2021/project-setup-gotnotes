@@ -3,6 +3,10 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
+  uniID: {
+    type: String,
+    required: true
+  },
   courseName: {
     type: String,
     required: "Course Name cannot be empty",
