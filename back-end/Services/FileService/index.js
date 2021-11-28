@@ -58,7 +58,9 @@ exports.post_file = (fileName, fileType) => {
   });
   return id;
 };
-
+exports.delete_file = (fileID) => {
+  return file.deleteOne({ _id: fileID });
+};
 exports.set_fileSharedBy = (userID, fileID) => {
   return file.findOneAndUpdate(
     { _id: fileID },
