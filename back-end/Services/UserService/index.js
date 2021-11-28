@@ -29,7 +29,7 @@ exports.create_user = (username, firstName, lastName) => {
         }
     })
 }
-create_user("admin", "admin", "admin");
+// create_user("admin", "admin", "admin");
 
 exports.make_admin = (userID) => {
     users.findOneAndUpdate({_id: userID}, {$set: {isAdmin: true}}, {new: true}, (err) => {

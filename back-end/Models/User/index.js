@@ -40,9 +40,9 @@ var UserSchema = new Schema({
 
 });
 
-UserSchema.virtual('email').get(function () {
-    return this.email;
-});
+// UserSchema.virtual('email').get(function () {
+//     return this.email;
+// });
 
 
 //virtual needed for like dislike comment counts
