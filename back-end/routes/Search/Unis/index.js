@@ -1,33 +1,31 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { uniController } = require('../../../Controllers');
-
+var { uniController } = require("../../../Controllers");
 
 //list all unis
-router.get('/', uniController.uni_list)
-
+router.get("/", uniController.uni_list);
 
 //create a new uni (admin only)
-router.post('/create', (req, res) => {
-    res.send('Create req new uni:');
-})
+router.post("/create", (req, res) => {
+  res.send("Create req new uni:");
+});
 
 //edit a uni (admin only)
-router.post('/edit', (req, res) => {
-    res.send('Edit req to uni:');
-})
+router.post("/edit", (req, res) => {
+  res.send("Edit req to uni:");
+});
 
 //delete a uni (admin only)
-router.post('/delete', (req, res) => {
-    res.send('Delete req to uni:');
-})
+router.post("/delete", (req, res) => {
+  res.send("Delete req to uni:");
+});
 
 //enroll to a uni (logged in user only)
-router.post('/enroll', (req, res) => {
-    res.send('Enroll req to uni: UNI_NAME, by user: USER_ID');
-})
+router.post("/enroll", (req, res) => {
+  res.send("Enroll req to uni: UNI_NAME, by user: USER_ID");
+});
 
 /// COURSE ROUTES ///
 /* 

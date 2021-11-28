@@ -1,8 +1,7 @@
-const uniData = require('./../../Mock/UnisMockData/unis.json')
-const uni = require('../../Models/Uni/index')
-const db = require('../Database/index')
-exports.uniData = uniData
-
+const uniData = require("./../../Mock/UnisMockData/unis.json");
+const uni = require("../../Models/Uni/index");
+const db = require("../Database/index");
+exports.uniData = uniData;
 
 exports.make_uni = (uniName, uniLogoPath) => {
   let new_uni = new uni({
@@ -10,62 +9,79 @@ exports.make_uni = (uniName, uniLogoPath) => {
     uniLogoPath: uniLogoPath,
     uniStudents: [],
     uniCourses: [],
-  })
-  new_uni.save(err, Uni => {
+  });
+  new_uni.save(err, (Uni) => {
     if (err) {
-      console.log(err)
+      console.log(err);
     }
-    let id = Uni._id
-  })
-return id
-}
+    let id = Uni._id;
+  });
+  return id;
+};
 
 exports.get_uni = (uniID) => {
-  return uni.findOne({_id: uniID})
-}
-//TODO we should have a mongoose instance here for all the 
+  return uni.findOne({ _id: uniID });
+};
+//TODO we should have a mongoose instance here for all the
 //post requests that are going to be processed by the srevices
 
 exports.get_uniName = (uniID) => {
-  uni.findOne({_id: uniID}).then(uni => {
-    return uni.uniName
-  })
-}
+  uni.findOne({ _id: uniID }).then((uni) => {
+    return uni.uniName;
+  });
+};
 exports.set_uniName = (uniID, uniName) => {
-  uni.findOneAndUpdate({_id: uniID}, {uniName: uniName}, {new: true}, (err) => {
-    if (err) {
-      console.log(err)
+  uni.findOneAndUpdate(
+    { _id: uniID },
+    { uniName: uniName },
+    { new: true },
+    (err) => {
+      if (err) {
+        console.log(err);
+      }
     }
-  })
-}
+  );
+};
 
 exports.add_student = (uniID, userID) => {
-  return uni.findOneAndUpdate({_id: uniID}, {$push: {uniStudents: {_id: userID}}}, {new: true})
-}
+  return uni.findOneAndUpdate(
+    { _id: uniID },
+    { $push: { uniStudents: { _id: userID } } },
+    { new: true }
+  );
+};
 
 exports.delete_student = (uniID, userID) => {
-  return uni.findOneAndUpdate({_id: uniID}, {$pull: {uniStudents: {_id: userID}}}, {new: true})
-}
+  return uni.findOneAndUpdate(
+    { _id: uniID },
+    { $pull: { uniStudents: { _id: userID } } },
+    { new: true }
+  );
+};
 exports.add_course = (uniID, courseID) => {
-  return uni.findOneAndUpdate({_id: uniID}, {$push: {uniCourses: {_id: courseID}}}, {new: true})
-}
+  return uni.findOneAndUpdate(
+    { _id: uniID },
+    { $push: { uniCourses: { _id: courseID } } },
+    { new: true }
+  );
+};
 exports.delete_course = (uniID, courseID) => {
-  return uni.findOneAndUpdate({_id: uniID}, {$pull: {uniCourses: {_id: courseID}}}, {new: true})
-}
+  return uni.findOneAndUpdate(
+    { _id: uniID },
+    { $pull: { uniCourses: { _id: courseID } } },
+    { new: true }
+  );
+};
 
 exports.delete_uni = (uniID) => {
-  return uni.findOneAndDelete({_id: uniID})
-}
-
-
-
+  return uni.findOneAndDelete({ _id: uniID });
+};
 
 // // Comment By Kaan Karakas
 
 // //not addind addUni by university name or any specific key. If a university is added it should have
 // //everything containing uniID, uniName, uniLogoPath but it doesnt need uniStudent[] and UniCourses[]
-// // as there might not be any student registered. 
-
+// // as there might not be any student registered.
 
 // /**
 //  * Get uni by uniID
@@ -73,13 +89,13 @@ exports.delete_uni = (uniID) => {
 //  * @returns [{uniObh}] || []
 //  */
 // exports.get_uni = function (uniID) {
-  
+
 //   return uniData.filter(uni => uni.uniID == uniID);
 // }
 // /**
-//  * Adds a new uni to the database 
+//  * Adds a new uni to the database
 //  * @param {*} uniID is the primary key
-//  * @param {*} uniName is the name of the university 
+//  * @param {*} uniName is the name of the university
 //  * @param {*} uniLogPath is the path to the logo of the uni
 //  * @returns 0 if success, 1 of no such user
 //  */
@@ -100,7 +116,6 @@ exports.delete_uni = (uniID) => {
 //   jsonStr = JSON.stringify(obj);
 //   return 1;
 
-
 //   /*
 //  const fs = require("fs");
 //  var data = fs.readFileSync('./../../Mock/UnisMockData/unis.json');
@@ -112,7 +127,6 @@ exports.delete_uni = (uniID) => {
 //      "uniStudents": null,
 //      "uniCourses": null,
 //    };
- 
 
 //  myObject.push(newUni);
 
@@ -128,7 +142,7 @@ exports.delete_uni = (uniID) => {
 
 // /**
 //  * Get uni by its university name
-//  * @param {uniID} uniID 
+//  * @param {uniID} uniID
 //  * @returns [{uniObj}] || []
 //  */
 // exports.get_uni_uniName = function (uniID) {

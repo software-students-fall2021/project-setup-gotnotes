@@ -1,27 +1,26 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router({ mergeParams: true });
 
 // Require controller modules.
-var { fileController } = require('../../../Controllers');
-
+var { fileController } = require("../../../Controllers");
 
 //list file
-router.get('/', fileController.file_list)
+router.get("/", fileController.file_list);
 
 //like file
-router.post('/like', (req, res) => {
-    res.send("Like file: FILE_ID, by user: USER_ID")
-})
+router.post("/like", (req, res) => {
+  res.send("Like file: FILE_ID, by user: USER_ID");
+});
 
 //dislike file
-router.post('/dislike', (req, res) => {
-    res.send("Dislike file: FILE_ID, by user: USER_ID")
-})
+router.post("/dislike", (req, res) => {
+  res.send("Dislike file: FILE_ID, by user: USER_ID");
+});
 
 //comment on a file (provide parentCommentId if a reply, else leave null)
-router.post('/comment', (req, res) => {
-    res.send("Comment on file: FILE_ID, by user: USER_ID, comment: COMMENT_ID")
-})
+router.post("/comment", (req, res) => {
+  res.send("Comment on file: FILE_ID, by user: USER_ID, comment: COMMENT_ID");
+});
 
 /// COURSE ROUTES ///
 /* 

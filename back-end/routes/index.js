@@ -1,10 +1,9 @@
-var accountRouter = require('./Account');
-var chatRouter = require('./Chat');
-var searchRouter = require('./Search');
-
+var accountRouter = require("./Account");
+var chatRouter = require("./Chat");
+var searchRouter = require("./Search");
 
 module.exports = {
-    accountRouter,
-    chatRouter,
-    searchRouter
-}
+  accountRouter,
+  chatRouter,
+  searchRouter,
+};
