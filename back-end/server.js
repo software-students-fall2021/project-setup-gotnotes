@@ -8,6 +8,8 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES
+
 
 const { accountRouter, chatRouter, searchRouter } = require("./Routes");
 const { db_connect } = require("./Services/Database");
@@ -32,7 +34,7 @@ app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 
 app.get("/admin", (req, res) => {
-  console.log(req);
+  
   res.send("Admin Request Received");
 });
 
@@ -41,13 +43,13 @@ app.post("/admin", (req, res) => {});
 app.post("/signup", async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
 
-  console.log(username, email, password, confirmPassword);
+  
 
   //extra backend validation for direct api calls
   if (username && email && password && confirmPassword) {
     try {
       const err = validate(username, email, password, confirmPassword);
-      console.log("validation err: ", err);
+      
       if (err) throw new Error(err);
 
       await User.create({
@@ -61,12 +63,12 @@ app.post("/signup", async (req, res) => {
         userComments: [],
       }).then((err, newUser) => {
         if (err) throw new Error(err);
-        console.log("user: ", newUser);
+        
 
         const token = jwt.sign(
           { email: newUser.email, username: newUser.username },
-          process.env.JWT_SECRET,
-          { expiresIn: "30m" }
+          JWT_SECRET,
+          { expiresIn: JWT_EXPIRATION_MINUTES }
         );
         res.json([{ token: `Bearer ${token}` }]);
       });
@@ -95,15 +97,15 @@ app.post("/login", async (req, res) => {
       }).then(async (user) => {
         if (!user) throw new Error("Incorrect Password or Email");
 
-        console.log(user)
+        
 
         const isValid = await bcrypt.compare(password, user.passwordHash);
         if (!isValid) throw new Error("Incorrect Password or Email");
 
         const token = jwt.sign(
           { email: user.email, username: user.username },
-          process.env.JWT_SECRET,
-          { expiresIn: "30m" }
+          JWT_SECRET,
+          { expiresIn: JWT_EXPIRATION_MINUTES }
         );
 
         res.json([{ token: `Bearer ${token}` }]);
@@ -115,8 +117,7 @@ app.post("/login", async (req, res) => {
     res.json([{ error: "Please enter all fields" }]);
   }
 });
-/*
- */
+
 app.listen(PORT, () => {
   console.log(`Server ready at ${process.env.PUBLIC_URL}:${PORT}`);
 });
