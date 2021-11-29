@@ -9,16 +9,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES
-
+const check_jwt = require('./Services/Auth')
 
 const { accountRouter, chatRouter, searchRouter } = require("./Routes");
 const { db_connect } = require("./Services/Database");
 const validate = require("./Services/Validation");
-
 const User = require("./Models/User");
+const db = db_connect();
 
 const app = express();
-const db = db_connect();
 
 app.use(cors());
 app.use(fileUpload());
@@ -96,8 +95,6 @@ app.post("/login", async (req, res) => {
         $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
       }).then(async (user) => {
         if (!user) throw new Error("Incorrect Password or Email");
-
-        
 
         const isValid = await bcrypt.compare(password, user.passwordHash);
         if (!isValid) throw new Error("Incorrect Password or Email");
