@@ -50,33 +50,31 @@ app.post("/signup", async (req, res) => {
       console.log("validation err: ", err);
       if (err) throw new Error(err);
 
-      User.create(
-        {
-          email: email,
-          username: username,
-          passwordHash: await bcrypt.hash(password, 10),
-          isAdmin: false,
-          userSubscribed: [],
-          userLiked: [],
-          userDisliked: [],
-          userComments: [],
-        },
-        function (err, newUser) {
-          if (err) throw new Error(err);
-          console.log("user: ", newUser);
+      await User.create({
+        email: email,
+        username: username,
+        passwordHash: await bcrypt.hash(password, 10),
+        isAdmin: false,
+        userSubscribed: [],
+        userLiked: [],
+        userDisliked: [],
+        userComments: [],
+      }).then((err, newUser) => {
+        if (err) throw new Error(err);
+        console.log("user: ", newUser);
 
-          const token = jwt.sign(
-            { email: newUser.email, username: newUser.username },
-            process.env.JWT_SECRET,
-            { expiresIn: "30m" }
-          );
-
-          res.json([{ token: `Bearer ${token}` }]);
-        }
-      );
+        const token = jwt.sign(
+          { email: newUser.email, username: newUser.username },
+          process.env.JWT_SECRET,
+          { expiresIn: "30m" }
+        );
+        res.json([{ token: `Bearer ${token}` }]);
+      });
     } catch (error) {
-      if (error.message.includes("Duplicate entry"))
+      if (error.message.includes("E11000") && error.message.includes("email"))
         error.message = "A user with that email already exists";
+      if (error.message.includes("E11000") && error.message.includes("username"))
+        error.message = "A user with that username already exists";
       res.json([{ error: error.message }]);
     }
   } else {

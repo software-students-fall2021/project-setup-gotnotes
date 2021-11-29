@@ -6,6 +6,7 @@ var UserSchema = new Schema({
   email: {
     type: String,
     required: "Email cannot be empty",
+    unique: true
   },
   username: {
     type: String,
