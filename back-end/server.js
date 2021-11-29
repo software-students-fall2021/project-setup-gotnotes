@@ -41,7 +41,7 @@ app.post("/admin", (req, res) => {});
 app.post("/signup", async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
 
-  console.log(username, email, password, confirmPassword)
+  console.log(username, email, password, confirmPassword);
 
   //extra backend validation for direct api calls
   if (username && email && password && confirmPassword) {
@@ -50,7 +50,6 @@ app.post("/signup", async (req, res) => {
       console.log("validation err: ", err);
       if (err) throw new Error(err);
 
-      let newUser = null;
       User.create(
         {
           email: email,
@@ -62,19 +61,19 @@ app.post("/signup", async (req, res) => {
           userDisliked: [],
           userComments: [],
         },
-        function (err, user) {
+        function (err, newUser) {
           if (err) throw new Error(err);
-          newUser = user;
+          console.log("user: ", newUser);
+
+          const token = jwt.sign(
+            { email: newUser.email, username: newUser.username },
+            process.env.JWT_SECRET,
+            { expiresIn: "30m" }
+          );
+
+          res.json([{ token: `Bearer ${token}` }]);
         }
       );
-
-      const token = jwt.sign(
-        { email: newUser.email, username: newUser.username },
-        process.env.JWT_SECRET,
-        { expiresIn: "30m" }
-      );
-
-      res.json([{ token: `Bearer ${token}` }]);
     } catch (error) {
       if (error.message.includes("Duplicate entry"))
         error.message = "A user with that email already exists";
