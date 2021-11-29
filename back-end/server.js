@@ -1,28 +1,22 @@
 require("dotenv").config();
+const PORT = process.env.PORT;
 
 const express = require("express");
 const fileUpload = require("express-fileupload");
-
 const cors = require("cors");
-
-const path = require("path");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
-const PORT = process.env.PORT;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const { accountRouter, chatRouter, searchRouter } = require("./Routes");
+const { db_connect } = require("./Services/Database");
+const validate = require("./Services/Validation");
+
+const User = require("./Models/User");
 
 const app = express();
-
-//Set up mongoose connection
-var mongoose = require("mongoose");
-var mongoDB = process.env.DB_URL;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+const db = db_connect();
 
 app.use(cors());
 app.use(fileUpload());
@@ -33,6 +27,7 @@ app.use("/unis", searchRouter.unisRouter);
 app.use("/unis/:uni", searchRouter.coursesRouter);
 app.use("/unis/:uni/:course", searchRouter.filesRouter);
 app.use("/unis/:uni/:course/:file", searchRouter.fileRouter);
+
 app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 
@@ -43,96 +38,87 @@ app.get("/admin", (req, res) => {
 
 app.post("/admin", (req, res) => {});
 
-// app.get('/signup', (req, res) => {
-//     // let token = jwt.sign(
-//     //     { count: 0 },
-//     //     process.env.JWT_SECRET,
-//     //     { expiresIn: '5m'}
-//     // )
-//     // <input type='hidden' name='jwt' value='${token}'/>
-//     res.send(`<html><body><form action='http://localhost:${PORT}/signup' method='post' ><label for='email'>Email</label><input type='email' name='email'/><label for='password'>Password</label><input type='password' name='password' /><input type='submit' value='Login' /></form></body></html>`)
-// })
+app.post("/signup", async (req, res) => {
+  const { username, email, password, confirmPassword } = req.body;
 
-// app.post('/signup', async (req, res) => {
-//     if(req.body.email && req.body.password){
-//         try {
-//             //const err = Validate(email, password);
-//             //console.log("validation err: ", err)
-//             //if (err) throw new Error(err)
+  console.log(username, email, password, confirmPassword)
 
-//             const email = req.body.email;
-//             const password = req.body.password;
+  //extra backend validation for direct api calls
+  if (username && email && password && confirmPassword) {
+    try {
+      const err = validate(username, email, password, confirmPassword);
+      console.log("validation err: ", err);
+      if (err) throw new Error(err);
 
-//             const newUser = await db('users').insert({ email: email, pass: await bcrypt.hash(password, 10) })
+      let newUser = null;
+      User.create(
+        {
+          email: email,
+          username: username,
+          passwordHash: await bcrypt.hash(password, 10),
+          isAdmin: false,
+          userSubscribed: [],
+          userLiked: [],
+          userDisliked: [],
+          userComments: [],
+        },
+        function (err, user) {
+          if (err) throw new Error(err);
+          newUser = user;
+        }
+      );
 
-//             const token = jwt.sign(
-//                 { id: newUser.id, email: newUser.email },
-//                 process.env.JWT_SECRET,
-//                 { expiresIn: '30m' }
-//             )
+      const token = jwt.sign(
+        { email: newUser.email, username: newUser.username },
+        process.env.JWT_SECRET,
+        { expiresIn: "30m" }
+      );
 
-//                 res.json([{token: `Bearer ${token}`}])
-
-//         } catch (error) {
-//             if (error.message.includes("Duplicate entry")) {
-//                 error.message = "A user with that email already exists"
-//             }
-//             res.json([{error: error.message}])
-//         }
-
-//     }else{
-//         res.json([{error: 'please enter all fields'}])
-//     }
-// })
-
-app.get("/login", (req, res) => {
-  // let token = jwt.sign(
-  //     { count: 0 },
-  //     process.env.JWT_SECRET,
-  //     { expiresIn: '5m'}
-  // )
-  // <input type='hidden' name='jwt' value='${token}'/>
-  res.send(
-    `<html><body><form action='http://localhost:${PORT}/login' method='post' ><label for='email'>Email</label><input type='email' name='email'/><label for='password'>Password</label><input type='password' name='password' /><input type='submit' value='Login' /></form></body></html>`
-  );
+      res.json([{ token: `Bearer ${token}` }]);
+    } catch (error) {
+      if (error.message.includes("Duplicate entry"))
+        error.message = "A user with that email already exists";
+      res.json([{ error: error.message }]);
+    }
+  } else {
+    res.json([{ error: "Please enter all fields" }]);
+  }
 });
 
 app.post("/login", async (req, res) => {
-  console.log(req.body);
+  const { username, email, password } = req.body;
 
-  if (!req.body.email) return;
+  if ((username || email) && password) {
+    try {
+      User.find(
+        { $or: [{ username: username }, { email: email }] },
+        async function (err, users) {
+          if (err) throw new Error(err);
+          if (!users.length) throw new Error("Incorrect Password or Email");
 
-  console.log("here");
+          const isValid = await bcrypt.compare(req.body.password, user[0].pass);
+          if (!isValid) throw new Error("Incorrect Password or Email");
 
-  const user = await db
-    .select("*")
-    .from("users")
-    .where("email", "=", req.body.email)
-    .catch((err) => console.log(err));
-  if (!user[0]) {
-    res.json([{ error: "No such user" }]);
-    return;
+          const token = jwt.sign(
+            { email: users[0].email, username: users[0].username },
+            process.env.JWT_SECRET,
+            { expiresIn: "30m" }
+          );
+
+          res.json([{ token: `Bearer ${token}` }]);
+        }
+      );
+    } catch (error) {
+      if (error.message.includes("Duplicate entry"))
+        error.message = "A user with that email already exists";
+      res.json([{ error: error.message }]);
+    }
+  } else {
+    res.json([{ error: "Please enter all fields" }]);
   }
-
-  const isValid = await bcrypt.compare(req.body.password, user[0].pass);
-  if (!isValid) {
-    res.json([{ error: "Incorrect password" }]);
-    return;
-  }
-
-  const token = jwt.sign(
-    { id: user[0].id, email: user[0].email },
-    process.env.JWT_SECRET,
-    { expiresIn: "30m" }
-  );
-  console.log("here2");
-  res.json([
-    {
-      token: `Bearer ${token}`,
-    },
-  ]);
 });
-
+/*
+ */
 app.listen(PORT, () => {
   console.log(`Server ready at ${process.env.PUBLIC_URL}:${PORT}`);
 });
