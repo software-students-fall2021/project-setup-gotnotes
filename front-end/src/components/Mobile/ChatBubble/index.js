@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
@@ -20,6 +20,7 @@ const ChatBubble = ({ props }) => {
       <div>{/* add the message text iteself*/}</div>
     </div>
   );
+  
 };
 
 /**

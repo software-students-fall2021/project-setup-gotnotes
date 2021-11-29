@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import ReactDOM from "react-dom";
 import ChatBubble from "../../../components/Mobile/ChatBubble/index";
+import { MessageInput } from "../../../components/Mobile/MessageInput";
 import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 
 const image =
@@ -30,6 +31,12 @@ const ChatMessages = ({ props }) => {
     <div className="chat-messages-container">
       <div className="chat-bubbles-container">
         {messages.map((message) => <ChatBubble props={{ message, userID }} />)}
+      </div>
+      <div className="message-input-container">
+        <MessageInput>
+          
+        </MessageInput>
+
       </div>
     </div>
   );
