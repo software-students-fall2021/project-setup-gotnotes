@@ -73,7 +73,10 @@ app.post("/signup", async (req, res) => {
     } catch (error) {
       if (error.message.includes("E11000") && error.message.includes("email"))
         error.message = "A user with that email already exists";
-      if (error.message.includes("E11000") && error.message.includes("username"))
+      if (
+        error.message.includes("E11000") &&
+        error.message.includes("username")
+      )
         error.message = "A user with that username already exists";
       res.json([{ error: error.message }]);
     }
@@ -83,31 +86,29 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { usernameOrEmail, password } = req.body;
 
-  if ((username || email) && password) {
+  if (usernameOrEmail && password) {
     try {
-      User.find(
-        { $or: [{ username: username }, { email: email }] },
-        async function (err, users) {
-          if (err) throw new Error(err);
-          if (!users.length) throw new Error("Incorrect Password or Email");
+      await User.findOne({
+        $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+      }).then(async (user) => {
+        if (!user) throw new Error("Incorrect Password or Email");
 
-          const isValid = await bcrypt.compare(req.body.password, user[0].pass);
-          if (!isValid) throw new Error("Incorrect Password or Email");
+        console.log(user)
 
-          const token = jwt.sign(
-            { email: users[0].email, username: users[0].username },
-            process.env.JWT_SECRET,
-            { expiresIn: "30m" }
-          );
+        const isValid = await bcrypt.compare(password, user.passwordHash);
+        if (!isValid) throw new Error("Incorrect Password or Email");
 
-          res.json([{ token: `Bearer ${token}` }]);
-        }
-      );
+        const token = jwt.sign(
+          { email: user.email, username: user.username },
+          process.env.JWT_SECRET,
+          { expiresIn: "30m" }
+        );
+
+        res.json([{ token: `Bearer ${token}` }]);
+      });
     } catch (error) {
-      if (error.message.includes("Duplicate entry"))
-        error.message = "A user with that email already exists";
       res.json([{ error: error.message }]);
     }
   } else {
