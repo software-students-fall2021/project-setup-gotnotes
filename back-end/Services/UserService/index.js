@@ -1,4 +1,3 @@
-const db = require("../Database/index.js");
 const User = require("../../Models/User");
 
 exports.create_user = async (email, username, passwordHash) => {
@@ -30,18 +29,26 @@ exports.create_user = async (email, username, passwordHash) => {
   return returnObj;
 };
 
-exports.make_admin = (userID) => {
-  User.findOneAndUpdate(
-    { _id: userID },
-    { $set: { isAdmin: true } },
-    { new: true },
-    (err) => {
-      if (err) {
-        console.log(err);
-      }
-    }
+exports.get_user_by_email_or_username = async (usernameOrEmail) => {
+  const returnObj = {
+    user: null,
+  };
+  await User.findOne({
+    $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+  }).then((user) => {
+    returnObj.user = user;
+  });
+  return returnObj;
+};
+
+exports.make_admin = async (usernameOrEmail, isAdminNew) => {
+  return await User.findOneAndUpdate(
+    { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
+    { $set: { isAdmin: isAdminNew } },
+    { new: true }
   );
 };
+
 exports.set_user_avatar_url = (userID, newAvatarUrl) => {
   User.findOneAndUpdate(
     { _id: userID },

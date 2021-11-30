@@ -4,7 +4,7 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { userController } = require("../../../Controllers");
 
-router.post("/", userController.create_user);
+router.post("/", userController.login_user);
 
 
 module.exports = router;

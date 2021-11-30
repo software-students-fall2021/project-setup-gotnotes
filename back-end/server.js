@@ -33,40 +33,8 @@ app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 
 app.use("/signup", authRouter.signupRouter);
-
 app.use("/login", authRouter.loginRouter);
-
 app.use("/admin", authRouter.adminRouter);
-
-
-app.post("/login", async (req, res) => {
-  const { usernameOrEmail, password } = req.body;
-
-  if (usernameOrEmail && password) {
-    try {
-      await User.findOne({
-        $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
-      }).then(async (user) => {
-        if (!user) throw new Error("Incorrect Password or Email");
-
-        const isValid = await bcrypt.compare(password, user.passwordHash);
-        if (!isValid) throw new Error("Incorrect Password or Email");
-
-        const token = jwt.sign(
-          { email: user.email, username: user.username },
-          JWT_SECRET,
-          { expiresIn: JWT_EXPIRATION_MINUTES }
-        );
-
-        res.json([{ token: `Bearer ${token}` }]);
-      });
-    } catch (error) {
-      res.json([{ error: error.message }]);
-    }
-  } else {
-    res.json([{ error: "Please enter all fields" }]);
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Server ready at ${process.env.PUBLIC_URL}:${PORT}`);
