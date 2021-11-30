@@ -99,21 +99,21 @@ exports.comment_on_file = (fileID, comment, userID) => {
 };
 exports.increase_fileDownloads = (fileID) => {
   return file.findOneAndUpdate(
-    { fileID: fileID },
+    { _id: fileID },
     { $inc: { fileDownloads: 1 } },
     { new: true }
   );
 };
 exports.file_unlike = (fileID, userID) => {
   return file.findOneAndUpdate(
-    { fileID: fileID },
+    { _id: fileID },
     { $pull: { fileLikedBy: { userID: userID } } },
     { new: true }
   );
 };
 exports.file_undislike = (fileID, userID) => {
   return file.findOneAndUpdate(
-    { fileID: fileID },
+    { _id: fileID },
     { $pull: { fileDislikedBy: { userID: userID } } },
     { new: true }
   );

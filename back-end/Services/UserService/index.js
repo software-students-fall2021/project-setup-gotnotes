@@ -3,10 +3,10 @@ const db = require("../Database/index.js");
 const users = require("../../Models/User/index.js");
 // exports.userData = userData;
 
-exports.create_user = (username, firstName, lastName) => {
+exports.create_user = (username, firstName, lastName, email) => {
   let new_user = new users({
     username: username,
-    email: "test",
+    email: email,
     firstName: firstName,
     lastName: lastName,
     // Not to sure what to do about the passwordHash
