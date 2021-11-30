@@ -115,6 +115,7 @@ exports.user_list = function (req, res) {
 exports.user_detail = function (req, res) {
   const currentUser = UserService.get_user(req.body.userID);
   res.send(currentUser);
+  
 };
 
 // Display user create form on GET.
