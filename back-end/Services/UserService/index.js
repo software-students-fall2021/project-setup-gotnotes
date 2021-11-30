@@ -49,6 +49,14 @@ exports.make_admin = async (usernameOrEmail, isAdminNew) => {
   );
 };
 
+exports.update_user_by_email_or_username = async (usernameOrEmail, updateObject) => {
+  return await User.findOneAndUpdate(
+    { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
+    { $set: updateObject },
+    { new: true }
+  );
+}
+
 exports.set_user_avatar_url = (userID, newAvatarUrl) => {
   User.findOneAndUpdate(
     { _id: userID },
