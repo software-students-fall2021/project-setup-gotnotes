@@ -106,6 +106,8 @@ exports.user_change_admin_status = async function (req, res) {
   }
 };
 
+
+
 // Display list of all users.
 exports.user_list = function (req, res) {
   res.send("NOT IMPLEMENTED: user list: ");
@@ -115,7 +117,7 @@ exports.user_list = function (req, res) {
 exports.user_detail = function (req, res) {
   const currentUser = UserService.get_user(req.body.userID);
   res.send(currentUser);
-  
+
 };
 
 // Display user create form on GET.
