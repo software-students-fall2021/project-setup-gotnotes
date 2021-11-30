@@ -11,7 +11,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES
 const check_jwt = require('./Services/Auth')
 
-const { accountRouter, chatRouter, searchRouter } = require("./Routes");
+const { accountRouter, chatRouter, searchRouter, authRouter } = require("./Routes");
 const { db_connect } = require("./Services/Database");
 const validate = require("./Services/Validation");
 const User = require("./Models/User");
@@ -32,59 +32,12 @@ app.use("/unis/:uni/:course/:file", searchRouter.fileRouter);
 app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 
-app.get("/admin", (req, res) => {
-  
-  res.send("Admin Request Received");
-});
+app.use("/signup", authRouter.signupRouter);
 
-app.post("/admin", (req, res) => {});
+app.use("/login", authRouter.loginRouter);
 
-app.post("/signup", async (req, res) => {
-  const { username, email, password, confirmPassword } = req.body;
+app.use("/admin", authRouter.adminRouter);
 
-  
-
-  //extra backend validation for direct api calls
-  if (username && email && password && confirmPassword) {
-    try {
-      const err = validate(username, email, password, confirmPassword);
-      
-      if (err) throw new Error(err);
-
-      await User.create({
-        email: email,
-        username: username,
-        passwordHash: await bcrypt.hash(password, 10),
-        isAdmin: false,
-        userSubscribed: [],
-        userLiked: [],
-        userDisliked: [],
-        userComments: [],
-      }).then((err, newUser) => {
-        if (err) throw new Error(err);
-        
-
-        const token = jwt.sign(
-          { email: newUser.email, username: newUser.username },
-          JWT_SECRET,
-          { expiresIn: JWT_EXPIRATION_MINUTES }
-        );
-        res.json([{ token: `Bearer ${token}` }]);
-      });
-    } catch (error) {
-      if (error.message.includes("E11000") && error.message.includes("email"))
-        error.message = "A user with that email already exists";
-      if (
-        error.message.includes("E11000") &&
-        error.message.includes("username")
-      )
-        error.message = "A user with that username already exists";
-      res.json([{ error: error.message }]);
-    }
-  } else {
-    res.json([{ error: "Please enter all fields" }]);
-  }
-});
 
 app.post("/login", async (req, res) => {
   const { usernameOrEmail, password } = req.body;

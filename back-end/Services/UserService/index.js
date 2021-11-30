@@ -1,38 +1,37 @@
-// const userData = require('./../../Mock/UsersMockData/users.json');
 const db = require("../Database/index.js");
-const users = require("../../Models/User/index.js");
-// exports.userData = userData;
+const User = require("../../Models/User");
 
-exports.create_user = (username, firstName, lastName) => {
-  let new_user = new users({
+exports.create_user = async (email, username, passwordHash) => {
+  const new_user = new User({
+    email: email,
     username: username,
-    email: "test",
-    firstName: firstName,
-    lastName: lastName,
-    // Not to sure what to do about the passwordHash
-    // isAdmin: false,
-    // userAvatarUrl: "",
-    // userUni: "",
-    // passwordHash: "",
-    // userSubscribed: [],
-    // userLiked: [],
-    // userDisliked: [],
-    // userComments: [],
+    passwordHash: passwordHash,
+    isAdmin: false,
+    userSubscribed: [],
+    userLiked: [],
+    userDisliked: [],
+    userComments: [],
   });
-  new_user.save((err, user) => {
-    if (err) {
-      console.log(err);
-    } else {
-      let id = user._id;
-      return id;
-    }
-  });
+
+  const returnObj = {
+    user: null,
+    dbSaveErr: false,
+  };
+
+  await new_user
+    .save()
+    .then((user) => {
+      returnObj.user = user;
+    })
+    .catch((err) => {
+      returnObj.dbSaveErr = err;
+    });
+
+  return returnObj;
 };
 
-// create_user("admin", "admin", "admin");
-
 exports.make_admin = (userID) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $set: { isAdmin: true } },
     { new: true },
@@ -44,7 +43,7 @@ exports.make_admin = (userID) => {
   );
 };
 exports.set_user_avatar_url = (userID, newAvatarUrl) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $set: { userAvatarUrl: newAvatarUrl } },
     { new: true },
@@ -57,7 +56,7 @@ exports.set_user_avatar_url = (userID, newAvatarUrl) => {
 };
 
 exports.add_user_uni = (userID, newUni) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $push: { userUni: newUni } },
     { new: true },
@@ -70,7 +69,7 @@ exports.add_user_uni = (userID, newUni) => {
 };
 
 exports.add_user_subscribed = (userID, newSubscribed) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $push: { userSubscribed: newSubscribed } },
     { new: true },
@@ -83,7 +82,7 @@ exports.add_user_subscribed = (userID, newSubscribed) => {
 };
 
 exports.delete_user_subscribed = (userID, newSubscribed) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $pull: { userSubscribed: newSubscribed } },
     { new: true },
@@ -96,7 +95,7 @@ exports.delete_user_subscribed = (userID, newSubscribed) => {
 };
 
 exports.user_liked = (userID, newLiked) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $push: { userLiked: newLiked } },
     { new: true },
@@ -109,7 +108,7 @@ exports.user_liked = (userID, newLiked) => {
 };
 
 exports.user_disliked = (userID, newDisliked) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $push: { userDisliked: newDisliked } },
     { new: true },
@@ -122,7 +121,7 @@ exports.user_disliked = (userID, newDisliked) => {
 };
 
 exports.user_unliked = (userID, newUnliked) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $pull: { userLiked: newUnliked } },
     { new: true },
@@ -135,7 +134,7 @@ exports.user_unliked = (userID, newUnliked) => {
 };
 
 exports.user_undisliked = (userID, newUndisliked) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $pull: { userDisliked: newUndisliked } },
     { new: true },
@@ -148,7 +147,7 @@ exports.user_undisliked = (userID, newUndisliked) => {
 };
 
 exports.user_comment = (userID, newComment) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $push: { userComments: newComment } },
     { new: true },
@@ -161,7 +160,7 @@ exports.user_comment = (userID, newComment) => {
 };
 
 exports.user_uncomment = (userID, newComment) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: userID },
     { $pull: { userComments: newComment } },
     { new: true },
@@ -174,7 +173,7 @@ exports.user_uncomment = (userID, newComment) => {
 };
 
 exports.delete_user = (userID) => {
-  users.findOneAndDelete({ _id: userID }, (err) => {
+  User.findOneAndDelete({ _id: userID }, (err) => {
     if (err) {
       console.log(err);
     }
@@ -187,7 +186,7 @@ exports.delete_user = (userID) => {
  * @returns [{userObj}] || []
  */
 exports.get_user = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -202,7 +201,7 @@ exports.get_user = (email) => {
  * @returns [{userObj}] || []
  */
 exports.get_user_by_id = (userID) => {
-  users.findOne({ _id: userID }, (err, user) => {
+  User.findOne({ _id: userID }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -217,7 +216,7 @@ exports.get_user_by_id = (userID) => {
  * @returns String || null
  */
 exports.get_user_pass_hash = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -233,7 +232,7 @@ exports.get_user_pass_hash = (email) => {
  * @returns 0 if success, 1 of no such user
  */
 exports.set_user_pass_hash = (email, newPassHash) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $set: { passwordHash: newPassHash } },
     { new: true },
@@ -251,7 +250,7 @@ exports.set_user_pass_hash = (email, newPassHash) => {
  * @returns boolean || null, true if user is admin, false otherwise, null if no such user
  */
 exports.get_user_authority = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -261,7 +260,7 @@ exports.get_user_authority = (email) => {
 };
 
 exports.set_user_authority = (email, newAuthority) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $set: { isAdmin: newAuthority } },
     { new: true },
@@ -279,7 +278,7 @@ exports.set_user_authority = (email, newAuthority) => {
  * @returns String || null
  */
 exports.get_user_avatar_url = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -295,7 +294,7 @@ exports.get_user_avatar_url = (email) => {
  * @returns 1 || 0
  */
 exports.set_user_avatar_url = (email, newAvatarUrl) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $set: { userAvatarUrl: newAvatarUrl } },
     { new: true },
@@ -308,7 +307,7 @@ exports.set_user_avatar_url = (email, newAvatarUrl) => {
 };
 
 exports.get_user_first_name = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -318,7 +317,7 @@ exports.get_user_first_name = (email) => {
 };
 
 exports.set_user_first_name = (email, newFirstName) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $set: { firstName: newFirstName } },
     { new: true },
@@ -331,7 +330,7 @@ exports.set_user_first_name = (email, newFirstName) => {
 };
 
 exports.get_user_last_name = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -341,7 +340,7 @@ exports.get_user_last_name = (email) => {
 };
 
 exports.set_user_last_name = (email, newLastName) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $set: { lastName: newLastName } },
     { new: true },
@@ -354,7 +353,7 @@ exports.set_user_last_name = (email, newLastName) => {
 };
 
 exports.get_user_uni = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -364,7 +363,7 @@ exports.get_user_uni = (email) => {
 };
 
 exports.set_user_uni = (email, newUni) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $set: { uni: newUni } },
     { new: true },
@@ -377,7 +376,7 @@ exports.set_user_uni = (email, newUni) => {
 };
 
 exports.get_user_subscribed = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -387,7 +386,7 @@ exports.get_user_subscribed = (email) => {
 };
 
 exports.set_user_subscribed_add = (email, addedCourseId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $addToSet: { userSubscribed: addedCourseId } },
     { new: true },
@@ -400,7 +399,7 @@ exports.set_user_subscribed_add = (email, addedCourseId) => {
 };
 
 exports.set_user_subscribed_remove = (email, removedCourseId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $pull: { userSubscribed: removedCourseId } },
     { new: true },
@@ -413,7 +412,7 @@ exports.set_user_subscribed_remove = (email, removedCourseId) => {
 };
 
 exports.get_user_liked = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -423,7 +422,7 @@ exports.get_user_liked = (email) => {
 };
 
 exports.get_user_liked_count = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -433,7 +432,7 @@ exports.get_user_liked_count = (email) => {
 };
 
 exports.set_user_liked_add = (email, addedFileId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $addToSet: { userLiked: addedFileId } },
     { new: true },
@@ -446,7 +445,7 @@ exports.set_user_liked_add = (email, addedFileId) => {
 };
 
 exports.set_user_liked_remove = (email, removedFileId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $pull: { userLiked: removedFileId } },
     { new: true },
@@ -459,7 +458,7 @@ exports.set_user_liked_remove = (email, removedFileId) => {
 };
 
 exports.get_user_disliked = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -469,7 +468,7 @@ exports.get_user_disliked = (email) => {
 };
 
 exports.get_user_disliked_count = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -479,7 +478,7 @@ exports.get_user_disliked_count = (email) => {
 };
 
 exports.set_user_disliked_add = (email, addedFileId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $addToSet: { userDisliked: addedFileId } },
     { new: true },
@@ -492,7 +491,7 @@ exports.set_user_disliked_add = (email, addedFileId) => {
 };
 
 exports.set_user_disliked_remove = (email, removedFileId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $pull: { userDisliked: removedFileId } },
     { new: true },
@@ -505,7 +504,7 @@ exports.set_user_disliked_remove = (email, removedFileId) => {
 };
 
 exports.get_user_comment = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -515,7 +514,7 @@ exports.get_user_comment = (email) => {
 };
 
 exports.get_user_comment_count = (email) => {
-  users.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else {
@@ -525,7 +524,7 @@ exports.get_user_comment_count = (email) => {
 };
 
 exports.set_user_comment_add = (email, addedCommentId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $addToSet: { userComment: addedCommentId } },
     { new: true },
@@ -538,7 +537,7 @@ exports.set_user_comment_add = (email, addedCommentId) => {
 };
 
 exports.set_user_comment_remove = (email, removedCommentId) => {
-  users.findOneAndUpdate(
+  User.findOneAndUpdate(
     { email: email },
     { $pull: { userComment: removedCommentId } },
     { new: true },
@@ -551,7 +550,7 @@ exports.set_user_comment_remove = (email, removedCommentId) => {
 };
 
 exports.get_users_by_course_id = (courseID) => {
-  users.find({ userSubscribed: courseID }, (err, users) => {
+  User.find({ userSubscribed: courseID }, (err, users) => {
     if (err) {
       console.log(err);
     } else {
