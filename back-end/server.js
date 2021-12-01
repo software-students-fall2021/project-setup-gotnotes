@@ -5,7 +5,12 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 const cors = require("cors");
 
-const { accountRouter, chatRouter, searchRouter, authRouter } = require("./Routes");
+const {
+  accountRouter,
+  chatRouter,
+  searchRouter,
+  authRouter,
+} = require("./Routes");
 const { db_connect } = require("./Services/Database");
 db_connect();
 
