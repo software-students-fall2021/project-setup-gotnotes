@@ -106,7 +106,36 @@ exports.user_change_admin_status = async function (req, res) {
   }
 };
 
+exports.update_user = async function (req,res){
+  //getting jwt token of the user
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const { usernameOrEmail, isAdminNew } = req.body;
 
+    const jwtContents = check_jwt(token);
+
+    if (!jwtContents)
+      throw new Error("Your session is expired, please sign in again");
+
+    const { user } = await UserService.get_user_by_email_or_username(
+      jwtContents.email
+    );
+
+    if (!user.isAdmin)
+      throw new Error("This action is restricted to only Admin accounts");
+
+    const queryResult = await UserService.make_admin(
+      usernameOrEmail,
+      isAdminNew
+    );
+
+    if (!queryResult) throw new Error("No such user");
+
+    res.send([{ message: "success" }]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+}
 
 // Display list of all users.
 exports.user_list = function (req, res) {
