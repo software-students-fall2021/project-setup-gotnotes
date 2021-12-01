@@ -7,7 +7,7 @@ var CourseSchema = new Schema({
     type: String,
     required: "Course Name cannot be empty",
   },
-  courseEnrolledStudents: [
+  subscribed: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",

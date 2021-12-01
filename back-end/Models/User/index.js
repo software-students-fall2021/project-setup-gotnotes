@@ -22,30 +22,36 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Uni",
   },
-  userSubscribed: [
+  subscribed: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
     },
   ],
-  userLiked: [
+  liked: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",
     },
   ],
-  userDisliked: [
+  disliked: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",
     },
   ],
-  userComments: [
+  comments: [
     {
       type: Schema.Types.ObjectId,
       ref: "Comment",
     },
   ],
+  shared: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "File"
+    }
+  ]
 });
 
 // UserSchema.virtual("email").get(function () {

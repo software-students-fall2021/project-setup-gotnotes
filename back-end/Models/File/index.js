@@ -13,20 +13,20 @@ var FileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  fileLikedBy: [
+  liked: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  fileDislikedBy: [
+  disliked: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
   fileDownloads: { type: Number },
-  fileComments: [
+  comments: [
     {
       type: Schema.Types.ObjectId,
       ref: "Comment",

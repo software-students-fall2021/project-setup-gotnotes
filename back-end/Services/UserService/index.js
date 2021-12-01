@@ -59,10 +59,29 @@ exports.update_user_scalar_by_email_or_username = async (
     { new: true }
   );
 };
+
 exports.update_user_arr_by_email_or_username = async (
   usernameOrEmail,
-  updateObject
+  user,
+  type,
+  fieldName,
+  referenceId
 ) => {
+  const newArr = [];
+  if (
+    type === "add" &&
+    !user[fieldName].filter((obj) => obj._id == referenceId).length
+  ) {
+    newArr.push(referenceId, ...user[fieldName]);
+  } else if (type === "remove") {
+    newArr.push(...user[fieldName].filter((obj) => obj._id != referenceId));
+  } else {
+    throw new Error("Cannot add course twice");
+  }
+
+  const updateObject = {
+    [fieldName]: newArr,
+  };
   return await User.findOneAndUpdate(
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: updateObject },

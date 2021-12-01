@@ -4,11 +4,16 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES;
-const check_jwt = require("./../../Services/Auth");
+const {
+  check_jwt,
+  check_auth,
+  check_auth_with_admin,
+} = require("./../../Services/Auth");
 
 const validate = require("./../../Services/Validation");
 
 const UserService = require("./../../Services/UserService");
+const UniService = require("./../../Services/UniService");
 
 exports.login_user = async function (req, res) {
   const { usernameOrEmail, password } = req.body;
@@ -78,20 +83,9 @@ exports.create_user = async function (req, res) {
 exports.user_change_admin_status = async function (req, res) {
   //getting jwt token of the user
   try {
-    const token = req.headers.authorization.split(" ")[1];
     const { usernameOrEmail, isAdminNew } = req.body;
 
-    const jwtContents = check_jwt(token);
-
-    if (!jwtContents)
-      throw new Error("Your session is expired, please sign in again");
-
-    const { user } = await UserService.get_user_by_email_or_username(
-      jwtContents.email
-    );
-
-    if (!user.isAdmin)
-      throw new Error("This action is restricted to only Admin accounts");
+    const user = await check_auth_with_admin(req);
 
     const queryResult = await UserService.make_admin(
       usernameOrEmail,
@@ -109,13 +103,8 @@ exports.user_change_admin_status = async function (req, res) {
 exports.update_user_scalar = async function (req, res) {
   //getting jwt token of the user
   try {
-    const token = req.headers.authorization.split(" ")[1];
-    const updateObject = JSON.parse(req.body.updateObject);
-
-    const jwtContents = check_jwt(token);
-
-    if (!jwtContents)
-      throw new Error("Your session is expired, please sign in again");
+    const updateObject = JSON.parse(req.body.updateData);
+    const user = await check_auth(req);
 
     const queryResult =
       await UserService.update_user_scalar_by_email_or_username(
@@ -132,39 +121,16 @@ exports.update_user_scalar = async function (req, res) {
 };
 
 exports.update_user_arr = async function (req, res) {
-  //getting jwt token of the user
   try {
-    const token = req.headers.authorization.split(" ")[1];
-    const { type, fieldName, referenceId } = JSON.parse(req.body.updateObject);
-
-    const jwtContents = check_jwt(token);
-
-    if (!jwtContents)
-      throw new Error("Your session is expired, please sign in again");
-
-    const { user } = await UserService.get_user_by_email_or_username(
-      jwtContents.email
-    );
-
-    const newArr = [];
-    if (
-      type === "add" &&
-      !user[fieldName].filter((obj) => obj._id == referenceId).length
-    ) {
-      newArr.push(referenceId, ...user[fieldName]);
-    } else if (type === "remove") {
-      newArr.push(...user[fieldName].filter((obj) => obj._id != referenceId));
-    } else {
-      throw new Error("Cannot add course twice");
-    }
-
-    const updateObject = {
-      [fieldName]: newArr,
-    };
+    const { type, fieldName, referenceId } = req.body.updateData;
+    const user = await check_auth(req);
 
     const queryResult = await UserService.update_user_arr_by_email_or_username(
       jwtContents.email,
-      updateObject
+      user,
+      type,
+      fieldName,
+      referenceId
     );
 
     if (!queryResult) throw new Error("No such user");
@@ -178,16 +144,7 @@ exports.update_user_arr = async function (req, res) {
 // Display detail page for a specific user.
 exports.user_detail = async function (req, res) {
   try {
-    const token = req.headers.authorization.split(" ")[1];
-
-    const jwtContents = check_jwt(token);
-
-    if (!jwtContents)
-      throw new Error("Your session is expired, please sign in again");
-
-    const { user } = await UserService.get_user_by_email_or_username(
-      jwtContents.email
-    );
+    const user = await check_auth(req);
 
     res.json(user);
   } catch (err) {
