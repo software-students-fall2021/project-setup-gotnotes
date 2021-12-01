@@ -35,9 +35,15 @@ exports.get_user_by_email_or_username = async (usernameOrEmail) => {
   };
   await User.findOne({
     $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
-  }).then((user) => {
-    returnObj.user = user;
-  });
+  })
+    .populate("subscribed")
+    .populater("liked")
+    .populater("disliked")
+    .populate("shared")
+    .populate("comments")
+    .then((user) => {
+      returnObj.user = user;
+    });
   return returnObj;
 };
 
@@ -46,7 +52,12 @@ exports.make_admin = async (usernameOrEmail, isAdminNew) => {
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: { isAdmin: isAdminNew } },
     { new: true }
-  );
+  )
+    .populate("subscribed")
+    .populater("liked")
+    .populater("disliked")
+    .populate("shared")
+    .populate("comments");
 };
 
 exports.update_user_scalar_by_email_or_username = async (
@@ -57,7 +68,12 @@ exports.update_user_scalar_by_email_or_username = async (
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: updateObject },
     { new: true }
-  );
+  )
+    .populate("subscribed")
+    .populater("liked")
+    .populater("disliked")
+    .populate("shared")
+    .populate("comments");
 };
 
 exports.update_user_arr_by_email_or_username = async (
@@ -86,20 +102,12 @@ exports.update_user_arr_by_email_or_username = async (
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: updateObject },
     { new: true }
-  );
-};
-
-exports.set_user_avatar_url = (userID, newAvatarUrl) => {
-  User.findOneAndUpdate(
-    { _id: userID },
-    { $set: { userAvatarUrl: newAvatarUrl } },
-    { new: true },
-    (err) => {
-      if (err) {
-        console.log(err);
-      }
-    }
-  );
+  )
+    .populate("subscribed")
+    .populater("liked")
+    .populater("disliked")
+    .populate("shared")
+    .populate("comments");
 };
 
 exports.delete_user = (userID) => {

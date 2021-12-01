@@ -7,12 +7,12 @@ var CommentService = require("./index");
 let commentData = CommentService.commentData;
 const testComment = commentData[0];
 
-describe("uniService", function () {
-  describe("get_comment()", function () {
-    it("should return comment", function () {
-      const comment = CommentService.get_comment(testComment.commentID);
+// describe("uniService", function () {
+//   describe("get_comment()", function () {
+//     it("should return comment", function () {
+//       const comment = CommentService.get_comment(testComment.commentID);
 
-      expect(comment[0]).to.deep.equalInAnyOrder(testComment);
-    });
-  });
-});
+//       expect(comment[0]).to.deep.equalInAnyOrder(testComment);
+//     });
+//   });
+// });
