@@ -100,17 +100,42 @@ exports.user_change_admin_status = async function (req, res) {
 
     if (!queryResult) throw new Error("No such user");
 
-    res.send([{ message: "success" }]);
+    res.json([queryResult]);
   } catch (err) {
     res.send([{ error: err.message }]);
   }
 };
 
-exports.update_user = async function (req,res){
+exports.update_user_scalar = async function (req, res) {
   //getting jwt token of the user
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const { usernameOrEmail, isAdminNew } = req.body;
+    const updateObject = JSON.parse(req.body.updateObject);
+
+    const jwtContents = check_jwt(token);
+
+    if (!jwtContents)
+      throw new Error("Your session is expired, please sign in again");
+
+    const queryResult =
+      await UserService.update_user_scalar_by_email_or_username(
+        jwtContents.email,
+        updateObject
+      );
+
+    if (!queryResult) throw new Error("No such user");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+};
+
+exports.update_user_arr = async function (req, res) {
+  //getting jwt token of the user
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const { type, fieldName, referenceId } = JSON.parse(req.body.updateObject);
 
     const jwtContents = check_jwt(token);
 
@@ -121,60 +146,56 @@ exports.update_user = async function (req,res){
       jwtContents.email
     );
 
-    if (!user.isAdmin)
-      throw new Error("This action is restricted to only Admin accounts");
+    const newArr = [];
+    if (
+      type === "add" &&
+      !user[fieldName].filter((obj) => obj._id == referenceId).length
+    ) {
+      newArr.push(referenceId, ...user[fieldName]);
+    } else if (type === "remove") {
+      newArr.push(...user[fieldName].filter((obj) => obj._id != referenceId));
+    } else {
+      throw new Error("Cannot add course twice");
+    }
 
-    const queryResult = await UserService.make_admin(
-      usernameOrEmail,
-      isAdminNew
+    const updateObject = {
+      [fieldName]: newArr,
+    };
+
+    const queryResult = await UserService.update_user_arr_by_email_or_username(
+      jwtContents.email,
+      updateObject
     );
 
     if (!queryResult) throw new Error("No such user");
 
-    res.send([{ message: "success" }]);
+    res.json([queryResult]);
   } catch (err) {
     res.send([{ error: err.message }]);
   }
-}
+};
+
+// Display detail page for a specific user.
+exports.user_detail = async function (req, res) {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+
+    const jwtContents = check_jwt(token);
+
+    if (!jwtContents)
+      throw new Error("Your session is expired, please sign in again");
+
+    const { user } = await UserService.get_user_by_email_or_username(
+      jwtContents.email
+    );
+
+    res.json(user);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+};
 
 // Display list of all users.
 exports.user_list = function (req, res) {
   res.send("NOT IMPLEMENTED: user list: ");
-};
-
-// Display detail page for a specific user.
-exports.user_detail = function (req, res) {
-  const currentUser = UserService.get_user(req.body.userID);
-  res.send(currentUser);
-
-};
-
-// Display user create form on GET.
-exports.user_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: user create GET");
-};
-
-// Handle user create on POST.
-exports.user_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: user create POST");
-};
-
-// Display user delete form on GET.
-exports.user_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: user delete GET");
-};
-
-// Handle user delete on POST.
-exports.user_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: user delete POST");
-};
-
-// Display user update form on GET.
-exports.user_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: user update GET");
-};
-
-// Handle user update on POST.
-exports.user_update_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: user update POST");
 };
