@@ -49,21 +49,26 @@ exports.make_admin = async (usernameOrEmail, isAdminNew) => {
   );
 };
 
-exports.update_user_scalar_by_email_or_username = async (usernameOrEmail, updateObject) => {
+exports.update_user_scalar_by_email_or_username = async (
+  usernameOrEmail,
+  updateObject
+) => {
   return await User.findOneAndUpdate(
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: updateObject },
     { new: true }
   );
-}
-exports.update_user_arr_by_email_or_username = async (usernameOrEmail, updateObject) => {
-  
+};
+exports.update_user_arr_by_email_or_username = async (
+  usernameOrEmail,
+  updateObject
+) => {
   return await User.findOneAndUpdate(
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: updateObject },
     { new: true }
   );
-}
+};
 
 exports.set_user_avatar_url = (userID, newAvatarUrl) => {
   User.findOneAndUpdate(
@@ -78,7 +83,6 @@ exports.set_user_avatar_url = (userID, newAvatarUrl) => {
   );
 };
 
-
 exports.delete_user = (userID) => {
   User.findOneAndDelete({ _id: userID }, (err) => {
     if (err) {
@@ -86,7 +90,6 @@ exports.delete_user = (userID) => {
     }
   });
 };
-
 
 exports.get_users_by_course_id = (courseID) => {
   User.find({ userSubscribed: courseID }, (err, users) => {

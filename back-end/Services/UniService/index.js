@@ -1,37 +1,65 @@
-const uniData = require("./../../Mock/UnisMockData/unis.json");
-const uni = require("../../Models/Uni/index");
-const db = require("../Database/index");
-exports.uniData = uniData;
+const Uni = require("../../Models/Uni/index");
 
-exports.make_uni = (uniName, uniLogoPath) => {
-  let new_uni = new uni({
+exports.get_all_unis = async () => {
+  return await Uni.find().populate("uniCourses").populate("uniStudents");
+};
+
+exports.get_uni_by_id = async (uniID) => {
+  return await Uni.findOne({ _id: uniID })
+    .populate("uniCourses")
+    .populate("uniStudents");
+};
+
+exports.create_uni = async (uniName, uniLogoPath) => {
+  const returnObj = {
+    uni: null,
+    dbSaveErr: false,
+  };
+  let new_uni = new Uni({
     uniName: uniName,
     uniLogoPath: uniLogoPath,
     uniStudents: [],
     uniCourses: [],
   });
-  new_uni.save(err, (Uni) => {
-    if (err) {
-      console.log(err);
-    }
-    let id = Uni._id;
-  });
-  return id;
+  await new_uni
+    .save()
+    .then((uni) => {
+      returnObj.uni = uni;
+    })
+    .catch((err) => {
+      returnObj.dbSaveErr = err;
+    });
+  return returnObj;
+};
+exports.update_uni_scalar_by_uni_id = async (uniId, updateObject) => {
+  return await Uni.findOneAndUpdate(
+    { _id: uniId },
+    { $set: updateObject },
+    { new: true }
+  )
+    .populate("uniCourses")
+    .populate("uniStudents");
+};
+exports.update_uni_arr_by_uni_id = async (uniId, updateObject) => {
+  return await Uni.findOneAndUpdate(
+    { _id: uniId },
+    { $set: updateObject },
+    { new: true }
+  )
+    .populate("uniCourses")
+    .populate("uniStudents");
 };
 
-exports.get_uni = (uniID) => {
-  return uni.findOne({ _id: uniID });
-};
 //TODO we should have a mongoose instance here for all the
 //post requests that are going to be processed by the srevices
 
 exports.get_uniName = (uniID) => {
-  uni.findOne({ _id: uniID }).then((uni) => {
+  Uni.findOne({ _id: uniID }).then((uni) => {
     return uni.uniName;
   });
 };
 exports.set_uniName = (uniID, uniName) => {
-  uni.findOneAndUpdate(
+  Uni.findOneAndUpdate(
     { _id: uniID },
     { uniName: uniName },
     { new: true },
@@ -44,7 +72,7 @@ exports.set_uniName = (uniID, uniName) => {
 };
 
 exports.add_student = (uniID, userID) => {
-  return uni.findOneAndUpdate(
+  return Uni.findOneAndUpdate(
     { _id: uniID },
     { $push: { uniStudents: { _id: userID } } },
     { new: true }
@@ -52,21 +80,21 @@ exports.add_student = (uniID, userID) => {
 };
 
 exports.delete_student = (uniID, userID) => {
-  return uni.findOneAndUpdate(
+  return Uni.findOneAndUpdate(
     { _id: uniID },
     { $pull: { uniStudents: { _id: userID } } },
     { new: true }
   );
 };
 exports.add_course = (uniID, courseID) => {
-  return uni.findOneAndUpdate(
+  return Uni.findOneAndUpdate(
     { _id: uniID },
     { $push: { uniCourses: { _id: courseID } } },
     { new: true }
   );
 };
 exports.delete_course = (uniID, courseID) => {
-  return uni.findOneAndUpdate(
+  return Uni.findOneAndUpdate(
     { _id: uniID },
     { $pull: { uniCourses: { _id: courseID } } },
     { new: true }
@@ -74,7 +102,7 @@ exports.delete_course = (uniID, courseID) => {
 };
 
 exports.delete_uni = (uniID) => {
-  return uni.findOneAndDelete({ _id: uniID });
+  return Uni.findOneAndDelete({ _id: uniID });
 };
 
 // // Comment By Kaan Karakas
