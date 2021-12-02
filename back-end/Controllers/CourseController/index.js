@@ -19,11 +19,18 @@ exports.create_course = async (req, res) => {
     if (!(courseName && uniId))
       throw new Error("Please include courseName and uniId in req.body");
 
-    const queryResult = await CourseService.create_course(courseName, uniId);
+    const addedCourse = await CourseService.create_course(courseName, uniId);
+    const uni = await UniService.get_uni_by_id(uniId)
+    const addToUni = await UniService.update_uni_arr_by_uni_id(
+      uni,
+      "add",
+      "uniCourses",
+      addedCourse.course._id
+    )
 
-    if (queryResult.dbSaveError) throw new Error(dbSaveError);
+    if (addedCourse.dbSaveError) throw new Error(dbSaveError);
 
-    res.json([queryResult]);
+    res.json([addedCourse]);
   } catch (err) {
     res.send([{ error: err.message }]);
   }
