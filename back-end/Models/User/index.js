@@ -28,13 +28,13 @@ var UserSchema = new Schema({
       ref: "Course",
     },
   ],
-  liked: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",
     },
   ],
-  disliked: [
+  dislikes: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",

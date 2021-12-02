@@ -7,19 +7,20 @@ var FileSchema = new Schema({
     type: String,
     required: "File Name cannot be empty",
   },
+  fileLink: {type: String},
   fileType: { type: String },
   fileShareDate: { type: Date },
   fileSharedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  liked: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  disliked: [
+  dislikes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",

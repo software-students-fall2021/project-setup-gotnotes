@@ -1,66 +1,127 @@
-/**
- * var { File } = require('./../../Models');
- * we will implement this when we have the mongodb models, schemas ...
- * */
+const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 
 const FileService = require("./../../Services/FileService");
 const UserService = require("./../../Services/UserService");
-const CommentService = require("./../../Services/CommentService");
 
-// Display list of all files.
-exports.file_list = function (req, res) {
-  //TODO needs to send the whole file with the comment data and user data included as a big json here
-  //Use as many other services as you can
-  const fileDataRaw = FileService.get_file(req.params.file);
-  const fileDataFull = fileDataRaw.map((file) => ({
-    ...file,
-    fileComments: file.fileComments.map((comment) => {
-      const commentSingle = CommentService.get_comment(comment.commentId)[0];
-
-      return {
-        ...commentSingle,
-        commentedBy: commentSingle.commentedBy.map((user) => ({
-          ...user,
-          userAvatarUrl: UserService.get_user_avatar_url(user.userId),
-          username: UserService.get_user(user.userId).username,
-        })),
-      };
-    }),
-  }));
-  res.send(fileDataFull);
+exports.get_all_files = async (req, res) => {
+  res.json(await FileService.get_all_files());
+};
+exports.get_file_by_id = async (req, res) => {
+  res.json(await FileService.get_file_by_id(req.body.fileId));
 };
 
-// Display detail page for a specific file.
-exports.file_detail = function (req, res) {
-  res.send("NOT IMPLEMENTED: file detail: " + req.params.id);
+exports.create_file = async (req, res) => {
+  try {
+    const user = check_auth(req);
+    const { fileName, fileLink, fileType } = req.body;
+
+    if (!(fileName && fileLink && fileType))
+      throw new Error(
+        "Please include fileName and fileLink and fileType in req.body"
+      );
+
+    const queryResult = await FileService.create_file(
+      fileName,
+      fileLink,
+      fileType,
+      Date.now(),
+      user._id
+    );
+
+    if (queryResult.dbSaveError) throw new Error(dbSaveError);
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Display file create form on GET.
-exports.file_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: file create GET");
+exports.update_file_scalar_by_file_id = async (req, res) => {
+  try {
+    const user = check_auth(req);
+    const { documentId, updateObject } = JSON.parse(req.body.updateData);
+
+    if (!(documentId && updateObject))
+      throw new Error(
+        "Please provide a documentId for the Uni and an updateObject with relevant fields in req.body.updateData"
+      );
+
+    const queryResult = await FileService.update_file_scalar_by_file_id(
+      documentId,
+      updateObject
+    );
+
+    if (!queryResult) throw new Error("No such File");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Handle file create on POST.
-exports.file_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: file create POST");
+exports.update_file_arr_by_file_id = async (req, res) => {
+  try {
+    const { documentId, type, fieldName, referenceId } = JSON.parse(
+      req.body.updateData
+    );
+    if (!(documentId && type && fieldName && referenceId))
+      throw new Error(
+        "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
+      );
+
+    const user = check_auth(req);
+
+    const file = await FileService.get_file_by_id(documentId);
+
+    const queryResult = await FileService.update_file_arr_by_file_id(
+      file,
+      type,
+      fieldName,
+      referenceId
+    );
+
+    if (!queryResult) throw new Error("No such File");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Display file delete form on GET.
-exports.file_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: file delete GET");
-};
+exports.update_user_like_dislike = async (req, res) => {
+  try {
+    const { documentId, type, likeDislike } = JSON.parse(req.body.updateData);
+    if (!(documentId && type && likeDislike))
+      throw new Error(
+        "please include a documentId, type in req.body.updateData"
+      );
 
-// Handle file delete on POST.
-exports.file_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: file delete POST");
-};
+    const user = check_auth(req);
 
-// Display file update form on GET.
-exports.file_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: file update GET");
-};
+    const fieldName = likeDislike === "like" ? "likes" : "dislikes";
 
-// Handle file update on POST.
-exports.file_update_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: file update POST");
+    const addFileToUser =
+      await UserService.update_user_arr_by_email_or_username(
+        user.email,
+        user,
+        type,
+        fieldName,
+        documentId
+      );
+
+    const file = await FileService.get_file_by_id(documentId);
+
+    const queryResult = await FileService.update_file_arr_by_file_id(
+      file,
+      type,
+      fieldName,
+      user._id
+    );
+
+    if (!queryResult) throw new Error("No such File");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
