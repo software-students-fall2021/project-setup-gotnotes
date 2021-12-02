@@ -130,19 +130,6 @@ export const Account = ({ props }) => {
       )}
       {!isEditActive && (
         <div className="account-list">
-          <div className="user-avatar-component-container">
-            <UserAvatar
-              props={{
-                userAvatarUrl: userData.userAvatarUrl,
-                size: "large",
-                showEditButton: true,
-                handleEditAction: setIsEditActive(
-                  (isEditActiveCurrent) => !isEditActiveCurrent
-                ),
-              }}
-            />
-          </div>
-
           <div classname="display-user-data">
             <h4>{userData.username}</h4>
             <h4>{userData.firstName}</h4>
@@ -164,7 +151,6 @@ export const Account = ({ props }) => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                editUserData(userInputState);
                 setIsEditActive(true);
               }}
             >

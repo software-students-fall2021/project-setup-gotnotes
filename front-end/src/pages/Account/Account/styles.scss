@@ -2,8 +2,17 @@
 
 .edit-page {
   .submit-button {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
   }
 }
+
+// .submit-button{
+//   position: fixed;
+//   bottom: 50px;
+//   width: 100%;
+// }
 
 .account-list {
   .user-avatar-component-container {

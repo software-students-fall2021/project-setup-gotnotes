@@ -115,6 +115,54 @@ const messages = [
       messageDate: "11/11/2021",
     },
   },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "maybe i should just make the bubbles bigger",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "hmm yeah that moght work",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "maybe i should just make the bubbles bigger",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "hmm yeah that moght work",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "maybe i should just make the bubbles bigger",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "hmm yeah that moght work",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
 ];
 
 const userID = 1;
