@@ -4,7 +4,21 @@ import UserAvatar from "../../../components/Mobile/UserAvatar";
 import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 import "./styles.scss";
 
+const userData = {
+  //put outside the function
+  userID: "cdies0@netlog.com",
+  username: "cdies0",
+  isAdmin: true,
+  userAvatarUrl: "http://dummyimage.com/210x100.png/dddddd/000000",
+  firstName: "Celia",
+  lastName: "Dies",
+  userSubscribed: [{ courseID: 11 }],
+  userLiked: [{ fileID: 54 }, { fileID: 67 }, { fileID: 38 }, { fileID: 17 }],
+  userDisliked: [{ fileID: 12 }, { fileID: 66 }, { fileID: 24 }],
+};
+
 const editUserData = () => {
+  //dont need this, need the function instead, say true/false
   console.log("submit the edits to the server");
   return true;
 };
@@ -12,55 +26,42 @@ const editUserData = () => {
 export const Account = ({ props }) => {
   const userID = "cdies0@netlog.com";
 
-  const mockUserData = {
-    userID: "cdies0@netlog.com",
-    username: "cdies0",
-    isAdmin: true,
-    userAvatarUrl: "http://dummyimage.com/210x100.png/dddddd/000000",
-    firstName: "Celia",
-    lastName: "Dies",
-    userSubscribed: [{ courseID: 11 }],
-    userLiked: [
-      { fileID: 54 },
-      { fileID: 67 },
-      { fileID: 38 },
-      { fileID: 17 }
-    ],
-    userDisliked: [
-      { fileID: 12 },
-      { fileID: 66 },
-      { fileID: 24 },
-    ],
-  }
-
   const [isEditActive, setIsEditActive] = useState(null);
-  const [userData, setUserData] = useState(null);
+  //const [userData, setUserData] = useState(null);
 
   const [userInputState, setUserInputState] = useState({
     firstName: "",
     lastName: "",
   });
 
-  useEffect(() => {
-    //post request with userID: userID to http://localhost/4000/account
-    axios("http://localhost:4000/account", {
-      method: "POST",
-      data: {
-        userID: userID,
-      },
-    })
-      .then((res) => setUserData(res.data[0]))
-      .catch((err) => console.log(err));
+  // useEffect(() => {
+  //   //post request with userID: userID to http://localhost/4000/account
+  //   axios("http://localhost:4000/account", {
+  //     method: "POST",
+  //     data: {
+  //       userID: userID,
+  //     },
+  //   })
+  //     .then((res) => setUserData(res.data[0]))
+  //     .catch((err) => console.log(err));
 
-    //console.log(result);
-    //setUserData(result.data[0]);
-    console.log("userData: ", userData);
-    //setUserData(result.data)
-  }, []);
+  //   //console.log(result);
+  //   //setUserData(result.data[0]);
+  //   console.log("userData: ", userData);
+  //   //setUserData(result.data)
+  // }, []);
 
   return userData ? (
     <div>
-      Account Page
+      <div className="user-avatar-component-container">
+        <UserAvatar
+          props={{
+            userAvatarUrl: userData.userAvatarUrl,
+            size: "large",
+            showEditButton: false,
+          }}
+        />
+      </div>
       {isEditActive && (
         <div className="edit-page">
           <form
@@ -84,6 +85,31 @@ export const Account = ({ props }) => {
                 })
               }
             />
+            <input type="submit" value="Submit Edits" />
+            <input
+              type="text"
+              placeholder={userData.lastName}
+              value={userInputState.lastName}
+              onChange={(e) =>
+                setUserInputState({
+                  ...userInputState,
+                  lastName: e.target.value,
+                })
+              }
+            />
+
+            <input type="submit" value="Submit Edits" />
+            <input
+              type="text"
+              placeholder={userData.username}
+              value={userInputState.username}
+              onChange={(e) =>
+                setUserInputState({
+                  ...userInputState,
+                  username: e.target.value,
+                })
+              }
+            />
 
             <input type="submit" value="Submit Edits" />
           </form>
@@ -96,6 +122,7 @@ export const Account = ({ props }) => {
                 setIsEditActive(false);
               }}
             >
+              <view>{console.log("done button: ", isEditActive)}</view>
               <input type="submit" value="Done" />
             </form>
           </div>
@@ -108,7 +135,10 @@ export const Account = ({ props }) => {
               props={{
                 userAvatarUrl: userData.userAvatarUrl,
                 size: "large",
-                editActive: isEditActive,
+                showEditButton: true,
+                handleEditAction: setIsEditActive(
+                  (isEditActiveCurrent) => !isEditActiveCurrent
+                ),
               }}
             />
           </div>

@@ -27,6 +27,94 @@ const messages = [
       messageDate: "11/11/2021",
     },
   },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "yup",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "yes",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "im still testing",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "this is a long test",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "yes it is",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "do you think we can scroll yet?",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "yeah hopefully",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "okay we need a few more",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "were almost there",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 2,
+    chatContent: {
+      message: "maybe i should just make the bubbles bigger",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
+  {
+    chatID: 1,
+    chatContent: {
+      message: "hmm yeah that moght work",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
+  },
 ];
 
 const userID = 1;
