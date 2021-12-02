@@ -1,11 +1,6 @@
-const {
-  check_jwt,
-  check_auth,
-  check_auth_with_admin,
-} = require("./../../Services/Auth");
+const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 
 const UniService = require("./../../Services/UniService");
-const UserService = require("./../../Services/UserService");
 
 // Display list of all unis.
 exports.get_all_unis = async function (req, res) {

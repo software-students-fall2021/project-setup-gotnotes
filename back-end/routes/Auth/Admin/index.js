@@ -10,11 +10,12 @@ var {
 
 router.post("/make-admin", userController.user_change_admin_status);
 
-router.post("/create-course", (req, res) => {
-  res.json([{ message: "not implemented" }]);
-});
-router.post("/create-uni", (req, res) => {
-  res.json([{ message: "not implemented" }]);
-});
+router.post("/create-course", courseController.create_course);
+router.post("/edit-course-scalar", courseController.update_course_scalar);
+router.post("/edit-course-arr", courseController.update_course_arr);
+
+router.post("/create-uni", uniController.create_uni);
+router.post("/edit-uni-scalar", uniController.update_uni_scalar);
+router.post("/edit-uni-arr", uniController.update_uni_arr);
 
 module.exports = router;

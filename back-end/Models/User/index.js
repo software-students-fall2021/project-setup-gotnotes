@@ -49,9 +49,9 @@ var UserSchema = new Schema({
   shared: [
     {
       type: Schema.Types.ObjectId,
-      ref: "File"
-    }
-  ]
+      ref: "File",
+    },
+  ],
 });
 
 // UserSchema.virtual("email").get(function () {

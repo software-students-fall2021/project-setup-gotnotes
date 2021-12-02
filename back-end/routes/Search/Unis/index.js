@@ -21,7 +21,7 @@ router.post("/edit-uni-arr", uniController.update_uni_arr);
 
 //enroll to a uni (logged in user only)
 router.post("/delete-uni", (req, res) => {
-  res.send("Enroll req to uni: UNI_NAME, by user: USER_ID");
+  res.json([{message: "Delete uni not yet implemented"}])
 });
 
 module.exports = router;

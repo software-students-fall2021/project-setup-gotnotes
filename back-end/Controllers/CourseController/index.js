@@ -1,64 +1,84 @@
-/**
- * var { Course } = require('./../../Models');
- * we will implement this when we have the mongodb models, schemas ...
- * */
+const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 
 const UniService = require("./../../Services/UniService");
 const CourseService = require("./../../Services/CourseService");
 
-// Display list of all courses.
-exports.list = function (req, res) {
-  console.log(UniService.get_uni(req.params.uni));
-
-  const uniDataRaw = UniService.get_uni(req.params.uni);
-  const uniDataFull = uniDataRaw.map((uni) => {
-    return {
-      ...uni,
-      uniCourses: uni.uniCourses.map(({ courseID }) => {
-        return {
-          courseID,
-          courseName: CourseService.get_course(courseID)[0].courseName,
-          courseSharedFileCount:
-            CourseService.get_course(courseID)[0].courseSharedFiles.length,
-        };
-      }),
-    };
-  });
-
-  res.send(uniDataFull);
+exports.get_all_courses = async (req, res) => {
+  res.json(await CourseService.get_all_courses());
 };
 
-// Display detail page for a specific course.
-exports.course_detail = function (req, res) {
-  res.send("NOT IMPLEMENTED: course detail: " + req.params.id);
+exports.get_course_by_id = async (req, res) => {
+  res.json(await CourseService.get_all_courses(req.params.courseId));
 };
 
-// Display course create form on GET.
-exports.course_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: course create GET");
+exports.create_course = async (req, res) => {
+  try {
+    const user = check_auth(req);
+    const { courseName, uniId } = req.body;
+
+    if (!(courseName && uniId))
+      throw new Error("Please include courseName and uniId in req.body");
+
+    const queryResult = await CourseService.create_course(courseName, uniId);
+
+    if (queryResult.dbSaveError) throw new Error(dbSaveError);
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+  return 0;
 };
 
-// Handle course create on POST.
-exports.course_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: course create POST");
+exports.update_course_scalar = async (req, res) => {
+  try {
+    //FIXME there needs to be a createdBy field for all the db we have, so that only the one who created it can edit it, or an admin user
+    const user = check_auth(req);
+    const { documentId, updateObject } = JSON.parse(req.body.updateData);
+
+    if (!(documentId && updateObject))
+      throw new Error(
+        "Please provide a documentId for the Uni and an updateObject with relevant fields in req.body.updateData"
+      );
+
+    const queryResult = await CourseService.update_course_scalar_by_course_id(
+      documentId,
+      updateObject
+    );
+
+    if (!queryResult) throw new Error("No such Course");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Display course delete form on GET.
-exports.course_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: course delete GET");
-};
+exports.update_course_arr = async (req, res) => {
+  try {
+    const { documentId, type, fieldName, referenceId } = JSON.parse(
+      req.body.updateData
+    );
+    if (!(documentId && type && fieldName && referenceId))
+      throw new Error(
+        "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
+      );
 
-// Handle course delete on POST.
-exports.course_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: course delete POST");
-};
+    const user = check_auth(req);
 
-// Display course update form on GET.
-exports.course_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: course update GET");
-};
+    const course = await CourseService.get_course_by_id(documentId);
 
-// Handle course update on POST.
-exports.course_update_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: course update POST");
+    const queryResult = await CourseService.update_course_arr_by_course_id(
+      course,
+      type,
+      fieldName,
+      referenceId
+    );
+
+    if (!queryResult) throw new Error("No such Course");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };

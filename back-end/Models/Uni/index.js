@@ -22,13 +22,5 @@ var UniSchema = new Schema({
   ],
 });
 
-UniSchema.virtual("uniStudentCount").get(function () {
-  return this.uniStudents.length;
-});
-
-UniSchema.virtual("uniCourseCount").get(function () {
-  return this.uniCourses.length;
-});
-
 //Export model
 module.exports = mongoose.model("Uni", UniSchema);

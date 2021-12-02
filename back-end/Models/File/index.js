@@ -34,22 +34,5 @@ var FileSchema = new Schema({
   ],
 });
 
-FileSchema.virtual("fileDislikeCount").get(function () {
-  return this.fileDislikedBy.length;
-});
-
-FileSchema.virtual("fileLikeCount").get(function () {
-  return this.fileLikedBy.length;
-});
-
-FileSchema.virtual("fileCommentCount").get(function () {
-  let count = 0;
-  this.fileComments.map((comment) => {
-    count++;
-    comment.replies.map((reply) => count++);
-  });
-  return count;
-});
-
 //Export model
 module.exports = mongoose.model("File", FileSchema);

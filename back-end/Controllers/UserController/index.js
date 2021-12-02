@@ -4,11 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES;
-const {
-  check_jwt,
-  check_auth,
-  check_auth_with_admin,
-} = require("./../../Services/Auth");
+const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 
 const validate = require("./../../Services/Validation");
 
