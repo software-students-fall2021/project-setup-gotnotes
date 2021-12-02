@@ -1,35 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
+import "./styles.scss";
 
 export const MessageInput = ({ props }) => {
 
-  const mockinputMessage = [
-    {
-      chatID: 1,
-      chatContent:
-        {
-          message: "This is my test!",
-          messageBy: 1,
-          messageDate: "11/10/2020",
-        }
-    },
-  ];
-
   const chatID = props
-  const [inputMessage, setInputMessage] = useState({
-    message: "",
-    messageBy: chatID
-  })
+  const [inputMessage, setInputMessage] = useState("")
+
 
   const [userChatID, setUserChatID] = useState(null)
 
-  const handleChange = event => {
+  const onChange = event => {
     setInputMessage(event.target.value)
   }
 
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log("text sent!")
 
     axios("http://localhost:4000/:chatID/newMessage", {
       method: "POST",
@@ -39,6 +27,8 @@ export const MessageInput = ({ props }) => {
     })
       .then((res) => setUserChatID(res.data[0]))
       .catch((err) => console.log(err));
+
+    setInputMessage(event.target.value)
   }
 
 
@@ -58,22 +48,17 @@ export const MessageInput = ({ props }) => {
   //onclick function??
   return (
     <div className="message-input-container">
-      Message 
       
       <form onSubmit={handleSubmit}>
       <div>
-        <label>Input Message</label>
         <input
-          type="message"
-          name="message"
-          placeholder="Type Message"
-          onChange={handleChange}
+          type="text"
+          placeholder={"Type Message"}
           value={inputMessage}
+          onChange={onChange}
         />
       </div>
-      <button type="submit">
-        Send
-      </button>
+      <input type="submit" value="Send" />
     </form>
       {/**
        * here we need an input element

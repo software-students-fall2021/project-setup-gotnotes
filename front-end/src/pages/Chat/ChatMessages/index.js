@@ -9,20 +9,27 @@ const image =
 
 //make it look like mongo db, or the mock data
 //maybe ask mark
+
 const messages = [
   {
-    type: 0,
-    image,
-    text: "Hello! Good Morning!",
+    chatID: 1,
+    chatContent: {
+      message: "This is my test!",
+      messageBy: 1,
+      messageDate: "11/10/2020",
+    },
   },
   {
-    type: 1,
-    image,
-    text: "Hello! Good Afternoon!",
+    chatID: 2,
+    chatContent: {
+      message: "Right back at you",
+      messageBy: 2,
+      messageDate: "11/11/2021",
+    },
   },
 ];
 
-const userID = "some email from the messages array above"
+const userID = 1;
 
 const ChatMessages = ({ props }) => {
   const [userInputState, setUserInputState] = useState("");
@@ -30,13 +37,13 @@ const ChatMessages = ({ props }) => {
   return (
     <div className="chat-messages-container">
       <div className="chat-bubbles-container">
-        {messages.map((message) => <ChatBubble props={{ message, userID }} />)}
+        {messages.map((message) => (
+          <ChatBubble props={{ message, userID }} />
+        ))}
+        <view>{console.log("My Message:", messages[0].chatContent.message)}</view>
       </div>
       <div className="message-input-container">
-        <MessageInput>
-          
-        </MessageInput>
-
+        <MessageInput></MessageInput>
       </div>
     </div>
   );

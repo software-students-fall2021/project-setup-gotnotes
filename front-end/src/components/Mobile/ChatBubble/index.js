@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import UserAvatar from "../UserAvatar";
 import "./styles.scss";
 
 const ChatBubble = ({ props }) => {
@@ -9,18 +9,30 @@ const ChatBubble = ({ props }) => {
 
   useEffect(() => {
     //I don't know whether this field actually exists...
-    message.userID == userID
+    message.chatID == userID
       ? setIsUserCurrentUser(true)
       : setIsUserCurrentUser(false);
   }, []);
 
   return (
     <div className={`chat-bubble ${isUserCurrentUser ? "right" : "left"}`}>
-      <div>{/* add the messages.userphoto using getAvatar url component*/}</div>
-      <div>{/* add the message text iteself*/}</div>
+      <div className={"user-avatar-component-container"}>
+        <UserAvatar
+          props={{
+            userAvatarUrl: userID.userAvatarUrl,
+            size: "small",
+          }}
+        />
+      </div>
+
+      <div classname="message">
+        <text>
+          {message.chatContent.message}
+          <view>{console.log("userID: ", userID)}</view>
+        </text>
+      </div>
     </div>
   );
-  
 };
 
 /**
