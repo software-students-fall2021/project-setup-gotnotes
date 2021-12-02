@@ -93,9 +93,7 @@ exports.update_course_arr = async (req, res) => {
 
 exports.update_user_subscription = async (req, res) => {
   try {
-    const { documentId, type } = JSON.parse(
-      req.body.updateData
-    );
+    const { documentId, type } = JSON.parse(req.body.updateData);
     if (!(documentId && type))
       throw new Error(
         "please include a documentId, type in req.body.updateData"
@@ -109,7 +107,7 @@ exports.update_user_subscription = async (req, res) => {
       type,
       "subscribed",
       documentId
-    )
+    );
 
     const course = await CourseService.get_course_by_id(documentId);
 

@@ -147,4 +147,3 @@ exports.user_detail = async function (req, res) {
     res.send([{ error: err.message }]);
   }
 };
-
