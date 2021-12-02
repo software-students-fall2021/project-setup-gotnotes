@@ -54,12 +54,4 @@ var UserSchema = new Schema({
   ],
 });
 
-// UserSchema.virtual("email").get(function () {
-//   return this.email;
-// });
-
-// virtual needed for like dislike comment counts
-// ^^note from apuya, virtual not needed because it's a real path in schema?
-
-//Export model
 module.exports = mongoose.model("User", UserSchema);

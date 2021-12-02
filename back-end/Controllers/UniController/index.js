@@ -1,6 +1,7 @@
 const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 
 const UniService = require("./../../Services/UniService");
+const UserService = require("./../../Services/UserService");
 
 // Display list of all unis.
 exports.get_all_unis = async function (req, res) {
@@ -89,6 +90,48 @@ exports.update_uni_arr = async function (req, res) {
       type,
       fieldName,
       referenceId
+    );
+
+    if (!queryResult) throw new Error("No such Uni");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+};
+
+exports.update_user_enrollment = async function (req, res) {
+  try {
+    const { documentId, type } = JSON.parse(req.body.updateData);
+    if (!(documentId && type))
+      throw new Error(
+        "please include a documentId, type in req.body.updateData"
+      );
+
+    const user = check_auth(req);
+
+    const addCourseToUser =
+      type === "add"
+        ? await UserService.update_user_scalar_by_email_or_username(
+            user.email,
+            {
+              userUni: documentId,
+            }
+          )
+        : await UserService.update_user_scalar_by_email_or_username(
+            user.email,
+            {
+              userUni: null,
+            }
+          );
+
+    const uni = await UniService.get_uni_by_id(documentId);
+
+    const queryResult = await UniService.update_uni_arr_by_uni_id(
+      uni,
+      type,
+      "uniStudents",
+      user._id
     );
 
     if (!queryResult) throw new Error("No such Uni");

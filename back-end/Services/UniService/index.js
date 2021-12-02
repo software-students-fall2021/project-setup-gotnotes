@@ -31,6 +31,7 @@ exports.create_uni = async (uniName, uniLogoPath) => {
     });
   return returnObj;
 };
+
 exports.update_uni_scalar_by_uni_id = async (uniId, updateObject) => {
   return await Uni.findOneAndUpdate(
     { _id: uniId },
@@ -40,6 +41,7 @@ exports.update_uni_scalar_by_uni_id = async (uniId, updateObject) => {
     .populate("uniCourses")
     .populate("uniStudents");
 };
+
 exports.update_uni_arr_by_uni_id = async (
   uni,
   type,

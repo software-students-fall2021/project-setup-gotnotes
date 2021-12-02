@@ -1,7 +1,8 @@
 const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 
-const UniService = require("./../../Services/UniService");
 const CourseService = require("./../../Services/CourseService");
+const UniService = require("./../../Services/UniService");
+const UserService = require("./../../Services/UserService");
 
 exports.get_all_courses = async (req, res) => {
   res.json(await CourseService.get_all_courses());
@@ -20,13 +21,13 @@ exports.create_course = async (req, res) => {
       throw new Error("Please include courseName and uniId in req.body");
 
     const addedCourse = await CourseService.create_course(courseName, uniId);
-    const uni = await UniService.get_uni_by_id(uniId)
+    const uni = await UniService.get_uni_by_id(uniId);
     const addToUni = await UniService.update_uni_arr_by_uni_id(
       uni,
       "add",
       "uniCourses",
       addedCourse.course._id
-    )
+    );
 
     if (addedCourse.dbSaveError) throw new Error(dbSaveError);
 
@@ -80,6 +81,43 @@ exports.update_course_arr = async (req, res) => {
       type,
       fieldName,
       referenceId
+    );
+
+    if (!queryResult) throw new Error("No such Course");
+
+    res.json([queryResult]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+};
+
+exports.update_user_subscription = async (req, res) => {
+  try {
+    const { documentId, type } = JSON.parse(
+      req.body.updateData
+    );
+    if (!(documentId && type))
+      throw new Error(
+        "please include a documentId, type in req.body.updateData"
+      );
+
+    const user = check_auth(req);
+
+    const addCourseToUser = UserService.update_user_arr_by_email_or_username(
+      user.email,
+      user,
+      type,
+      "subscribed",
+      documentId
+    )
+
+    const course = await CourseService.get_course_by_id(documentId);
+
+    const queryResult = await CourseService.update_course_arr_by_course_id(
+      course,
+      type,
+      "subscribed",
+      user._id
     );
 
     if (!queryResult) throw new Error("No such Course");

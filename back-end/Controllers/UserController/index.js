@@ -11,6 +11,8 @@ const validate = require("./../../Services/Validation");
 const UserService = require("./../../Services/UserService");
 const UniService = require("./../../Services/UniService");
 
+//TODO refresh tokens need to be implemented
+
 exports.login_user = async function (req, res) {
   const { usernameOrEmail, password } = req.body;
 
@@ -140,15 +142,9 @@ exports.update_user_arr = async function (req, res) {
 // Display detail page for a specific user.
 exports.user_detail = async function (req, res) {
   try {
-    const user = await check_auth(req);
-
-    res.json(user);
+    res.json(await check_auth(req));
   } catch (err) {
     res.send([{ error: err.message }]);
   }
 };
 
-// Display list of all users.
-exports.user_list = function (req, res) {
-  res.send("NOT IMPLEMENTED: user list: ");
-};
