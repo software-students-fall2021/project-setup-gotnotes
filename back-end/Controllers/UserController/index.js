@@ -13,6 +13,7 @@ exports.user_list = function (req, res) {
 // Display detail page for a specific user.
 exports.user_detail = function (req, res) {
   const currentUser = UserService.get_user(req.body.userID);
+  console.log("current user", currentUser)
   res.send(currentUser);
 };
 

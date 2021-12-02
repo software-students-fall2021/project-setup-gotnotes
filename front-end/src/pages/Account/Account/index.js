@@ -12,6 +12,27 @@ const editUserData = () => {
 export const Account = ({ props }) => {
   const userID = "cdies0@netlog.com";
 
+  const mockUserData = {
+    userID: "cdies0@netlog.com",
+    username: "cdies0",
+    isAdmin: true,
+    userAvatarUrl: "http://dummyimage.com/210x100.png/dddddd/000000",
+    firstName: "Celia",
+    lastName: "Dies",
+    userSubscribed: [{ courseID: 11 }],
+    userLiked: [
+      { fileID: 54 },
+      { fileID: 67 },
+      { fileID: 38 },
+      { fileID: 17 }
+    ],
+    userDisliked: [
+      { fileID: 12 },
+      { fileID: 66 },
+      { fileID: 24 },
+    ],
+  }
+
   const [isEditActive, setIsEditActive] = useState(null);
   const [userData, setUserData] = useState(null);
 

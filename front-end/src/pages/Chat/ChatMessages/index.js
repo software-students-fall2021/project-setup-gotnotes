@@ -32,7 +32,7 @@ const messages = [
 const userID = 1;
 
 const ChatMessages = ({ props }) => {
-  const [userInputState, setUserInputState] = useState("");
+  //const [userInputState, setUserInputState] = useState("");
 
   return (
     <div className="chat-messages-container">
