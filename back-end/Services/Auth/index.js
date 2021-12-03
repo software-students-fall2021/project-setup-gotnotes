@@ -14,7 +14,7 @@ exports.check_jwt = (token) => {
 exports.check_auth = async (req) => {
   const token = req.headers.authorization.split(" ")[1];
 
-  const jwtContents = check_jwt(token);
+  const jwtContents = exports.check_jwt(token);
 
   if (!jwtContents)
     throw new Error("Your session is expired, please sign in again");
@@ -31,7 +31,7 @@ exports.check_auth = async (req) => {
 exports.check_auth_with_admin = async (req) => {
   const token = req.headers.authorization.split(" ")[1];
 
-  const jwtContents = check_jwt(token);
+  const jwtContents = exports.check_jwt(token);
 
   if (!jwtContents)
     throw new Error("Your session is expired, please sign in again");

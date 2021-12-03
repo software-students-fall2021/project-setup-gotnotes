@@ -37,10 +37,9 @@ exports.get_user_by_email_or_username = async (usernameOrEmail) => {
     $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
   })
     .populate("subscribed")
-    .populater("likes")
-    .populater("dislikes")
+    .populate("likes")
+    .populate("dislikes")
     .populate("shared")
-    .populate("comments")
     .then((user) => {
       returnObj.user = user;
     });
@@ -54,10 +53,10 @@ exports.make_admin = async (usernameOrEmail, isAdminNew) => {
     { new: true }
   )
     .populate("subscribed")
-    .populater("likes")
-    .populater("dislikes")
+    .populate("likes")
+    .populate("dislikes")
     .populate("shared")
-    .populate("comments");
+  ;
 };
 
 exports.update_user_scalar_by_email_or_username = async (
@@ -70,10 +69,10 @@ exports.update_user_scalar_by_email_or_username = async (
     { new: true }
   )
     .populate("subscribed")
-    .populater("likes")
-    .populater("dislikes")
+    .populate("likes")
+    .populate("dislikes")
     .populate("shared")
-    .populate("comments");
+    ;
 };
 
 exports.update_user_arr_by_email_or_username = async (
@@ -104,10 +103,10 @@ exports.update_user_arr_by_email_or_username = async (
     { new: true }
   )
     .populate("subscribed")
-    .populater("likes")
-    .populater("dislikes")
+    .populate("likes")
+    .populate("dislikes")
     .populate("shared")
-    .populate("comments");
+    ;
 };
 
 exports.delete_user = (userID) => {
