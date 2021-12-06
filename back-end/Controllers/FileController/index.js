@@ -168,6 +168,12 @@ exports.update_user_like_dislike = async (req, res) => {
 exports.delete_file = async (req, res) => {
   try {
     const user = await check_auth(req);
+    const { fileId } = req.body;
+    if (!fileId) throw new Error("please include fileId");
+    const file = FileService.get_file_by_id(fileId);
+    if (file.sharedBy.toString() != user._id)
+      throw new Error("You can only delete a file you have shared");
+    await FileService.delete_file_by_file_id(fileId)
     await gfs.files.deleteOne({ filename: req.params.filename });
     res.json([{ message: "success" }]);
   } catch (err) {
