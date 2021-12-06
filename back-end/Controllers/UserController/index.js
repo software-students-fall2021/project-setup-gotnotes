@@ -101,7 +101,7 @@ exports.user_change_admin_status = async function (req, res) {
 exports.update_user_scalar = async function (req, res) {
   //getting jwt token of the user
   try {
-    const updateObject = JSON.parse(req.body.updateData);
+    const updateObject = JSON.parse(req.body);
     const user = await check_auth(req);
 
     const queryResult =
@@ -120,7 +120,7 @@ exports.update_user_scalar = async function (req, res) {
 
 exports.update_user_arr = async function (req, res) {
   try {
-    const { type, fieldName, referenceId } = req.body.updateData;
+    const { type, fieldName, referenceId } = req.body;
     const user = await check_auth(req);
 
     const queryResult = await UserService.update_user_arr_by_email_or_username(

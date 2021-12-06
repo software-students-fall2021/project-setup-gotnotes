@@ -48,11 +48,11 @@ exports.create_file = async (req, res) => {
 exports.update_file_scalar_by_file_id = async (req, res) => {
   try {
     const user = await check_auth(req);
-    const { documentId, updateObject } = JSON.parse(req.body.updateData);
+    const { documentId, updateObject } = JSON.parse(req.body);
 
     if (!(documentId && updateObject))
       throw new Error(
-        "Please provide a documentId for the Uni and an updateObject with relevant fields in req.body.updateData"
+        "Please provide a documentId for the Uni and an updateObject with relevant fields in req.body"
       );
 
     const queryResult = await FileService.update_file_scalar_by_file_id(
@@ -70,12 +70,10 @@ exports.update_file_scalar_by_file_id = async (req, res) => {
 
 exports.update_file_arr_by_file_id = async (req, res) => {
   try {
-    const { documentId, type, fieldName, referenceId } = JSON.parse(
-      req.body.updateData
-    );
+    const { documentId, type, fieldName, referenceId } = JSON.parse(req.body);
     if (!(documentId && type && fieldName && referenceId))
       throw new Error(
-        "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
+        "please include a documentId, type, fieldName, and referenceId in req.body"
       );
 
     const user = await check_auth(req);
@@ -99,11 +97,9 @@ exports.update_file_arr_by_file_id = async (req, res) => {
 
 exports.update_user_like_dislike = async (req, res) => {
   try {
-    const { documentId, type, likeDislike } = JSON.parse(req.body.updateData);
+    const { documentId, type, likeDislike } = JSON.parse(req.body);
     if (!(documentId && type && likeDislike))
-      throw new Error(
-        "please include a documentId, type in req.body.updateData"
-      );
+      throw new Error("please include a documentId, type in req.body");
 
     const user = await check_auth(req);
 

@@ -33,7 +33,7 @@ exports.create_uni = async function (req, res) {
 };
 /**
  *
- * @param {*} req expects a req.body.updateData = {documentId: ObjectId, updateObject: object with some scalar keys of uni model and new values }, req.headers.authorization needs to include a "Bearer jwtTokenHere"
+ * @param {*} req expects a req.body = {documentId: ObjectId, updateObject: object with some scalar keys of uni model and new values }, req.headers.authorization needs to include a "Bearer jwtTokenHere"
  * @param {*} res
  *
  */
@@ -41,11 +41,11 @@ exports.update_uni_scalar = async function (req, res) {
   //getting jwt token of the user
   try {
     const user = await check_auth_with_admin(req);
-    const { documentId, updateObject } = JSON.parse(req.body.updateData);
+    const { documentId, updateObject } = JSON.parse(req.body);
 
     if (!(documentId && updateObject))
       throw new Error(
-        "Please provide a documentId for the Uni and an updateObject with relevant fields in req.body.updateData"
+        "Please provide a documentId for the Uni and an updateObject with relevant fields in req.body"
       );
 
     const queryResult = await UniService.update_uni_scalar_by_uni_id(
@@ -64,7 +64,7 @@ exports.update_uni_scalar = async function (req, res) {
 /**
  *
  * @param {*} req
- * expects a req.body.updateData = {
+ * expects a req.body = {
  * documentId: ObjectId,
  * type: "add"|"remove",
  * fieldName: string (needs to be the key of an arr field that exists in a user obj),
@@ -73,12 +73,10 @@ exports.update_uni_scalar = async function (req, res) {
  */
 exports.update_uni_arr = async function (req, res) {
   try {
-    const { documentId, type, fieldName, referenceId } = JSON.parse(
-      req.body.updateData
-    );
+    const { documentId, type, fieldName, referenceId } = JSON.parse(req.body);
     if (!(documentId && type && fieldName && referenceId))
       throw new Error(
-        "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
+        "please include a documentId, type, fieldName, and referenceId in req.body"
       );
 
     const user = await check_auth_with_admin(req);
@@ -102,11 +100,9 @@ exports.update_uni_arr = async function (req, res) {
 
 exports.update_user_enrollment = async function (req, res) {
   try {
-    const { documentId, type } = JSON.parse(req.body.updateData);
+    const { documentId, type } = JSON.parse(req.body);
     if (!(documentId && type))
-      throw new Error(
-        "please include a documentId, type in req.body.updateData"
-      );
+      throw new Error("please include a documentId, type in req.body");
 
     const user = await check_auth(req);
 

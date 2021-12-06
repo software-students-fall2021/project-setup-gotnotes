@@ -2,11 +2,21 @@ const { check_auth } = require("./../../Services/Auth");
 
 const UserService = require("./../../Services/UserService");
 const CommentService = require("./../../Services/CommentService");
-
+/**
+ *
+ * @param {{body:{fileId}}} req
+ * @param {*} res
+ * @returns {[comment]}
+ */
 exports.get_comments_by_file_id = async (req, res) => {
   res.json(await CommentService.get_comments_by_file_id(req.body.fileId));
 };
-
+/**
+ *
+ * @param {{body:{content, fileId, parentCommentId}}} req
+ * @param {*} res
+ * @returns {[{comment}] | [{error: String}]} res.queryResult
+ */
 exports.create_comment = async (req, res) => {
   try {
     const user = await check_auth(req);
@@ -39,7 +49,12 @@ exports.create_comment = async (req, res) => {
     res.json([{ error: err.message }]);
   }
 };
-
+/**
+ *
+ * @param {{body:{content, fileId, parentCommentId, commentId}}} req
+ * @param {*} res
+ * @returns {[{comment}] | [{error: String}]} res.queryResult
+ */
 exports.update_comment = async (req, res) => {
   try {
     const user = await check_auth(req);
@@ -67,14 +82,17 @@ exports.update_comment = async (req, res) => {
     res.json([{ error: err.message }]);
   }
 };
-
+/**
+ *
+ * @param {{body:{ documentId, type, likeDislike}}} req
+ * @param {*} res
+ * @returns {[{comment}] | [{error: String}]} res.queryResult
+ */
 exports.update_user_like_dislike = async (req, res) => {
   try {
-    const { documentId, type, likeDislike } = JSON.parse(req.body.updateData);
+    const { documentId, type, likeDislike } = JSON.parse(req.body);
     if (!(documentId && type && likeDislike))
-      throw new Error(
-        "please include a documentId, type in req.body.updateData"
-      );
+      throw new Error("please include a documentId, type in req.body");
 
     const user = await check_auth(req);
 
