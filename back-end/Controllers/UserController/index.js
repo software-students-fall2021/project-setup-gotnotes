@@ -9,7 +9,6 @@ const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 const validate = require("./../../Services/Validation");
 
 const UserService = require("./../../Services/UserService");
-const UniService = require("./../../Services/UniService");
 
 //TODO refresh tokens need to be implemented
 
@@ -37,13 +36,13 @@ exports.get_current_user = async function (req, res) {
 };
 
 exports.login_user = async function (req, res) {
-  const { usernameOrEmail, password } = req.body;
-
-  if (!(usernameOrEmail && password)) {
-    res.json([{ error: "Please enter all fields" }]);
-    return;
-  }
   try {
+    console.log(req)
+    const { usernameOrEmail, password } = req.body;
+
+    if (!(usernameOrEmail && password))
+      throw new Error("Please enter all fields");
+
     const { user } = await UserService.get_user_by_email_or_username(
       usernameOrEmail
     );

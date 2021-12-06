@@ -2,7 +2,6 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 
 const express = require("express");
-const fileUpload = require("express-fileupload");
 const cors = require("cors");
 
 const {
@@ -12,13 +11,12 @@ const {
   searchRouter,
   authRouter,
 } = require("./Routes");
-const { db_connect } = require("./Services/Database");
-db_connect();
+const { connection } = require("./Services/Database");
+connection();
 
 const app = express();
 
 app.use(cors());
-app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

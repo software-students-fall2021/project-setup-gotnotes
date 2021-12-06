@@ -1,7 +1,19 @@
 const { check_auth } = require("./../../Services/Auth");
 
+const mongoose = require("mongoose");
+const Grid = require("gridfs-stream");
+
 const FileService = require("./../../Services/FileService");
 const UserService = require("./../../Services/UserService");
+const upload = require("./../../Middleware");
+
+let gfs;
+const conn = mongoose.connection;
+
+conn.once("open", () => {
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
 
 exports.get_all_files = async (req, res) => {
   res.json(await FileService.get_all_files());
@@ -9,7 +21,15 @@ exports.get_all_files = async (req, res) => {
 exports.get_file_by_id = async (req, res) => {
   res.json(await FileService.get_file_by_id(req.body.fileId));
 };
-
+exports.get_file_stream = async (req, res) => {
+  try {
+    const file = await gfs.files.findOne({ filename: req.params.filename });
+    const readStream = gfs.createReadStream(file.filename);
+    readStream.pipe(res);
+  } catch (err) {
+    res.json([{ error: err.message }]);
+  }
+};
 exports.create_file = async (req, res) => {
   try {
     const user = await check_auth(req);
@@ -40,6 +60,19 @@ exports.create_file = async (req, res) => {
       );
 
     res.json([queryResult]);
+  } catch (err) {
+    res.json([{ error: err.message }]);
+  }
+};
+
+exports.upload_file = upload.single("file");
+
+exports.get_file_link = async (req, res) => {
+  try {
+    const user = await check_auth(req);
+    if (req.file === undefined) throw new Error("Please include a file");
+    const fileUrl = `http://localhost:${process.env.PORT}/files/uploads/${req.file.filename}`;
+    res.json([{ uri: fileUrl }]);
   } catch (err) {
     res.json([{ error: err.message }]);
   }
@@ -126,6 +159,23 @@ exports.update_user_like_dislike = async (req, res) => {
     if (!queryResult) throw new Error("No such File");
 
     res.json([queryResult]);
+  } catch (err) {
+    res.json([{ error: err.message }]);
+  }
+};
+
+//concurrent deletion of both file meta data and the chunks
+exports.delete_file = async (req, res) => {
+  try {
+    const user = await check_auth(req);
+    const { fileId } = req.body;
+    if (!fileId) throw new Error("please include fileId");
+    const file = FileService.get_file_by_id(fileId);
+    if (file.sharedBy.toString() != user._id)
+      throw new Error("You can only delete a file you have shared");
+    await FileService.delete_file_by_file_id(fileId);
+    await gfs.files.deleteOne({ filename: req.params.filename });
+    res.json([{ message: "success" }]);
   } catch (err) {
     res.json([{ error: err.message }]);
   }
