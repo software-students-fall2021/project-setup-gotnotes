@@ -62,7 +62,7 @@ export const Account = ({ props }) => {
           }}
         />
       </div>
-      {isEditActive && (
+      {isEditActive ? (
         <div className="edit-page">
           <form
             onSubmit={(e) => {
@@ -74,44 +74,67 @@ export const Account = ({ props }) => {
               });
             }}
           >
-            <input
-              type="text"
-              placeholder={userData.firstName}
-              value={userInputState.firstName}
-              onChange={(e) =>
-                setUserInputState({
-                  ...userInputState,
-                  firstName: e.target.value,
-                })
-              }
-            />
-            <input type="submit" value="Submit Edits" />
-            <input
-              type="text"
-              placeholder={userData.lastName}
-              value={userInputState.lastName}
-              onChange={(e) =>
-                setUserInputState({
-                  ...userInputState,
-                  lastName: e.target.value,
-                })
-              }
-            />
+            <div className="first-name-box">
+              <input
+                type="text"
+                placeholder={userData.firstName}
+                value={userInputState.firstName}
+                onChange={(e) =>
+                  setUserInputState({
+                    ...userInputState,
+                    firstName: e.target.value,
+                  })
+                }
+              />
+              <input type="submit" value="Submit Edits" />
+            </div>
 
-            <input type="submit" value="Submit Edits" />
-            <input
-              type="text"
-              placeholder={userData.username}
-              value={userInputState.username}
-              onChange={(e) =>
-                setUserInputState({
-                  ...userInputState,
-                  username: e.target.value,
-                })
-              }
-            />
+            <div className="last-name-box">
+              <input
+                type="text"
+                placeholder={userData.lastName}
+                value={userInputState.lastName}
+                onChange={(e) =>
+                  setUserInputState({
+                    ...userInputState,
+                    lastName: e.target.value,
+                  })
+                }
+              />
 
-            <input type="submit" value="Submit Edits" />
+              <input type="submit" value="Submit Edits" />
+            </div>
+
+            <div className="email-box">
+              <input
+                type="text"
+                placeholder={userData.username}
+                value={userInputState.username}
+                onChange={(e) =>
+                  setUserInputState({
+                    ...userInputState,
+                    username: e.target.value,
+                  })
+                }
+              />
+
+              <input type="submit" value="Submit Edits" />
+            </div>
+            <div className="user-name-box">
+              <input
+                type="text"
+                placeholder={userData.userID}
+                value={userInputState.userID}
+                onChange={(e) =>
+                  setUserInputState({
+                    ...userInputState,
+                    userID: e.target.value,
+                  })
+                }
+              />
+
+              <input type="submit" value="Submit Edits" />
+            </div>
           </form>
 
           <div classname="submit-button">
@@ -127,24 +150,15 @@ export const Account = ({ props }) => {
             </form>
           </div>
         </div>
-      )}
-      {!isEditActive && (
+      ) : (
         <div className="account-list">
           <div classname="display-user-data">
-            <h4>{userData.username}</h4>
             <h4>{userData.firstName}</h4>
             <h4>{userData.lastName}</h4>
+            <h4>{userData.username}</h4>
             <h4>{userData.userID}</h4>
-          </div>
-
-          <div className="user-data-viewer-container">
-            <UserDataViewer
-              props={{
-                userData: userData.userID,
-                avatarSize: "large",
-                username: userData.username,
-              }}
-            />
+            <h4>{userData.userLiked.fileID}</h4>
+            
           </div>
 
           <div classname="submit-button">
@@ -157,8 +171,12 @@ export const Account = ({ props }) => {
               <input type="submit" value="Edit" />
             </form>
           </div>
+          <div classname="user-likes-container">
+              
+          </div>
           <view>{console.log("userData: ", userData.firstName)}</view>
         </div>
+
       )}
       {/*
             You might wanna have a look at the UserAvatar component that I wrote a while back
