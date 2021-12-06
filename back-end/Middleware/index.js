@@ -1,4 +1,6 @@
 const multer = require("multer");
+const path = require("path");
+const crypto = require("crypto");
 const { GridFsStorage } = require("multer-gridfs-storage");
 
 const { db_url } = require("./../Services/Database");
@@ -6,18 +8,22 @@ const { db_url } = require("./../Services/Database");
 const storage = new GridFsStorage({
   url: db_url,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
-  file: (req, file) => {
-    const match = ["image/png", "image/jpeg"];
+  file: (_, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        const fileInfo = {
+          filename: "",
+          bucketName: "uploads",
+        };
 
-    if (match.indexOf(file.mimetype) === -1) {
-      const filename = `${Date.now()}-any-name-${file.originalname}`;
-      return filename;
-    }
+        if (err) return reject(err);
 
-    return {
-      bucketName: "photos",
-      filename: `${Date.now()}-any-name-${file.originalname}`,
-    };
+        fileInfo.filename =
+          buf.toString("hex") + path.extname(file.originalname);
+
+        resolve(fileInfo);
+      });
+    });
   },
 });
 
