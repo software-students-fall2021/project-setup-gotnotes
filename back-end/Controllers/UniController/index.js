@@ -16,7 +16,7 @@ exports.get_uni_by_id = async function (req, res) {
 // Handle uni create on POST.
 exports.create_uni = async function (req, res) {
   try {
-    const user = check_auth_with_admin(req);
+    const user = await check_auth_with_admin(req);
     const { uniName, uniLogoPath } = req.body;
 
     if (!(uniName && uniLogoPath))
@@ -28,7 +28,7 @@ exports.create_uni = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };
 /**
@@ -40,7 +40,7 @@ exports.create_uni = async function (req, res) {
 exports.update_uni_scalar = async function (req, res) {
   //getting jwt token of the user
   try {
-    const user = check_auth_with_admin(req);
+    const user = await check_auth_with_admin(req);
     const { documentId, updateObject } = JSON.parse(req.body.updateData);
 
     if (!(documentId && updateObject))
@@ -57,7 +57,7 @@ exports.update_uni_scalar = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };
 
@@ -81,7 +81,7 @@ exports.update_uni_arr = async function (req, res) {
         "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
       );
 
-    const user = check_auth_with_admin(req);
+    const user = await check_auth_with_admin(req);
 
     const uni = await UniService.get_uni_by_id(documentId);
 
@@ -96,7 +96,7 @@ exports.update_uni_arr = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };
 
@@ -108,7 +108,7 @@ exports.update_user_enrollment = async function (req, res) {
         "please include a documentId, type in req.body.updateData"
       );
 
-    const user = check_auth(req);
+    const user = await check_auth(req);
 
     const addCourseToUser =
       type === "add"
@@ -138,6 +138,6 @@ exports.update_user_enrollment = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };

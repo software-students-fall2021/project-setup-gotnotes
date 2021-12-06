@@ -32,7 +32,7 @@ exports.create_file = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };
 
@@ -55,7 +55,7 @@ exports.update_file_scalar_by_file_id = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };
 
@@ -84,7 +84,7 @@ exports.update_file_arr_by_file_id = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };
 
@@ -122,6 +122,6 @@ exports.update_user_like_dislike = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.json([{ error: err.message }]);
   }
 };

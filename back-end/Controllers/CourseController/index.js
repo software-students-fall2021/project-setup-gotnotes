@@ -1,4 +1,4 @@
-const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
+const { check_auth } = require("./../../Services/Auth");
 
 const CourseService = require("./../../Services/CourseService");
 const UniService = require("./../../Services/UniService");
@@ -14,7 +14,7 @@ exports.get_course_by_id = async (req, res) => {
 
 exports.create_course = async (req, res) => {
   try {
-    const user = check_auth(req);
+    const user = await check_auth(req);
     const { courseName, uniId } = req.body;
 
     if (!(courseName && uniId))
@@ -41,7 +41,7 @@ exports.create_course = async (req, res) => {
 exports.update_course_scalar = async (req, res) => {
   try {
     //FIXME there needs to be a createdBy field for all the db we have, so that only the one who created it can edit it, or an admin user
-    const user = check_auth(req);
+    const user = await check_auth(req);
     const { documentId, updateObject } = JSON.parse(req.body.updateData);
 
     if (!(documentId && updateObject))
@@ -72,7 +72,7 @@ exports.update_course_arr = async (req, res) => {
         "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
       );
 
-    const user = check_auth(req);
+    const user = await check_auth(req);
 
     const course = await CourseService.get_course_by_id(documentId);
 
@@ -99,7 +99,7 @@ exports.update_user_subscription = async (req, res) => {
         "please include a documentId, type in req.body.updateData"
       );
 
-    const user = check_auth(req);
+    const user = await check_auth(req);
 
     const addCourseToUser = UserService.update_user_arr_by_email_or_username(
       user.email,
