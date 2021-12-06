@@ -3,6 +3,9 @@ const { check_auth } = require("./../../Services/Auth");
 const FileService = require("./../../Services/FileService");
 const UserService = require("./../../Services/UserService");
 
+const { fileUploadService } = require("./../../Services/FileUploadService");
+const { upload, storage, gfs } = fileUploadService;
+
 exports.get_all_files = async (req, res) => {
   res.json(await FileService.get_all_files());
 };
@@ -130,3 +133,45 @@ exports.update_user_like_dislike = async (req, res) => {
     res.json([{ error: err.message }]);
   }
 };
+
+exports.upload_file = async (req, res) => {
+  res.json([{ file: req.file }]);
+};
+
+// // @route POST /upload
+// // @desc  Uploads file to DB
+// app.post("/upload", upload.single("file"), (req, res) => {
+//   // res.json({ file: req.file });
+//   res.redirect("/");
+// });
+
+// // @route GET /files
+// // @desc  Display all files in JSON
+// app.get("/files", (req, res) => {
+//   gfs.files.find().toArray((err, files) => {
+//     // Check if files
+//     if (!files || files.length === 0) {
+//       return res.status(404).json({
+//         err: "No files exist",
+//       });
+//     }
+
+//     // Files exist
+//     return res.json(files);
+//   });
+// });
+
+// // @route GET /files/:filename
+// // @desc  Display single file object
+// app.get("/files/:filename", (req, res) => {
+//   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+//     // Check if file
+//     if (!file || file.length === 0) {
+//       return res.status(404).json({
+//         err: "No file exists",
+//       });
+//     }
+//     // File exists
+//     return res.json(file);
+//   });
+// });

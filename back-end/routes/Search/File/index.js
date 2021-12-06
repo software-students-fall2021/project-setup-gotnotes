@@ -4,8 +4,12 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { fileController } = require("../../../Controllers");
 
+const { fileUploadService } = require("./../../../Services/FileUploadService");
+
 //list file
 router.get("/", fileController.get_all_files);
+
+router.post("/upload", fileUploadService.upload.single("file"), fileController.upload_file);
 
 router.post("/:fileName", fileController.get_file_by_id);
 router.post("/create-file", fileController.create_file);
