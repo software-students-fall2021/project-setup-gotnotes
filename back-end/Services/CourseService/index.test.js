@@ -3,9 +3,9 @@ const chai = require("chai");
 const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
-const CourseService = require("./index");
-const courseData = CourseService.courseData;
-const testCourse = courseData[0];
+// const CourseService = require("./index");
+// const courseData = CourseService.courseData;
+// const testCourse = courseData[0];
 
 // describe("CourseService", function () {
 //   describe("get_course()", function () {

@@ -3,9 +3,9 @@ const chai = require("chai");
 const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
-var UserService = require("./index");
-const userData = require("./../../Mock/UsersMockData/users.json");
-const testUser = userData[0];
+// var UserService = require("./index");
+// const userData = require("./../../Mock/UsersMockData/users.json");
+// const testUser = userData[0];
 
 // describe("UserService", function () {
 //   describe("get_user()", function () {

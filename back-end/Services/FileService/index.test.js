@@ -3,9 +3,9 @@ const chai = require("chai");
 const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
-const FileService = require("./index");
-const fileData = FileService.fileData;
-const testFile = fileData[0];
+// const FileService = require("./index");
+// const fileData = FileService.fileData;
+// const testFile = fileData[0];
 
 // describe("FileService", function () {
 //   describe("get_file()", function () {
