@@ -20,7 +20,11 @@ exports.get_all_courses = async (req, res) => {
  * @returns {[{course}]}
  */
 exports.get_course_by_id = async (req, res) => {
-  res.json(await CourseService.get_course_by_id(req.params.courseId));
+  try {
+    res.json(await CourseService.get_course_by_id(req.params.courseId));
+  } catch (err) {
+    res.json([{ error: err.message }]);
+  }
 };
 
 /**
@@ -65,7 +69,7 @@ exports.update_course_scalar = async (req, res) => {
   try {
     //FIXME there needs to be a createdBy field for all the db we have, so that only the one who created it can edit it, or an admin user
     const user = await check_auth(req);
-    const { documentId, updateObject } = JSON.parse(req.body);
+    const { documentId, updateObject } = req.body;
 
     if (!(documentId && updateObject))
       throw new Error(
@@ -93,7 +97,7 @@ exports.update_course_scalar = async (req, res) => {
  */
 exports.update_course_arr = async (req, res) => {
   try {
-    const { documentId, type, fieldName, referenceId } = JSON.parse(req.body);
+    const { documentId, type, fieldName, referenceId } = req.body;
     if (!(documentId && type && fieldName && referenceId))
       throw new Error(
         "please include a documentId, type, fieldName, and referenceId in req.body"
@@ -125,11 +129,19 @@ exports.update_course_arr = async (req, res) => {
  */
 exports.update_user_subscription = async (req, res) => {
   try {
-    const { documentId, type } = JSON.parse(req.body);
+    const { documentId, type } = req.body;
     if (!(documentId && type))
       throw new Error("please include a documentId, type in req.body");
 
     const user = await check_auth(req);
+    const course = await CourseService.get_course_by_id(documentId);
+
+    if (
+      !course.courseUni.uniStudents.filter(
+        (obj) => obj._id.toString() == user._id.toString()
+      ).length
+    )
+      throw new Error("This Course is not offered at your Uni");
 
     const addCourseToUser =
       await UserService.update_user_arr_by_email_or_username(
@@ -139,8 +151,6 @@ exports.update_user_subscription = async (req, res) => {
         "subscribed",
         documentId
       );
-
-    const course = await CourseService.get_course_by_id(documentId);
 
     const queryResult = await CourseService.update_course_arr_by_course_id(
       course,

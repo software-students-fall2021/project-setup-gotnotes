@@ -12,7 +12,10 @@ exports.check_jwt = (token) => {
 };
 
 exports.check_auth = async (req) => {
-  const token = req.headers.authorization.split(" ")[1];
+  const authHeader = req.headers.authorization;
+  if (!authHeader) throw new Error("Please Sign in");
+
+  const token = authHeader.split(" ")[1];
 
   const jwtContents = exports.check_jwt(token);
 
@@ -29,7 +32,10 @@ exports.check_auth = async (req) => {
 };
 
 exports.check_auth_with_admin = async (req) => {
-  const token = req.headers.authorization.split(" ")[1];
+  const authHeader = req.headers.authorization;
+  if (!authHeader) throw new Error("Please Sign in");
+
+  const token = authHeader.split(" ")[1];
 
   const jwtContents = exports.check_jwt(token);
 

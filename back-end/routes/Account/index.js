@@ -5,7 +5,7 @@ var router = express.Router({ mergeParams: true });
 var { userController } = require("../../Controllers");
 
 //just get the details of the user
-router.get("/", userController.user_detail);
+router.get("/", userController.get_current_user);
 
 //editing scalar type fields of the user
 router.post("/edit-scalar", userController.update_user_scalar);

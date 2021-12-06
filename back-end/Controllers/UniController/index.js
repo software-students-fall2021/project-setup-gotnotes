@@ -3,14 +3,20 @@ const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
 const UniService = require("./../../Services/UniService");
 const UserService = require("./../../Services/UserService");
 
-// Display list of all unis.
 exports.get_all_unis = async function (req, res) {
-  res.json(await UniService.get_all_unis());
+  try {
+    res.json(await UniService.get_all_unis());
+  } catch (err) {
+    res.json([{ error: err.message }]);
+  }
 };
 
-// Display detail page for a specific uni.
 exports.get_uni_by_id = async function (req, res) {
-  res.json(await UniService.get_uni_by_id(req.params.uniId));
+  try {
+    res.json(await UniService.get_uni_by_id(req.params.uniId));
+  } catch (err) {
+    res.json([{ error: err.message }]);
+  }
 };
 
 // Handle uni create on POST.
@@ -41,7 +47,7 @@ exports.update_uni_scalar = async function (req, res) {
   //getting jwt token of the user
   try {
     const user = await check_auth_with_admin(req);
-    const { documentId, updateObject } = JSON.parse(req.body);
+    const { documentId, updateObject } = req.body;
 
     if (!(documentId && updateObject))
       throw new Error(
@@ -73,7 +79,7 @@ exports.update_uni_scalar = async function (req, res) {
  */
 exports.update_uni_arr = async function (req, res) {
   try {
-    const { documentId, type, fieldName, referenceId } = JSON.parse(req.body);
+    const { documentId, type, fieldName, referenceId } = req.body;
     if (!(documentId && type && fieldName && referenceId))
       throw new Error(
         "please include a documentId, type, fieldName, and referenceId in req.body"
@@ -100,11 +106,22 @@ exports.update_uni_arr = async function (req, res) {
 
 exports.update_user_enrollment = async function (req, res) {
   try {
-    const { documentId, type } = JSON.parse(req.body);
+    const user = await check_auth(req);
+    
+    const { documentId, type } = req.body;
     if (!(documentId && type))
       throw new Error("please include a documentId, type in req.body");
 
-    const user = await check_auth(req);
+    const uni = await UniService.get_uni_by_id(documentId);
+
+    const queryResult = await UniService.update_uni_arr_by_uni_id(
+      uni,
+      type,
+      "uniStudents",
+      user._id
+    );
+
+    if (!queryResult) throw new Error("No such Uni");
 
     const addCourseToUser =
       type === "add"
@@ -120,17 +137,6 @@ exports.update_user_enrollment = async function (req, res) {
               userUni: null,
             }
           );
-
-    const uni = await UniService.get_uni_by_id(documentId);
-
-    const queryResult = await UniService.update_uni_arr_by_uni_id(
-      uni,
-      type,
-      "uniStudents",
-      user._id
-    );
-
-    if (!queryResult) throw new Error("No such Uni");
 
     res.json([queryResult]);
   } catch (err) {

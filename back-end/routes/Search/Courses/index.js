@@ -15,10 +15,7 @@ router.post("/edit-course-scalar", courseController.update_course_scalar);
 
 router.post("/edit-course-arr", courseController.update_course_arr);
 
-router.post(
-  "/update-user-subscription",
-  courseController.update_user_subscription
-);
+router.post("/update-subscription", courseController.update_user_subscription);
 
 router.post("/delete-course", (req, res) => {
   res.json([{ message: "Delete course not yet implemented" }]);

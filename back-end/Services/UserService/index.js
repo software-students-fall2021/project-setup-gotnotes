@@ -86,11 +86,17 @@ exports.update_user_arr_by_email_or_username = async (
   const newArr = [];
   if (
     type === "add" &&
-    !user[fieldName].filter((obj) => obj._id == referenceId).length
+    !user[fieldName].filter(
+      (obj) => obj._id.toString() == referenceId.toString()
+    ).length
   ) {
     newArr.push(referenceId, ...user[fieldName]);
   } else if (type === "remove") {
-    newArr.push(...user[fieldName].filter((obj) => obj._id != referenceId));
+    newArr.push(
+      ...user[fieldName].filter(
+        (obj) => obj._id.toString() != referenceId.toString()
+      )
+    );
   } else {
     throw new Error("Cannot add course twice");
   }
@@ -117,4 +123,3 @@ exports.delete_user = (userID) => {
     }
   });
 };
-

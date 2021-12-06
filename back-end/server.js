@@ -23,9 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/unis", searchRouter.unisRouter);
-app.use("/unis/:uni", searchRouter.coursesRouter);
-app.use("/unis/:uni/:course", searchRouter.fileRouter);
-//app.use("/unis/:uni/:course/:file", searchRouter.fileRouter);
+app.use("/courses", searchRouter.coursesRouter);
+app.use("/files", searchRouter.fileRouter);
 
 app.use("/comment", commentRouter);
 app.use("/chats", chatRouter);

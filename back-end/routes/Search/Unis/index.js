@@ -7,9 +7,6 @@ var { uniController } = require("../../../Controllers");
 //list all unis
 router.get("/", uniController.get_all_unis);
 
-//details of Uni
-router.get("/:uniId", uniController.get_uni_by_id);
-
 //enroll to a uni (logged in user only)
 router.post("/create-uni", uniController.create_uni);
 

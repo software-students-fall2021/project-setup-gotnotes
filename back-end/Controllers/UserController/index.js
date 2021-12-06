@@ -13,6 +13,29 @@ const UniService = require("./../../Services/UniService");
 
 //TODO refresh tokens need to be implemented
 
+// Display detail page for a specific user.
+exports.get_current_user = async function (req, res) {
+  try {
+    const user = await check_auth(req);
+    res.json([
+      {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        userUni: user.userUni,
+        subscribed: user.subscribed,
+        likes: user.likes,
+        dislikes: user.dislikes,
+        comments: user.comments,
+        shared: user.shared,
+      },
+    ]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
+};
+
 exports.login_user = async function (req, res) {
   const { usernameOrEmail, password } = req.body;
 
@@ -35,7 +58,22 @@ exports.login_user = async function (req, res) {
       { expiresIn: JWT_EXPIRATION_MINUTES }
     );
 
-    res.json([{ token: `Bearer ${token}` }]);
+    res.json([
+      {
+        token: `Bearer ${token}`,
+        user: {
+          username: user.username,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          userUni: user.userUni,
+          subscribed: user.subscribed,
+          likes: user.likes,
+          dislikes: user.dislikes,
+          comments: user.comments,
+          shared: user.shared,
+        },
+      },
+    ]);
   } catch (error) {
     res.json([{ error: error.message }]);
   }
@@ -68,7 +106,22 @@ exports.create_user = async function (req, res) {
       { expiresIn: JWT_EXPIRATION_MINUTES }
     );
 
-    res.json([{ token: `Bearer ${token}` }]);
+    res.json([
+      {
+        token: `Bearer ${token}`,
+        user: {
+          username: user.username,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          userUni: user.userUni,
+          subscribed: user.subscribed,
+          likes: user.likes,
+          dislikes: user.dislikes,
+          comments: user.comments,
+          shared: user.shared,
+        },
+      },
+    ]);
   } catch (error) {
     if (error.message.includes("E11000") && error.message.includes("email"))
       error.message = "A user with that email already exists";
@@ -92,7 +145,20 @@ exports.user_change_admin_status = async function (req, res) {
 
     if (!queryResult) throw new Error("No such user");
 
-    res.json([queryResult]);
+    res.json([
+      {
+        _id: queryResult._id,
+        username: queryResult.username,
+        email: queryResult.email,
+        isAdmin: queryResult.isAdmin,
+        userUni: queryResult.userUni,
+        subscribed: queryResult.subscribed,
+        likes: queryResult.likes,
+        dislikes: queryResult.dislikes,
+        comments: queryResult.comments,
+        shared: queryResult.shared,
+      },
+    ]);
   } catch (err) {
     res.send([{ error: err.message }]);
   }
@@ -112,7 +178,20 @@ exports.update_user_scalar = async function (req, res) {
 
     if (!queryResult) throw new Error("No such user");
 
-    res.json([queryResult]);
+    res.json([
+      {
+        _id: queryResult._id,
+        username: queryResult.username,
+        email: queryResult.email,
+        isAdmin: queryResult.isAdmin,
+        userUni: queryResult.userUni,
+        subscribed: queryResult.subscribed,
+        likes: queryResult.likes,
+        dislikes: queryResult.dislikes,
+        comments: queryResult.comments,
+        shared: queryResult.shared,
+      },
+    ]);
   } catch (err) {
     res.send([{ error: err.message }]);
   }
@@ -133,16 +212,20 @@ exports.update_user_arr = async function (req, res) {
 
     if (!queryResult) throw new Error("No such user");
 
-    res.json([queryResult]);
-  } catch (err) {
-    res.send([{ error: err.message }]);
-  }
-};
-
-// Display detail page for a specific user.
-exports.user_detail = async function (req, res) {
-  try {
-    res.json(await check_auth(req));
+    res.json([
+      {
+        _id: queryResult._id,
+        username: queryResult.username,
+        email: queryResult.email,
+        isAdmin: queryResult.isAdmin,
+        userUni: queryResult.userUni,
+        subscribed: queryResult.subscribed,
+        likes: queryResult.likes,
+        dislikes: queryResult.dislikes,
+        comments: queryResult.comments,
+        shared: queryResult.shared,
+      },
+    ]);
   } catch (err) {
     res.send([{ error: err.message }]);
   }
