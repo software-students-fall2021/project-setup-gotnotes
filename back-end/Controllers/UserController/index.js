@@ -1,48 +1,232 @@
-/**
- * var { User } = require('./../../Models');
- * we will implement this when we have the mongodb models, schemas ...
- * */
+require("dotenv").config();
+
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES;
+const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
+
+const validate = require("./../../Services/Validation");
 
 const UserService = require("./../../Services/UserService");
+const UniService = require("./../../Services/UniService");
 
-// Display list of all users.
-exports.user_list = function (req, res) {
-  res.send("NOT IMPLEMENTED: user list: ");
-};
+//TODO refresh tokens need to be implemented
 
 // Display detail page for a specific user.
-exports.user_detail = function (req, res) {
-  const currentUser = UserService.get_user(req.body.userID);
-  console.log("current user", currentUser)
-  res.send(currentUser);
+exports.get_current_user = async function (req, res) {
+  try {
+    const user = await check_auth(req);
+    res.json([
+      {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        userUni: user.userUni,
+        subscribed: user.subscribed,
+        likes: user.likes,
+        dislikes: user.dislikes,
+        comments: user.comments,
+        shared: user.shared,
+      },
+    ]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Display user create form on GET.
-exports.user_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: user create GET");
+exports.login_user = async function (req, res) {
+  const { usernameOrEmail, password } = req.body;
+
+  if (!(usernameOrEmail && password)) {
+    res.json([{ error: "Please enter all fields" }]);
+    return;
+  }
+  try {
+    const { user } = await UserService.get_user_by_email_or_username(
+      usernameOrEmail
+    );
+    if (!user) throw new Error("Incorrect Password or Email");
+
+    const isValid = await bcrypt.compare(password, user.passwordHash);
+    if (!isValid) throw new Error("Incorrect Password or Email");
+
+    const token = jwt.sign(
+      { email: user.email, username: user.username },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRATION_MINUTES }
+    );
+
+    res.json([
+      {
+        token: `Bearer ${token}`,
+        user: {
+          username: user.username,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          userUni: user.userUni,
+          subscribed: user.subscribed,
+          likes: user.likes,
+          dislikes: user.dislikes,
+          comments: user.comments,
+          shared: user.shared,
+        },
+      },
+    ]);
+  } catch (error) {
+    res.json([{ error: error.message }]);
+  }
 };
 
-// Handle user create on POST.
-exports.user_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: user create POST");
+exports.create_user = async function (req, res) {
+  const { username, email, password, confirmPassword } = req.body;
+
+  //extra backend validation for direct api calls
+  if (!(username && email && password && confirmPassword)) {
+    res.json([{ error: "Please enter all fields" }]);
+    return;
+  }
+  try {
+    const validationErr = validate(username, email, password, confirmPassword);
+    if (validationErr) throw new Error(validationErr);
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const { user, dbSaveErr } = await UserService.create_user(
+      email,
+      username,
+      passwordHash
+    );
+    if (dbSaveErr) throw new Error(dbSaveErr);
+
+    const token = jwt.sign(
+      { email: user.email, username: user.username },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRATION_MINUTES }
+    );
+
+    res.json([
+      {
+        token: `Bearer ${token}`,
+        user: {
+          username: user.username,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          userUni: user.userUni,
+          subscribed: user.subscribed,
+          likes: user.likes,
+          dislikes: user.dislikes,
+          comments: user.comments,
+          shared: user.shared,
+        },
+      },
+    ]);
+  } catch (error) {
+    if (error.message.includes("E11000") && error.message.includes("email"))
+      error.message = "A user with that email already exists";
+    if (error.message.includes("E11000") && error.message.includes("username"))
+      error.message = "A user with that username already exists";
+    res.json([{ error: error.message }]);
+  }
 };
 
-// Display user delete form on GET.
-exports.user_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: user delete GET");
+exports.user_change_admin_status = async function (req, res) {
+  //getting jwt token of the user
+  try {
+    const { usernameOrEmail, isAdminNew } = req.body;
+
+    const user = await check_auth_with_admin(req);
+
+    const queryResult = await UserService.make_admin(
+      usernameOrEmail,
+      isAdminNew
+    );
+
+    if (!queryResult) throw new Error("No such user");
+
+    res.json([
+      {
+        _id: queryResult._id,
+        username: queryResult.username,
+        email: queryResult.email,
+        isAdmin: queryResult.isAdmin,
+        userUni: queryResult.userUni,
+        subscribed: queryResult.subscribed,
+        likes: queryResult.likes,
+        dislikes: queryResult.dislikes,
+        comments: queryResult.comments,
+        shared: queryResult.shared,
+      },
+    ]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Handle user delete on POST.
-exports.user_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: user delete POST");
+exports.update_user_scalar = async function (req, res) {
+  //getting jwt token of the user
+  try {
+    const updateObject = JSON.parse(req.body);
+    const user = await check_auth(req);
+
+    const queryResult =
+      await UserService.update_user_scalar_by_email_or_username(
+        jwtContents.email,
+        updateObject
+      );
+
+    if (!queryResult) throw new Error("No such user");
+
+    res.json([
+      {
+        _id: queryResult._id,
+        username: queryResult.username,
+        email: queryResult.email,
+        isAdmin: queryResult.isAdmin,
+        userUni: queryResult.userUni,
+        subscribed: queryResult.subscribed,
+        likes: queryResult.likes,
+        dislikes: queryResult.dislikes,
+        comments: queryResult.comments,
+        shared: queryResult.shared,
+      },
+    ]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };
 
-// Display user update form on GET.
-exports.user_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: user update GET");
-};
+exports.update_user_arr = async function (req, res) {
+  try {
+    const { type, fieldName, referenceId } = req.body;
+    const user = await check_auth(req);
 
-// Handle user update on POST.
-exports.user_update_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: user update POST");
+    const queryResult = await UserService.update_user_arr_by_email_or_username(
+      jwtContents.email,
+      user,
+      type,
+      fieldName,
+      referenceId
+    );
+
+    if (!queryResult) throw new Error("No such user");
+
+    res.json([
+      {
+        _id: queryResult._id,
+        username: queryResult.username,
+        email: queryResult.email,
+        isAdmin: queryResult.isAdmin,
+        userUni: queryResult.userUni,
+        subscribed: queryResult.subscribed,
+        likes: queryResult.likes,
+        dislikes: queryResult.dislikes,
+        comments: queryResult.comments,
+        shared: queryResult.shared,
+      },
+    ]);
+  } catch (err) {
+    res.send([{ error: err.message }]);
+  }
 };

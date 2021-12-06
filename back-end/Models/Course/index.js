@@ -7,13 +7,17 @@ var CourseSchema = new Schema({
     type: String,
     required: "Course Name cannot be empty",
   },
-  courseEnrolledStudents: [
+  courseUni: {
+    type: Schema.Types.ObjectId,
+    ref: "Uni",
+  },
+  subscribed: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  courseSharedFiles: [
+  files: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",
@@ -21,13 +25,4 @@ var CourseSchema = new Schema({
   ],
 });
 
-CourseSchema.virtual("courseEnrolledStudentCount").get(function () {
-  return this.courseEnrolledStudents.length;
-});
-
-CourseSchema.virtual("courseSharedFileCount").get(function () {
-  return this.courseSharedFiles.length;
-});
-
-//Export model
 module.exports = mongoose.model("Course", CourseSchema);

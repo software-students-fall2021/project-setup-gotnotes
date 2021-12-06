@@ -2,15 +2,15 @@ const emailCheckRegEx =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const passwordCheckRegEx = new RegExp(
-  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})"
 );
 
-const validate = ({
+const validate = (
   username,
   email,
   password,
   confirmPassword,
-}) => {
+) => {
   const err = [];
 
   username === "" && err.push("Full Name cannot be empty");
@@ -22,7 +22,7 @@ const validate = ({
   !emailCheckRegEx.test(String(email).toLowerCase()) &&
     err.push("Please enter a valid email");
 
-  password.length < 8 && err.push("password must be of minimum 8 characters");
+  password.length < 8 && err.push("Password must be of minimum 8 characters");
 
   !passwordCheckRegEx.test(password) &&
     err.push([

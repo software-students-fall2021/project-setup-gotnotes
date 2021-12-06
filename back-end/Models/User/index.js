@@ -6,6 +6,7 @@ var UserSchema = new Schema({
   email: {
     type: String,
     required: "Email cannot be empty",
+    unique: true,
   },
   username: {
     type: String,
@@ -21,38 +22,36 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Uni",
   },
-  userSubscribed: [
+  subscribed: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
     },
   ],
-  userLiked: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",
     },
   ],
-  userDisliked: [
+  dislikes: [
     {
       type: Schema.Types.ObjectId,
       ref: "File",
     },
   ],
-  userComments: [
+  comments: [
     {
       type: Schema.Types.ObjectId,
       ref: "Comment",
     },
   ],
+  shared: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "File",
+    },
+  ],
 });
 
-// UserSchema.virtual("email").get(function () {
-//   return this.email;
-// });
-
-// virtual needed for like dislike comment counts
-// ^^note from apuya, virtual not needed because it's a real path in schema?
-
-//Export model
 module.exports = mongoose.model("User", UserSchema);
