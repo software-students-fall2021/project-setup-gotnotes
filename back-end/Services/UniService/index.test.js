@@ -3,9 +3,9 @@ const chai = require("chai");
 const { expect } = chai;
 chai.use(deepEqualInAnyOrder);
 
-var UniService = require("./index");
-let uniData = UniService.uniData;
-const testUni = uniData[0];
+// var UniService = require("./index");
+// let uniData = UniService.uniData;
+// const testUni = uniData[0];
 
 // describe("uniService", function () {
 //   describe("get_uni()", function () {
