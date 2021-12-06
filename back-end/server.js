@@ -8,6 +8,7 @@ const cors = require("cors");
 const {
   accountRouter,
   chatRouter,
+  commentRouter,
   searchRouter,
   authRouter,
 } = require("./Routes");
@@ -26,6 +27,7 @@ app.use("/unis/:uni", searchRouter.coursesRouter);
 app.use("/unis/:uni/:course", searchRouter.fileRouter);
 //app.use("/unis/:uni/:course/:file", searchRouter.fileRouter);
 
+app.use("/comment", commentRouter);
 app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 

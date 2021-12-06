@@ -39,6 +39,7 @@ exports.get_user_by_email_or_username = async (usernameOrEmail) => {
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
+    .populate("comments")
     .populate("shared")
     .then((user) => {
       returnObj.user = user;
@@ -55,8 +56,8 @@ exports.make_admin = async (usernameOrEmail, isAdminNew) => {
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
-    .populate("shared")
-  ;
+    .populate("comments")
+    .populate("shared");
 };
 
 exports.update_user_scalar_by_email_or_username = async (
@@ -71,8 +72,8 @@ exports.update_user_scalar_by_email_or_username = async (
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
-    .populate("shared")
-    ;
+    .populate("comments")
+    .populate("shared");
 };
 
 exports.update_user_arr_by_email_or_username = async (
@@ -105,8 +106,8 @@ exports.update_user_arr_by_email_or_username = async (
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
-    .populate("shared")
-    ;
+    .populate("comments")
+    .populate("shared");
 };
 
 exports.delete_user = (userID) => {
@@ -117,12 +118,3 @@ exports.delete_user = (userID) => {
   });
 };
 
-exports.get_users_by_course_id = (courseID) => {
-  User.find({ userSubscribed: courseID }, (err, users) => {
-    if (err) {
-      console.log(err);
-    } else {
-      return users;
-    }
-  });
-};

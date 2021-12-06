@@ -2,45 +2,36 @@ const File = require("../../Models/File/index");
 
 exports.get_all_files = async () => {
   return await File.find()
-    .populate("fileSharedBy")
+    .populate("sharedBy")
     .populate("likes")
-    .populate("dislikes")
-    .populate("comments");
+    .populate("dislikes");
 };
 
 exports.get_file_by_id = async (fileID) => {
   return await File.findOne({ _id: fileID })
-    .populate("fileSharedBy")
+    .populate("sharedBy")
     .populate("likes")
-    .populate("dislikes")
-    .populate("comments");
+    .populate("dislikes");
 };
 
-exports.create_file = async (
-  fileName,
-  fileLink,
-  fileType,
-  fileShareDate,
-  fileSharedBy
-) => {
+exports.create_file = async (name, uri, type, shareDate, sharedBy) => {
   const returnObj = {
     file: null,
     dbSaveErr: false,
   };
   let new_file = new File({
-    fileName: fileName,
-    fileLink: fileLink,
-    fileType: fileType,
-    fileShareDate: fileShareDate,
-    fileSharedBy: fileSharedBy,
+    name: name,
+    uri: uri,
+    type: type,
+    shareDate: shareDate,
+    sharedBy: sharedBy,
     likes: [],
     dislikes: [],
-    comments: [],
-    fileDownloads: 0,
+    downloads: 0,
   });
   await new_file
     .save()
-    .populate("fileSharedBy")
+    .populate("sharedBy")
     .then((file) => {
       returnObj.file = file;
     })
@@ -56,10 +47,9 @@ exports.update_file_scalar_by_file_id = async (fileId, updateObject) => {
     { $set: updateObject },
     { new: true }
   )
-    .populate("fileSharedBy")
+    .populate("sharedBy")
     .populate("likes")
-    .populate("dislikes")
-    .populate("comments");
+    .populate("dislikes");
 };
 
 exports.update_file_arr_by_file_id = async (
@@ -88,8 +78,7 @@ exports.update_file_arr_by_file_id = async (
     { $set: updateObject },
     { new: true }
   )
-  .populate("fileSharedBy")
-  .populate("likes")
-  .populate("dislikes")
-  .populate("comments");
+    .populate("sharedBy")
+    .populate("likes")
+    .populate("dislikes");
 };

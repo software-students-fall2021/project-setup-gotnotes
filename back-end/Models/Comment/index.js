@@ -3,17 +3,26 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
-  comment: {
+  content: {
     type: String,
     required: "Comment cannot be empty",
   },
-  commentedAt: {
+  shareDate: {
     type: Date,
     required: true,
   },
-  commentedBy: {
+  isEdited: {
+    type: Boolean,
+    default: false,
+  },
+  sharedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
+  },
+  fileId: {
+    type: Schema.Types.ObjectId,
+    ref: "File",
     required: true,
   },
   parentCommentId: {
@@ -21,26 +30,18 @@ var CommentSchema = new Schema({
     ref: "Comment",
     required: false,
   },
-  commentLikedBy: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  commentDislikedBy: [
+  dislikes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-});
-
-CommentSchema.virtual("commentDislikeCount").get(function () {
-  return this.commentDislikedBy.length;
-});
-
-CommentSchema.virtual("commentLikeCount").get(function () {
-  return this.commentLikedBy.length;
 });
 
 //Export model

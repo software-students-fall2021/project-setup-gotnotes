@@ -1,4 +1,4 @@
-const { check_auth, check_auth_with_admin } = require("./../../Services/Auth");
+const { check_auth } = require("./../../Services/Auth");
 
 const FileService = require("./../../Services/FileService");
 const UserService = require("./../../Services/UserService");
@@ -12,7 +12,7 @@ exports.get_file_by_id = async (req, res) => {
 
 exports.create_file = async (req, res) => {
   try {
-    const user = check_auth(req);
+    const user = await check_auth(req);
     const { fileName, fileLink, fileType } = req.body;
 
     if (!(fileName && fileLink && fileType))
@@ -30,6 +30,15 @@ exports.create_file = async (req, res) => {
 
     if (queryResult.dbSaveError) throw new Error(dbSaveError);
 
+    const addFileToUser =
+      await UserService.update_user_arr_by_email_or_username(
+        user.email,
+        user,
+        "add",
+        "shared",
+        queryResult.file._id
+      );
+
     res.json([queryResult]);
   } catch (err) {
     res.json([{ error: err.message }]);
@@ -38,7 +47,7 @@ exports.create_file = async (req, res) => {
 
 exports.update_file_scalar_by_file_id = async (req, res) => {
   try {
-    const user = check_auth(req);
+    const user = await check_auth(req);
     const { documentId, updateObject } = JSON.parse(req.body.updateData);
 
     if (!(documentId && updateObject))
@@ -69,7 +78,7 @@ exports.update_file_arr_by_file_id = async (req, res) => {
         "please include a documentId, type, fieldName, and referenceId in req.body.updateData"
       );
 
-    const user = check_auth(req);
+    const user = await check_auth(req);
 
     const file = await FileService.get_file_by_id(documentId);
 
@@ -96,7 +105,7 @@ exports.update_user_like_dislike = async (req, res) => {
         "please include a documentId, type in req.body.updateData"
       );
 
-    const user = check_auth(req);
+    const user = await check_auth(req);
 
     const fieldName = likeDislike === "like" ? "likes" : "dislikes";
 

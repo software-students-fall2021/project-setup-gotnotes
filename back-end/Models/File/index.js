@@ -3,14 +3,15 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var FileSchema = new Schema({
-  fileName: {
+  name: {
     type: String,
     required: "File Name cannot be empty",
   },
-  fileLink: {type: String},
-  fileType: { type: String },
-  fileShareDate: { type: Date },
-  fileSharedBy: {
+  uri: { type: String },
+  type: { type: String },
+  shareDate: { type: Date },
+  downloads: { type: Number },
+  sharedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
@@ -24,13 +25,6 @@ var FileSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "User",
-    },
-  ],
-  fileDownloads: { type: Number },
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
     },
   ],
 });
