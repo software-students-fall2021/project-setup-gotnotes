@@ -16,6 +16,7 @@ import { Files } from "./pages/Search/Files";
 import { FileDetails } from "./pages/Search/FileDetails";
 // import ChatApp from "./pages/Chat/ChatMessages";
 import ChatList from "./pages/Chat/ChatList";
+import ChatMessages from "./pages/Chat/ChatMessages";
 import { SignUp } from "./pages/Login/SignUp";
 import { Login } from "./pages/Login/Login";
 import { ResetPass } from "./pages/Login/ResetPass";
@@ -71,7 +72,7 @@ function App() {
 
         <Route path="/resetpass" render={() => <ResetPass />} />
 
-        <Route path="/chat" render={() => <ChatList />} />
+        <Route path="/chat" render={() => <ChatMessages />} />
 
         <Route path="/addFile" render={() => <AddFile />} />
 
