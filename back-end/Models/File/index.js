@@ -3,52 +3,30 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var FileSchema = new Schema({
-  fileName: {
+  name: {
     type: String,
     required: "File Name cannot be empty",
   },
-  fileType: { type: String },
-  fileShareDate: { type: Date },
-  fileSharedBy: {
+  uri: { type: String },
+  type: { type: String },
+  shareDate: { type: Date },
+  downloads: { type: Number },
+  sharedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  fileLikedBy: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  fileDislikedBy: [
+  dislikes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  fileDownloads: { type: Number },
-  fileComments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
-    },
-  ],
-});
-
-FileSchema.virtual("fileDislikeCount").get(function () {
-  return this.fileDislikedBy.length;
-});
-
-FileSchema.virtual("fileLikeCount").get(function () {
-  return this.fileLikedBy.length;
-});
-
-FileSchema.virtual("fileCommentCount").get(function () {
-  let count = 0;
-  this.fileComments.map((comment) => {
-    count++;
-    comment.replies.map((reply) => count++);
-  });
-  return count;
 });
 
 //Export model

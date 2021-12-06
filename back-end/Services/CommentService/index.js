@@ -1,88 +1,81 @@
-const commentData = require("./../../Mock/CommentsMockData/comments.json");
-const db = require("../Database/index");
-const comment = require("../../Models/Comment/index");
-exports.commentData = commentData;
+const Comment = require("../../Models/Comment");
 
-exports.make_comment = (Comment, commentedBy, parentCommentID) => {
-  // Look for _id
-  let id = count_comment(comment) + 1;
+exports.get_comment_by_id = (commentId) => {
+  return Comment.findOne({ _id: commentId });
+};
+
+exports.get_comments_by_file_id = async (fileId) => {
+  await Comment.find({ fileId: fileId });
+};
+
+exports.create_comment = async (content, sharedBy, fileId, parentCommentId) => {
+  const new_comment = parentCommentId
+    ? new Comment({
+        content: content,
+        shareDate: Date.now(),
+        sharedBy: sharedBy,
+        fileId: fileId,
+        parentCommentId: parentCommentId,
+        likes: [],
+        dislikes: [],
+      })
+    : new Comment({
+        content: content,
+        shareDate: Date.now(),
+        sharedBy: sharedBy,
+        fileId: fileId,
+        likes: [],
+        dislikes: [],
+      });
+
+  const returnObj = {
+    comment: null,
+    dbSaveErr: false,
+  };
+
+  await new_comment
+    .save()
+    .then((comment) => {
+      returnObj.comment = comment;
+    })
+    .catch((err) => {
+      returnObj.dbSaveErr = err;
+    });
+  return returnObj;
+};
+
+exports.update_comment = async (commentId, content) => {
+  return await Comment.findOneAndUpdate(
+    { _id: commentId },
+    { $set: { content: content, isEdited: true } },
+    { new: true }
+  );
+};
+
+exports.update_comment_arr_by_comment_id = async (
+  comment,
+  type,
+  fieldName,
+  referenceId
+) => {
+  const newArr = [];
   if (
-    parentCommentID != null &&
-    parentCommentID != undefined &&
-    parentCommentID != "" &&
-    parentCommentID != 0
+    type === "add" &&
+    !comment[fieldName].filter((obj) => obj._id == referenceId).length
   ) {
-    let newComment = new comment({
-      comment: Comment,
-      commentedBy: commentedBy,
-      parentCommentID: parentCommentID,
-      commentedAt: new Date(),
-    });
+    newArr.push(referenceId, ...comment[fieldName]);
+  } else if (type === "remove") {
+    newArr.push(...comment[fieldName].filter((obj) => obj._id != referenceId));
   } else {
-    let newComment = new comment({
-      comment: Comment,
-      commentedBy: commentedBy,
-      commentedAt: new Date(),
-    });
+    throw new Error("Cannot add item twice");
   }
-  newComment.save(err, (comment) => {
-    if (err) {
-      console.log(err);
-    }
-    let id = comment._id;
-  });
-  return id;
-};
-exports.remove_comment = (commentID) => {
-  comment.findOneAndDelete({ _id: commentID }, (err, comment) => {
-    if (err) {
-      console.log(err);
-    } else {
-      comment.save((err) => {
-        console.log(err);
-      });
-    }
-  });
-};
 
-exports.like_comment = (commentID, likedBy) => {
-  comment.findOne({ _id: commentID }, (err, comment) => {
-    if (err) {
-      console.log(err);
-    } else {
-      comment.likedBy.push(likedBy);
-      comment.save((err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
-    }
-  });
+  const updateObject = {
+    [fieldName]: newArr,
+  };
+  return await Course.findOneAndUpdate(
+    { _id: comment._id },
+    { $set: updateObject },
+    { new: true }
+  );
 };
-exports.dislike_comment = (commentID, dislikedBy) => {
-  comment.findOne({ _id: commentID }, (err, comment) => {
-    if (err) {
-      console.log(err);
-    } else {
-      comment.dislikedBy.push(dislikedBy);
-      comment.save((err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
-    }
-  });
-};
-
-exports.get_comment = (commentID) => {
-  return comment.findOne({ _id: commentID });
-};
-
-// NON DB FUNCTIONS
-// /**
-//  * Get a file by the fileID
-//  * @param {*} fileID
-//  * @returns [{fileObj}] || []
-//  */
-// exports.get_comment = function (commentId) {
-//     return commentData.filter(comment => comment.commentId == commentId)
