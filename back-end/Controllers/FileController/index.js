@@ -3,8 +3,6 @@ const { check_auth } = require("./../../Services/Auth");
 const FileService = require("./../../Services/FileService");
 const UserService = require("./../../Services/UserService");
 
-const { fileUploadService } = require("./../../Services/FileUploadService");
-const { upload, storage, gfs } = fileUploadService;
 
 exports.get_all_files = async (req, res) => {
   res.json(await FileService.get_all_files());
@@ -134,9 +132,9 @@ exports.update_user_like_dislike = async (req, res) => {
   }
 };
 
-exports.upload_file = async (req, res) => {
-  res.json([{ file: req.file }]);
-};
+exports.upload_file = async (req,res) => {
+  res.json([{file: req.file}])
+}
 
 // // @route POST /upload
 // // @desc  Uploads file to DB

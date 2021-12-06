@@ -11,15 +11,14 @@ const {
   searchRouter,
   authRouter,
 } = require("./Routes");
-const { db } = require("./Services/Database");
-
+const { connection } = require("./Services/Database");
+connection();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use("/unis", searchRouter.unisRouter);
 app.use("/courses", searchRouter.coursesRouter);

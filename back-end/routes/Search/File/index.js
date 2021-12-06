@@ -4,12 +4,16 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { fileController } = require("../../../Controllers");
 
-const { fileUploadService } = require("./../../../Services/FileUploadService");
+const upload = require("./../../../Middleware");
 
 //list file
 router.get("/", fileController.get_all_files);
 
-router.post("/upload", fileUploadService.upload.single("file"), fileController.upload_file);
+router.post("/upload", upload.single("file"), async (req, res) => {
+  if (req.file === undefined) return res.send("you must select a file.");
+  const imgUrl = `http://localhost:${process.env.PORT}/file/${req.file.filename}`;
+  return res.send(imgUrl);
+});
 
 router.post("/:fileName", fileController.get_file_by_id);
 router.post("/create-file", fileController.create_file);
