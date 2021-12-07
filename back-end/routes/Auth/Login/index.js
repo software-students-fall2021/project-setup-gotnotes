@@ -6,5 +6,4 @@ var { userController } = require("../../../Controllers");
 
 router.post("/", userController.login_user);
 
-
 module.exports = router;

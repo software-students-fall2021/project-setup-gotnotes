@@ -5,12 +5,7 @@ const passwordCheckRegEx = new RegExp(
   "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})"
 );
 
-const validate = (
-  username,
-  email,
-  password,
-  confirmPassword,
-) => {
+const validate = (username, email, password, confirmPassword) => {
   const err = [];
 
   username === "" && err.push("Full Name cannot be empty");
@@ -36,6 +31,6 @@ const validate = (
   password !== confirmPassword && err.push("Passwords Don't Match");
 
   return err.length === 0 ? null : err;
-}
+};
 
-module.exports = validate
+module.exports = validate;

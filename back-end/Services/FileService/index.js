@@ -83,8 +83,6 @@ exports.update_file_arr_by_file_id = async (
     .populate("dislikes");
 };
 
-exports.delete_file_by_file_id = async (
-  fileId
-) => {
-  await File.findOneAndDelete({_id: fileId})
-}
+exports.delete_file_by_file_id = async (fileId) => {
+  await File.findOneAndDelete({ _id: fileId });
+};

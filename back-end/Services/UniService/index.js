@@ -51,11 +51,17 @@ exports.update_uni_arr_by_uni_id = async (
   const newArr = [];
   if (
     type === "add" &&
-    !uni[fieldName].filter((obj) => obj._id.toString() == referenceId.toString()).length
+    !uni[fieldName].filter(
+      (obj) => obj._id.toString() == referenceId.toString()
+    ).length
   ) {
     newArr.push(referenceId, ...uni[fieldName]);
   } else if (type === "remove") {
-    newArr.push(...uni[fieldName].filter((obj) => obj._id.toString() != referenceId.toString()));
+    newArr.push(
+      ...uni[fieldName].filter(
+        (obj) => obj._id.toString() != referenceId.toString()
+      )
+    );
   } else {
     throw new Error("Cannot add item twice");
   }

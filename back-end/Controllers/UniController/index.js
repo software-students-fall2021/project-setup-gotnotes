@@ -107,7 +107,7 @@ exports.update_uni_arr = async function (req, res) {
 exports.update_user_enrollment = async function (req, res) {
   try {
     const user = await check_auth(req);
-    
+
     const { documentId, type } = req.body;
     if (!(documentId && type))
       throw new Error("please include a documentId, type in req.body");
