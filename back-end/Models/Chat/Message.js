@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-
 var Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
@@ -12,12 +11,7 @@ var MessageSchema = new Schema({
     ref: "User",
   },
   dateSent: { type: Date },
-  likes: [
-    {
-      userId: String,
-    },
-  ],
+  likes: [String],
 });
 
-//Export model
 module.exports = mongoose.model("Message", MessageSchema);

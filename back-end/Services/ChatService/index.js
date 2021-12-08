@@ -2,18 +2,26 @@ const Chat = require("../../Models/Chat/Chat");
 const Message = require("../../Models/Chat/Message");
 
 exports.get_chat_by_id = async (chatId) => {
-  return await Chat.findOne({ _id: chatId }).populate("content");
+  return await Chat.findOne({ _id: chatId }).populate({
+    path: "content",
+    model: "Message",
+    populate: { path: "sender", model: "User" },
+  });
 };
 exports.get_chat_by_course_id = async (courseId) => {
-  return await Chat.findOne({ courseId: courseId }).populate("content");
+  return await Chat.findOne({ courseId: courseId }).populate({
+    path: "content",
+    model: "Message",
+    populate: { path: "sender", model: "User" },
+  });
 };
 
 /**
- * 
- * @param {String} courseId 
- * @param {String} name 
- * @param {[String] | null} members 
- * @returns 
+ *
+ * @param {String} courseId
+ * @param {String} name
+ * @param {[String] | null} members
+ * @returns
  */
 exports.create_chat = async (courseId, name) => {
   const returnObj = {
@@ -36,12 +44,16 @@ exports.create_chat = async (courseId, name) => {
   return returnObj;
 };
 
-exports.update_course_scalar_by_course_id = async (courseId, updateObject) => {
+exports.update_chat_scalar_by_chat_id = async (chatId, updateObject) => {
   return await Uni.findOneAndUpdate(
-    { _id: courseId },
+    { _id: chatId },
     { $set: updateObject },
     { new: true }
-  ).populate("content");
+  ).populate({
+    path: "content",
+    model: "Message",
+    populate: { path: "sender", model: "User" },
+  });
 };
 
 exports.update_chat_arr = async (
@@ -95,7 +107,7 @@ exports.create_message = async (courseId, message, sender) => {
   return await new_message.save().then(async (message) => {
     return await Chat.findOneAndUpdate(
       { courseId: courseId },
-      { $push: { content: message } },
+      { $push: { content: message._id } },
       { new: true }
     ).populate({
       path: "content",
@@ -105,14 +117,24 @@ exports.create_message = async (courseId, message, sender) => {
   });
 };
 
-exports.update_like_message = async (messageId, type, userId) => {
-  type === "add"
-    ? await Message.findOneAndUpdate(
-        { _id: messageId },
-        { $push: { likes: userId } }
-      )
-    : await Message.findOneAndUpdate(
-        { _id: messageId },
-        { $pull: { likes: userId } }
-      );
+exports.update_like_message = async (messageId, userId) => {
+  const message = await Message.findOne({ _id: messageId });
+  console.log(userId.toString());
+  if (
+    message.likes.filter((likedUserId) => {
+      console.log(likedUserId);
+      return likedUserId == userId.toString();
+    }).length > 0
+  ) {
+    return await Message.findOneAndUpdate(
+      { _id: messageId },
+      { $pull: { likes: userId.toString() } }
+    ).populate("sender");
+  } else {
+    console.log(userId, "here");
+    return await Message.findOneAndUpdate(
+      { _id: messageId },
+      { $push: { likes: userId.toString() } }
+    ).populate("sender");
+  }
 };
