@@ -156,7 +156,52 @@ exports.update_user_like_dislike = async (req, res) => {
 
     const fieldName = likeDislike === "like" ? "likes" : "dislikes";
 
-    const addFileToUser =
+    const file = await FileService.get_file_by_id(documentId);
+
+    if (
+      file.likes.filter((userObj) => userObj._id.toString() == user._id.toString())
+        .length > 0 &&
+      likeDislike === "dislike"
+    ){
+
+      await UserService.update_user_arr_by_email_or_username(
+        user.email,
+        user,
+        "remove",
+        "likes",
+        documentId
+      );
+
+      await FileService.update_file_arr_by_file_id(
+        file,
+        "remove",
+        "likes",
+        user._id
+      );
+    }
+
+
+    if (
+      file.dislikes.filter((userObj) => userObj._id.toString() == user._id.toString())
+        .length > 0 &&
+      likeDislike === "like"
+    ){
+      await UserService.update_user_arr_by_email_or_username(
+        user.email,
+        user,
+        "remove",
+        "dislikes",
+        documentId
+      );
+      await FileService.update_file_arr_by_file_id(
+        file,
+        "remove",
+        "dislikes",
+        user._id
+      );
+    }
+
+    
       await UserService.update_user_arr_by_email_or_username(
         user.email,
         user,
@@ -165,7 +210,7 @@ exports.update_user_like_dislike = async (req, res) => {
         documentId
       );
 
-    const file = await FileService.get_file_by_id(documentId);
+    
 
     const queryResult = await FileService.update_file_arr_by_file_id(
       file,

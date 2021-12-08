@@ -10,11 +10,14 @@ router.post("/create", commentController.create_comment);
 
 router.post("/update-comment", commentController.update_comment);
 
-router.post("/like-dislike-comment", commentController.update_user_like_dislike);
+router.post(
+  "/like-dislike-comment",
+  commentController.update_user_like_dislike
+);
 
 //TODO delete comment not implemented
-router.post("/delete-comment", (req,res) => {
-    res.json([{error: "Comment Delete Not Implemented"}])
-})
+router.post("/delete-comment", (req, res) => {
+  res.json([{ error: "Comment Delete Not Implemented" }]);
+});
 
 module.exports = router;

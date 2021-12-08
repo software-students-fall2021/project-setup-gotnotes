@@ -108,9 +108,8 @@ exports.update_user_like_dislike = async (req, res) => {
     const comment = await CommentService.get_comment_by_id(documentId);
 
     if (
-      comment.likes.filter(
-        (userId) => userId.toString() == user._id.toString()
-      ).length > 0 &&
+      comment.likes.filter((userId) => userId.toString() == user._id.toString())
+        .length > 0 &&
       likeDislike === "dislike"
     )
       await CommentService.update_comment_arr_by_comment_id(
