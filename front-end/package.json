@@ -35,10 +35,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
-    "test": "react-scripts test",
+    "build": "react-scripts build",
+    "test": "NODE_ENV=test mocha --require @babel/register --require       ignore-styles src/test/*.test.js",
     "eject": "react-scripts eject"
-  },
+},
   "eslintConfig": {
     "extends": [
       "react-app",
