@@ -38,22 +38,27 @@ module.exports = (io, socket) => {
 
   const editChatContent = (courseId, messageObj, likeUserId) => {
     const currentChat = chats.find((chat) => chat.courseId == courseId);
+    console.log("in edit: ", currentChat);
     const currentMessage = currentChat.content.find(
-      (message) =>
-        message.dateSent.toString() == messageObj.dateSent.toString() &&
-        message.sender.toString() == messageObj.sender.toString()
+      (message) => (message.dateSent.toString() == messageObj.dateSent.toString() &&
+        message.sender.toString() == messageObj.sender.toString())
     );
-    if (
-      !currentMessage.likes.some(
-        (userId) => userId.toString() == likeUserId.toString()
-      )
-    ) {
-      currentMessage.likes.push(likeUserId.toString());
-    } else {
-      currentMessage.likes = currentMessage.likes.filter(
-        (userId) => userId.toString() != likeUserId.toString()
-      );
+    console.log("current chat content: ", currentChat.content)
+    console.log("current message", currentMessage)
+    if (currentMessage) {
+      if (
+        !currentMessage.likes.some(
+          (userId) => userId.toString() == likeUserId.toString()
+        )
+      ) {
+        currentMessage.likes.push(likeUserId.toString());
+      } else {
+        currentMessage.likes = currentMessage.likes.filter(
+          (userId) => userId.toString() != likeUserId.toString()
+        );
+      }
     }
+
     return currentMessage;
   };
 
@@ -64,7 +69,6 @@ module.exports = (io, socket) => {
       socket.join(courseId);
       addUser(courseId, userId, username, userAvatarUrl, socket.id);
       addChat(courseId);
-      console.log(users);
       io.in(courseId).emit("getUsers", getUsers(courseId));
     }
   );
@@ -74,9 +78,9 @@ module.exports = (io, socket) => {
     "SendMessage",
     ({ courseId, userId, message, dateSent = Date.now(), likes = [] }) => {
       addChatContent(courseId, {
-        message: message,
+        message,
         sender: userId,
-        dateSend: dateSent,
+        dateSent,
         likes: [],
       });
       io.in(courseId).emit("getMessage", {
@@ -91,15 +95,15 @@ module.exports = (io, socket) => {
   //send and get like data
   socket.on(
     "LikeMessage",
-    ({ courseId, userId, message, dateSent, likeUserId }) => {
+    ({ courseId, userId, dateSent, likeUserId }) => {
       const currentMessage = editChatContent(
         courseId,
-        { sender: userId, message: message, dateSent: dateSent },
+        { sender: userId, dateSent },
         likeUserId
       );
-      io.in(courseId).emit("getLike", {
+      io.in(courseId).emit("getLike", 
         currentMessage,
-      });
+      );
     }
   );
 
