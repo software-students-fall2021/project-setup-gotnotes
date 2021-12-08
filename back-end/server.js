@@ -29,8 +29,9 @@ const io = new Server(httpServer, {
 });
 
 const onConnection = (socket) => {
-  WebSocketService.say_hello(io, socket);
-}
+  console.log(`User socketId: ${socket.id} connected`)
+  WebSocketService(io, socket);
+};
 
 io.on("connection", onConnection);
 

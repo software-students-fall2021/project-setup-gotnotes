@@ -1,11 +1,5 @@
 const MessageService = require("./Services/ChatService");
 
-const io = require("socket.io")(80, {
-  cors: {
-    origin: "http://localhost:3000",
-  },
-});
-
 let users = [];
 
 let rooms = [];
