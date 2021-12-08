@@ -66,9 +66,7 @@ exports.update_comment = async (req, res) => {
     const { content, commentId } = req.body;
 
     if (!(content && commentId))
-      throw new Error(
-        "Please Enter content: String, commentId:String"
-      );
+      throw new Error("Please Enter content: String, commentId:String");
 
     const comment = await CommentService.get_comment_by_id(commentId);
     if (!comment) throw new Error("No such Comment");
@@ -108,6 +106,32 @@ exports.update_user_like_dislike = async (req, res) => {
     const fieldName = likeDislike === "like" ? "likes" : "dislikes";
 
     const comment = await CommentService.get_comment_by_id(documentId);
+
+    if (
+      comment.likes.filter(
+        (userId) => userId.toString() == user._id.toString()
+      ).length > 0 &&
+      likeDislike === "dislike"
+    )
+      await CommentService.update_comment_arr_by_comment_id(
+        comment,
+        "remove",
+        "likes",
+        user._id
+      );
+
+    if (
+      comment.dislikes.filter(
+        (userId) => userId.toString() == user._id.toString()
+      ).length > 0 &&
+      likeDislike === "like"
+    )
+      await CommentService.update_comment_arr_by_comment_id(
+        comment,
+        "remove",
+        "dislikes",
+        user._id
+      );
 
     const queryResult = await CommentService.update_comment_arr_by_comment_id(
       comment,
