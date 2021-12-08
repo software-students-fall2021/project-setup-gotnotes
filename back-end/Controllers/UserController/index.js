@@ -13,7 +13,7 @@ const UserService = require("./../../Services/UserService");
 //TODO refresh tokens need to be implemented
 
 // Display detail page for a specific user.
-exports.get_current_user = async function (req, res) {
+exports.get_current_user = async (req, res) => {
   try {
     const user = await check_auth(req);
     res.json([
@@ -35,7 +35,7 @@ exports.get_current_user = async function (req, res) {
   }
 };
 
-exports.login_user = async function (req, res) {
+exports.login_user = async (req, res) => {
   try {
     const { usernameOrEmail, password } = req.body;
 
@@ -77,7 +77,7 @@ exports.login_user = async function (req, res) {
   }
 };
 
-exports.create_user = async function (req, res) {
+exports.create_user = async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
 
   //extra backend validation for direct api calls
@@ -129,7 +129,7 @@ exports.create_user = async function (req, res) {
   }
 };
 
-exports.user_change_admin_status = async function (req, res) {
+exports.user_change_admin_status = async (req, res) => {
   //getting jwt token of the user
   try {
     const { usernameOrEmail, isAdminNew } = req.body;
@@ -162,10 +162,10 @@ exports.user_change_admin_status = async function (req, res) {
   }
 };
 
-exports.update_user_scalar = async function (req, res) {
+exports.update_user_scalar = async (req, res) => {
   //getting jwt token of the user
   try {
-    const updateObject = JSON.parse(req.body);
+    const updateObject = req.body;
     const user = await check_auth(req);
 
     const queryResult =
@@ -195,7 +195,7 @@ exports.update_user_scalar = async function (req, res) {
   }
 };
 
-exports.update_user_arr = async function (req, res) {
+exports.update_user_arr = async (req, res) => {
   try {
     const { type, fieldName, referenceId } = req.body;
     const user = await check_auth(req);

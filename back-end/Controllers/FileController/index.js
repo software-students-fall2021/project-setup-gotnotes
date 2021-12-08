@@ -20,8 +20,9 @@ conn.once("open", () => {
 exports.get_all_files = async (req, res) => {
   res.json(await FileService.get_all_files());
 };
+
 exports.get_file_by_id = async (req, res) => {
-  res.json(await FileService.get_file_by_id(req.body.fileId));
+  res.json(await FileService.get_file_by_id(req.params.fileId));
 };
 exports.get_file_stream = async (req, res) => {
   try {
@@ -91,7 +92,7 @@ exports.get_file_link = async (req, res) => {
 exports.update_file_scalar_by_file_id = async (req, res) => {
   try {
     const user = await check_auth(req);
-    const { documentId, updateObject } = JSON.parse(req.body);
+    const { documentId, updateObject } = req.body;
 
     if (!(documentId && updateObject))
       throw new Error(
@@ -113,7 +114,7 @@ exports.update_file_scalar_by_file_id = async (req, res) => {
 
 exports.update_file_arr_by_file_id = async (req, res) => {
   try {
-    const { documentId, type, fieldName, referenceId } = JSON.parse(req.body);
+    const { documentId, type, fieldName, referenceId } = req.body;
     if (!(documentId && type && fieldName && referenceId))
       throw new Error(
         "please include a documentId, type, fieldName, and referenceId in req.body"

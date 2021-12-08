@@ -1,13 +1,11 @@
 const Uni = require("../../Models/Uni/index");
 
 exports.get_all_unis = async () => {
-  return await Uni.find().populate("uniCourses").populate("uniStudents");
+  return await Uni.find().populate("uniCourses");
 };
 
-exports.get_uni_by_id = async (uniID) => {
-  return await Uni.findOne({ _id: uniID })
-    .populate("uniCourses")
-    .populate("uniStudents");
+exports.get_uni_by_id = async (uniId) => {
+  return await Uni.findOne({ _id: uniId }).populate("uniCourses");
 };
 
 exports.create_uni = async (uniName, uniLogoPath) => {
@@ -37,9 +35,7 @@ exports.update_uni_scalar_by_uni_id = async (uniId, updateObject) => {
     { _id: uniId },
     { $set: updateObject },
     { new: true }
-  )
-    .populate("uniCourses")
-    .populate("uniStudents");
+  ).populate("uniCourses");
 };
 
 exports.update_uni_arr_by_uni_id = async (
@@ -51,11 +47,17 @@ exports.update_uni_arr_by_uni_id = async (
   const newArr = [];
   if (
     type === "add" &&
-    !uni[fieldName].filter((obj) => obj._id.toString() == referenceId.toString()).length
+    !uni[fieldName].filter(
+      (obj) => obj._id.toString() == referenceId.toString()
+    ).length
   ) {
     newArr.push(referenceId, ...uni[fieldName]);
   } else if (type === "remove") {
-    newArr.push(...uni[fieldName].filter((obj) => obj._id.toString() != referenceId.toString()));
+    newArr.push(
+      ...uni[fieldName].filter(
+        (obj) => obj._id.toString() != referenceId.toString()
+      )
+    );
   } else {
     throw new Error("Cannot add item twice");
   }
@@ -67,7 +69,5 @@ exports.update_uni_arr_by_uni_id = async (
     { _id: uni._id },
     { $set: updateObject },
     { new: true }
-  )
-    .populate("uniCourses")
-    .populate("uniStudents");
+  ).populate("uniCourses");
 };

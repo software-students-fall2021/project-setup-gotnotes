@@ -1,32 +1,46 @@
 const Comment = require("../../Models/Comment");
 
-exports.get_comment_by_id = (commentId) => {
-  return Comment.findOne({ _id: commentId });
+/**
+ *
+ * @param {String} commentId
+ * @returns {Comment}
+ */
+exports.get_comment_by_id = async (commentId) => {
+  return await Comment.findOne({ _id: commentId });
 };
 
+/**
+ *
+ * @param {String} fileId
+ * @returns {[Comment]}
+ */
 exports.get_comments_by_file_id = async (fileId) => {
-  await Comment.find({ fileId: fileId });
+  return await Comment.find({ fileId: fileId });
 };
 
-exports.create_comment = async (content, sharedBy, fileId, parentCommentId) => {
-  const new_comment = parentCommentId
-    ? new Comment({
-        content: content,
-        shareDate: Date.now(),
-        sharedBy: sharedBy,
-        fileId: fileId,
-        parentCommentId: parentCommentId,
-        likes: [],
-        dislikes: [],
-      })
-    : new Comment({
-        content: content,
-        shareDate: Date.now(),
-        sharedBy: sharedBy,
-        fileId: fileId,
-        likes: [],
-        dislikes: [],
-      });
+/**
+ *
+ * @param {String} content
+ * @param {String} sharedBy
+ * @param {String} fileId
+ * @param {String | null} parentCommentId
+ * @returns {{comment: Comment|null, dbSaveErr: false|Error}}
+ */
+exports.create_comment = async (
+  content,
+  sharedBy,
+  fileId,
+  parentCommentId = null
+) => {
+  const new_comment = new Comment({
+    content: content,
+    shareDate: Date.now(),
+    sharedBy: sharedBy,
+    fileId: fileId,
+    parentCommentId: parentCommentId,
+    likes: [],
+    dislikes: [],
+  });
 
   const returnObj = {
     comment: null,
@@ -44,6 +58,12 @@ exports.create_comment = async (content, sharedBy, fileId, parentCommentId) => {
   return returnObj;
 };
 
+/**
+ *
+ * @param {String} commentId
+ * @param {String} content
+ * @returns {Comment}
+ */
 exports.update_comment = async (commentId, content) => {
   return await Comment.findOneAndUpdate(
     { _id: commentId },
@@ -52,6 +72,14 @@ exports.update_comment = async (commentId, content) => {
   );
 };
 
+/**
+ *
+ * @param {String} comment original comment obj
+ * @param {"add"|"rmeove"} type add or remove
+ * @param {String} fieldName one of the Arr fields in the comment model
+ * @param {String} referenceId Id of item to be added/removed from the arr
+ * @returns {Comment} a Comment obj
+ */
 exports.update_comment_arr_by_comment_id = async (
   comment,
   type,
@@ -61,13 +89,19 @@ exports.update_comment_arr_by_comment_id = async (
   const newArr = [];
   if (
     type === "add" &&
-    !comment[fieldName].filter((obj) => obj._id == referenceId).length
+    !comment[fieldName].filter(
+      (obj) => obj._id.toString() == referenceId.toString()
+    ).length
   ) {
     newArr.push(referenceId, ...comment[fieldName]);
   } else if (type === "remove") {
-    newArr.push(...comment[fieldName].filter((obj) => obj._id != referenceId));
+    newArr.push(
+      ...comment[fieldName].filter(
+        (obj) => obj._id.toString() != referenceId.toString()
+      )
+    );
   } else {
-    throw new Error("Cannot add item twice");
+    throw new Error(`Cannot add ${fieldName} twice`);
   }
 
   const updateObject = {
