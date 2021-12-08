@@ -1,13 +1,8 @@
 var mongoose = require("mongoose");
-
 var Schema = mongoose.Schema;
 
 var ChatSchema = new Schema({
-  courseId: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  courseId: { type: String, required: true, unique: true },
   name: { type: String },
   content: [
     {
@@ -17,5 +12,4 @@ var ChatSchema = new Schema({
   ],
 });
 
-//Export model
 module.exports = mongoose.model("Chat", ChatSchema);
