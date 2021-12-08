@@ -24,7 +24,7 @@ app.use("/unis", searchRouter.unisRouter);
 app.use("/courses", searchRouter.coursesRouter);
 app.use("/files", searchRouter.fileRouter);
 
-app.use("/comment", commentRouter);
+app.use("/comments", commentRouter);
 app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 

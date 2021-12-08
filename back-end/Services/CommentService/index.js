@@ -107,7 +107,7 @@ exports.update_comment_arr_by_comment_id = async (
   const updateObject = {
     [fieldName]: newArr,
   };
-  return await Course.findOneAndUpdate(
+  return await Comment.findOneAndUpdate(
     { _id: comment._id },
     { $set: updateObject },
     { new: true }
