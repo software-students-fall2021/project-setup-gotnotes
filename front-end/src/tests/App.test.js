@@ -4,6 +4,9 @@ import chai, {expect} from "chai";
 import chaiEnzyme from "chai-enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import App from "../App";
+
+//could be run using mocha App.test.js through command line
+
 configure({
    adapter: new Adapter()
 });
@@ -15,3 +18,5 @@ describe("Testin <App/> Component", () => {
    });
    chai.use(chaiEnzyme());
 });
+
+
