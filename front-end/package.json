@@ -22,6 +22,7 @@
     "react": "^17.0.2",
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^17.0.2",
+    "react-query": "^3.34.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "^3.4.4",
     "reactstrap": "^8.10.0",

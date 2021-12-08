@@ -5,6 +5,8 @@ import React from "react";
 
 import { currentUserID, mockUserData } from "./assets/mocks/mockData";
 
+import { QueryClient, QueryClientProvider } from "react-query";
+
 //Components
 import AdminToolbar from "./components/AdminToolbar";
 import BottomNav from "./components/Mobile/Navigations/BottomNav";
@@ -30,58 +32,62 @@ import { Admin } from "./pages/Admin";
 import { Account } from "./pages/Account/Account";
 import { MobileLayoutSelector } from "./layouts/Mobile/MobileLayoutSelector";
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <div className="App">
-      <AdminToolbar
-        props={{
-          currentUser: mockUserData.filter(
-            (user) => user.userID === currentUserID
-          )[0],
-        }}
-      />
-      <Switch>
-        <Redirect exact from="/" to="unis" />
-
-        <Route
-          exact
-          path="/unis"
-          render={() => <MobileLayoutSelector Component={Unis} />}
+      <QueryClientProvider client={queryClient}>
+        <AdminToolbar
+          props={{
+            currentUser: mockUserData.filter(
+              (user) => user.userID === currentUserID
+            )[0],
+          }}
         />
+        <Switch>
+          <Redirect exact from="/" to="unis" />
 
-        <Route
-          exact
-          path="/unis/:uniName"
-          render={() => <MobileLayoutSelector Component={Courses} />}
-        />
+          <Route
+            exact
+            path="/unis"
+            render={() => <MobileLayoutSelector Component={Unis} />}
+          />
 
-        <Route
-          exact
-          path="/unis/:uniName/:courseName"
-          render={() => <MobileLayoutSelector Component={Files} />}
-        />
+          <Route
+            exact
+            path="/unis/:uniName"
+            render={() => <MobileLayoutSelector Component={Courses} />}
+          />
 
-        <Route
-          exact
-          path="/unis/:uniName/:courseName/:fileName"
-          render={() => <FileDetails />}
-        />
+          <Route
+            exact
+            path="/unis/:uniName/:courseName"
+            render={() => <MobileLayoutSelector Component={Files} />}
+          />
 
-        <Route path="/signup" render={() => <SignUp />} />
-        <Route path="/login" render={() => <Login />} />
+          <Route
+            exact
+            path="/unis/:uniName/:courseName/:fileName"
+            render={() => <FileDetails />}
+          />
 
-        <Route path="/resetpass" render={() => <ResetPass />} />
+          <Route path="/signup" render={() => <SignUp />} />
+          <Route path="/login" render={() => <Login />} />
 
-        <Route path="/chat" render={() => <ChatMessages />} />
+          <Route path="/resetpass" render={() => <ResetPass />} />
 
-        <Route path="/addFile" render={() => <AddFile />} />
+          <Route path="/chat" render={() => <ChatMessages />} />
 
-        <Route path="/account" render={() => <Account />} />
+          <Route path="/addFile" render={() => <AddFile />} />
 
-        <Route path="/admin" render={() => <Admin />} />
-      </Switch>
+          <Route path="/account" render={() => <Account />} />
 
-      <BottomNav />
+          <Route path="/admin" render={() => <Admin />} />
+        </Switch>
+
+        <BottomNav />
+      </QueryClientProvider>
     </div>
   );
 }
