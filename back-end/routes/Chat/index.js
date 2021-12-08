@@ -4,28 +4,26 @@ var router = express.Router({ mergeParams: true });
 // Require controller modules.
 var { chatController } = require("../../Controllers");
 
-//list all chats (logged in user only, else return null)
-router.get("/", (req, res) => {
-  res.send("Chat List All Req Received by User: USER_ID");
-});
+router.post("/", chatController.get_chat_by_course_id);
 
-//chat content list (only if logged in user is subscribed in chat)
-router.get("/:chatID", (req, res) => {
-  res.send("Chat list messages req for chat: CHAT_ID, by user: USER_ID");
-});
+//these are just internal functions that will be called by the courseController..
+//we dont need api endpoints for them
+//router.post("/create_chat", chatController.create_chat);
+//router.post("/add_chat_member", chatController.add_chat_member);
+//router.post("/remove_chat_member", chatController.remove_chat_member);
 
-//chat add message
-router.post("/:chatID/newMessage", (req, res) => {
-  res.send(
-    "Chat add messages req for chat: CHAT_ID, by user: USER_ID, message: message_id"
-  );
-});
+router.post("/create-message", chatController.create_message);
+router.post("/update-like-message", chatController.update_like_message);
 
-//chat like/unlike message
-router.post("/:chatID/likeMessage", (req, res) => {
-  res.send(
-    "Chat add messages req for chat: CHAT_ID, by user: USER_ID, message: message_id"
-  );
-});
+/*
+we need a signed in user that is subscribed to this course for alll this...
+new chat,
+chat add person,
+chat remove person,
+chat get details,
+new message,
+like/unlike message,
+delete message
+*/
 
 module.exports = router;

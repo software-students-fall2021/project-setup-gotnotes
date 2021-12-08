@@ -98,7 +98,7 @@ exports.update_user_arr_by_email_or_username = async (
       )
     );
   } else {
-    throw new Error("Cannot add course twice");
+    throw new Error(`Cannot add ${fieldName} twice`);
   }
 
   const updateObject = {

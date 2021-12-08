@@ -3,7 +3,8 @@ var Uni = require("./Uni");
 var Course = require("./Course");
 var File = require("./File");
 var Comment = require("./Comment");
-var Chat = require("./Chat");
+var Chat = require("./Chat/Chat");
+var Message = require("./Chat/Message");
 
 module.exports = {
   User,
@@ -12,4 +13,5 @@ module.exports = {
   File,
   Comment,
   Chat,
+  Message
 };
