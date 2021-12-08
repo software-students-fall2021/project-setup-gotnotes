@@ -8,9 +8,13 @@ function check_is_user_member(req) {
   const user = check_auth(req);
   const { courseId } = req.body;
 
-  const course = CourseService.get_course_by_id(courseId)
+  const course = CourseService.get_course_by_id(courseId);
 
-  if (!course.subscribed.filter(userObj => userObj._id.toString() == user._id.toString()) > 0)
+  if (
+    !course.subscribed.filter(
+      (userObj) => userObj._id.toString() == user._id.toString()
+    ) > 0
+  )
     throw new Error("You are not a member of this chat");
   else return user;
 }

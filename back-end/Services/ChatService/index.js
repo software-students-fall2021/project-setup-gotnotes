@@ -9,11 +9,11 @@ exports.get_chat_by_course_id = async (courseId) => {
 };
 
 /**
- * 
- * @param {String} courseId 
- * @param {String} name 
- * @param {[String] | null} members 
- * @returns 
+ *
+ * @param {String} courseId
+ * @param {String} name
+ * @param {[String] | null} members
+ * @returns
  */
 exports.create_chat = async (courseId, name) => {
   const returnObj = {
