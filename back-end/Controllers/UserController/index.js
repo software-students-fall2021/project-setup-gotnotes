@@ -37,7 +37,6 @@ exports.get_current_user = async function (req, res) {
 
 exports.login_user = async function (req, res) {
   try {
-    console.log(req)
     const { usernameOrEmail, password } = req.body;
 
     if (!(usernameOrEmail && password))

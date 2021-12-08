@@ -31,9 +31,8 @@ exports.create_file = async (name, uri, type, shareDate, sharedBy) => {
   });
   await new_file
     .save()
-    .populate("sharedBy")
-    .then((file) => {
-      returnObj.file = file;
+    .then(async (file) => {
+      returnObj.file = await file.populate("sharedBy").execPopulate();
     })
     .catch((err) => {
       returnObj.dbSaveErr = err;
@@ -65,9 +64,13 @@ exports.update_file_arr_by_file_id = async (
   ) {
     newArr.push(referenceId, ...file[fieldName]);
   } else if (type === "remove") {
-    newArr.push(...file[fieldName].filter((obj) => obj._id != referenceId));
+    newArr.push(
+      ...file[fieldName].filter(
+        (obj) => obj._id.toString() != referenceId.toString()
+      )
+    );
   } else {
-    throw new Error("Cannot add item twice");
+    throw new Error(`Cannot add ${fieldName} twice`);
   }
 
   const updateObject = {
@@ -83,8 +86,6 @@ exports.update_file_arr_by_file_id = async (
     .populate("dislikes");
 };
 
-exports.delete_file_by_file_id = async (
-  fileId
-) => {
-  await File.findOneAndDelete({_id: fileId})
-}
+exports.delete_file_by_file_id = async (fileId) => {
+  await File.findOneAndDelete({ _id: fileId });
+};

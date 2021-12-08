@@ -28,7 +28,7 @@ exports.create_course = async (newCourseName, courseUniId) => {
   await new_course
     .save()
     .then(async (course) => {
-      returnObj.course = await course.populate("courseUni");
+      returnObj.course = await course.populate("courseUni").execPopulate();
     })
     .catch((err) => {
       returnObj.dbSaveErr = err;
@@ -47,12 +47,22 @@ exports.update_course_scalar_by_course_id = async (courseId, updateObject) => {
     .populate("files");
 };
 
+/**
+ *
+ * @param {{Course}} course
+ * @param {"add"|"remove"} type
+ * @param {"subsvribed"|"files"} fieldName
+ * @param {String} referenceId
+ * @returns
+ */
 exports.update_course_arr_by_course_id = async (
   course,
   type,
   fieldName,
   referenceId
 ) => {
+  console.log(course);
+  console.log(fieldName);
   const newArr = [];
   if (
     type === "add" &&

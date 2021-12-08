@@ -5,6 +5,8 @@ const Grid = require("gridfs-stream");
 
 const FileService = require("./../../Services/FileService");
 const UserService = require("./../../Services/UserService");
+const CourseService = require("./../../Services/CourseService");
+
 const upload = require("./../../Middleware");
 
 let gfs;
@@ -33,11 +35,11 @@ exports.get_file_stream = async (req, res) => {
 exports.create_file = async (req, res) => {
   try {
     const user = await check_auth(req);
-    const { fileName, fileLink, fileType } = req.body;
+    const { fileName, fileLink, fileType, courseId } = req.body;
 
-    if (!(fileName && fileLink && fileType))
+    if (!(fileName && fileLink && fileType && courseId))
       throw new Error(
-        "Please include fileName and fileLink and fileType in req.body"
+        "Please include fileName:String and fileLink:string and fileType:string and courseId:String in req.body"
       );
 
     const queryResult = await FileService.create_file(
@@ -58,6 +60,14 @@ exports.create_file = async (req, res) => {
         "shared",
         queryResult.file._id
       );
+
+    const course = await CourseService.get_course_by_id(courseId);
+    const addFileToCourse = await CourseService.update_course_arr_by_course_id(
+      course,
+      "add",
+      "files",
+      queryResult.file._id
+    );
 
     res.json([queryResult]);
   } catch (err) {
@@ -128,11 +138,18 @@ exports.update_file_arr_by_file_id = async (req, res) => {
   }
 };
 
+/**
+ *
+ * @param {{body: {documentId: String, type: "add"|"remove", likeDislike: "like"|"dislike"}}} req
+ * @param {*} res
+ */
 exports.update_user_like_dislike = async (req, res) => {
   try {
-    const { documentId, type, likeDislike } = JSON.parse(req.body);
+    const { documentId, type, likeDislike } = req.body;
     if (!(documentId && type && likeDislike))
-      throw new Error("please include a documentId, type in req.body");
+      throw new Error(
+        "please include a documentId:String, type:add|remove, likeDislike:like|dislike in req.body"
+      );
 
     const user = await check_auth(req);
 
@@ -164,7 +181,7 @@ exports.update_user_like_dislike = async (req, res) => {
   }
 };
 
-//concurrent deletion of both file meta data and the chunks
+//concurrent deletion of both file meta data and the chunks needs to be implemented
 exports.delete_file = async (req, res) => {
   try {
     const user = await check_auth(req);

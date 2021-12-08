@@ -3,6 +3,7 @@ const { check_auth } = require("./../../Services/Auth");
 const CourseService = require("./../../Services/CourseService");
 const UniService = require("./../../Services/UniService");
 const UserService = require("./../../Services/UserService");
+const ChatService = require("./../../Services/ChatService");
 
 /**
  * @param {*} req
@@ -15,7 +16,7 @@ exports.get_all_courses = async (req, res) => {
 
 /**
  *
- * @param {params:{courseId}} req
+ * @param {{params:{courseId: String}}} req
  * @param {*} res
  * @returns {[{course}]}
  */
@@ -29,7 +30,7 @@ exports.get_course_by_id = async (req, res) => {
 
 /**
  *
- * @param {body: {courseName, uniId}} req
+ * @param {{body: {courseName: String, uniId: String}}} req
  * @param {*} res
  * @returns {[{course}]}
  */
@@ -50,6 +51,11 @@ exports.create_course = async (req, res) => {
       addedCourse.course._id
     );
 
+    const chat = await ChatService.create_chat(
+      addedCourse.course._id.toString(),
+      addedCourse.course.name
+    );
+
     if (addedCourse.dbSaveError) throw new Error(dbSaveError);
 
     res.json([addedCourse]);
@@ -61,7 +67,7 @@ exports.create_course = async (req, res) => {
 
 /**
  *
- * @param {body: { documentId, updateObj: { courseName, courseUni }}} req
+ * @param {{body: { documentId: String, updateObj: { courseName: String | null, courseUni: String | null }}}} req
  * @param {*} res
  * @returns {[{course}]}
  */
@@ -91,7 +97,7 @@ exports.update_course_scalar = async (req, res) => {
 
 /**
  *
- * @param {body: {documentId, type, fieldName, referenceId}} req
+ * @param {{body: {documentId: String, type: "add"|"remove", fieldName: "subscribed" | "files", referenceId: String}}} req
  * @param {*} res
  * @returns {[{course}]}
  */
@@ -124,7 +130,7 @@ exports.update_course_arr = async (req, res) => {
 
 /**
  *
- * @param {body: {documentId, type}} req
+ * @param {{body: {documentId: String, type: "add" | "remove"}}} req
  * @param {*} res
  */
 exports.update_user_subscription = async (req, res) => {

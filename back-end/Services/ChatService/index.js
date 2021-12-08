@@ -1,217 +1,118 @@
-const { use } = require("chai");
-let chatData = require("./../../Mock/ChatsMockData/chats.json");
-const db = require("../Database/index");
-const chat = require("../../Models/Chat/index");
-// Comment By Mark Zarutin
-/**
- * Get chat by courseID and chatName
- * @param {courseID} courseID
- * @param {chatName} chatName
- */
+const Chat = require("../../Models/Chat/Chat");
+const Message = require("../../Models/Chat/Message");
 
-let addChat = (courseID, chatName) => {
-  let chat_instance = new chat({
-    courseID: courseID,
-    chatName: chatName,
-    chatMembers: [],
-    chatContent: [],
+exports.get_chat_by_id = async (chatId) => {
+  return await Chat.findOne({ _id: chatId }).populate("content");
+};
+exports.get_chat_by_course_id = async (courseId) => {
+  return await Chat.findOne({ courseId: courseId }).populate("content");
+};
+
+/**
+ * 
+ * @param {String} courseId 
+ * @param {String} name 
+ * @param {[String] | null} members 
+ * @returns 
+ */
+exports.create_chat = async (courseId, name) => {
+  const returnObj = {
+    chat: null,
+    dbSaveErr: false,
+  };
+  let new_chat = new Chat({
+    name: name,
+    courseId: courseId,
+    content: [],
   });
-  chat_instance.save(function (err) {
-    if (err) {
-      console.log(err);
-    }
-  });
+
+  await new_chat
+    .save()
+    .then(async (chat) => {
+      returnObj.chat = await chat;
+    })
+    .catch((err) => (returnObj.dbSaveErr = err));
+
+  return returnObj;
 };
-addChat("courseID", "chatName");
-/**
- * Adds message by courseID and chatName
- * @param {courseID} courseID
- * @param {chatName} chatName
- * @param {message} message
- * @param {messageBy} messageBy
- */
-exports.addMessage = (courseID, chatName, message, messageBy) => {
-  // course ID and chat name are the same
-  chat.findOne(
-    { courseID: courseID, chatName: chatName },
-    function (err, chat) {
-      if (err) {
-        console.log(err);
-      } else {
-        chat.chatContent.push({
-          message: message,
-          messageBy: messageBy,
-          messageDate: new Date(),
-          messageLikedBy: [],
-        });
-        chat.save(function (err) {
-          if (err) {
-            console.log(err);
-          }
-        });
-      }
-    }
-  );
+
+exports.update_course_scalar_by_course_id = async (courseId, updateObject) => {
+  return await Uni.findOneAndUpdate(
+    { _id: courseId },
+    { $set: updateObject },
+    { new: true }
+  ).populate("content");
 };
-/**
- * Likes message by courseID, chatName, userID, and message
- * @param {courseID} courseID
- * @param {chatName} chatName
- * @param {message} message
- * @param {userID} userID
- */
-exports.like_message = (courseID, chatName, message, userID) => {
-  // add try catch
-  chat.findOne(
-    { courseID: courseID, chatName: chatName },
-    function (err, chat) {
-      if (err) {
-        console.log(err);
-      } else {
-        chat.chatContent.findOne({ message: message }, function (err, content) {
-          if (err) {
-            console.log(err);
-          } else {
-            content.messageLikedBy.push(userID);
-            chat.save(function (err) {
-              if (err) {
-                console.log(err);
-              }
-            });
-          }
-        });
-      }
-    }
-  );
-};
-/**
- * Gets all chats for a courseID
- * @param {courseID} courseID
- * @returns {chat} || null
- */
-exports.get_chatName = (courseID) => {
-  chat.find({ courseID: courseID }, function (err, chat) {
-    if (err) {
-      console.log(err);
+
+exports.update_chat_arr = async (
+  chat,
+  type,
+  fieldName,
+  referenceId,
+  updateObjOptional
+) => {
+  const newArr = [];
+  if (referenceId) {
+    if (
+      type === "add" &&
+      !chat[fieldName].filter(
+        (obj) => obj._id.toString() == referenceId.toString()
+      ).length
+    ) {
+      newArr.push(referenceId, ...chat[fieldName]);
+    } else if (type === "remove") {
+      newArr.push(
+        ...chat[fieldName].filter(
+          (obj) => obj._id.toString() != referenceId.toString()
+        )
+      );
     } else {
-      return chat.chatName;
+      throw new Error("Cannot add item twice");
     }
+  }
+
+  const updateObject = updateObjOptional
+    ? updateObjOptional
+    : {
+        [fieldName]: newArr,
+      };
+
+  return await Chat.findOneAndUpdate(
+    { _id: chat._id },
+    { $set: updateObject },
+    { new: true }
+  );
+};
+
+exports.create_message = async (courseId, message, sender) => {
+  const new_message = new Message({
+    message: message,
+    sender: sender,
+    dateSent: Date.now(),
+    likes: [],
+  });
+
+  return await new_message.save().then(async (message) => {
+    return await Chat.findOneAndUpdate(
+      { courseId: courseId },
+      { $push: { content: message } },
+      { new: true }
+    ).populate({
+      path: "content",
+      model: "Message",
+      populate: { path: "sender", model: "User" },
+    });
   });
 };
-/**
- * Gets all chat users for a courseID and chatName
- * @param {courseID} courseID
- * @param {chatName} chatName
- * @returns {chat.chatMembers} || null
- */
-exports.get_Chat_Users = (courseID, chatName) => {
-  chat.findOne(
-    { courseID: courseID, chatName: chatName },
-    function (err, chat) {
-      if (err) {
-        console.log(err);
-      } else {
-        return chat.chatMembers;
-      }
-    }
-  );
+
+exports.update_like_message = async (messageId, type, userId) => {
+  type === "add"
+    ? await Message.findOneAndUpdate(
+        { _id: messageId },
+        { $push: { likes: userId } }
+      )
+    : await Message.findOneAndUpdate(
+        { _id: messageId },
+        { $pull: { likes: userId } }
+      );
 };
-/**
- * gets the entire chat object for a courseID and chatName
- * @param {courseID} courseID
- * @param {chatName} chatName
- * @returns {chat} || null
- */
-exports.get_chat = (courseID, chatName) => {
-  chat.findOne(
-    { courseID: courseID, chatName: chatName },
-    function (err, chat) {
-      if (err) {
-        console.log(err);
-      } else {
-        return chat;
-      }
-    }
-  );
-};
-
-// THESE ARE THE NON-DB FUNCTIONS
-// /**
-//  * Get chat by chatID
-//  * @param {chatID} chatID
-//  * @returns [{uniObj}] || []
-//  */
-//  exports.get_chat = function (chatID) {
-//     return chatData.filter(chat => chat.chatID === chatID);
-// }
-// /**
-//  * Adds a new uni to the database
-//  * @param {*} chatID is the primary key
-//  * @param {*} uniID is the id of the university
-//  * @returns 0 if success, 1 of no such user
-//  */
-// exports.create_chat = function (uniID, chatName) {
-//      //its not gone be like this when
-
-//      var jsonFile= chatData;
-//      var obj= JSON.parse(JSON.stringify(jsonFile));
-//      let newChat = {
-//         "chatID": obj.length + 1,
-//         "uniID": uniID,
-//         "chatName": chatName,
-//         "chatMembers": [],
-//         "chatContent": [],
-//       };
-
-//       obj.push(newChat);
-//       jsonStr= JSON.stringify(obj);
-//       return 1;
-// }
-
-// exports.add_student_to_chat = function (chatID, userID, userName) {
-//     let chat = chatData.filter(chat => chat.chatID === chatID);
-//     chat[0].chatMembers.push({userID: userID, userName: userName});
-//     chatData.push(chat);
-//     // console.log(chat[0].chatMembers.filter(member => member.userID === userID));
-// }
-// // add_student_to_chat(1, 34, "Mark");
-// // console.log(chatData[0].chatMembers.filter(member => member.userName === "Mark"));
-
-// /**
-//  * Get uni by its university name
-//  * @param {chatID} chatID
-//  * @returns [{uniObj}] || []
-//  */
-//  exports.get_chat_chatName = function (chaID) {
-//      const chat= get_chat(chatID);
-//      if(chat?.chatName){
-//          return chat.chatName;
-//      }
-//      return null;
-// }
-
-// exports.add_message_to_chat = function (chatID, message, userID, userName) {
-//     let addition = {
-//         "message":message,
-//         "messageBy":userID,
-//         "messageDate": new Date(),
-//         "messageLikedBy":[]
-//     }
-//     let chat = chatData.filter(chat => chat.chatID === chatID);
-//     if(!chat){
-//         return null;
-//     }
-//     chat[0].chatContent.push(addition);
-//     chatData.push(chat);
-//     return 1;
-// }
-// exports.like_message = function (chatID, message, userID) {
-//     let like = { "userID": userID };
-//     let chat = chatData.filter(chat => chat.chatID === chatID);
-//     if(!chat){
-//         return null;
-//     }
-//     chat[0].chatContent.filter(message => message.message === message).messageLikedBy.push(like);
-//     chatData.push(chat);
-//     return 1;
-// }

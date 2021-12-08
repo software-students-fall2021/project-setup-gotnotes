@@ -23,6 +23,7 @@ exports.get_uni_by_id = async function (req, res) {
 exports.create_uni = async function (req, res) {
   try {
     const user = await check_auth_with_admin(req);
+    console.log(req.body)
     const { uniName, uniLogoPath } = req.body;
 
     if (!(uniName && uniLogoPath))
@@ -69,12 +70,7 @@ exports.update_uni_scalar = async function (req, res) {
 
 /**
  *
- * @param {*} req
- * expects a req.body = {
- * documentId: ObjectId,
- * type: "add"|"remove",
- * fieldName: string (needs to be the key of an arr field that exists in a user obj),
- * referenceId: ObjectId of the referenced obj to be added or removed}
+ * @param {{authorization: "Bearer jwtToken", body: {documentId: String, type: "add"|"remove", fieldName: String, referenceId: String}}} req
  * @param {*} res
  */
 exports.update_uni_arr = async function (req, res) {
@@ -104,6 +100,11 @@ exports.update_uni_arr = async function (req, res) {
   }
 };
 
+/**
+ * 
+ * @param {{authorization: "Bearer jwtToken", body: {documentId: String, type: "add"|"remove"}}} req 
+ * @param {*} res 
+ */
 exports.update_user_enrollment = async function (req, res) {
   try {
     const user = await check_auth(req);
@@ -123,7 +124,7 @@ exports.update_user_enrollment = async function (req, res) {
 
     if (!queryResult) throw new Error("No such Uni");
 
-    const addCourseToUser =
+    const addUniToUser =
       type === "add"
         ? await UserService.update_user_scalar_by_email_or_username(
             user.email,
