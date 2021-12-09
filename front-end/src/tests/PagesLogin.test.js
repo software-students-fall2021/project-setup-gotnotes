@@ -5,7 +5,7 @@ import Login from "../Pages/Login/Login/index.js";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-var jsdom = require("mocha-jsdom");
+import { jsdom } from "jsdom-global";
 
 describe("Login", () => {
   it("should render Login", () => {

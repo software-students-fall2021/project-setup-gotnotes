@@ -5,7 +5,7 @@ import ResetPass from "../Pages/Login/ResetPass/index.js";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-var jsdom = require("mocha-jsdom");
+import { jsdom } from "jsdom-global";
 
 describe("ResetPass", () => {
   it("should render ResetPass", () => {

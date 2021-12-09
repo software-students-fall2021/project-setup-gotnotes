@@ -6,7 +6,7 @@ import Login from "../Pages/Search/FilePreview/index.js";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 import { FilePreview } from "../pages/Search/FilePreview";
-var jsdom = require("mocha-jsdom");
+import { jsdom } from "jsdom-global";
 
 describe("FilePreview", () => {
   it("should render FilePreview", () => {

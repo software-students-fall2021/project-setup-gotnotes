@@ -5,7 +5,7 @@ import { shallow, mount } from "enzyme";
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import FileData from "../components/Mobile/FileData/index.js";
 
-Enzyme.configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() });
 
 describe("FileData ", () => {
   it("should render FileData", () => {

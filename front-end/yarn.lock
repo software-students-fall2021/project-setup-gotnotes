@@ -7945,7 +7945,12 @@
   "resolved" "https://registry.npmjs.org/jsbn/-/jsbn-0.1.1.tgz"
   "version" "0.1.1"
 
-"jsdom@^11.11.0", "jsdom@^11.5.1":
+"jsdom-global@^3.0.2":
+  "integrity" "sha1-a9KZwTsMRiay2iwDk81DhdYGrLk="
+  "resolved" "https://registry.npmjs.org/jsdom-global/-/jsdom-global-3.0.2.tgz"
+  "version" "3.0.2"
+
+"jsdom@^11.5.1":
   "integrity" "sha512-y8Px43oyiBM13Zc1z780FrfNLJCXTL40EWlty/LXUtcjykRBNgLlCjWXpfSPBl2iv+N7koQN+dvqszHZgT/Fjw=="
   "resolved" "https://registry.npmjs.org/jsdom/-/jsdom-11.12.0.tgz"
   "version" "11.12.0"
@@ -8885,13 +8890,6 @@
   "version" "0.5.5"
   dependencies:
     "minimist" "^1.2.5"
-
-"mocha-jsdom@^2.0.0":
-  "integrity" "sha512-+3D++FPXHXEesbBD7Q/r4dkc3XzVFMPLJVIECaQ685dj9qKQYzliqX8IXyIUbUL4x1QfgD9h8Zao8cn03NKKEA=="
-  "resolved" "https://registry.npmjs.org/mocha-jsdom/-/mocha-jsdom-2.0.0.tgz"
-  "version" "2.0.0"
-  dependencies:
-    "jsdom" "^11.11.0"
 
 "moment@^2.23.0":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="

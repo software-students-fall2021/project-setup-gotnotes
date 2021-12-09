@@ -5,7 +5,7 @@ import { shallow, mount } from "enzyme";
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import MessageInput from "../components/Mobile/MessageInput/index.js";
 
-Enzyme.configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() });
 
 describe("MessageInput", () => {
   it("should render MessageInput", () => {

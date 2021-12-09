@@ -1,12 +1,12 @@
 import React from "react";
 import { expect, assert } from "chai";
-import { shallow, mount } from "enzyme";
+import { shallow, mount, render } from "enzyme";
 import TestFile from "../Pages/AddFile/index.js";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 import { AddFile } from "../pages/AddFile";
-var jsdom = require("mocha-jsdom");
+import { jsdom } from "jsdom-global";
 
 describe("TestFile", () => {
   it("should render TestFile", () => {
