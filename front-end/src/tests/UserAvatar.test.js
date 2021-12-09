@@ -4,9 +4,9 @@ import { shallow, mount } from 'enzyme';
 import UserAvatar from './src/components/Mobile/UserAvatar/index';
 
 
-describe('Navigations', () => {
+describe('UserAvatar', () => {
 
-    it('should render Navigations', () => {
+    it('should render UserAvatar', () => {
 
         const wrapper = shallow(<UserAvatar />);
 
