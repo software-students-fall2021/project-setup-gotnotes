@@ -1,28 +1,28 @@
 import React from 'react';
 import { expect, assert } from 'chai';
 import { shallow, mount } from 'enzyme';
-import Login from './src/Pages/Login/Login/index';
+import SignUp from './src/Pages/Login/SignUp/index';
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 var jsdom = require("mocha-jsdom");
 
-describe('Login', () => {
+describe('SignUp', () => {
 
-    it('should render Login', () => {
+    it('should render SignUp', () => {
 
-        const wrapper = shallow(<Login />);
+        const wrapper = shallow(<SignUp/>);
 
         expect(wrapper.containsAllMatchingElements([
 
-            <Login />,
+            <SignUp />,
 
         ])).to.equal(true);
     });
 
     it('should exists', () => {
 
-        assert.isDefined(Login)
+        assert.isDefined(SignUp)
     })
 });
 
@@ -42,12 +42,12 @@ afterEach(() => {
   rootContainer = null;
 });
 
-describe("Login div", () => {
-  it("Renders Login", () => {
+describe("SignUp div", () => {
+  it("Renders SignUp", () => {
     act(() => {
-      ReactDOM.render(<Login />, rootContainer);
+      ReactDOM.render(<SignUp />, rootContainer);
     });
     const h2 = rootContainer.querySelector("h2");
-    expect(h2.textContent).to.equal("Login");
+    expect(h2.textContent).to.equal("Sign Up");
   });
 });
