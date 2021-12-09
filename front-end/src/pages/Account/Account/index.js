@@ -157,8 +157,15 @@ export const Account = ({ props }) => {
             <h4>{userData.lastName}</h4>
             <h4>{userData.username}</h4>
             <h4>{userData.userID}</h4>
-            <h4>{userData.userLiked.fileID}</h4>
-            
+            <h4>Liked Files:</h4>
+            <div>
+              {userData.userLiked.map((file) => (
+                <h4>{file.fileID}</h4>
+              ))}
+            </div>
+            <view>
+              {console.log("My Message:", userData.userLiked[0].fileID)}
+            </view>
           </div>
 
           <div classname="submit-button">
@@ -171,12 +178,9 @@ export const Account = ({ props }) => {
               <input type="submit" value="Edit" />
             </form>
           </div>
-          <div classname="user-likes-container">
-              
-          </div>
+          <div classname="user-likes-container"></div>
           <view>{console.log("userData: ", userData.firstName)}</view>
         </div>
-
       )}
       {/*
             You might wanna have a look at the UserAvatar component that I wrote a while back
