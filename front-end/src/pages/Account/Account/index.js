@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+// import axios from "axios";
 import UserAvatar from "../../../components/Mobile/UserAvatar";
-import UserDataViewer from "../../../components/Mobile/UserDataViewer";
+// import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 import "./styles.scss";
 
 const userData = {
@@ -24,7 +25,7 @@ const editUserData = () => {
 };
 
 export const Account = ({ props }) => {
-  const userID = "cdies0@netlog.com";
+  // const userID = "cdies0@netlog.com";
 
   const [isEditActive, setIsEditActive] = useState(null);
   //const [userData, setUserData] = useState(null);
