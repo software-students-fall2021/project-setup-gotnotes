@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+// import axios from "axios";
 import UserAvatar from "../../../components/Mobile/UserAvatar";
-import UserDataViewer from "../../../components/Mobile/UserDataViewer";
+// import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 import "./styles.scss";
 
 const userData = {
@@ -24,7 +25,7 @@ const editUserData = () => {
 };
 
 export const Account = ({ props }) => {
-  const userID = "cdies0@netlog.com";
+  // const userID = "cdies0@netlog.com";
 
   const [isEditActive, setIsEditActive] = useState(null);
   //const [userData, setUserData] = useState(null);
@@ -157,15 +158,7 @@ export const Account = ({ props }) => {
             <h4>{userData.lastName}</h4>
             <h4>{userData.username}</h4>
             <h4>{userData.userID}</h4>
-            <h4>Liked Files:</h4>
-            <div>
-              {userData.userLiked.map((file) => (
-                <h4>{file.fileID}</h4>
-              ))}
-            </div>
-            <view>
-              {console.log("My Message:", userData.userLiked[0].fileID)}
-            </view>
+            <h4>{userData.userLiked.fileID}</h4>
           </div>
 
           <div classname="submit-button">

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import "./styles.scss";
 
 //icons
@@ -10,7 +10,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 */
 
 const UserAvatar = ({ props }) => {
-  const { userAvatarUrl, size, showEditButton, handleEditAction} = props;
+  const { userAvatarUrl, size, showEditButton, handleEditAction } = props;
 
   const classes = size === "large" ? "large" : size === "med" ? "med" : "small";
 
@@ -26,10 +26,7 @@ const UserAvatar = ({ props }) => {
         />
       </div>
       {showEditButton && (
-        <div
-          className="edit-icon-container"
-          onClick={() => handleEditAction()}
-        >
+        <div className="edit-icon-container" onClick={() => handleEditAction()}>
           <EditOutlinedIcon fontSize="large" />
         </div>
       )}
