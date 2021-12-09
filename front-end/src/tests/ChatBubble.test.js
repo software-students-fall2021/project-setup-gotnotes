@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import ChatBubble from "./src/components/Mobile/ChatBubble/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import ChatBubble from "../components/Mobile/ChatBubble/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("ChatBubble", () => {
   it("should render ChatBubble", () => {

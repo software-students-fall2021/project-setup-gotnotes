@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import MessageInput from "./src/components/Mobile/MessageInput/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import MessageInput from "../components/Mobile/MessageInput/index.js";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe("MessageInput", () => {
   it("should render MessageInput", () => {

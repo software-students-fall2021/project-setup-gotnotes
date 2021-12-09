@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import Breadcrumbs from "./src/components/Mobile/Navigations/Breadcrumbs/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Breadcrumbs from "../components/Mobile/Navigations/Breadcrumbs/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("Breadcrumbs", () => {
   it("should render Breadcrumbs", () => {

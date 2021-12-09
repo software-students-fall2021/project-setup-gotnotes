@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import Button from "./src/components/Mobile/Button/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Button from "../components/Mobile/Button/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("Button", () => {
   it("should render Button", () => {

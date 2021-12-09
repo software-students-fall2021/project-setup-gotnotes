@@ -1,9 +1,12 @@
 import React from "react";
+import { configure } from 'enzyme';
 import { configure, shallow } from "enzyme";
 import chai, { expect } from "chai";
 import chaiEnzyme from "chai-enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import App from "../App";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import App from "../App.js";
+
+configure({ adapter: new Adapter() });
 
 //could be run using mocha App.test.js through command line
 

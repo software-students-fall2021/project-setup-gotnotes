@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import SearchHigherOrder from "./src/components/Mobile/SearchHigherOrder/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import SearchHigherOrder from "../components/Mobile/SearchHigherOrder/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("SearchHigherOrder", () => {
   it("should render SearchHigherOrder", () => {

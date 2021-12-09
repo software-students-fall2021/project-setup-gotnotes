@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import GridItem from "./src/components/Mobile/GridItem/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import GridItem from "../components/Mobile/GridItem/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("GridItem", () => {
   it("should render GridItem", () => {

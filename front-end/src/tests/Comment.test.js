@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import Comment from "./src/components/Mobile/Comment/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Comment from "../components/Mobile/Comment/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("Comment", () => {
   it("should render Comment", () => {

@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import Forms from "./src/components/Mobile/Forms/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Forms from "../components/Mobile/Forms/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("Forms", () => {
   it("should render Forms", () => {

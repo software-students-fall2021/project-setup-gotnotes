@@ -1,7 +1,11 @@
 import React from "react";
 import { expect, assert } from "chai";
+import { configure } from 'enzyme';
 import { shallow, mount } from "enzyme";
-import BottomNav from "./src/components/Mobile/Navigations/BottomNav/index";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import BottomNav from "../components/Mobile/Navigations/BottomNav/index.js";
+
+configure({ adapter: new Adapter() });
 
 describe("BottomNac", () => {
   it("should render BottomNav", () => {

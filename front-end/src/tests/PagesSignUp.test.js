@@ -1,7 +1,7 @@
 import React from "react";
 import { expect, assert } from "chai";
 import { shallow, mount } from "enzyme";
-import SignUp from "./src/Pages/Login/SignUp/index";
+import SignUp from "../Pages/Login/SignUp/index.js";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
