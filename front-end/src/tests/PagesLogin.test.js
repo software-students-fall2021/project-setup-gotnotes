@@ -1,33 +1,26 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import Login from './src/Pages/Login/Login/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { shallow, mount } from "enzyme";
+import Login from "./src/Pages/Login/Login/index";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 var jsdom = require("mocha-jsdom");
 
-describe('Login', () => {
+describe("Login", () => {
+  it("should render Login", () => {
+    const wrapper = shallow(<Login />);
 
-    it('should render Login', () => {
+    expect(wrapper.containsAllMatchingElements([<Login />])).to.equal(true);
+  });
 
-        const wrapper = shallow(<Login />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <Login />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(Login)
-    })
+  it("should exists", () => {
+    assert.isDefined(Login);
+  });
 });
 
 global.document = jsdom({
-  url: "http://localhost:3000/"
+  url: "http://localhost:3000/",
 });
 
 let rootContainer;

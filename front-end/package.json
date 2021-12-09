@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "NODE_ENV=test mocha 'src/tests/**/*.js' --recursive --require @babel/register --require       ignore-styles src/test/*.test.js",
     "eject": "react-scripts eject"
-},
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -65,4 +65,3 @@
   "author": "",
   "license": "ISC"
 }
-

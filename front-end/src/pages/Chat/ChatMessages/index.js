@@ -176,7 +176,9 @@ const ChatMessages = ({ props }) => {
         {messages.map((message) => (
           <ChatBubble props={{ message, userID }} />
         ))}
-        <view>{console.log("My Message:", messages[0].chatContent.message)}</view>
+        <view>
+          {console.log("My Message:", messages[0].chatContent.message)}
+        </view>
       </div>
       <div className="message-input-container">
         <MessageInput></MessageInput>

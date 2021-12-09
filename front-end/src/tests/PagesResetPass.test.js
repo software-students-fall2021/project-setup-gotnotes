@@ -1,33 +1,26 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import ResetPass from './src/Pages/Login/ResetPass/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { shallow, mount } from "enzyme";
+import ResetPass from "./src/Pages/Login/ResetPass/index";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 var jsdom = require("mocha-jsdom");
 
-describe('ResetPass', () => {
+describe("ResetPass", () => {
+  it("should render ResetPass", () => {
+    const wrapper = shallow(<ResetPass />);
 
-    it('should render ResetPass', () => {
+    expect(wrapper.containsAllMatchingElements([<ResetPass />])).to.equal(true);
+  });
 
-        const wrapper = shallow(<ResetPass />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <ResetPass />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(ResetPass)
-    })
+  it("should exists", () => {
+    assert.isDefined(ResetPass);
+  });
 });
 
 global.document = jsdom({
-  url: "http://localhost:3000/"
+  url: "http://localhost:3000/",
 });
 
 let rootContainer;
