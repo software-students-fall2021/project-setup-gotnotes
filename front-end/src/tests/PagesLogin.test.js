@@ -1,11 +1,14 @@
 import React from "react";
 import { expect, assert } from "chai";
-import { shallow, mount } from "enzyme";
+import { configure, shallow, mount } from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import Login from "../Pages/Login/Login/index.js";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 import { jsdom } from "jsdom-global";
+
+configure({ adapter: new Adapter() });
 
 describe("Login", () => {
   it("should render Login", () => {
