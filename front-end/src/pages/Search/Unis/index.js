@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles.scss";
+import { useQuery } from "react-query";
 
 //mock data
 //import { mockUniData } from '../../../assets/mocks/mockData'
+
+const fetchUniData = async () => {
+  const {data} = await axios.get(`http://localhost:4000/unis`, {
+    crossdomain: true,
+  });
+  console.log(data)
+  return data;
+};
+
 
 export const Unis = ({
   ViewComponent,
@@ -11,23 +21,22 @@ export const Unis = ({
   BreadCrumbData,
   SetBreadCrumbData,
 }) => {
-  const [uniData, setUniData] = useState(null);
+  const {
+    data,
+    error,
+    isError,
+    isLoading,
+  } = useQuery("unis", fetchUniData);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/unis`, { crossdomain: true })
-      .then((res) => {
-        console.log(res.data);
-        setUniData(res.data);
-      });
-  }, []);
+  if(isLoading) return <div>Loading</div>
+  if(isError) return <div>Error: {error}</div>
 
   return (
     <div className={activeClass === "grid" ? "unis grid" : "unis"}>
-      {uniData &&
-        uniData.map(
+      {data &&
+        data.map(
           ({
-            uniID: itemID,
+            _id: itemID,
             uniName: itemName,
             uniLogoPath: itemLogoPath,
             uniStudentCount: courseCount,
