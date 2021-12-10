@@ -1,22 +1,31 @@
 import React from "react";
 import { likeDislikeFile } from "../../../services/SearchTabServices/FileInteractionHandler";
+import {useQuery} from "react-query"
+import axios from "axios";
 
 import "./styles.scss";
-import { mockFileData } from "../../../assets/mocks/mockData";
+//import { mockFileData } from "../../../assets/mocks/mockData";
+
+const fetchAllFiles = async () => {
+  const {data} = await axios.get('localhost:4000/files')
+  return data
+} 
 
 export const Files = ({ ViewComponent, activeClass }) => {
+
+  const {data, error, isLoading,isError} = useQuery("files", fetchAllFiles)
+
   return (
     <div className={activeClass === "grid" ? "files grid" : "files"}>
-      {mockFileData.map(
+      {data.map(
         ({
-          itemID,
-          itemName,
-          itemLogoPath,
+          _id: itemID,
+          name: itemName,
+          uri: itemLogoPath,
           itemType,
-          fileType,
-          likeCount,
-          commentCount,
-          dislikeCount,
+          type,
+          likes,
+          dislikes,
         }) => (
           <ViewComponent
             key={itemID}
@@ -25,11 +34,10 @@ export const Files = ({ ViewComponent, activeClass }) => {
               itemName,
               itemLogoPath,
               itemType,
-              fileType,
-              likeCount,
-              commentCount,
-              dislikeCount,
-              interactionHandler: likeDislikeFile,
+              fileType: type,
+              likeCount: likes.length,
+              commentCount: 0,
+              dislikeCount: dislikes.length,
             }}
           />
         )

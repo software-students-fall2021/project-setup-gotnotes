@@ -6,6 +6,32 @@ import logo from "../../../assets/GotNotes.jpg";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
 
+var axios = require('axios');
+var data = JSON.stringify({
+  "email": "test1@test.com",
+  "username": "testUser",
+  "password": "Test_1234",
+  "confirmPassword": "Test_1234"
+});
+
+var config = {
+  method: 'post',
+  url: 'localhost:4000/signup',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+
 export const SignUp = () => {
   return (
     <div className="whole">
