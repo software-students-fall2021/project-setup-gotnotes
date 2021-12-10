@@ -1,24 +1,20 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import Comment from './src/components/Mobile/Comment/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { configure } from 'enzyme';
+import { shallow, mount } from "enzyme";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Comment from "../components/Mobile/Comment/index.js";
 
+configure({ adapter: new Adapter() });
 
-describe('Comment', () => {
+describe("Comment", () => {
+  it("should render Comment", () => {
+    const wrapper = shallow(<Comment />);
 
-    it('should render Comment', () => {
+    expect(wrapper.containsAllMatchingElements([<Comment />])).to.equal(true);
+  });
 
-        const wrapper = shallow(<Comment />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <Comment />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(Comment)
-    })
+  it("should exists", () => {
+    assert.isDefined(Comment);
+  });
 });

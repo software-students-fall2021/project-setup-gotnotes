@@ -1,24 +1,20 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import GridItem from './src/components/Mobile/GridItem/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { configure } from 'enzyme';
+import { shallow, mount } from "enzyme";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import GridItem from "../components/Mobile/GridItem/index.js";
 
+configure({ adapter: new Adapter() });
 
-describe('GridItem', () => {
+describe("GridItem", () => {
+  it("should render GridItem", () => {
+    const wrapper = shallow(<GridItem />);
 
-    it('should render GridItem', () => {
+    expect(wrapper.containsAllMatchingElements([<GridItem />])).to.equal(true);
+  });
 
-        const wrapper = shallow(<GridItem />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <GridItem />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(GridItem)
-    })
+  it("should exists", () => {
+    assert.isDefined(GridItem);
+  });
 });

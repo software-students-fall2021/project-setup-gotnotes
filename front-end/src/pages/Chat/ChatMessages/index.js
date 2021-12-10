@@ -1,11 +1,11 @@
-import React, { Component, useState } from "react";
-import ReactDOM from "react-dom";
+// import React, { Component, useState } from "react";
+import React from "react";
+// import ReactDOM from "react-dom";
 import ChatBubble from "../../../components/Mobile/ChatBubble/index";
 import { MessageInput } from "../../../components/Mobile/MessageInput";
-import UserDataViewer from "../../../components/Mobile/UserDataViewer";
+// import UserDataViewer from "../../../components/Mobile/UserDataViewer";
 
-const image =
-  "http://www.bradfordwhite.com/sites/default/files/images/corporate_imgs/iStock_000012107870XSmall.jpg";
+// const image = "http://www.bradfordwhite.com/sites/default/files/images/corporate_imgs/iStock_000012107870XSmall.jpg";
 
 //make it look like mongo db, or the mock data
 //maybe ask mark
@@ -176,7 +176,9 @@ const ChatMessages = ({ props }) => {
         {messages.map((message) => (
           <ChatBubble props={{ message, userID }} />
         ))}
-        <view>{console.log("My Message:", messages[0].chatContent.message)}</view>
+        <view>
+          {console.log("My Message:", messages[0].chatContent.message)}
+        </view>
       </div>
       <div className="message-input-container">
         <MessageInput></MessageInput>

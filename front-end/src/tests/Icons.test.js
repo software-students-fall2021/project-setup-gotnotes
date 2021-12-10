@@ -1,24 +1,19 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import Icons from './src/components/Mobile/Icons/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { configure, shallow, mount } from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import Icons from "../components/Mobile/Icons/CommentIcon/index.js";
 
+configure({ adapter: new Adapter() });
 
-describe('Icons', () => {
+describe("Icons", () => {
+  it("should render Icons", () => {
+    const wrapper = shallow(<div className="notificationBell" />);
 
-    it('should render Icons', () => {
+    expect(wrapper.containsAllMatchingElements([<CommentOutlined />])).to.equal(true);
+  });
 
-        const wrapper = shallow(<Icons />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <Icons />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(Icons)
-    })
+  it("should exists", () => {
+    assert.isDefined(Icons);
+  });
 });

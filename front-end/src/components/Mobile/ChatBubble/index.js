@@ -9,7 +9,7 @@ const ChatBubble = ({ props }) => {
 
   useEffect(() => {
     //I don't know whether this field actually exists...
-    message.chatID == userID
+    message.chatID === userID
       ? setIsUserCurrentUser(true)
       : setIsUserCurrentUser(false);
   }, []);

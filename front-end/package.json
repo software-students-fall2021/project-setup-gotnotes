@@ -14,6 +14,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
     "chat-engine": "^0.3.1",
@@ -35,10 +36,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "NODE_ENV=test mocha 'src/tests/**/*.js' --recursive --require @babel/register --require       ignore-styles src/test/*.test.js",
+    "build": "CI=false && react-scripts build",
+    "old-test": "NODE_ENV=test mocha 'src/tests/**/*.js' --recursive --require @babel/register --require       ignore-styles src/test/*.test.js",
+    "test": "react-scripts test --env=jsdom --watchAll=false",
     "eject": "react-scripts eject"
-},
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -58,11 +60,15 @@
     ]
   },
   "devDependencies": {
-    "@mui/material": "^5.2.0"
+    "@mui/material": "^5.2.0",
+    "chai": "^4.3.4",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "enzyme": "^3.11.0",
+    "jsdom-global": "^3.0.2",
+    "react-test-renderer": "^17.0.2"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "",
   "license": "ISC"
 }
-

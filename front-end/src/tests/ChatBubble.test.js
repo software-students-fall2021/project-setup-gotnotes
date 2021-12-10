@@ -1,24 +1,22 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import ChatBubble from './src/components/Mobile/ChatBubble/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { configure } from 'enzyme';
+import { shallow, mount } from "enzyme";
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import ChatBubble from "../components/Mobile/ChatBubble/index.js";
 
+configure({ adapter: new Adapter() });
 
-describe('ChatBubble', () => {
+describe("ChatBubble", () => {
+  it("should render ChatBubble", () => {
+    const wrapper = shallow(<ChatBubble />);
 
-    it('should render ChatBubble', () => {
+    expect(wrapper.containsAllMatchingElements([<ChatBubble />])).to.equal(
+      true
+    );
+  });
 
-        const wrapper = shallow(<ChatBubble />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <ChatBubble />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(ChatBubble)
-    })
+  it("should exists", () => {
+    assert.isDefined(ChatBubble);
+  });
 });

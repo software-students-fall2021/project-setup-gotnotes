@@ -1,34 +1,29 @@
-import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import Login from './src/Pages/Pages/Search/FilePreview/index';
+import React from "react";
+import { expect, assert } from "chai";
+import { shallow, mount } from "enzyme";
+import FilePreview from "../Pages/Search/FilePreview/index.js";
 
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-import { FilePreview } from '../pages/Search/FilePreview';
-var jsdom = require("mocha-jsdom");
+import { FilePreview } from "../pages/Search/FilePreview";
+import { jsdom } from "jsdom-global";
 
-describe('FilePreview', () => {
+describe("FilePreview", () => {
+  it("should render FilePreview", () => {
+    const wrapper = shallow(<FilePreview />);
 
-    it('should render FilePreview', () => {
+    expect(wrapper.containsAllMatchingElements([<FilePreview />])).to.equal(
+      true
+    );
+  });
 
-        const wrapper = shallow(<FilePreview />);
-
-        expect(wrapper.containsAllMatchingElements([
-
-            <FilePreview />,
-
-        ])).to.equal(true);
-    });
-
-    it('should exists', () => {
-
-        assert.isDefined(FilePreview)
-    })
+  it("should exists", () => {
+    assert.isDefined(FilePreview);
+  });
 });
 
 global.document = jsdom({
-  url: "http://localhost:3000/"
+  url: "http://localhost:3000/",
 });
 
 let rootContainer;
