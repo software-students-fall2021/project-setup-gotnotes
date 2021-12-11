@@ -5,7 +5,7 @@ var router = express.Router({ mergeParams: true });
 var { courseController } = require("../../../Controllers");
 
 //list all courses under that uni
-router.get("/", courseController.get_all_courses);
+router.post("/", courseController.get_all_courses_by_uni);
 
 router.get("/:courseId", courseController.get_course_by_id);
 

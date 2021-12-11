@@ -73,7 +73,7 @@ exports.login_user = async (req, res) => {
       },
     ]);
   } catch (error) {
-    res.json([{ error: error.message }]);
+    res.status(500).json([{ error: error.message }]);
   }
 };
 
@@ -82,7 +82,7 @@ exports.create_user = async (req, res) => {
 
   //extra backend validation for direct api calls
   if (!(username && email && password && confirmPassword)) {
-    res.json([{ error: "Please enter all fields" }]);
+    res.status(500).json([{ error: "Please enter all fields" }]);
     return;
   }
   try {
@@ -125,7 +125,7 @@ exports.create_user = async (req, res) => {
       error.message = "A user with that email already exists";
     if (error.message.includes("E11000") && error.message.includes("username"))
       error.message = "A user with that username already exists";
-    res.json([{ error: error.message }]);
+    res.status(500).json([{ error: error.message }]);
   }
 };
 

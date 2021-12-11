@@ -15,6 +15,16 @@ exports.get_all_courses = async (req, res) => {
 };
 
 /**
+ * @param {{body:{uniId: String}} req
+ * @param {*} res
+ * @returns {[{course}]}
+ */
+ exports.get_all_courses_by_uni = async (req, res) => {
+   const {uniId} = req.body
+  res.json(await CourseService.get_all_courses_by_uni(uniId));
+};
+
+/**
  *
  * @param {{params:{courseId: String}}} req
  * @param {*} res
@@ -24,7 +34,7 @@ exports.get_course_by_id = async (req, res) => {
   try {
     res.json(await CourseService.get_course_by_id(req.params.courseId));
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 

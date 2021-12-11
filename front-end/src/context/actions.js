@@ -1,0 +1,18 @@
+export const GET_ATTENDEES = "GET_ATTENDEES"
+export const SEARCH_ATTENDEES = "SEARCH_ATTENDEES"
+export const GET_EVENT_ATTENDEE_MAP = "GET_EVENT_ATTENDEE_MAP"
+export const SET_LOADING = "SET_LOADING"
+export const SET_ERROR = "SET_ERROR"
+export const CLEAR_ERROR = "CLEAR_ERROR"
+
+
+export const SIGNUP_USER = "SIGNUP_USER"
+export const LOGIN_USER = "LOGIN_USER"
+export const LOGOUT_USER = "LOGOUT_USER"
+export const LOGOUT_USER = "LOGOUT_USER"
+
+export const GET_UNIS = "GET_UNIS"
+export const GET_UNI_COURSES = "GET_UNI_COURSES"
+export const GET_COURSE_BY_ID = "GET_COURSE_BY_ID"
+export const GET_FILES_BY_COURSE = "GET_FILES_BY_COURSE"
+

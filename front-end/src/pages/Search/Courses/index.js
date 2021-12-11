@@ -1,47 +1,28 @@
-import React, { useEffect, useState } from "react";
-
-import axios from "axios";
-import { subscribeToCourse } from "../../../services/SearchTabServices/CourseInteractionHandler";
-
-// import { useLocation } from "react-router-dom";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import {
+  subscribeToCourse,
+  fetchUniData,
+  fetchCourseData,
+} from "../../../services/SearchTabServices/FetchCalls";
 
 import "./styles.scss";
-
-// import { mockClassData } from "../../../assets/mocks/mockData";
+import { useQuery } from "react-query";
 
 export const Courses = ({ ViewComponent, activeClass }) => {
-  const [courseData, setCourseData] = useState(null);
+  const uniId = useLocation().pathname.split("/").pop()
+  const { data, error, isError, isLoading } = useQuery(["courses", uniId], fetchCourseData);
 
-  // const { pathname } = useLocation();
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:4000${pathname}`, { crossdomain: true })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setCourseData(res.data);
-  //     });
-  // }, []);
+  console.log(isError, error)
+  if (isError) return <div>Error: {error}</div>;
+  if (isLoading) return <div>Loading</div>;
 
-  // another temporary fix as pathname is seemingly not being recognized
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/courses`, { crossdomain: true })
-      .then((res) => {
-        console.log(res.data);
-        setCourseData(res.data);
-      });
-  }, []);
-
-  return (
-    <div className={activeClass === "grid" ? "courses grid" : "courses"}>
-      {courseData &&
-        courseData[0].uniCourses.map(
-          ({
-            courseID: itemID,
-            courseName: itemName,
-            courseSharedFileCount: enrolledStudents,
-          }) => (
+  if (data) {
+    return (
+      <div className={activeClass === "grid" ? "courses grid" : "courses"}>
+        {data.map(
+          ({ _id: itemID, courseName: itemName, subscribed }) => (
             <ViewComponent
               key={itemID}
               props={{
@@ -49,12 +30,13 @@ export const Courses = ({ ViewComponent, activeClass }) => {
                 itemName,
                 itemLogoPath: "",
                 itemType: "course",
-                enrolledStudents,
+                enrolledStudents: subscribed.length,
                 interactionHandler: subscribeToCourse,
               }}
             />
           )
         )}
-    </div>
-  );
+      </div>
+    );
+  }
 };

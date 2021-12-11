@@ -21,6 +21,7 @@ exports.get_all_files = async (req, res) => {
   res.json(await FileService.get_all_files());
 };
 
+
 exports.get_file_by_id = async (req, res) => {
   res.json(await FileService.get_file_by_id(req.params.fileId));
 };
@@ -30,7 +31,7 @@ exports.get_file_stream = async (req, res) => {
     const readStream = gfs.createReadStream(file.filename);
     readStream.pipe(res);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 exports.create_file = async (req, res) => {
@@ -72,7 +73,7 @@ exports.create_file = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -85,7 +86,7 @@ exports.get_file_link = async (req, res) => {
     const fileUrl = `http://localhost:${process.env.PORT}/files/uploads/${req.file.filename}`;
     res.json([{ uri: fileUrl }]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -108,7 +109,7 @@ exports.update_file_scalar_by_file_id = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -135,7 +136,7 @@ exports.update_file_arr_by_file_id = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -223,7 +224,7 @@ exports.update_user_like_dislike = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -240,6 +241,6 @@ exports.delete_file = async (req, res) => {
     await gfs.files.deleteOne({ filename: req.params.filename });
     res.json([{ message: "success" }]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };

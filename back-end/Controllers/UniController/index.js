@@ -7,7 +7,7 @@ exports.get_all_unis = async function (req, res) {
   try {
     res.json(await UniService.get_all_unis());
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -15,7 +15,7 @@ exports.get_uni_by_id = async function (req, res) {
   try {
     res.json(await UniService.get_uni_by_id(req.params.uniId));
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -35,7 +35,7 @@ exports.create_uni = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 /**
@@ -64,7 +64,7 @@ exports.update_uni_scalar = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -96,7 +96,7 @@ exports.update_uni_arr = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -141,6 +141,6 @@ exports.update_user_enrollment = async function (req, res) {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };

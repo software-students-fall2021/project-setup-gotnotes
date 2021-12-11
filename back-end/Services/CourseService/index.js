@@ -7,6 +7,13 @@ exports.get_all_courses = async () => {
     .populate("files");
 };
 
+exports.get_all_courses_by_uni = async (uniId) => {
+  return await Course.find({ courseUni: uniId })
+    .populate("subscribed")
+    .populate("courseUni")
+    .populate("files");
+};
+
 exports.get_course_by_id = async (courseID) => {
   return await Course.findOne({ _id: courseID })
     .populate("subscribed")
@@ -61,8 +68,6 @@ exports.update_course_arr_by_course_id = async (
   fieldName,
   referenceId
 ) => {
-  console.log(course);
-  console.log(fieldName);
   const newArr = [];
   if (
     type === "add" &&

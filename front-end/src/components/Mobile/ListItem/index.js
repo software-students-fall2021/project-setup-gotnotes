@@ -12,13 +12,13 @@ import { DislikeIcon } from "../Icons/DislikeIcon";
 import { CommentIcon } from "../Icons/CommentIcon";
 
 export const ListItem = ({ props }) => {
-  //TODO in the future we will fetch these data from the api, for now we use mock data
-  //with a similar format to the actual api that we will design
+  
   const {
-    itemID,
+    itemID: itemId,
     itemName,
     itemLogoPath,
     itemType,
+    fileType,
     enrolledStudents,
     courseCount,
     likeCount,
@@ -29,13 +29,16 @@ export const ListItem = ({ props }) => {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const handleClick = () => history.push(`${pathname}/${itemID}`);
+  const handleClick = () => history.push(`${pathname}/${itemId}`);
 
   return (
     <div className="list-item" onClick={() => handleClick()}>
       <div className="img-container">
-        {(itemType === "uni" || itemType === "file") && (
+        {(itemType === "uni") && (
           <img className="list-item-logo" src={itemLogoPath} alt="" />
+        )}
+        {( itemType === "file")&&(
+          <img className="list-item-logo" src={`/fileLogos/${fileType}.png`} alt="" />
         )}
       </div>
 
@@ -55,24 +58,24 @@ export const ListItem = ({ props }) => {
               <span>{courseCount}</span>
             </div>
           )}
-          {itemType === "class" && (
+          {itemType === "course" && (
             <div className="icon-set">
-              <NotificationBell props={{ itemID, fontSize: "large" }} />
+              <NotificationBell props={{ itemID: itemId, fontSize: "large" }} />
               <span>{enrolledStudents}</span>
             </div>
           )}
           {itemType === "file" && (
             <>
               <div className="icon-set">
-                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                <LikeIcon props={{ itemID: itemId, fontSize: "large" }} />
                 <span>{likeCount}</span>
               </div>
               <div className="icon-set">
-                <DislikeIcon props={{ itemID, fontSize: "large" }} />
+                <DislikeIcon props={{ itemID: itemId, fontSize: "large" }} />
                 <span>{dislikeCount}</span>
               </div>
               <div className="icon-set">
-                <CommentIcon props={{ itemID, fontSize: "large" }} />
+                <CommentIcon props={{ itemID: itemId, fontSize: "large" }} />
                 <span>{commentCount}</span>
               </div>
             </>
