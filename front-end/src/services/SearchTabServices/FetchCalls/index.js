@@ -15,6 +15,11 @@ export const fetchUserData = async ({ queryKey }) => {
   return data;
 };
 
+export const postUserUpdates = async (firstName, lastName, userAvatarUrl) => {
+  
+  return null
+}
+
 export const fetchCourseByUni = async ({ queryKey }) => {
   const [, uniId] = queryKey;
   var postData = JSON.stringify({
