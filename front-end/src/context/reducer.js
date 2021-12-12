@@ -6,6 +6,7 @@ import {
   SET_CURRENT_UNI,
   SET_CURRENT_COURSE,
   SET_COMMENT_COUNT,
+  TOGGLE_ERROR_MODAL
   
 } from "./actions";
 
@@ -19,14 +20,14 @@ const AttendeeReducer = (state, { type, payload }) => {
     case SET_ERROR:
       return {
         ...state,
-        errors: [...state.errors, payload.message],
-        isError: payload.isError,
+        error: payload.error,
+        modalErrorShown: payload.modalErrorShown,
       };
     case CLEAR_ERROR:
       return {
         ...state,
-        errors: [],
-        isError: payload.isError,
+        error: null,
+        modalErrorShown: false,
       };
     case SET_CURRENT_LAYOUT:
       return {

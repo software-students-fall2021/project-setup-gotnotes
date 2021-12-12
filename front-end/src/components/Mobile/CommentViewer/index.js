@@ -14,7 +14,11 @@ const CommentViewer = ({ props }) => {
   const { data, error, isError, isLoading } = useQuery(
     ["comments", fileId],
     fetchCommentsByFileId,
-    {refetchOnWindowFocus: false}
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      staleTime: 24 * 60 * 60 * 1000,
+    }
   );
 
   const [dataWithHierarchy, setDataWithHierarchy] = useState(null);
@@ -55,18 +59,20 @@ const CommentViewer = ({ props }) => {
               />
               {replies && (
                 <div className="replies">
-                  {replies.map(({ _id, content, sharedBy, likes, shareDate }) => (
-                    <Comment
-                      props={{
-                        commentId: _id,
-                        fileId,
-                        content,
-                        userData: sharedBy,
-                        shareDate,
-                        likes,
-                      }}
-                    />
-                  ))}
+                  {replies.map(
+                    ({ _id, content, sharedBy, likes, shareDate }) => (
+                      <Comment
+                        props={{
+                          commentId: _id,
+                          fileId,
+                          content,
+                          userData: sharedBy,
+                          shareDate,
+                          likes,
+                        }}
+                      />
+                    )
+                  )}
                 </div>
               )}
             </>

@@ -21,7 +21,7 @@ export const Unis = () => {
             _id: itemId,
             uniName: itemName,
             uniLogoPath: itemLogoPath,
-            uniStudentCount: courseCount,
+            uniCourses: courses,
           }) =>
             currentLayout === "grid" ? (
               <GridItem
@@ -31,7 +31,7 @@ export const Unis = () => {
                   itemName,
                   itemLogoPath,
                   itemType: "uni",
-                  courseCount,
+                  courses,
                 }}
               />
             ) : (
@@ -42,7 +42,7 @@ export const Unis = () => {
                   itemName,
                   itemLogoPath,
                   itemType: "uni",
-                  courseCount,
+                  courses,
                 }}
               />
             )

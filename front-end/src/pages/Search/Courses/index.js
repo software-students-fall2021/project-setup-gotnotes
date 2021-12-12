@@ -36,7 +36,7 @@ export const Courses = () => {
                 itemName,
                 itemLogoPath: "",
                 itemType: "course",
-                enrolledStudents: subscribed.length,
+                subscribed,
               }}
             />
           ) : (
@@ -47,7 +47,7 @@ export const Courses = () => {
                 itemName,
                 itemLogoPath: "",
                 itemType: "course",
-                enrolledStudents: subscribed.length,
+                subscribed
               }}
             />
           )

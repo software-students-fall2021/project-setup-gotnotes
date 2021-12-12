@@ -26,6 +26,7 @@ import { Account } from "./pages/Account/Account";
 
 import { WithAdminAuth, WithAuth } from "./AuthHOC";
 import { GlobalContext } from "./context/provider";
+import Error from "./components/Mobile/Modal/Error";
 
 export const queryClient = new QueryClient();
 
@@ -35,7 +36,7 @@ export const App = () => {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         {globalState.isAdmin && <AdminToolbar />}
-
+        <Error />
         <Switch>
           <Redirect exact from="/" to="unis" />
 
@@ -51,16 +52,39 @@ export const App = () => {
           {/*prettier-ignore*/}
           <Route path="/unis/:uniId/:courseId/:fileId" render={() => <FileDetails />}/>
 
-          <Route exact path={["/addFile", "/account", "/chat", "/admin"]}>
-            <WithAuth>
-              <Route path="/chat" element={<ChatMessages />} />
-              <Route path="/addFile" element={<AddFile />} />
-              <Route path="/account" element={<Account />} />
-            </WithAuth>
-            <WithAdminAuth>
-              <Route path="/admin" element={<Admin />} />
-            </WithAdminAuth>
-          </Route>
+          <Route
+            path="/chat"
+            render={() => (
+              <WithAuth>
+                <ChatMessages />
+              </WithAuth>
+            )}
+          />
+          <Route
+            path="/addFile"
+            render={() => (
+              <WithAuth>
+                <AddFile />
+              </WithAuth>
+            )}
+          />
+          <Route
+            path="/account"
+            render={() => (
+              <WithAuth>
+                <Account />
+              </WithAuth>
+            )}
+          />
+
+          <Route
+            path="/admin"
+            render={() => (
+              <WithAdminAuth>
+                <Admin />
+              </WithAdminAuth>
+            )}
+          />
 
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />

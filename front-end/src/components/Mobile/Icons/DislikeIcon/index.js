@@ -1,30 +1,81 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import "./styles.scss";
 
-import { mockUserData, currentUserID } from "../../../../assets/mocks/mockData";
+import { useMutation } from "react-query";
+import { queryClient } from "../../../../App";
+
 
 import { ThumbDown, ThumbDownOutlined } from "@mui/icons-material";
+import { GlobalContext } from "../../../../context/provider";
+import {
+  postLikeDislikeFile,
+  postLikeComment,
+} from "./../../../../services/SearchTabServices/FetchCalls";
 
 export const DislikeIcon = ({ props }) => {
   //TODO gotta refactor this logic out to a helper function later
+  const {
+    globalState: { currentUser, userToken },
+    set_error,
+  } = useContext(GlobalContext);
 
-  const [isDisliked, setisDisliked] = useState(0);
-  const { itemID, fontSize } = props;
+  const [isDisliked, setIsDisliked] = useState(0);
+  const { commentId, fileId, likes, fontSize, type } = props;
 
   useEffect(() => {
-    mockUserData
-      .filter((user) => user.userID === currentUserID)[0]
-      .userSubscribed.includes(itemID)
-      ? setisDisliked(1)
-      : setisDisliked(0);
-  }, [itemID]);
+    likes?.includes(currentUser?._id) ? setIsDisliked(1) : setIsDisliked(0);
+  }, [currentUser]);
 
-  //checking if the current user has disliked this
+  const dislikeFile = useMutation(
+    ({ fileId, likeDislike, type, userToken }) => {
+      postLikeDislikeFile(fileId, likeDislike, type, userToken);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["file", fileId]);
+      },
+    }
+  );
+  const dislikeComment = useMutation(
+    ({ commentId, likeDislike, type, userToken }) =>
+      postLikeComment(commentId, likeDislike, type, userToken),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", fileId]);
+      },
+    }
+  );
 
-  //TODO create a middleware that adds the item to disliked list of user
+  const handleClick = () => {
+    if (!currentUser) {
+      set_error("You Must Be Logged in");
+    } else if (type == "file") {
+      const actionType = isDisliked ? "remove" : "add";
+      dislikeFile.mutate({
+        fileId,
+        likeDislike: "dislike",
+        type: actionType,
+        userToken,
+      });
+    } else if (type == "comment") {
+      const actionType = isDisliked ? "remove" : "add";
+      dislikeComment.mutate({
+        commentId,
+        likeDislike: "dislike",
+        type: actionType,
+        userToken,
+      });
+    }
+  };
   return (
-    <div className="notificationBell">
+    <div
+      className="notificationBell"
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
+    >
       {isDisliked ? (
         <ThumbDown fontSize={fontSize} />
       ) : (

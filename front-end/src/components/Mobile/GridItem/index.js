@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
+
+import { GlobalContext } from "../../../context/provider";
 
 //imports
 import { useHistory, useLocation } from "react-router-dom";
@@ -12,11 +14,13 @@ import { DislikeIcon } from "../Icons/DislikeIcon";
 import { CommentIcon } from "../Icons/CommentIcon";
 
 export const GridItem = ({ props }) => {
+  const { set_current_course, set_current_uni } = useContext(GlobalContext);
   const {
     itemId,
     itemName,
     itemLogoPath,
     itemType,
+    fileType,
     enrolledStudents,
     courseCount,
     likeCount,
@@ -27,13 +31,24 @@ export const GridItem = ({ props }) => {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const handleClick = () => history.push(`${pathname}/${itemId}`);
+  const handleClick = () => {
+    history.push(`${pathname}/${itemId}`);
+    if (itemType == "uni") set_current_uni(itemId, itemName);
+    if (itemType == "course") set_current_course(itemId, itemName);
+  };
 
   return (
     <div className="grid-item" onClick={() => handleClick()}>
       <div className="grid-img-container">
-        {(itemType === "uni" || itemType === "file") && (
-          <img className="grid-item-logo" src={itemLogoPath} alt="" />
+        {itemType === "uni" && (
+          <img className="list-item-logo" src={itemLogoPath} alt="" />
+        )}
+        {itemType === "file" && (
+          <img
+            className="list-item-logo"
+            src={`/fileLogos/${fileType}.png`}
+            alt=""
+          />
         )}
       </div>
 

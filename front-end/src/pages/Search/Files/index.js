@@ -43,8 +43,8 @@ export const Files = () => {
                 itemLogoPath,
                 itemType: "file",
                 fileType,
-                likeCount: likes.length,
-                dislikeCount: dislikes.length,
+                likes,
+                dislikes,
               }}
             />
           ) : (
@@ -56,8 +56,8 @@ export const Files = () => {
                 itemLogoPath,
                 itemType: "file",
                 fileType,
-                likeCount: likes.length,
-                dislikeCount: dislikes.length,
+                likes,
+                dislikes,
               }}
             />
           )

@@ -20,11 +20,11 @@ export const ListItem = ({ props }) => {
     itemLogoPath,
     itemType,
     fileType,
-    enrolledStudents,
-    courseCount,
-    likeCount,
+    subscribed,
+    courses,
+    likes,
     commentCount,
-    dislikeCount,
+    dislikes,
   } = props;
 
   const history = useHistory();
@@ -64,24 +64,24 @@ export const ListItem = ({ props }) => {
           {itemType === "uni" && (
             <div className="icon-set">
               <School fontSize="large" />
-              <span>{courseCount}</span>
+              <span>{courses.length}</span>
             </div>
           )}
           {itemType === "course" && (
             <div className="icon-set">
               <NotificationBell props={{ itemId: itemId, fontSize: "large" }} />
-              <span>{enrolledStudents}</span>
+              <span>{subscribed.length}</span>
             </div>
           )}
           {itemType === "file" && (
             <>
               <div className="icon-set">
                 <LikeIcon props={{ itemId: itemId, fontSize: "large" }} />
-                <span>{likeCount}</span>
+                <span>{likes.length}</span>
               </div>
               <div className="icon-set">
                 <DislikeIcon props={{ itemId: itemId, fontSize: "large" }} />
-                <span>{dislikeCount}</span>
+                <span>{dislikes.length}</span>
               </div>
               <div className="icon-set">
                 <CommentIcon props={{ itemId: itemId, fontSize: "large" }} />

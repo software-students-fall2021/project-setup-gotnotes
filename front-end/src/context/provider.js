@@ -7,31 +7,33 @@ import {
   SET_CURRENT_LAYOUT,
   SET_CURRENT_UNI,
   SET_CURRENT_COURSE,
-  SET_COMMENT_COUNT
+  SET_COMMENT_COUNT,
 } from "./actions";
 
 const GlobalContext = createContext({});
 
 const GlobalStoreProvider = ({ children }) => {
   const initialState = {
-    userToken: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaWF0IjoxNjM5MzEwMjM4LCJleHAiOjE2MzkzMTIwMzh9.Adr9bKVUCSqsjUU4LDV4T0HXKCuUaRdU-QqY_Gvy3pk",
-    currentUser: true,
+    userToken:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaWF0IjoxNjM5MzEwMjM4LCJleHAiOjE2MzkzMTIwMzh9.Adr9bKVUCSqsjUU4LDV4T0HXKCuUaRdU-QqY_Gvy3pk",
+    currentUser: false,
     currentUniId: null,
     currentCourseId: null,
-    error: null,
+    error: false,
     isError: false,
     isLoading: false,
-    isAdmin: true,
+    isAdmin: false,
     currentUniName: "",
     currentUniId: null,
     currentCourseName: "",
     currentCourseId: null,
     currentLayout: "list",
-    commentCount: 0
+    commentCount: 0,
+    modalErrorShown: false,
   };
 
   const [state, dispatch] = useReducer(Reducers, initialState);
-/*
+  /*
   const get_attendees = () => {
     dispatch({ type: SET_LOADING, payload: true });
     fetch("http://localhost:3000/api/attendees")
@@ -87,6 +89,16 @@ const GlobalStoreProvider = ({ children }) => {
   };
   */
 
+  const set_error = (error) => {
+    dispatch({
+      type: SET_ERROR,
+      payload: { error: error, modalErrorShown: true },
+    });
+  };
+  const clear_error = () => {
+    dispatch({ type: CLEAR_ERROR });
+    console.log("clear error");
+  };
   const set_current_layout = (currentLayout) => {
     dispatch({ type: SET_CURRENT_LAYOUT, payload: { currentLayout } });
   };
@@ -101,8 +113,8 @@ const GlobalStoreProvider = ({ children }) => {
   };
 
   const set_comment_count = (commentCount) => {
-    dispatch({type: SET_COMMENT_COUNT, payload: {commentCount}})
-  }
+    dispatch({ type: SET_COMMENT_COUNT, payload: { commentCount } });
+  };
 
   return (
     <GlobalContext.Provider
@@ -111,7 +123,9 @@ const GlobalStoreProvider = ({ children }) => {
         set_current_layout,
         set_current_course,
         set_current_uni,
-        set_comment_count
+        set_comment_count,
+        set_error,
+        clear_error,
       }}
     >
       {children}
