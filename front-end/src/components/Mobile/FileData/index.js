@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 
+import { GlobalContext } from "../../../context/provider";
 //components
 import UserDataViewer from "../UserDataViewer";
 
@@ -17,9 +18,11 @@ export const FileData = ({ props }) => {
     fileSharedBy,
     fileLikes,
     fileDislikes,
-    fileCommentsCount,
     fileDownloads,
   } = props;
+  const {
+    globalState: { commentCount },
+  } = useContext(GlobalContext);
 
   return (
     <div className="file-data-container">
@@ -35,16 +38,25 @@ export const FileData = ({ props }) => {
 
       <div className="file-interaction-data">
         <div className="icon-set">
-          <LikeIcon props={{ itemID: fileID, fontSize: "large" }} />
-          <span>{fileLikes}</span>
+          <LikeIcon
+            props={{ fileId: fileID, likes: fileLikes, type: "file", fontSize: "large" }}
+          />
+          <span>{fileLikes.length}</span>
         </div>
         <div className="icon-set">
-          <DislikeIcon props={{ itemID: fileID, fontSize: "large" }} />
-          <span>{fileDislikes}</span>
+          <DislikeIcon
+            props={{
+              fileId: fileID,
+              dislikes: fileDislikes,
+              type: "file",
+              fontSize: "large",
+            }}
+          />
+          <span>{fileDislikes.length}</span>
         </div>
         <div className="icon-set">
           <CommentIcon props={{ itemID: fileID, fontSize: "large" }} />
-          <span>{fileCommentsCount}</span>
+          <span>{commentCount}</span>
         </div>
         <div className="icon-set">
           <DownloadIcon props={{ itemID: fileID, fontSize: "large" }} />

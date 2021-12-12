@@ -9,7 +9,7 @@ import { LikeIcon } from "../Icons/LikeIcon";
 import { ReplyIcon } from "../Icons/ReplyIcon";
 
 const Comment = ({ props }) => {
-  const { content, userData, likes, shareDate, replies } = props;
+  const { fileId, commentId, content, userData, likes, shareDate, replies } = props;
   return (
     <div className="comment-container">
       <div className="comment-user-data-container">
@@ -20,7 +20,7 @@ const Comment = ({ props }) => {
       </div>
       <div className="comment-interaction-data">
         <div className="icon-set">
-          <LikeIcon props={{ itemID: 1, fontSize: "large" }} />
+          <LikeIcon props={{ commentId, fileId, likes:likes, type: "comment", fontSize: "large" }} />
           <span>{likes.length}</span>
         </div>
         {replies && (

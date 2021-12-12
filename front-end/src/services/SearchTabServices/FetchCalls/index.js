@@ -56,34 +56,53 @@ export const fetchCommentsByFileId = async ({ queryKey }) => {
   return data;
 };
 
-export const subscribeToCourse = (currentUserID, courseID) => {
-  let returnData = null;
-  const reqOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application.json" },
-    body: JSON.stringify({ userID: currentUserID, courseID: courseID }),
-  };
-  fetch("http://localhost:4000/unis/:uni", reqOptions)
-    .then((res) => res.json())
-    .then((data) => (returnData = data));
+export const postLikeComment = async (commentId, type, userToken) => {
+  const postData = JSON.stringify({
+    documentId: commentId,
+    type: type,
+    likeDislike: "like",
+  });
 
-  return returnData;
+  console.log("postData: ", postData);
+
+  const { data } = await axios.post(
+    `http://localhost:4000/comments/like-dislike-comment`,
+    postData,
+    {
+      crossdomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: userToken,
+      },
+    }
+  );
+  console.log("like data: ", data);
+  return data;
 };
 
-export const likeDislikeFile = (currentUserID, fileID, likeStatus) => {
-  let returnData = null;
-  const reqOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application.json" },
-    body: JSON.stringify({
-      userID: currentUserID,
-      fileID: fileID,
-      likeStatus: likeStatus,
-    }),
-  };
-  fetch("http://localhost:4000/unis/:uni/:course", reqOptions)
-    .then((res) => res.json())
-    .then((data) => (returnData = data));
+export const postLikeDislikeFile = async (
+  fileId,
+  likeDislike,
+  type,
+  userToken
+) => {
+  const postData = JSON.stringify({
+    documentId: fileId,
+    type: type,
+    likeDislike: likeDislike,
+  });
 
-  return returnData;
+  const { data } = await axios.post(
+    `http://localhost:4000/files/like-dislike-file`,
+    postData,
+    {
+      crossdomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: userToken,
+      },
+    }
+  );
+
+  return data;
 };

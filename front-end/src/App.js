@@ -27,7 +27,7 @@ import { Account } from "./pages/Account/Account";
 import { WithAdminAuth, WithAuth } from "./AuthHOC";
 import { GlobalContext } from "./context/provider";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export const App = () => {
   const { globalState } = useContext(GlobalContext);

@@ -13,7 +13,8 @@ const CommentViewer = ({ props }) => {
   const { set_comment_count } = useContext(GlobalContext);
   const { data, error, isError, isLoading } = useQuery(
     ["comments", fileId],
-    fetchCommentsByFileId
+    fetchCommentsByFileId,
+    {refetchOnWindowFocus: false}
   );
 
   const [dataWithHierarchy, setDataWithHierarchy] = useState(null);
@@ -39,10 +40,12 @@ const CommentViewer = ({ props }) => {
     <div className="comment-viewer-container">
       {dataWithHierarchy &&
         dataWithHierarchy.map(
-          ({ content, sharedBy, likes, shareDate, replies }) => (
+          ({ _id, content, sharedBy, likes, shareDate, replies }) => (
             <>
               <Comment
                 props={{
+                  commentId: _id,
+                  fileId,
                   content,
                   userData: sharedBy,
                   shareDate,
@@ -52,9 +55,11 @@ const CommentViewer = ({ props }) => {
               />
               {replies && (
                 <div className="replies">
-                  {replies.map(({ content, sharedBy, likes, shareDate }) => (
+                  {replies.map(({ _id, content, sharedBy, likes, shareDate }) => (
                     <Comment
                       props={{
+                        commentId: _id,
+                        fileId,
                         content,
                         userData: sharedBy,
                         shareDate,

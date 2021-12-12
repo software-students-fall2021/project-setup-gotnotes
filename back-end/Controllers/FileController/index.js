@@ -27,7 +27,6 @@ exports.get_file_by_id = async (req, res) => {
 exports.get_file_stream = async (req, res) => {
   try {
     const file = await gfs.files.findOne({ filename: req.params.filename });
-    console.log(file)
     const readStream = gfs.createReadStream(file.filename);
     var bufs = [];
     readStream

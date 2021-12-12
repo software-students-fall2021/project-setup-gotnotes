@@ -23,7 +23,7 @@ exports.get_uni_by_id = async function (req, res) {
 exports.create_uni = async function (req, res) {
   try {
     const user = await check_auth_with_admin(req);
-    console.log(req.body)
+    
     const { uniName, uniLogoPath } = req.body;
 
     if (!(uniName && uniLogoPath))
