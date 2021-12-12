@@ -21,15 +21,26 @@ exports.get_all_files = async (req, res) => {
   res.json(await FileService.get_all_files());
 };
 
-
 exports.get_file_by_id = async (req, res) => {
   res.json(await FileService.get_file_by_id(req.params.fileId));
 };
 exports.get_file_stream = async (req, res) => {
   try {
     const file = await gfs.files.findOne({ filename: req.params.filename });
+    console.log(file)
     const readStream = gfs.createReadStream(file.filename);
-    readStream.pipe(res);
+    var bufs = [];
+    readStream
+      .on("data", (chunk) => {
+        bufs.push(chunk);
+      })
+      .on("error", (err) => {
+        throw new Error(err);
+      })
+      .on("end", () => {
+        var fbuf = Buffer.concat(bufs);
+        res.send(fbuf);
+      });
   } catch (err) {
     res.status(500).json([{ error: err.message }]);
   }
@@ -160,11 +171,11 @@ exports.update_user_like_dislike = async (req, res) => {
     const file = await FileService.get_file_by_id(documentId);
 
     if (
-      file.likes.filter((userObj) => userObj._id.toString() == user._id.toString())
-        .length > 0 &&
+      file.likes.filter(
+        (userObj) => userObj._id.toString() == user._id.toString()
+      ).length > 0 &&
       likeDislike === "dislike"
-    ){
-
+    ) {
       await UserService.update_user_arr_by_email_or_username(
         user.email,
         user,
@@ -180,13 +191,13 @@ exports.update_user_like_dislike = async (req, res) => {
         user._id
       );
     }
-
 
     if (
-      file.dislikes.filter((userObj) => userObj._id.toString() == user._id.toString())
-        .length > 0 &&
+      file.dislikes.filter(
+        (userObj) => userObj._id.toString() == user._id.toString()
+      ).length > 0 &&
       likeDislike === "like"
-    ){
+    ) {
       await UserService.update_user_arr_by_email_or_username(
         user.email,
         user,
@@ -202,16 +213,13 @@ exports.update_user_like_dislike = async (req, res) => {
       );
     }
 
-    
-      await UserService.update_user_arr_by_email_or_username(
-        user.email,
-        user,
-        type,
-        fieldName,
-        documentId
-      );
-
-    
+    await UserService.update_user_arr_by_email_or_username(
+      user.email,
+      user,
+      type,
+      fieldName,
+      documentId
+    );
 
     const queryResult = await FileService.update_file_arr_by_file_id(
       file,
@@ -232,8 +240,7 @@ exports.update_user_like_dislike = async (req, res) => {
 exports.delete_file = async (req, res) => {
   try {
     const user = await check_auth(req);
-    const { fileId } = req.body;
-    if (!fileId) throw new Error("please include fileId");
+    const fileId = req.params.fileId;
     const file = FileService.get_file_by_id(fileId);
     if (file.sharedBy.toString() != user._id)
       throw new Error("You can only delete a file you have shared");

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 
 //imports
@@ -10,11 +10,12 @@ import { NotificationBell } from "../Icons/NotificationBell";
 import { LikeIcon } from "../Icons/LikeIcon";
 import { DislikeIcon } from "../Icons/DislikeIcon";
 import { CommentIcon } from "../Icons/CommentIcon";
+import { GlobalContext } from "../../../context/provider";
 
 export const ListItem = ({ props }) => {
-  
+  const {set_current_course, set_current_uni} = useContext(GlobalContext)
   const {
-    itemID: itemId,
+    itemId,
     itemName,
     itemLogoPath,
     itemType,
@@ -29,16 +30,24 @@ export const ListItem = ({ props }) => {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const handleClick = () => history.push(`${pathname}/${itemId}`);
+  const handleClick = () => {
+    history.push(`${pathname}/${itemId}`)
+    if(itemType == "uni") set_current_uni(itemId, itemName)
+    if(itemType == "course") set_current_course(itemId, itemName)
+  };
 
   return (
     <div className="list-item" onClick={() => handleClick()}>
       <div className="img-container">
-        {(itemType === "uni") && (
+        {itemType === "uni" && (
           <img className="list-item-logo" src={itemLogoPath} alt="" />
         )}
-        {( itemType === "file")&&(
-          <img className="list-item-logo" src={`/fileLogos/${fileType}.png`} alt="" />
+        {itemType === "file" && (
+          <img
+            className="list-item-logo"
+            src={`/fileLogos/${fileType}.png`}
+            alt=""
+          />
         )}
       </div>
 
@@ -60,22 +69,22 @@ export const ListItem = ({ props }) => {
           )}
           {itemType === "course" && (
             <div className="icon-set">
-              <NotificationBell props={{ itemID: itemId, fontSize: "large" }} />
+              <NotificationBell props={{ itemId: itemId, fontSize: "large" }} />
               <span>{enrolledStudents}</span>
             </div>
           )}
           {itemType === "file" && (
             <>
               <div className="icon-set">
-                <LikeIcon props={{ itemID: itemId, fontSize: "large" }} />
+                <LikeIcon props={{ itemId: itemId, fontSize: "large" }} />
                 <span>{likeCount}</span>
               </div>
               <div className="icon-set">
-                <DislikeIcon props={{ itemID: itemId, fontSize: "large" }} />
+                <DislikeIcon props={{ itemId: itemId, fontSize: "large" }} />
                 <span>{dislikeCount}</span>
               </div>
               <div className="icon-set">
-                <CommentIcon props={{ itemID: itemId, fontSize: "large" }} />
+                <CommentIcon props={{ itemId: itemId, fontSize: "large" }} />
                 <span>{commentCount}</span>
               </div>
             </>

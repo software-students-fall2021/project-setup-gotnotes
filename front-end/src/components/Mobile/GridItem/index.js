@@ -12,10 +12,8 @@ import { DislikeIcon } from "../Icons/DislikeIcon";
 import { CommentIcon } from "../Icons/CommentIcon";
 
 export const GridItem = ({ props }) => {
-  //TODO in the future we will fetch these data from the api, for now we use mock data
-  //with a similar format to the actual api that we will design
   const {
-    itemID,
+    itemId,
     itemName,
     itemLogoPath,
     itemType,
@@ -29,7 +27,7 @@ export const GridItem = ({ props }) => {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const handleClick = () => history.push(`${pathname}/${itemID}`);
+  const handleClick = () => history.push(`${pathname}/${itemId}`);
 
   return (
     <div className="grid-item" onClick={() => handleClick()}>
@@ -57,22 +55,22 @@ export const GridItem = ({ props }) => {
           )}
           {itemType === "class" && (
             <div className="grid-icon-set">
-              <NotificationBell props={{ itemID, fontSize: "large" }} />
+              <NotificationBell props={{ itemId, fontSize: "large" }} />
               <span>{enrolledStudents}</span>
             </div>
           )}
           {itemType === "file" && (
             <>
               <div className="grid-icon-set">
-                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                <LikeIcon props={{ itemId, fontSize: "large" }} />
                 <span>{likeCount}</span>
               </div>
               <div className="grid-icon-set">
-                <DislikeIcon props={{ itemID, fontSize: "large" }} />
+                <DislikeIcon props={{ itemId, fontSize: "large" }} />
                 <span>{dislikeCount}</span>
               </div>
               <div className="grid-icon-set">
-                <CommentIcon props={{ itemID, fontSize: "large" }} />
+                <CommentIcon props={{ itemId, fontSize: "large" }} />
                 <span>{commentCount}</span>
               </div>
             </>

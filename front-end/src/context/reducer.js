@@ -1,30 +1,14 @@
 import {
-  GET_ATTENDEES,
-  SEARCH_ATTENDEES,
-  GET_EVENT_ATTENDEE_MAP,
   SET_ERROR,
   CLEAR_ERROR,
   SET_LOADING,
   SET_CURRENT_LAYOUT,
+  SET_CURRENT_UNI,
+  SET_CURRENT_COURSE,
 } from "./actions";
 
 const AttendeeReducer = (state, { type, payload }) => {
   switch (type) {
-    case GET_ATTENDEES:
-      return {
-        ...state,
-        attendees: payload,
-      };
-    case SEARCH_ATTENDEES:
-      return {
-        ...state,
-        attendees: payload,
-      };
-    case GET_EVENT_ATTENDEE_MAP:
-      return {
-        ...state,
-        event_attendee_map: payload,
-      };
     case SET_LOADING:
       return {
         ...state,
@@ -45,7 +29,21 @@ const AttendeeReducer = (state, { type, payload }) => {
     case SET_CURRENT_LAYOUT:
       return {
         ...state,
-        currentLayout: payload.layout,
+        currentLayout: payload.currentLayout,
+      };
+    case SET_CURRENT_UNI:
+      
+      return {
+        ...state,
+        currentUniId: payload.uniId,
+        currentUniName: payload.uniName,
+      };
+    case SET_CURRENT_COURSE:
+      
+      return {
+        ...state,
+        currentCourseId: payload.courseId,
+        currentCourseName: payload.courseName,
       };
     default:
       return state;

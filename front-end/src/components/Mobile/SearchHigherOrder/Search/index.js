@@ -28,7 +28,6 @@ export const Search = ({ props }) => {
         placeholder="Search..."
         onChange={(e) => handleSearchChange(e.target.value)}
       />
-      <p>{search}</p>
     </div>
   );
 };

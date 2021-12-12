@@ -11,10 +11,13 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import { GlobalContext } from "../../../../context/provider";
 
 export const GridListToggle = () => {
-  const { currentLayout, setCurrentLayout } = useContext(GlobalContext);
+  const {
+    globalState: { currentLayout },
+    set_current_layout,
+  } = useContext(GlobalContext);
 
   const changeLayout = () =>
-    setCurrentLayout(currentLayout === "grid" ? "list" : "grid");
+    currentLayout == "list" ? set_current_layout("grid") : set_current_layout("list");
 
   return (
     <div className="grid-list-toggle">

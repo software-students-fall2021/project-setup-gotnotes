@@ -11,7 +11,6 @@ export const ChatList = ({ ViewComponent, activeClass }) => {
     axios
       .get(`http://localhost:4000/courses`, { crossdomain: true })
       .then((res) => {
-        console.log(res.data);
         setCourseData(res.data);
       });
   }, []);

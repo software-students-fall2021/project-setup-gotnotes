@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 
+import { GlobalContext } from "../../../context/provider";
+
 import { useQuery } from "react-query";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { fetchSingleCourse } from "../../../services/SearchTabServices/FetchCalls";
-import { likeDislikeFile } from "../../../services/SearchTabServices/FileInteractionHandler";
+import { ListItem } from "../../../components/Mobile/ListItem";
+import { GridItem } from "../../../components/Mobile/GridItem";
 
-export const Files = ({ ViewComponent, activeClass }) => {
-  const courseId = useLocation().pathname.split("/").pop();
+export const Files = () => {
+  const {
+    globalState: { currentLayout },
+  } = useContext(GlobalContext);
+  const { courseId } = useParams();
   const { data, error, isError, isLoading } = useQuery(
     ["course", courseId],
     fetchSingleCourse
@@ -18,30 +24,43 @@ export const Files = ({ ViewComponent, activeClass }) => {
   if (isError) return <div>Error: {error}</div>;
 
   return (
-    <div className={activeClass === "grid" ? "files grid" : "files"}>
+    <div className={currentLayout === "grid" ? "files grid" : "files"}>
       {data.files.map(
         ({
-          _id: itemID,
+          _id: itemId,
           name: itemName,
           itemLogoPath,
           type: fileType,
           likes,
           dislikes,
-        }) => (
-          <ViewComponent
-            key={itemID}
-            props={{
-              itemID,
-              itemName,
-              itemLogoPath,
-              itemType: "file",
-              fileType,
-              likeCount: likes.length,
-              dislikeCount: dislikes.length,
-              interactionHandler: likeDislikeFile,
-            }}
-          />
-        )
+        }) =>
+          currentLayout == "list" ? (
+            <ListItem
+              key={itemId}
+              props={{
+                itemId,
+                itemName,
+                itemLogoPath,
+                itemType: "file",
+                fileType,
+                likeCount: likes.length,
+                dislikeCount: dislikes.length,
+              }}
+            />
+          ) : (
+            <GridItem
+              key={itemId}
+              props={{
+                itemId,
+                itemName,
+                itemLogoPath,
+                itemType: "file",
+                fileType,
+                likeCount: likes.length,
+                dislikeCount: dislikes.length,
+              }}
+            />
+          )
       )}
     </div>
   );

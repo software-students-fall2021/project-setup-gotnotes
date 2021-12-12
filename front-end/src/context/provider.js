@@ -1,13 +1,12 @@
 import React, { useReducer, createContext } from "react";
 import Reducers from "./reducer";
 import {
-  GET_ATTENDEES,
-  SEARCH_ATTENDEES,
-  GET_EVENT_ATTENDEE_MAP,
   SET_LOADING,
   SET_ERROR,
   CLEAR_ERROR,
-  SET_CURRENT_LAYOUT
+  SET_CURRENT_LAYOUT,
+  SET_CURRENT_UNI,
+  SET_CURRENT_COURSE
 } from "./actions";
 
 const GlobalContext = createContext({});
@@ -22,12 +21,15 @@ const GlobalStoreProvider = ({ children }) => {
     isError: false,
     isLoading: false,
     isAdmin: true,
-    currentUni: "",
-    currentCourse: "",
+    currentUniName: "",
+    currentUniId: null,
+    currentCourseName: "",
+    currentCourseId: null,
+    currentLayout: "list",
   };
 
   const [state, dispatch] = useReducer(Reducers, initialState);
-
+/*
   const get_attendees = () => {
     dispatch({ type: SET_LOADING, payload: true });
     fetch("http://localhost:3000/api/attendees")
@@ -81,19 +83,28 @@ const GlobalStoreProvider = ({ children }) => {
         });
       });
   };
+  */
 
-  const set_current_layout = (layout) => {
-    dispatch({type: SET_CURRENT_LAYOUT, payload: {currentLayout: layout}})
-  }
+  const set_current_layout = (currentLayout) => {
+    dispatch({ type: SET_CURRENT_LAYOUT, payload: { currentLayout } });
+  };
+
+  //setCurrentUni, setCurrentUniId, setCurrentCourse, setCurrentCourseId
+  const set_current_uni = (uniId, uniName) => {
+    dispatch({ type: SET_CURRENT_UNI, payload: { uniId, uniName } });
+  };
+
+  const set_current_course = (courseId, courseName) => {
+    dispatch({ type: SET_CURRENT_COURSE, payload: { courseId, courseName } });
+  };
 
   return (
     <GlobalContext.Provider
       value={{
         globalState: state,
-        get_attendees,
-        search_attendees,
-        get_event_attendee_map,
-        set_current_layout
+        set_current_layout,
+        set_current_course,
+        set_current_uni
       }}
     >
       {children}

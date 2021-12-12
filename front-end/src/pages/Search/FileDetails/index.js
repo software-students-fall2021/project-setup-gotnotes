@@ -12,17 +12,20 @@ import { MessageInput } from "../../../components/Mobile/MessageInput";
 import PageTitle from "../../../components/Mobile/Navigations/PageTitle";
 
 import { mockarooFileData } from "../../../assets/mocks/mockData";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { fetchFileById } from "../../../services/SearchTabServices/FetchCalls";
 
-export const FileDetails = ({ props }) => {
-  //later this data will be dynamically generated
+export const FileDetails = () => {
+  const { fileId } = useParams();
 
-  const docs = [
-    {
-      uri: "http://localhost:3000/lorem.pdf",
-    },
-  ];
+  const { data, error, isError, isLoading } = useQuery(
+    ["file", fileId],
+    fetchFileById,
+    { refetchOnWindowFocus: false }
+  );
 
-  //const { file } = props;
+  console.log("file data: ", data);
   const {
     fileName,
     fileID,
@@ -46,12 +49,18 @@ export const FileDetails = ({ props }) => {
     return count;
   };
 
-  //turns out this library uses an external service
-  //for viewing microsoft documents, and cannot read local documents,
-  //so whenever a document is needed to be read,
-  //we will provide the actual storage url of the file from our api
-  //in the docs array above...
-  return (
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error}</div>;
+
+  const docs = [
+    {
+      uri: data.uri,
+      fileType: data.uri.split(".").pop()
+    },
+  ];
+  console.log("docs: ", docs)
+
+  return (data &&
     <div className="page-container">
       <PageTitle
         props={{

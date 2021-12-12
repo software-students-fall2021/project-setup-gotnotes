@@ -1,41 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 
 import { useQuery } from "react-query";
 import { fetchUniData } from "../../../services/SearchTabServices/FetchCalls";
+import { GlobalContext } from "../../../context/provider";
 
-export const Unis = ({
-  ViewComponent,
-  activeClass,
-  BreadCrumbData,
-  SetBreadCrumbData,
-}) => {
+import { ListItem } from "./../../../components/Mobile/ListItem";
+import { GridItem } from "./../../../components/Mobile/GridItem";
+
+export const Unis = () => {
+  const { globalState: {currentLayout} } = useContext(GlobalContext);
   const { data, error, isError, isLoading } = useQuery("unis", fetchUniData);
 
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>Error: {error}</div>;
-
   return (
-    <div className={activeClass === "grid" ? "unis grid" : "unis"}>
-      {data &&
-        data.map(
+    <div className={currentLayout === "grid" ? "unis grid" : "unis"}>
+      {data?.map(
           ({
-            _id: itemID,
+            _id: itemId,
             uniName: itemName,
             uniLogoPath: itemLogoPath,
             uniStudentCount: courseCount,
-          }) => (
-            <ViewComponent
-              key={itemID}
-              props={{
-                itemID,
-                itemName,
-                itemLogoPath,
-                itemType: "uni",
-                courseCount,
-              }}
-            />
-          )
+          }) =>
+            currentLayout === "grid" ? (
+              <GridItem
+                key={itemId}
+                props={{
+                  itemId,
+                  itemName,
+                  itemLogoPath,
+                  itemType: "uni",
+                  courseCount,
+                }}
+              />
+            ) : (
+              <ListItem
+                key={itemId}
+                props={{
+                  itemId,
+                  itemName,
+                  itemLogoPath,
+                  itemType: "uni",
+                  courseCount,
+                }}
+              />
+            )
         )}
     </div>
   );

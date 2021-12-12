@@ -40,16 +40,16 @@ export const App = () => {
           <Redirect exact from="/" to="unis" />
 
           {/*prettier-ignore*/}
-          <Route exact path={["/unis", "/unis/:uniName", "/unis/:uniName/:courseName"]}>
+          <Route exact path={["/unis", "/unis/:uniId", "/unis/:uniId/:courseId"]}>
             <MobileLayoutSelector>
-              <Route path="/unis" element={<Unis />} />
-              <Route path="/unis/:uniName" element={<Courses />} />
-              <Route path="/unis/:uniName/:courseName" element={<Files />} />
+              <Route exact path="/unis" render={() => <Unis />} />
+              <Route exact path="/unis/:uniId" render={() => <Courses />} />
+              <Route exact path="/unis/:uniId/:courseId" render={() => <Files />} />
             </MobileLayoutSelector>
           </Route>
 
           {/*prettier-ignore*/}
-          <Route path="/unis/:uniName/:courseName/:fileName" element={<FileDetails />}/>
+          <Route path="/unis/:uniId/:courseId/:fileId" render={() => <FileDetails />}/>
 
           <Route exact path={["/addFile", "/account", "/chat", "/admin"]}>
             <WithAuth>
@@ -71,4 +71,3 @@ export const App = () => {
     </div>
   );
 };
-
