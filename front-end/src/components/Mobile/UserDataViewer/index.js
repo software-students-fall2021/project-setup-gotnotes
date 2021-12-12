@@ -8,10 +8,9 @@ import UserAvatar from "../UserAvatar";
 const UserDataViewer = ({ props }) => {
   const { userData, shareDate, avatarSize } = props;
   const {
-    // userID,
     userAvatarUrl,
     username,
-  } = userData[0];
+  } = userData;
 
   return (
     <div className="user-data-viewer-container">

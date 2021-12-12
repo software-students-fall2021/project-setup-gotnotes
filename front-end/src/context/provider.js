@@ -6,7 +6,8 @@ import {
   CLEAR_ERROR,
   SET_CURRENT_LAYOUT,
   SET_CURRENT_UNI,
-  SET_CURRENT_COURSE
+  SET_CURRENT_COURSE,
+  SET_COMMENT_COUNT
 } from "./actions";
 
 const GlobalContext = createContext({});
@@ -26,6 +27,7 @@ const GlobalStoreProvider = ({ children }) => {
     currentCourseName: "",
     currentCourseId: null,
     currentLayout: "list",
+    commentCount: 0
   };
 
   const [state, dispatch] = useReducer(Reducers, initialState);
@@ -98,13 +100,18 @@ const GlobalStoreProvider = ({ children }) => {
     dispatch({ type: SET_CURRENT_COURSE, payload: { courseId, courseName } });
   };
 
+  const set_comment_count = (commentCount) => {
+    dispatch({type: SET_COMMENT_COUNT, payload: {commentCount}})
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         globalState: state,
         set_current_layout,
         set_current_course,
-        set_current_uni
+        set_current_uni,
+        set_comment_count
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./styles.scss";
 
@@ -15,9 +15,13 @@ import { mockarooFileData } from "../../../assets/mocks/mockData";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchFileById } from "../../../services/SearchTabServices/FetchCalls";
+import { GlobalContext } from "../../../context/provider";
 
 export const FileDetails = () => {
   const { fileId } = useParams();
+  const {
+    globalState: { commentCount },
+  } = useContext(GlobalContext);
 
   const { data, error, isError, isLoading } = useQuery(
     ["file", fileId],
@@ -26,75 +30,52 @@ export const FileDetails = () => {
   );
 
   console.log("file data: ", data);
-  const {
-    fileName,
-    fileID,
-    fileShareDate,
-    fileSharedBy,
-    fileLikes,
-    fileDislikes,
-    fileDownloads,
-    fileComments,
-  } = mockarooFileData[0];
-
-  const commentCounter = (commentArr) => {
-    let count = 0;
-    commentArr.forEach((item) => {
-      count++;
-      item.replies.forEach((reply) => {
-        count++;
-      });
-    });
-
-    return count;
-  };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error}</div>;
 
-  const docs = [
-    {
-      uri: data.uri,
-      fileType: data.uri.split(".").pop()
-    },
-  ];
-  console.log("docs: ", docs)
-
-  return (data &&
-    <div className="page-container">
-      <PageTitle
-        props={{
-          title: fileName,
-          back: true,
-        }}
-      />
-      <div className="file-details-container">
-        <DocViewer
-          documents={docs}
-          pluginRenderers={DocViewerRenderers}
-          config={{
-            header: {
-              disableHeader: true,
-              disableFileName: true,
-            },
-          }}
-        />
-        <FileData
+  return (
+    data && (
+      <div className="page-container">
+        <PageTitle
           props={{
-            fileID,
-            fileShareDate,
-            fileSharedBy,
-            fileLikes,
-            fileDislikes,
-            fileCommentsCount: commentCounter(fileComments),
-            fileDownloads,
+            title: data.name,
+            back: true,
           }}
         />
-        <CommentViewer props={{ fileComments }} />
-        <MessageInput />
-      </div>
+        <div className="file-details-container">
+          <DocViewer
+            documents={[
+              {
+                uri: data.uri,
+                fileType: data.type,
+              },
+            ]}
+            pluginRenderers={DocViewerRenderers}
+            config={{
+              header: {
+                disableHeader: true,
+                disableFileName: true,
+              },
+            }}
+          />
+          <FileData
+            props={{
+              fileID: data._id,
+              fileShareDate: data.shareDate,
+              fileSharedBy: data.sharedBy,
+              fileLikes: data.likes.length,
+              fileDislikes: data.dislikes.length,
+              fileCommentsCount: commentCount,
+              fileDownloads: data.downloads,
+            }}
+          />
+          <CommentViewer props={{ fileId: data._id }} />
+          <MessageInput />
+        </div>
 
-      <div className="clear"></div>
-    </div>
+        <div className="clear"></div>
+      </div>
+    )
   );
 };

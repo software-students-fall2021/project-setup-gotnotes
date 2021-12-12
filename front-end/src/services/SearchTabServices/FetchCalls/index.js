@@ -1,28 +1,31 @@
 import axios from "axios";
 
-export const fetchCourseByUni = async ({queryKey}) => {
+export const fetchCourseByUni = async ({ queryKey }) => {
   const [_, uniId] = queryKey;
   var postData = JSON.stringify({
-    "uniId": uniId.toString()
+    uniId: uniId.toString(),
   });
 
   const { data } = await axios.post(`http://localhost:4000/courses`, postData, {
     crossdomain: true,
-    headers:{
-      "Content-Type": "application/json"
-    }
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
-  
+
   return data;
 };
 
-export const fetchSingleCourse = async ({queryKey}) => {
+export const fetchSingleCourse = async ({ queryKey }) => {
   const [_, courseId] = queryKey;
-  
-  const { data } = await axios.get(`http://localhost:4000/courses/${courseId}`,  {
-    crossdomain: true,
-  });
-  
+
+  const { data } = await axios.get(
+    `http://localhost:4000/courses/${courseId}`,
+    {
+      crossdomain: true,
+    }
+  );
+
   return data;
 };
 
@@ -33,15 +36,25 @@ export const fetchUniData = async () => {
   return data;
 };
 
-export const fetchFileById = async ({queryKey}) => {
+export const fetchFileById = async ({ queryKey }) => {
   const [_, fileId] = queryKey;
 
   const { data } = await axios.get(`http://localhost:4000/files/${fileId}`, {
     crossdomain: true,
   });
-  
+
   return data;
-}
+};
+
+export const fetchCommentsByFileId = async ({ queryKey }) => {
+  const [_, fileId] = queryKey;
+
+  const { data } = await axios.get(`http://localhost:4000/comments/${fileId}`, {
+    crossdomain: true,
+  });
+
+  return data;
+};
 
 export const subscribeToCourse = (currentUserID, courseID) => {
   let returnData = null;
