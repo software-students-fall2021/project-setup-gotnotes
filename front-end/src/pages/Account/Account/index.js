@@ -32,7 +32,25 @@ export const Account = () => {
   ]);
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) set_error(error.message);
+  if (isError) {
+    set_error(error.message);
+    return null;
+  }
+  console.log("here");
 
-  return data && <div className="account-container"></div>;
+  return (
+    data && (
+      <div className="account-container">
+        <UserAvatar
+          props={{
+            userAvatarUrl: data.userAvatarUrl,
+            size: "large",
+            showEditButton: true,
+            handleEditAction: () => setIsEditActive(x => !x),
+            isEditActive
+          }}
+        />
+      </div>
+    )
+  );
 };

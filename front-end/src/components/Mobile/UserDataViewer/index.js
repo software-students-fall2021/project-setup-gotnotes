@@ -7,10 +7,9 @@ import UserAvatar from "../UserAvatar";
 
 const UserDataViewer = ({ props }) => {
   const { userData, shareDate, avatarSize } = props;
-  const {
-    userAvatarUrl,
-    username,
-  } = userData;
+  const { userAvatarUrl, username } = userData;
+
+  const date = new Date(shareDate);
 
   return (
     <div className="user-data-viewer-container">
@@ -20,7 +19,11 @@ const UserDataViewer = ({ props }) => {
         className={`username-share-date-container ${shareDate && "share-date"}`}
       >
         <span className="username">{username}</span>
-        {shareDate && <span className="file-share-date">{shareDate}</span>}
+        {shareDate && (
+          <span className="file-share-date">
+            {date.toLocaleString().split(",")[0]}
+          </span>
+        )}
       </div>
     </div>
   );

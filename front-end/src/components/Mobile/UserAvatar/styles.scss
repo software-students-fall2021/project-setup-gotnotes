@@ -5,11 +5,12 @@ $med_r: 4em;
 $large_r: 25em;
 
 .user-avatar-container {
-  margin: auto;
+  margin: 10px auto;
   .user-avatar {
     display: flex;
+    position: relative;
     border-radius: 50%;
-    overflow: hidden;
+    margin: auto;
 
     &.small {
       height: $small_r;
@@ -31,25 +32,29 @@ $large_r: 25em;
       left: 0;
       object-fit: cover;
     }
-  }
-  .edit-icon-container {
-    display: flex;
+    .edit-icon-container {
+      position: absolute;
+      top: calc($large_r*.75);
+      left: calc($large_r*.75);
 
-    height: $small_r;
-    width: $small_r;
-    border-radius: 50%;
+      height: $med_r;
+      width: $med_r;
+      border-radius: 50%;
 
-    position: relative;
-    bottom: 60px;
-    left: 190px;
+      background-color: $text_primary_light;
+      color: $primary_light;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      vertical-align: middle;
+      line-height: $med_r*0.9;
 
-    background-color: $text_primary_light;
-    color: $primary_light;
-    overflow: hidden;
-
-    cursor: pointer;
-    svg {
-      margin: auto !important;
+      &.active {
+        color: $text_primary_light;
+        background-color: $primary_light;
+        border: 3px solid black;
+        line-height: $med_r*0.8;
+      }
     }
   }
 }

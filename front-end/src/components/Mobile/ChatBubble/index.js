@@ -25,7 +25,7 @@ const ChatBubble = ({ props }) => {
         />
       </div>
 
-      <div classname="message">
+      <div className="message">
         <text>
           {message.chatContent.message}
           <view>{console.log("userID: ", userID)}</view>

@@ -10,7 +10,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 */
 
 const UserAvatar = ({ props }) => {
-  const { userAvatarUrl, size, showEditButton, handleEditAction } = props;
+  const { userAvatarUrl, size, showEditButton, handleEditAction, isEditActive } = props;
 
   const classes = size === "large" ? "large" : size === "med" ? "med" : "small";
 
@@ -22,12 +22,15 @@ const UserAvatar = ({ props }) => {
           alt="user-avatar"
           className="user-avatar-img"
         />
+        {showEditButton && (
+          <div
+            className={isEditActive ? "edit-icon-container active" : "edit-icon-container"}
+            onClick={() => handleEditAction()}
+          >
+            <EditOutlinedIcon fontSize="large" />
+          </div>
+        )}
       </div>
-      {showEditButton && (
-        <div className="edit-icon-container" onClick={() => handleEditAction()}>
-          <EditOutlinedIcon fontSize="large" />
-        </div>
-      )}
     </div>
   );
 };
