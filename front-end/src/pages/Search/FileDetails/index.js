@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useMemo, useState } from "react";
 
 import "./styles.scss";
 
@@ -15,14 +15,19 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchFileById } from "../../../services/SearchTabServices/FetchCalls";
 
+const getFileUri = (fileData) => {
+  return [{ uri: fileData?.uri, fileType: fileData?.type }];
+};
+
 export const FileDetails = () => {
   const { fileId } = useParams();
-
   const { data, error, isError, isLoading } = useQuery(
     ["file", fileId],
     fetchFileById,
-    {refetchOnWindowFocus: false}
+    { refetchOnWindowFocus: false }
   );
+
+  const docs = useMemo(() => getFileUri(data), [data?.uri, data?.type]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error}</div>;
@@ -38,7 +43,7 @@ export const FileDetails = () => {
         />
         <div className="file-details-container">
           <DocViewer
-            documents={[{uri: data.uri, fileType: data.type}]}
+            documents={docs}
             pluginRenderers={DocViewerRenderers}
             config={{
               header: {

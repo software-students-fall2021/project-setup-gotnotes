@@ -5,12 +5,11 @@ import "./styles.scss";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../../App";
 
-
 import { ThumbDown, ThumbDownOutlined } from "@mui/icons-material";
 import { GlobalContext } from "../../../../context/provider";
 import {
   postLikeDislikeFile,
-  postLikeComment,
+  postLikeDislikeComment,
 } from "./../../../../services/SearchTabServices/FetchCalls";
 
 export const DislikeIcon = ({ props }) => {
@@ -39,7 +38,7 @@ export const DislikeIcon = ({ props }) => {
   );
   const dislikeComment = useMutation(
     ({ commentId, likeDislike, type, userToken }) =>
-      postLikeComment(commentId, likeDislike, type, userToken),
+      postLikeDislikeComment(commentId, likeDislike, type, userToken),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["comments", fileId]);

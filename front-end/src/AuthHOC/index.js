@@ -6,7 +6,6 @@ import { GlobalContext } from "../context/provider";
 
 //components
 import { Login } from "../pages/Login/Login";
-import { SignUp } from "../pages/Login/SignUp";
 
 export const WithAuth = (props) => {
   const {

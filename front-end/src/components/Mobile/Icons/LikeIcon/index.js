@@ -9,7 +9,7 @@ import { ThumbUpOutlined, ThumbUp } from "@mui/icons-material";
 import { GlobalContext } from "../../../../context/provider";
 import {
   postLikeDislikeFile,
-  postLikeComment,
+  postLikeDislikeComment,
 } from "./../../../../services/SearchTabServices/FetchCalls";
 
 export const LikeIcon = ({ props }) => {
@@ -21,7 +21,7 @@ export const LikeIcon = ({ props }) => {
 
   const [isLiked, setIsLiked] = useState(0);
   const { commentId, fileId, likes, fontSize, type } = props;
-  
+
   useEffect(() => {
     likes?.includes(currentUser?._id) ? setIsLiked(1) : setIsLiked(0);
   }, [currentUser]);
@@ -38,7 +38,7 @@ export const LikeIcon = ({ props }) => {
   );
   const likeComment = useMutation(
     ({ commentId, type, likeDislike, userToken }) =>
-      postLikeComment(commentId, type, likeDislike, userToken),
+      postLikeDislikeComment(commentId, type, likeDislike, userToken),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["comments", fileId]);

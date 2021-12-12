@@ -17,8 +17,6 @@ const GlobalStoreProvider = ({ children }) => {
     userToken:
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaWF0IjoxNjM5MzEwMjM4LCJleHAiOjE2MzkzMTIwMzh9.Adr9bKVUCSqsjUU4LDV4T0HXKCuUaRdU-QqY_Gvy3pk",
     currentUser: false,
-    currentUniId: null,
-    currentCourseId: null,
     error: false,
     isError: false,
     isLoading: false,

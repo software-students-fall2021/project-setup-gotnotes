@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const fetchCourseByUni = async ({ queryKey }) => {
-  const [_, uniId] = queryKey;
+  const [, uniId] = queryKey;
   var postData = JSON.stringify({
     uniId: uniId.toString(),
   });
@@ -17,7 +17,7 @@ export const fetchCourseByUni = async ({ queryKey }) => {
 };
 
 export const fetchSingleCourse = async ({ queryKey }) => {
-  const [_, courseId] = queryKey;
+  const [, courseId] = queryKey;
 
   const { data } = await axios.get(
     `http://localhost:4000/courses/${courseId}`,
@@ -37,7 +37,7 @@ export const fetchUniData = async () => {
 };
 
 export const fetchFileById = async ({ queryKey }) => {
-  const [_, fileId] = queryKey;
+  const [, fileId] = queryKey;
 
   const { data } = await axios.get(`http://localhost:4000/files/${fileId}`, {
     crossdomain: true,
@@ -47,7 +47,7 @@ export const fetchFileById = async ({ queryKey }) => {
 };
 
 export const fetchCommentsByFileId = async ({ queryKey }) => {
-  const [_, fileId] = queryKey;
+  const [, fileId] = queryKey;
 
   const { data } = await axios.get(`http://localhost:4000/comments/${fileId}`, {
     crossdomain: true,
@@ -56,11 +56,16 @@ export const fetchCommentsByFileId = async ({ queryKey }) => {
   return data;
 };
 
-export const postLikeComment = async (commentId, type, userToken) => {
+export const postLikeDislikeComment = async (
+  commentId,
+  type,
+  likeDislike,
+  userToken
+) => {
   const postData = JSON.stringify({
     documentId: commentId,
     type: type,
-    likeDislike: "like",
+    likeDislike: likeDislike,
   });
 
   console.log("postData: ", postData);

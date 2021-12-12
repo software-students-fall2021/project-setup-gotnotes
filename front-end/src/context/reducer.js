@@ -6,7 +6,6 @@ import {
   SET_CURRENT_UNI,
   SET_CURRENT_COURSE,
   SET_COMMENT_COUNT,
-  TOGGLE_ERROR_MODAL
   
 } from "./actions";
 
