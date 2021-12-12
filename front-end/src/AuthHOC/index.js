@@ -17,18 +17,13 @@ export const WithAuth = (props) => {
 
 export const WithAdminAuth = (props) => {
   const {
-    globalState: { currentUser, isAdmin },
+    globalState: { currentUser },
     set_error,
   } = useContext(GlobalContext);
   const history = useHistory();
 
-  console.log(isAdmin);
-
-  if (currentUser && isAdmin) return <>{props.children}</>;
-  if (currentUser && !isAdmin) {
-    set_error("You need admin privilages for this page");
-    history.push("/");
-    return null;
-  }
-  return <Login />;
+  if (currentUser?.isAdmin) return <>{props.children}</>;
+  set_error("You need admin privilages for this page");
+  history.push("/");
+  return null;
 };

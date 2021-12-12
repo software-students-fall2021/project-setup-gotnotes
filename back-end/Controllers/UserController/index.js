@@ -16,9 +16,10 @@ const UserService = require("./../../Services/UserService");
 exports.get_current_user = async (req, res) => {
   try {
     const user = await check_auth(req);
-    res.json([
+    res.json(
       {
         _id: user._id,
+        userAvatarUrl: user.userAvatarUrl,
         username: user.username,
         email: user.email,
         isAdmin: user.isAdmin,
@@ -29,7 +30,7 @@ exports.get_current_user = async (req, res) => {
         comments: user.comments,
         shared: user.shared,
       },
-    ]);
+    );
   } catch (err) {
     res.send([{ error: err.message }]);
   }
@@ -56,24 +57,24 @@ exports.login_user = async (req, res) => {
       { expiresIn: JWT_EXPIRATION_MINUTES }
     );
 
-    res.json([
-      {
-        token: `Bearer ${token}`,
-        user: {
-          username: user.username,
-          email: user.email,
-          isAdmin: user.isAdmin,
-          userUni: user.userUni,
-          subscribed: user.subscribed,
-          likes: user.likes,
-          dislikes: user.dislikes,
-          comments: user.comments,
-          shared: user.shared,
-        },
+    res.json({
+      token: `Bearer ${token}`,
+      user: {
+        _id: user._id,
+        userAvatarUrl: user.userAvatarUrl,
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        userUni: user.userUni,
+        subscribed: user.subscribed,
+        likes: user.likes,
+        dislikes: user.dislikes,
+        comments: user.comments,
+        shared: user.shared,
       },
-    ]);
+    });
   } catch (error) {
-    res.status(500).json([{ error: error.message }]);
+    res.json({error: error.message});
   }
 };
 
@@ -82,7 +83,7 @@ exports.create_user = async (req, res) => {
 
   //extra backend validation for direct api calls
   if (!(username && email && password && confirmPassword)) {
-    res.status(500).json([{ error: "Please enter all fields" }]);
+    res.status(500).json({ error: "Please enter all fields" });
     return;
   }
   try {

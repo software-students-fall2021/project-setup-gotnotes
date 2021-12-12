@@ -1,5 +1,20 @@
 import axios from "axios";
 
+export const fetchUserData = async ({ queryKey }) => {
+  const [, userToken] = queryKey;
+
+  const { data } = await axios.get(`http://localhost:4000/account`, {
+    crossdomain: true,
+    headers: {
+      authorization: userToken,
+    },
+  });
+
+  if (!data._id) throw new Error(data);
+
+  return data;
+};
+
 export const fetchCourseByUni = async ({ queryKey }) => {
   const [, uniId] = queryKey;
   var postData = JSON.stringify({

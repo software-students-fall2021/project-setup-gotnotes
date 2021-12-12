@@ -6,11 +6,30 @@ import {
   SET_CURRENT_UNI,
   SET_CURRENT_COURSE,
   SET_COMMENT_COUNT,
-  
+  LOGIN_USER,
+  LOGOUT_USER,
+  SET_USER,
 } from "./actions";
 
 const AttendeeReducer = (state, { type, payload }) => {
   switch (type) {
+    case SET_USER:
+      return {
+        ...state,
+        currentUser: payload.user,
+      };
+    case LOGIN_USER:
+      return {
+        ...state,
+        userToken: payload.token,
+        currentUser: payload.user,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        userToken: null,
+        currentUser: null,
+      };
     case SET_LOADING:
       return {
         ...state,

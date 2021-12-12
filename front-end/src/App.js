@@ -35,7 +35,7 @@ export const App = () => {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        {globalState.isAdmin && <AdminToolbar />}
+        {globalState.currentUser?.isAdmin && <AdminToolbar />}
         <Error />
         <Switch>
           <Redirect exact from="/" to="unis" />

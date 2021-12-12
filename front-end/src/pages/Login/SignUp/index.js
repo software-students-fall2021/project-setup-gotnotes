@@ -64,6 +64,7 @@ export const SignUp = () => {
                 onChange={(e) => handlePasswordChange(e.target.value)}
               />
               <button
+                type="button"
                 className="show-pass-button"
                 onClick={() => setShowPassword((x) => !x)}
               >
@@ -81,6 +82,7 @@ export const SignUp = () => {
                 onChange={(e) => handleConfirmPasswordChange(e.target.value)}
               />
               <button
+                type="button"
                 className="show-pass-button"
                 onClick={() => setShowPassword((x) => !x)}
               >

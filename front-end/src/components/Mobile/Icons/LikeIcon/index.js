@@ -33,6 +33,7 @@ export const LikeIcon = ({ props }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["file", fileId]);
+        queryClient.invalidateQueries(["user", userToken])
       },
     }
   );
@@ -42,6 +43,7 @@ export const LikeIcon = ({ props }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["comments", fileId]);
+        queryClient.invalidateQueries(["user", userToken])
       },
     }
   );
