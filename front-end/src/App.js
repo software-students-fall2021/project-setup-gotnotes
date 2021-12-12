@@ -86,9 +86,9 @@ export const App = () => {
             )}
           />
 
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/resetpass" element={<ResetPass />} />
+          <Route exact path="/signup" render={() => <SignUp />} />
+          <Route exact path="/login" render={() => <Login />} />
+          <Route exact path="/resetpass" render={() => <ResetPass />} />
         </Switch>
         <BottomNav />
       </QueryClientProvider>
