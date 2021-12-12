@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./default.scss";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { currentUserID, mockUserData } from "./assets/mocks/mockData";
-//reqct-query
+
+//react-query
 import { QueryClient, QueryClientProvider } from "react-query";
-//layout
+
+//layoutSelector
 import { MobileLayoutSelector } from "./layouts/Mobile/MobileLayoutSelector";
+
 //Components
 import AdminToolbar from "./components/AdminToolbar";
 import BottomNav from "./components/Mobile/Navigations/BottomNav";
@@ -14,7 +16,7 @@ import { Unis } from "./pages/Search/Unis";
 import { Courses } from "./pages/Search/Courses";
 import { Files } from "./pages/Search/Files";
 import { FileDetails } from "./pages/Search/FileDetails";
-import ChatMessages from "./pages/Chat/ChatMessages";
+import { ChatMessages } from "./pages/Chat/ChatMessages";
 import { SignUp } from "./pages/Login/SignUp";
 import { Login } from "./pages/Login/Login";
 import { ResetPass } from "./pages/Login/ResetPass";
@@ -22,54 +24,51 @@ import { AddFile } from "./pages/AddFile";
 import { Admin } from "./pages/Admin";
 import { Account } from "./pages/Account/Account";
 
+import { WithAdminAuth, WithAuth } from "./AuthHOC";
+import { GlobalContext } from "./context/provider";
+
 const queryClient = new QueryClient();
 
-const App = () => {
+export const App = () => {
+  const { globalState } = useContext(GlobalContext);
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        <AdminToolbar
-          props={{
-            currentUser: mockUserData.filter(
-              (user) => user.userID === currentUserID
-            )[0],
-          }}
-        />
+        {globalState.isAdmin && <AdminToolbar />}
+
         <Switch>
           <Redirect exact from="/" to="unis" />
-          <Route
-            exact
-            path="/unis"
-            render={() => <MobileLayoutSelector Component={Unis} />}
-          />
-          <Route
-            exact
-            path="/unis/:uniName"
-            render={() => <MobileLayoutSelector Component={Courses} />}
-          />
-          <Route
-            exact
-            path="/unis/:uniName/:courseName"
-            render={() => <MobileLayoutSelector Component={Files} />}
-          />
-          <Route
-            exact
-            path="/unis/:uniName/:courseName/:fileName"
-            render={() => <FileDetails />}
-          />
-          <Route path="/signup" render={() => <SignUp />} />
-          <Route path="/login" render={() => <Login />} />
-          <Route path="/resetpass" render={() => <ResetPass />} />
-          <Route path="/chat" render={() => <ChatMessages />} />
-          <Route path="/addFile" render={() => <AddFile />} />
-          <Route path="/account" render={() => <Account />} />
-          <Route path="/admin" render={() => <Admin />} />
-        </Switch>
 
+          {/*prettier-ignore*/}
+          <Route exact path={["/unis", "/unis/:uniName", "/unis/:uniName/:courseName"]}>
+            <MobileLayoutSelector>
+              <Route path="/unis" element={<Unis />} />
+              <Route path="/unis/:uniName" element={<Courses />} />
+              <Route path="/unis/:uniName/:courseName" element={<Files />} />
+            </MobileLayoutSelector>
+          </Route>
+
+          {/*prettier-ignore*/}
+          <Route path="/unis/:uniName/:courseName/:fileName" element={<FileDetails />}/>
+
+          <Route exact path={["/addFile", "/account", "/chat", "/admin"]}>
+            <WithAuth>
+              <Route path="/chat" element={<ChatMessages />} />
+              <Route path="/addFile" element={<AddFile />} />
+              <Route path="/account" element={<Account />} />
+            </WithAuth>
+            <WithAdminAuth>
+              <Route path="/admin" element={<Admin />} />
+            </WithAdminAuth>
+          </Route>
+
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/resetpass" element={<ResetPass />} />
+        </Switch>
         <BottomNav />
       </QueryClientProvider>
     </div>
   );
 };
 
-export default App;

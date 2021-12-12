@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../../../../context/provider";
 
 import "./styles.scss";
 
 export const Search = ({ props }) => {
-  //const { items, setItems } = props;
+  const {displayedItems} = useContext(GlobalContext)
 
   const [search, setSearch] = useState("");
 

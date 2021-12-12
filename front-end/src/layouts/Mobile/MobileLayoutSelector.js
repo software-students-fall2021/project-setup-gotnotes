@@ -1,29 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
 //HOC
 import { SearchHigherOrder } from "./../../components/Mobile/SearchHigherOrder";
 
-import { ListItem } from "../../components/Mobile/ListItem";
-import { GridItem } from "../../components/Mobile/GridItem";
+//components
 import { Breadcrumbs } from "../../components/Mobile/Navigations/Breadcrumbs";
 
-export const MobileLayoutSelector = ({ Component }) => {
-  const [currentLayout, setCurrentLayout] = useState("list");
-
-  const [breadCrumbData, setBreadCrumbData] = useState(null);
-
+export const MobileLayoutSelector = ({ children }) => {
   return (
     <div className="layout-container">
       <div className="sticky-top">
-        <Breadcrumbs props={breadCrumbData} />
-        <SearchHigherOrder props={{ currentLayout, setCurrentLayout }} />
+        <Breadcrumbs />
+        <SearchHigherOrder />
       </div>
-      <Component
-        activeClass={currentLayout === "list" ? "" : "grid"}
-        ViewComponent={currentLayout === "list" ? ListItem : GridItem}
-        BreadCrumbData={breadCrumbData}
-        SetBreadCrumbData={setBreadCrumbData}
-      />
+      {children}
       <div className="clear"></div>
     </div>
   );

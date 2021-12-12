@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Nav, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { GlobalContext } from "../../../../context/provider";
 //comment
 
 const tabs = [
@@ -34,7 +35,9 @@ const tabs = [
   },
 ];
 
-const BottomNav = (props) => {
+const BottomNav = () => {
+  const ctx = useContext(GlobalContext);
+  console.log(ctx);
   return (
     <div>
       <nav
