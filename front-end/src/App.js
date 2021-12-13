@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./default.scss";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -9,7 +9,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MobileLayoutSelector } from "./layouts/Mobile/MobileLayoutSelector";
 
 //Components
-import AdminToolbar from "./components/AdminToolbar";
 import BottomNav from "./components/Mobile/Navigations/BottomNav";
 //Pages
 import { Unis } from "./pages/Search/Unis";
@@ -25,17 +24,15 @@ import { Admin } from "./pages/Admin";
 import { Account } from "./pages/Account/Account";
 
 import { WithAdminAuth, WithAuth } from "./AuthHOC";
-import { GlobalContext } from "./context/provider";
+
 import Error from "./components/Mobile/Modal/Error";
 
 export const queryClient = new QueryClient();
 
 export const App = () => {
-  const { globalState } = useContext(GlobalContext);
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        {globalState.currentUser?.isAdmin && <AdminToolbar />}
         <Error />
         <Switch>
           <Redirect exact from="/" to="unis" />

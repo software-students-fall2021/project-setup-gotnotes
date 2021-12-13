@@ -5,6 +5,8 @@ $med_r: 4em;
 $large_r: 25em;
 
 .user-avatar-container {
+  display: flex;
+  align-items: center;
   margin: 10px auto;
   .user-avatar {
     display: flex;
@@ -31,6 +33,7 @@ $large_r: 25em;
       top: 0;
       left: 0;
       object-fit: cover;
+      border-radius: 100%;
     }
     .edit-icon-container {
       position: absolute;

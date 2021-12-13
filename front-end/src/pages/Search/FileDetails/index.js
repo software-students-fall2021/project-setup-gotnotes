@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 
 import "./styles.scss";
 
@@ -35,12 +35,14 @@ export const FileDetails = () => {
   return (
     data && (
       <div className="page-container">
-        <PageTitle
-          props={{
-            title: data.name,
-            back: true,
-          }}
-        />
+        <div className="sticky-top">
+          <PageTitle
+            props={{
+              title: data.name,
+              back: true,
+            }}
+          />
+        </div>
         <div className="file-details-container">
           <DocViewer
             documents={docs}
@@ -63,10 +65,11 @@ export const FileDetails = () => {
             }}
           />
           <CommentViewer props={{ fileId: data._id }} />
+          <div className="clear"></div>
+        </div>
+        <div className="sticky-bottom">
           <MessageInput />
         </div>
-
-        <div className="clear"></div>
       </div>
     )
   );

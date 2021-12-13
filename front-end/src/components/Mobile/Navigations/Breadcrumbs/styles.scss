@@ -4,19 +4,17 @@
   display: flex;
   padding: 5px 10px;
 
-  background-color: $secondary_light;
+  background-color: black;
 
   font-size: 1.5rem;
-  color: $text_primary_light;
+  color: white;
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: white;
+    font-weight: bolder;
     &:hover {
       color: $text_secondary_light;
-    }
-    &.active {
-      text-decoration: underline;
     }
   }
 }

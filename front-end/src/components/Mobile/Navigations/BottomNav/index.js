@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Nav, NavItem } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import "./styles.scss";
 
@@ -34,10 +34,12 @@ const tabs = [
 ];
 
 const BottomNav = () => {
+  const path = useLocation().pathname;
+  if(path === "/chat" || path.split("/").length > 4) return null
   return (
     <div>
       <nav
-        className="navbar  fixed-bottom navbar-light d-block d-lg-none bottom-tab-nav p-0"
+        className="navbar fixed-bottom navbar-light d-block bottom-tab-nav p-0"
         role="navigation"
       >
         <Nav className="w-100">
