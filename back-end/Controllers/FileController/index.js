@@ -94,9 +94,9 @@ exports.get_file_link = async (req, res) => {
     const user = await check_auth(req);
     if (req.file === undefined) throw new Error("Please include a file");
     const fileUrl = `http://localhost:${process.env.PORT}/files/uploads/${req.file.filename}`;
-    res.json([{ uri: fileUrl }]);
+    res.json({ uri: fileUrl });
   } catch (err) {
-    res.status(500).json([{ error: err.message }]);
+    res.json({ error: err.message });
   }
 };
 

@@ -15,10 +15,36 @@ export const fetchUserData = async ({ queryKey }) => {
   return data;
 };
 
-export const postUserUpdates = async (firstName, lastName, userAvatarUrl) => {
-  
-  return null
-}
+export const postUserUpdates = async ({
+  firstName,
+  lastName,
+  userAvatarUrl,
+  userToken,
+}) => {
+  const postData = JSON.stringify({
+    firstName: firstName,
+    lastName: lastName,
+    userAvatarUrl: userAvatarUrl,
+  });
+
+  console.log(postData);
+
+  const { data } = await axios.post(
+    `http://localhost:4000/account/edit-scalar`,
+    postData,
+    {
+      crossdomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: userToken,
+      },
+    }
+  );
+
+  if (!data._id) throw new Error(data.error);
+
+  return data;
+};
 
 export const fetchCourseByUni = async ({ queryKey }) => {
   const [, uniId] = queryKey;
@@ -130,4 +156,24 @@ export const postLikeDislikeFile = async (
   );
 
   return data;
+};
+
+export const uploadFile = async (file, userToken) => {
+  const postData = new FormData();
+  postData.append("file", file, file.name);
+
+  const { data } = await axios.post(
+    "http://localhost:4000/files/upload",
+    postData,
+    {
+      crossdomain: true,
+      headers: {
+        Authorization: userToken,
+      },
+    }
+  );
+
+  if (!data?.uri) throw new Error(data.message);
+
+  return data.uri;
 };

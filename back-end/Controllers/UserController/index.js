@@ -16,23 +16,23 @@ const UserService = require("./../../Services/UserService");
 exports.get_current_user = async (req, res) => {
   try {
     const user = await check_auth(req);
-    res.json(
-      {
-        _id: user._id,
-        userAvatarUrl: user.userAvatarUrl,
-        username: user.username,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        userUni: user.userUni,
-        subscribed: user.subscribed,
-        likes: user.likes,
-        dislikes: user.dislikes,
-        comments: user.comments,
-        shared: user.shared,
-      },
-    );
+    res.json({
+      _id: user._id,
+      userAvatarUrl: user.userAvatarUrl,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      userUni: user.userUni,
+      subscribed: user.subscribed,
+      likes: user.likes,
+      dislikes: user.dislikes,
+      comments: user.comments,
+      shared: user.shared,
+    });
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.send({ error: err.message });
   }
 };
 
@@ -61,6 +61,8 @@ exports.login_user = async (req, res) => {
       token: `Bearer ${token}`,
       user: {
         _id: user._id,
+        firstName: user.firstName,
+      lastName: user.lastName,
         userAvatarUrl: user.userAvatarUrl,
         username: user.username,
         email: user.email,
@@ -74,7 +76,7 @@ exports.login_user = async (req, res) => {
       },
     });
   } catch (error) {
-    res.json({error: error.message});
+    res.json({ error: error.message });
   }
 };
 
@@ -83,7 +85,7 @@ exports.create_user = async (req, res) => {
 
   //extra backend validation for direct api calls
   if (!(username && email && password && confirmPassword)) {
-    res.status(500).json({ error: "Please enter all fields" });
+    res.json({ error: "Please enter all fields" });
     return;
   }
   try {
@@ -105,22 +107,23 @@ exports.create_user = async (req, res) => {
       { expiresIn: JWT_EXPIRATION_MINUTES }
     );
 
-    res.json([
-      {
-        token: `Bearer ${token}`,
-        user: {
-          username: user.username,
-          email: user.email,
-          isAdmin: user.isAdmin,
-          userUni: user.userUni,
-          subscribed: user.subscribed,
-          likes: user.likes,
-          dislikes: user.dislikes,
-          comments: user.comments,
-          shared: user.shared,
-        },
+    res.json({
+      token: `Bearer ${token}`,
+      user: {
+        username: user.username,
+        firstName: user.firstName,
+      lastName: user.lastName,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        userUni: user.userUni,
+        subscribed: user.subscribed,
+        userAvatarUrl: user.userAvatarUrl,
+        likes: user.likes,
+        dislikes: user.dislikes,
+        comments: user.comments,
+        shared: user.shared,
       },
-    ]);
+    });
   } catch (error) {
     if (error.message.includes("E11000") && error.message.includes("email"))
       error.message = "A user with that email already exists";
@@ -144,22 +147,23 @@ exports.user_change_admin_status = async (req, res) => {
 
     if (!queryResult) throw new Error("No such user");
 
-    res.json([
-      {
-        _id: queryResult._id,
-        username: queryResult.username,
-        email: queryResult.email,
-        isAdmin: queryResult.isAdmin,
-        userUni: queryResult.userUni,
-        subscribed: queryResult.subscribed,
-        likes: queryResult.likes,
-        dislikes: queryResult.dislikes,
-        comments: queryResult.comments,
-        shared: queryResult.shared,
-      },
-    ]);
+    res.json({
+      _id: queryResult._id,
+      firstName: queryResult.firstName,
+      lastName: queryResult.lastName,
+      username: queryResult.username,
+      userAvatarUrl: queryResult.userAvatarUrl,
+      email: queryResult.email,
+      isAdmin: queryResult.isAdmin,
+      userUni: queryResult.userUni,
+      subscribed: queryResult.subscribed,
+      likes: queryResult.likes,
+      dislikes: queryResult.dislikes,
+      comments: queryResult.comments,
+      shared: queryResult.shared,
+    });
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.send({ error: err.message });
   }
 };
 
@@ -171,28 +175,29 @@ exports.update_user_scalar = async (req, res) => {
 
     const queryResult =
       await UserService.update_user_scalar_by_email_or_username(
-        jwtContents.email,
+        user.email,
         updateObject
       );
 
     if (!queryResult) throw new Error("No such user");
 
-    res.json([
-      {
-        _id: queryResult._id,
-        username: queryResult.username,
-        email: queryResult.email,
-        isAdmin: queryResult.isAdmin,
-        userUni: queryResult.userUni,
-        subscribed: queryResult.subscribed,
-        likes: queryResult.likes,
-        dislikes: queryResult.dislikes,
-        comments: queryResult.comments,
-        shared: queryResult.shared,
-      },
-    ]);
+    res.json({
+      _id: queryResult._id,
+      firstName: queryResult.firstName,
+      lastName: queryResult.lastName,
+      username: queryResult.username,
+      email: queryResult.email,
+      userAvatarUrl: queryResult.userAvatarUrl,
+      isAdmin: queryResult.isAdmin,
+      userUni: queryResult.userUni,
+      subscribed: queryResult.subscribed,
+      likes: queryResult.likes,
+      dislikes: queryResult.dislikes,
+      comments: queryResult.comments,
+      shared: queryResult.shared,
+    });
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.send({ error: err.message });
   }
 };
 
@@ -202,7 +207,7 @@ exports.update_user_arr = async (req, res) => {
     const user = await check_auth(req);
 
     const queryResult = await UserService.update_user_arr_by_email_or_username(
-      jwtContents.email,
+      user.email,
       user,
       type,
       fieldName,
@@ -211,21 +216,22 @@ exports.update_user_arr = async (req, res) => {
 
     if (!queryResult) throw new Error("No such user");
 
-    res.json([
-      {
-        _id: queryResult._id,
-        username: queryResult.username,
-        email: queryResult.email,
-        isAdmin: queryResult.isAdmin,
-        userUni: queryResult.userUni,
-        subscribed: queryResult.subscribed,
-        likes: queryResult.likes,
-        dislikes: queryResult.dislikes,
-        comments: queryResult.comments,
-        shared: queryResult.shared,
-      },
-    ]);
+    res.json({
+      _id: queryResult._id,
+      firstName: queryResult.firstName,
+      lastName: queryResult.lastName,
+      username: queryResult.username,
+      email: queryResult.email,
+      isAdmin: queryResult.isAdmin,
+      userUni: queryResult.userUni,
+      userAvatarUrl: queryResult.userAvatarUrl,
+      subscribed: queryResult.subscribed,
+      likes: queryResult.likes,
+      dislikes: queryResult.dislikes,
+      comments: queryResult.comments,
+      shared: queryResult.shared,
+    });
   } catch (err) {
-    res.send([{ error: err.message }]);
+    res.send({ error: err.message });
   }
 };

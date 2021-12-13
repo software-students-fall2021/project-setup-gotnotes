@@ -4,7 +4,7 @@ import UserAvatar from "../../../components/Mobile/UserAvatar";
 import { useQuery, useMutation } from "react-query";
 import { GlobalContext } from "../../../context/provider";
 //prettier-ignore
-import {fetchUserData, postUserUpdates} from "../../../services/SearchTabServices/FetchCalls";
+import {fetchUserData, postUserUpdates, uploadFile} from "../../../services/SearchTabServices/FetchCalls";
 
 import "./styles.scss";
 import { queryClient } from "../../../App";
@@ -27,16 +27,10 @@ export const Account = () => {
   const updateUser = useMutation(postUserUpdates, {
     onSuccess: () => queryClient.invalidateQueries(["user", userToken]),
     onError: (error) => {
-      set_error(error.message);
+      set_error(error.error);
       queryClient.invalidateQueries(["user", userToken]);
     },
   });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateUser.mutate(firstName, lastName, userAvatarUrl);
-  };
-
   //prettier-ignore
   useEffect(() => {
     if(data?._id){ 
@@ -48,6 +42,19 @@ export const Account = () => {
       set_user(data);
     }
   }, [data?.likes, data?.dislikes, data?.subscribed, data?.comments, data?.shared]);
+
+  const [file, setFile] = useState("");
+
+  const uploadHandler = async (e) => {
+    e.preventDefault();
+    const uri = await uploadFile(file[0], userToken);
+    setSubmitData((x) => ({ ...x, userAvatarUrl: uri }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateUser.mutate({ firstName, lastName, userAvatarUrl, userToken });
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) {
@@ -67,6 +74,28 @@ export const Account = () => {
             isEditActive,
           }}
         />
+        {isEditActive && (
+          <form onSubmit={(e) => uploadHandler(e)}>
+            <label htmlFor="input">Photo URL</label>
+            <input type="text" readOnly value={userAvatarUrl} />
+            <label htmlFor="input">Choose Photo File</label>
+            <input
+              className="file"
+              type="file"
+              name="file"
+              onChange={(e) => setFile(e.target.files)}
+            />
+
+            <label className="file-output">
+              {file
+                ? file[0]?.name
+                  ? file[0].name
+                  : "No File Chosen"
+                : "No File Chosen"}
+            </label>
+            <input className="upload-btn" type="submit" value="Upload!" />
+          </form>
+        )}
         <label htmlFor="input">First Name</label>
         <input
           className={isEditActive ? "account-input edit" : "account-input"}
@@ -87,7 +116,13 @@ export const Account = () => {
             setSubmitData((x) => ({ ...x, lastName: e.target.value }))
           }
         />
-        
+        {isEditActive && (
+          <input
+            type="submit"
+            value="Submit Changes"
+            onClick={(e) => handleSubmit(e)}
+          />
+        )}
       </div>
     )
   );
