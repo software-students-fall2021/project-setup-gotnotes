@@ -30,7 +30,7 @@ export const SignUp = () => {
     setConfirmPassword(value);
   };
   return (
-    <div className="login-container">
+    <div className="signup-container">
       <div className="logo-container">
         <img className="login-logo" src={logo} alt="got-notes-logo" />
       </div>
@@ -38,14 +38,18 @@ export const SignUp = () => {
         <form onSubmit={(e) => submitHandler(e)}>
           <div className="email-container">
             <input
+              autoComplete="none"
+              className="text-input"
               type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => handleEmailChange(e.target.value)}
             />
           </div>
-          <div className="email-container">
+          <div className="username-container">
             <input
+              autoComplete="none"
+              className="text-input"
               type="text"
               placeholder="Username"
               value={username}
@@ -53,51 +57,61 @@ export const SignUp = () => {
             />
           </div>
           <div className="password-container">
-            <div className="password-input-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => handlePasswordChange(e.target.value)}
-              />
-              <button
-                type="button"
-                className="show-pass-button"
-                onClick={() => setShowPassword((x) => !x)}
-              >
-                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </button>
-            </div>
+            <input
+              autoComplete="none"
+              className="text-input"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => handlePasswordChange(e.target.value)}
+            />
+            <button
+              type="button"
+              className="show-pass-button"
+              onClick={() => setShowPassword((x) => !x)}
+            >
+              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </button>
           </div>
           <div className="password-container">
-            <div className="password-input-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => handleConfirmPasswordChange(e.target.value)}
-              />
-              <button
-                type="button"
-                className="show-pass-button"
-                onClick={() => setShowPassword((x) => !x)}
-              >
-                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </button>
-            </div>
+            <input
+              autoComplete="none"
+              className="text-input"
+              type={showPassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+            />
+            <button
+              type="button"
+              className="show-pass-button"
+              onClick={() => setShowPassword((x) => !x)}
+            >
+              {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </button>
           </div>
-          <div className="login-button-continer">
-            <input type="submit" value={"Sign Up"} />
+          <div className="button-container">
+            <button className="action-button" type="submit" value={"SIGN UP"}>
+              SIGN UP
+            </button>
+
+            <button
+              className="action-button"
+              type="text"
+              onClick={() => history.push("/login")}
+            >
+              LOGIN
+            </button>
+
+            <button
+              className="action-button dark"
+              type="text"
+              onClick={() => history.push("/resetpass")}
+            >
+              FORGOT PASSWORD
+            </button>
           </div>
         </form>
-      </div>
-      <div className="signup-button-continer">
-        <button onClick={() => history.push("/login")}>Login</button>
-      </div>
-      <div className="resetpass-button-container">
-        <button onClick={() => history.push("/resetpass")}>
-          Forgot Password
-        </button>
       </div>
     </div>
   );

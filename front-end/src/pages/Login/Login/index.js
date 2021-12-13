@@ -98,8 +98,7 @@ export const Login = () => {
             <button className="action-button" type="submit" value={"Login"}>
               LOGIN
             </button>
-          </div>
-          <div className="button-container">
+
             <button
               type="text"
               className="action-button"
@@ -107,8 +106,7 @@ export const Login = () => {
             >
               SIGN UP
             </button>
-          </div>
-          <div className="button-container">
+
             <button
               type="text"
               className="action-button dark"

@@ -63,23 +63,24 @@
       }
     }
     .button-container {
+      margin-top: 40px;
       display: flex;
+      flex-direction: column;
       width: 100%;
       .action-button {
-        margin: 5px auto;
+        margin: 10px auto;
         width: 100%;
         font-size: 1.7em;
-        padding: 0.5rem 0;
         border: 1px solid black;
         color: black;
         background-color: rgb(241, 241, 241);
-        &:hover{
+        &:hover {
           box-shadow: 1px 5px 5px 5px rgba($color: #000000, $alpha: 0.5);
         }
 
         &.dark {
           margin-top: 20px;
-          padding: 1rem 0;
+          padding: 0.5rem 0;
           color: rgb(241, 241, 241);
           background-color: black;
         }

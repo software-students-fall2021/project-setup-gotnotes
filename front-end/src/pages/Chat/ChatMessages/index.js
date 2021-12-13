@@ -1,182 +1,89 @@
-import React, { Component, useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import ChatBubble from "../../../components/Mobile/ChatBubble/index";
 import { MessageInput } from "../../../components/Mobile/MessageInput";
-import UserDataViewer from "../../../components/Mobile/UserDataViewer";
-
-const image =
-  "http://www.bradfordwhite.com/sites/default/files/images/corporate_imgs/iStock_000012107870XSmall.jpg";
 
 const messages = [
   {
-    chatID: 1,
-    chatContent: {
-      message: "This is my test!",
-      messageBy: 1,
-      messageDate: "11/10/2020",
-    },
+    sender: 1,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364378188,
+    likes: [2, 3],
   },
   {
-    chatID: 2,
-    chatContent: {
-      message: "Right back at you",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 2,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364378288,
+    likes: [1, 4],
   },
   {
-    chatID: 1,
-    chatContent: {
-      message: "yup",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 1,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364378488,
+    likes: [],
   },
   {
-    chatID: 2,
-    chatContent: {
-      message: "yes",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 3,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364378688,
+    likes: [4],
   },
   {
-    chatID: 1,
-    chatContent: {
-      message: "im still testing",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 2,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364378888,
+    likes: [],
   },
   {
-    chatID: 2,
-    chatContent: {
-      message: "this is a long test",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 4,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364379088,
+    likes: [],
   },
   {
-    chatID: 1,
-    chatContent: {
-      message: "yes it is",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 1,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364379288,
+    likes: [3],
   },
   {
-    chatID: 2,
-    chatContent: {
-      message: "do you think we can scroll yet?",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 1,
-    chatContent: {
-      message: "yeah hopefully",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 2,
-    chatContent: {
-      message: "okay we need a few more",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 1,
-    chatContent: {
-      message: "were almost there",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 2,
-    chatContent: {
-      message: "maybe i should just make the bubbles bigger",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 1,
-    chatContent: {
-      message: "hmm yeah that moght work",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 2,
-    chatContent: {
-      message: "maybe i should just make the bubbles bigger",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 1,
-    chatContent: {
-      message: "hmm yeah that moght work",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 2,
-    chatContent: {
-      message: "maybe i should just make the bubbles bigger",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 1,
-    chatContent: {
-      message: "hmm yeah that moght work",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 2,
-    chatContent: {
-      message: "maybe i should just make the bubbles bigger",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
-  },
-  {
-    chatID: 1,
-    chatContent: {
-      message: "hmm yeah that moght work",
-      messageBy: 2,
-      messageDate: "11/11/2021",
-    },
+    sender: 2,
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
+    dateSent: 1639364379488,
+    likes: [],
   },
 ];
 
-const userID = 1;
+const currentUser = { _id: 1 };
 
-export const ChatMessages = ({ props }) => {
+/*
 
+{
+    "sender": 456,
+    "message": "hello2",
+    "dateSent": 1639364378188,
+    "likes": []
+}
 
+ */
+
+export const ChatMessages = () => {
   return (
     <div className="chat-messages-container">
       <div className="chat-bubbles-container">
         {messages.map((message) => (
           <ChatBubble props={{ message, userID }} />
         ))}
-        <view>{console.log("My Message:", messages[0].chatContent.message)}</view>
       </div>
       <div className="message-input-container">
-        <MessageInput></MessageInput>
+        <MessageInput />
       </div>
     </div>
   );
