@@ -137,7 +137,6 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(messages.length);
   //TODO need to find a way of scrolling to bottom in the first mount, but not doing that for consequent renders
   /*  implementation of ^^^^ should go here */
 
@@ -148,6 +147,12 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
     },
     [isVisible]
   );
+
+  const initialScroll = useCallback(() => elementRef.current.scrollIntoView(),[]);
+
+  useEffect(() => {
+    initialScroll()
+  }, [initialScroll]);
 
   useEffect(() => {
     const abortController = new AbortController();
