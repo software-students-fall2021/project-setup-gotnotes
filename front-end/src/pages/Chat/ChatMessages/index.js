@@ -149,11 +149,11 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
 
   //TODO need to find a way of scrolling to bottom in the first mount, but not doing that for consequent renders
   /*  implementation of ^^^^ should go here */
-  
+
   //to auto scroll only while the user is at the bottom of the page already
   useEffect(() => {
     isVisible && messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [messages, elementRef]);
+  }, [messages, elementRef, isVisible]);
 
   return (
     <>
