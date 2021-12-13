@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./styles.scss";
 
 import useIsElementVisible from "./../../../Hooks/useIsElementVisible";
 import PageTitle from "../../../components/Mobile/Navigations/PageTitle";
 import ChatBubble from "../../../components/Mobile/ChatBubble/index";
 import { MessageInput } from "../../../components/Mobile/MessageInput";
-import { useEffect } from "react";
 
 const initialMessages = [
   {
@@ -130,27 +129,27 @@ const initialMessages = [
   },
 ];
 
+let time = 1639364379488;
 export const ChatMessages = ({ title = "Course Chat" }) => {
   const messagesEndRef = useRef(null);
   const [isVisible, elementRef] = useIsElementVisible();
   const [messages, setMessages] = useState(initialMessages);
 
-
   //testting message generator
   useEffect(() => {
     const interval = window.setInterval(() => {
       const newMessage = initialMessages[Math.floor(Math.random()*(initialMessages.length-1))];
-      newMessage.dateSent += 10000000;
+      newMessage.dateSent = time;
+      time += 1000000;
       setMessages((x) => [...x, newMessage]);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
 
-  //to scroll on load
-  useEffect(() => {
-    messagesEndRef.current.scrollIntoView();
-  }, []);
 
+  //TODO need to find a way of scrolling to bottom in the first mount, but not doing that for consequent renders
+  /*  implementation of ^^^^ should go here */
+  
   //to auto scroll only while the user is at the bottom of the page already
   useEffect(() => {
     isVisible && messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -172,9 +171,9 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
             if (idx == messages.length - 1) {
               return (
                 <>
-                  <div ref={elementRef}></div>
+                  <div key={dateSent*10} ref={elementRef}></div>
                   <ChatBubble
-                    key={idx}
+                    key={dateSent}
                     props={{ message, sender, dateSent, likes }}
                   />
                 </>
@@ -182,7 +181,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
             }
             return (
               <ChatBubble
-                key={idx}
+                key={dateSent}
                 props={{ message, sender, dateSent, likes }}
               />
             );
