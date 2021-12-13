@@ -1,55 +1,32 @@
 @import "./../../../default.scss";
 
-.edit-page {
-  .submit-button {
-    position: fixed;
-    bottom: 50px;
-    width: 100%;
-  }
-}
-
-.first-name-box{
-
-}
-.last-name-box{
-  
-}
-.email-box{
-  
-}
-.user-name-box{
-  
-}
-
-// .submit-button{
-//   position: fixed;
-//   bottom: 50px;
-//   width: 100%;
-// }
-
-.account-list {
-  .user-avatar-component-container {
-    //text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 100%;
+.account-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .file-form {
   }
 
-  .display-user-data {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 100%;
-    border: 1px;
-    border-style: solid;
+  .user-info{
+    width: 80%;
+    margin: 0 auto;
+    label{
+      font-size: 2em;
+      font-weight: bold;
+      margin-right: auto;
+    }
   }
 
-  .user-data-viewer-container {
-  }
+  .account-input {
+    margin-left: auto;
+    border: none;
+    font-size: 2em;
+    &:focus {
+      outline: none;
+    }
 
-  .submit-button {
+    &.edit {
+      border-bottom: 1px solid black; 
+    }
   }
 }

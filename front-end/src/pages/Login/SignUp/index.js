@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import logo from "../../../assets/GotNotes.jpg";
+import logo from "../../../assets/logo-login.png";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
 
@@ -37,7 +37,6 @@ export const SignUp = () => {
       <div className="form-container">
         <form onSubmit={(e) => submitHandler(e)}>
           <div className="email-container">
-            <label htmlFor="input">Email</label>
             <input
               type="text"
               placeholder="Email"
@@ -46,7 +45,6 @@ export const SignUp = () => {
             />
           </div>
           <div className="email-container">
-            <label htmlFor="input">Username</label>
             <input
               type="text"
               placeholder="Username"
@@ -55,7 +53,6 @@ export const SignUp = () => {
             />
           </div>
           <div className="password-container">
-            <label htmlFor="input">Password</label>
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}
@@ -73,7 +70,6 @@ export const SignUp = () => {
             </div>
           </div>
           <div className="password-container">
-            <label htmlFor="input">Confirm Password</label>
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}

@@ -11,9 +11,10 @@ import { queryClient } from "../../../App";
 
 export const Account = () => {
   //prettier-ignore
-  const {globalState: { userToken },set_user,set_error} = useContext(GlobalContext);
+  const {globalState: { userToken }, set_user, set_error} = useContext(GlobalContext);
 
   const [isEditActive, setIsEditActive] = useState(false);
+  const [file, setFile] = useState("");
   //prettier-ignore
   const [{ 
     firstName, 
@@ -21,8 +22,19 @@ export const Account = () => {
     userAvatarUrl 
   }, setSubmitData] = useState({firstName: "",lastName: "",userAvatarUrl: "",});
 
-  //prettier-ignore
-  const { data, error, isError, isLoading } = useQuery(["user", userToken], fetchUserData);
+  const { data, isError, isLoading } = useQuery(
+    ["user", userToken],
+    fetchUserData,
+    {
+      onSuccess: (data) => {
+        set_user(data);
+      },
+      onError: (err) => {
+        set_error(err.err);
+      },
+    }
+  );
+
   //prettier-ignore
   const updateUser = useMutation(postUserUpdates, {
     onSuccess: () => queryClient.invalidateQueries(["user", userToken]),
@@ -31,19 +43,6 @@ export const Account = () => {
       queryClient.invalidateQueries(["user", userToken]);
     },
   });
-  //prettier-ignore
-  useEffect(() => {
-    if(data?._id){ 
-      setSubmitData({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        userAvatarUrl: data.userAvatarUrl
-      })
-      set_user(data);
-    }
-  }, [data?.likes, data?.dislikes, data?.subscribed, data?.comments, data?.shared]);
-
-  const [file, setFile] = useState("");
 
   const uploadHandler = async (e) => {
     e.preventDefault();
@@ -57,13 +56,10 @@ export const Account = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) {
-    set_error(error.message);
-    return null;
-  }
 
   return (
-    data && (
+    data &&
+    !isError && (
       <div className="account-container">
         <UserAvatar
           props={{
@@ -75,7 +71,7 @@ export const Account = () => {
           }}
         />
         {isEditActive && (
-          <form onSubmit={(e) => uploadHandler(e)}>
+          <form className="file-form" onSubmit={(e) => uploadHandler(e)}>
             <label htmlFor="input">Photo URL</label>
             <input type="text" readOnly value={userAvatarUrl} />
             <label htmlFor="input">Choose Photo File</label>
@@ -96,26 +92,32 @@ export const Account = () => {
             <input className="upload-btn" type="submit" value="Upload!" />
           </form>
         )}
-        <label htmlFor="input">First Name</label>
-        <input
-          className={isEditActive ? "account-input edit" : "account-input"}
-          readOnly={!isEditActive}
-          type="text"
-          value={firstName}
-          onChange={(e) =>
-            setSubmitData((x) => ({ ...x, firstName: e.target.value }))
-          }
-        />
-        <label htmlFor="input">Last Name</label>
-        <input
-          className={isEditActive ? "account-input edit" : "account-input"}
-          readOnly={!isEditActive}
-          type="text"
-          value={lastName}
-          onChange={(e) =>
-            setSubmitData((x) => ({ ...x, lastName: e.target.value }))
-          }
-        />
+        <div className="user-info">
+          <div>
+            <label htmlFor="input">First Name:</label>
+            <input
+              className={isEditActive ? "account-input edit" : "account-input"}
+              readOnly={!isEditActive}
+              type="text"
+              value={data.firstName}
+              onChange={(e) =>
+                setSubmitData((x) => ({ ...x, firstName: e.target.value }))
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="input">Last Name:</label>
+            <input
+              className={isEditActive ? "account-input edit" : "account-input"}
+              readOnly={!isEditActive}
+              type="text"
+              value={data.lastName}
+              onChange={(e) =>
+                setSubmitData((x) => ({ ...x, lastName: e.target.value }))
+              }
+            />
+          </div>
+        </div>
         {isEditActive && (
           <input
             type="submit"

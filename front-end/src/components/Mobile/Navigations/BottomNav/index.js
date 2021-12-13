@@ -10,26 +10,25 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
-
 const tabs = [
   {
     route: "/unis",
-    icon: <SearchIcon fontSize="large" />,
+    icon: <SearchIcon fontSize="large" color="white" />,
     label: "Unis",
   },
   {
     route: "/chat",
-    icon: <ChatOutlinedIcon fontSize="large" />,
+    icon: <ChatOutlinedIcon fontSize="large" color="white" />,
     label: "Chat",
   },
   {
     route: "/addFile",
-    icon: <AddCircleOutlineOutlinedIcon fontSize="large" />,
+    icon: <AddCircleOutlineOutlinedIcon fontSize="large" color="white" />,
     label: "AddFile",
   },
   {
     route: "/account",
-    icon: <PersonOutlineOutlinedIcon fontSize="large" />,
+    icon: <PersonOutlineOutlinedIcon fontSize="large" color="white" />,
     label: "Account",
   },
 ];

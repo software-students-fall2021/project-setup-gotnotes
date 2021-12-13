@@ -1,13 +1,21 @@
 @import "./../../../../default.scss";
 
 .navbar {
-  background-color: rgb(244, 244, 244) !important;
+  background-color: black !important;
+  color: white !important;
 
   .nav-item {
-    border-color: rgb(152, 152, 152) !important;
+    border: none !important;
+    color: white !important;
 
     .nav-link.active {
-      background-color: rgb(189, 189, 189) !important;
+      background-color: rgb(255, 255, 255) !important;
+      color: black !important;
+      font-weight: bold !important;
+    }
+    .nav-link {
+      background-color: black !important;
+      color: white !important;
     }
   }
 }
