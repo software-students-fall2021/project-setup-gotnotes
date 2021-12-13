@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import "./styles.scss";
 
 import useIsElementVisible from "./../../../Hooks/useIsElementVisible";
@@ -14,8 +14,7 @@ const initialMessages = [
         "http://localhost:4000/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
       senderName: "John1998",
     },
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
     dateSent: 1630364378188,
     likes: [2, 3],
   },
@@ -50,8 +49,7 @@ const initialMessages = [
         "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Matthew",
     },
-    message:
-      "Lorem ipsum dolor sit amet ",
+    message: "Lorem ipsum dolor sit amet ",
     dateSent: 1633364378688,
     likes: [3],
   },
@@ -74,8 +72,7 @@ const initialMessages = [
         "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Julie",
     },
-    message:
-      "Lorem ipsum",
+    message: "Lorem ipsum",
     dateSent: 1635364379088,
     likes: [5],
   },
@@ -86,8 +83,7 @@ const initialMessages = [
         "http://localhost:4000/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
       senderName: "John1998",
     },
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
     dateSent: 1636364379092,
     likes: [2, 3],
   },
@@ -98,8 +94,7 @@ const initialMessages = [
         "http://localhost:4000/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
       senderName: "John1998",
     },
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
     dateSent: 1637364379094,
     likes: [2, 3],
   },
@@ -110,8 +105,7 @@ const initialMessages = [
         "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Kaan",
     },
-    message:
-      "Lorem ipsum dolor sit amet ",
+    message: "Lorem ipsum dolor sit amet ",
     dateSent: 1638364379288,
     likes: [3],
   },
@@ -131,29 +125,41 @@ const initialMessages = [
 
 let time = 1639364379488;
 export const ChatMessages = ({ title = "Course Chat" }) => {
-  const messagesEndRef = useRef(null);
+  const messageRef = useRef(null);
   const [isVisible, elementRef] = useIsElementVisible();
   const [messages, setMessages] = useState(initialMessages);
 
   //testting message generator
   useEffect(() => {
     const interval = window.setInterval(() => {
-      const newMessage = initialMessages[Math.floor(Math.random()*(initialMessages.length-1))];
-      newMessage.dateSent = time;
-      time += 1000000;
-      setMessages((x) => [...x, newMessage]);
-    }, 3000);
+      setMessages((x) => [...x, initialMessages[0]]);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-
+  console.log(messages.length);
   //TODO need to find a way of scrolling to bottom in the first mount, but not doing that for consequent renders
   /*  implementation of ^^^^ should go here */
 
-  //to auto scroll only while the user is at the bottom of the page already
+  const eventHandler = useCallback(
+    (event) => {
+      const { target } = event;
+      isVisible && target.scrollIntoView({ behavior: "smooth" });
+    },
+    [isVisible]
+  );
+
   useEffect(() => {
-    isVisible && messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [messages, elementRef, isVisible]);
+    const abortController = new AbortController();
+    if (messageRef && isVisible) {
+      messageRef.current.addEventListener("DOMNodeInserted", eventHandler, {
+        signal: abortController.signal,
+      });
+    }
+    if (!isVisible) abortController.abort();
+
+    return () => abortController.abort();
+  }, [eventHandler, isVisible]);
 
   return (
     <>
@@ -166,12 +172,11 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
         />
       </div>
       <div className="chat-messages-container">
-        <div className="chat-bubbles-container">
+        <div className="chat-bubbles-container" ref={messageRef}>
           {messages.map(({ message, sender, dateSent, likes }, idx) => {
             if (idx == messages.length - 1) {
               return (
                 <>
-                  <div key={dateSent*10} ref={elementRef}></div>
                   <ChatBubble
                     key={dateSent}
                     props={{ message, sender, dateSent, likes }}
@@ -186,7 +191,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
               />
             );
           })}
-          <div className="clear" ref={messagesEndRef} />
+          <div ref={elementRef}></div>
         </div>
         <div className="sticky-bottom">
           <MessageInput />

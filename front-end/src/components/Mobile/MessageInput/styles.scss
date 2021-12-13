@@ -1,15 +1,15 @@
-.message-input-container{
-    // position: relative;
-    // bottom: 25px;
-    position: fixed;
-    bottom: 50px;
-    width: 100%;
-}
+@import "./../../../default.scss";
 
-// .edit-page{
-//     display: block;
-// }
+.message-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: $bottom_nav_offset;
 
-.submit-button{
-    position: top;
+  .message-input {
+
+    
+  }
+  .message-send-button {
+  }
 }
