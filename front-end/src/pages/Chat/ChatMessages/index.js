@@ -125,8 +125,8 @@ const initialMessages = [
 
 let time = 1639364379488;
 export const ChatMessages = ({ title = "Course Chat" }) => {
-  const messageRef = useRef(null);
-  const [isVisible, elementRef] = useIsElementVisible();
+  const messagesContainerRef = useRef(null);
+  const [isEndOfMessagesVisible, messagesEndRef] = useIsElementVisible();
   const [messages, setMessages] = useState(initialMessages);
 
   //testting message generator
@@ -137,34 +137,38 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
     return () => clearInterval(interval);
   }, []);
 
-  //TODO need to find a way of scrolling to bottom in the first mount, but not doing that for consequent renders
-  /*  implementation of ^^^^ should go here */
-
-  const eventHandler = useCallback(
+  const scrollIfEndVisibleHandler = useCallback(
     (event) => {
       const { target } = event;
-      isVisible && target.scrollIntoView({ behavior: "smooth" });
+      isEndOfMessagesVisible && target.scrollIntoView({ behavior: "smooth" });
     },
-    [isVisible]
+    [isEndOfMessagesVisible]
   );
 
-  const initialScroll = useCallback(() => elementRef.current.scrollIntoView(),[]);
+  const initialScroll = useCallback(
+    () => messagesEndRef.current.scrollIntoView(),
+    []
+  );
 
   useEffect(() => {
-    initialScroll()
+    initialScroll();
   }, [initialScroll]);
 
   useEffect(() => {
     const abortController = new AbortController();
-    if (messageRef && isVisible) {
-      messageRef.current.addEventListener("DOMNodeInserted", eventHandler, {
-        signal: abortController.signal,
-      });
+    if (messagesContainerRef && isEndOfMessagesVisible) {
+      messagesContainerRef.current.addEventListener(
+        "DOMNodeInserted",
+        scrollIfEndVisibleHandler,
+        {
+          signal: abortController.signal,
+        }
+      );
     }
-    if (!isVisible) abortController.abort();
+    if (!isEndOfMessagesVisible) abortController.abort();
 
     return () => abortController.abort();
-  }, [eventHandler, isVisible]);
+  }, [scrollIfEndVisibleHandler, isEndOfMessagesVisible]);
 
   return (
     <>
@@ -177,7 +181,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
         />
       </div>
       <div className="chat-messages-container">
-        <div className="chat-bubbles-container" ref={messageRef}>
+        <div className="chat-bubbles-container" ref={messagesContainerRef}>
           {messages.map(({ message, sender, dateSent, likes }, idx) => {
             if (idx == messages.length - 1) {
               return (
@@ -196,7 +200,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
               />
             );
           })}
-          <div ref={elementRef}></div>
+          <div ref={messagesEndRef}></div>
         </div>
         <div className="sticky-bottom">
           <MessageInput />
