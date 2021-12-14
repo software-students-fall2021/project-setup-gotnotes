@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import UserAvatar from "../../../components/Mobile/UserAvatar";
+import UserAvatar from "../../components/Mobile/UserAvatar";
 
 import { useQuery, useMutation } from "react-query";
-import { GlobalContext } from "../../../context/provider";
+import { GlobalContext } from "../../context/provider";
 //prettier-ignore
-import {fetchUserData, postUserUpdates, uploadFile} from "../../../services/SearchTabServices/FetchCalls";
+import {fetchUserData, postUserUpdates, uploadFile} from "../../services/SearchTabServices/FetchCalls";
 
 import "./styles.scss";
-import { queryClient } from "../../../App";
+import { queryClient } from "../../App";
 
 export const Account = () => {
   //prettier-ignore
@@ -46,8 +46,13 @@ export const Account = () => {
 
   const uploadHandler = async (e) => {
     e.preventDefault();
-    const uri = await uploadFile(file[0], userToken);
-    setSubmitData((x) => ({ ...x, userAvatarUrl: uri }));
+    const data = await uploadFile(file[0], userToken);
+    if (!data.uri) {
+      set_error(data.error);
+      return;
+    }
+    setSubmitData((x) => ({ ...x, userAvatarUrl: data.uri }));
+    set_error("Photo Uploaded Succesfully!")
   };
 
   const handleSubmit = (e) => {
@@ -72,9 +77,7 @@ export const Account = () => {
         />
         {isEditActive && (
           <form className="file-form" onSubmit={(e) => uploadHandler(e)}>
-            <label htmlFor="input">Photo URL</label>
-            <input type="text" readOnly value={userAvatarUrl} />
-            <label htmlFor="input">Choose Photo File</label>
+            <label htmlFor="input">Choose a Photo</label>
             <input
               className="file"
               type="file"
@@ -99,7 +102,7 @@ export const Account = () => {
               className={isEditActive ? "account-input edit" : "account-input"}
               readOnly={!isEditActive}
               type="text"
-              value={data.firstName}
+              value={isEditActive ? firstName : data.firstName}
               onChange={(e) =>
                 setSubmitData((x) => ({ ...x, firstName: e.target.value }))
               }
@@ -111,7 +114,7 @@ export const Account = () => {
               className={isEditActive ? "account-input edit" : "account-input"}
               readOnly={!isEditActive}
               type="text"
-              value={data.lastName}
+              value={isEditActive ? lastName : data.lastName}
               onChange={(e) =>
                 setSubmitData((x) => ({ ...x, lastName: e.target.value }))
               }

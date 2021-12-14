@@ -21,7 +21,7 @@ import { Login } from "./pages/Login/Login";
 import { ResetPass } from "./pages/Login/ResetPass";
 import { AddFile } from "./pages/AddFile";
 import { Admin } from "./pages/Admin";
-import { Account } from "./pages/Account/Account";
+import { Account } from "./pages/Account";
 
 import { WithAdminAuth, WithAuth } from "./AuthHOC";
 
@@ -65,15 +65,16 @@ export const App = () => {
               </WithAuth>
             )}
           />
-          <Route
+          {/* <Route
             path="/account"
             render={() => (
               <WithAuth>
                 <Account />
               </WithAuth>
             )}
-          />
-
+          /> */}
+          //FIXME after testing, revert to original
+          <Route path="/account" render={() => <Account />} />
           <Route
             path="/admin"
             render={() => (

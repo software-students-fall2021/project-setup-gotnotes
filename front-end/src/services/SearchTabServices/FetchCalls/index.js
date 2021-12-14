@@ -172,8 +172,5 @@ export const uploadFile = async (file, userToken) => {
       },
     }
   );
-
-  if (!data?.uri) throw new Error(data.message);
-
-  return data.uri;
+  return data;
 };

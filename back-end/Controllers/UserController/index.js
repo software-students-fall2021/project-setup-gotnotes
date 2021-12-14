@@ -173,6 +173,8 @@ exports.update_user_scalar = async (req, res) => {
     const updateObject = req.body;
     const user = await check_auth(req);
 
+    updateObj.keys
+
     const queryResult =
       await UserService.update_user_scalar_by_email_or_username(
         user.email,
