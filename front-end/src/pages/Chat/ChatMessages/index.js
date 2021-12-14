@@ -15,7 +15,7 @@ const initialMessages = [
       senderName: "John1998",
     },
     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    dateSent: 1630364378188,
+    dateSent: 1630904378188,
     likes: [2, 3],
   },
   {
@@ -39,7 +39,7 @@ const initialMessages = [
     },
     message:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
-    dateSent: 1632364378488,
+    dateSent: 1832364378488,
     likes: [],
   },
   {
@@ -50,7 +50,7 @@ const initialMessages = [
       senderName: "Matthew",
     },
     message: "Lorem ipsum dolor sit amet ",
-    dateSent: 1633364378688,
+    dateSent: 1635364378688,
     likes: [3],
   },
   {
@@ -62,7 +62,7 @@ const initialMessages = [
     },
     message:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia excepturi harum temporibus dicta, exercitationem fuga natus incidunt iste.",
-    dateSent: 1634364378888,
+    dateSent: 1634364978888,
     likes: [],
   },
   {
@@ -73,7 +73,7 @@ const initialMessages = [
       senderName: "Julie",
     },
     message: "Lorem ipsum",
-    dateSent: 1635364379088,
+    dateSent: 1635364179088,
     likes: [5],
   },
   {
@@ -84,7 +84,7 @@ const initialMessages = [
       senderName: "John1998",
     },
     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    dateSent: 1636364379092,
+    dateSent: 1636064379092,
     likes: [2, 3],
   },
   {
@@ -95,7 +95,7 @@ const initialMessages = [
       senderName: "John1998",
     },
     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-    dateSent: 1637364379094,
+    dateSent: 1637363479094,
     likes: [2, 3],
   },
   {
@@ -106,7 +106,7 @@ const initialMessages = [
       senderName: "Kaan",
     },
     message: "Lorem ipsum dolor sit amet ",
-    dateSent: 1638364379288,
+    dateSent: 1638367379288,
     likes: [3],
   },
   {
@@ -118,12 +118,11 @@ const initialMessages = [
     },
     message:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique quidem dolorem, placeat sunt iure maiores. Earum itaque sed, adipisci officia",
-    dateSent: 1639364379488,
+    dateSent: 1639310379488,
     likes: [],
   },
 ];
 
-let time = 1639364379488;
 export const ChatMessages = ({ title = "Course Chat" }) => {
   const messagesContainerRef = useRef(null);
   const [isEndOfMessagesVisible, messagesEndRef] = useIsElementVisible();
@@ -132,7 +131,10 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
   //testting message generator
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setMessages((x) => [...x, initialMessages[0]]);
+      setMessages((x) => [
+        ...x,
+        initialMessages[parseInt(Math.random() * (initialMessages.length - 1))],
+      ]);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -146,7 +148,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
   );
 
   const initialScroll = useCallback(
-    () => messagesEndRef.current.scrollIntoView(),
+    () => messagesEndRef.current.scrollIntoView({ behavior: "auto" }),
     []
   );
 
@@ -171,7 +173,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
   }, [scrollIfEndVisibleHandler, isEndOfMessagesVisible]);
 
   return (
-    <>
+    <div className="message-component-container">
       <div className="sticky-top">
         <PageTitle
           props={{
@@ -202,10 +204,10 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
           })}
           <div ref={messagesEndRef}></div>
         </div>
-        <div className="sticky-bottom">
-          <MessageInput />
-        </div>
       </div>
-    </>
+      <div className="sticky-bottom">
+        <MessageInput />
+      </div>
+    </div>
   );
 };

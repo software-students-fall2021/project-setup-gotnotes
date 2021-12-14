@@ -12,6 +12,7 @@ $text_tertiary_light:rgb(202, 0, 101);
 $bottom_nav_offset: 41.88px;
 
 $text_sent: #4da3ff;
+$text_sent_variation: #8bc3ff;
 $text_received: #c7c7c7;
 
 html {
@@ -71,7 +72,7 @@ a:hover {
   top: 0;
 }
 .sticky-bottom{
-  position: sticky;
+  width: 100%;
   bottom: 0;
 }
 .clear {

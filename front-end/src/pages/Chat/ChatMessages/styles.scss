@@ -3,6 +3,7 @@
 .chat-messages-container {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
   width: 100%;
   .chat-bubbles-container {
     display: flex;
