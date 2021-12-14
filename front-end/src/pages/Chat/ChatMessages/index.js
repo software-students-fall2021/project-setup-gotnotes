@@ -123,6 +123,8 @@ const initialMessages = [
   },
 ];
 
+//TODO message input needs to push content up when input area grows by rows
+//TODO get rid of the text area mark on the bottom  right corner
 export const ChatMessages = ({ title = "Course Chat" }) => {
   const messagesContainerRef = useRef(null);
   const [isEndOfMessagesVisible, messagesEndRef] = useIsElementVisible();
