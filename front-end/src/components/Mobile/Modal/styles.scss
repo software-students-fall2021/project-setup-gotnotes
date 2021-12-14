@@ -1,14 +1,34 @@
 @import "./../../../default.scss";
 
-.error-modal {
-  display: block;
+.error-modal-wrapper {
+  display: flex;
   position: absolute;
-  height: 100vh;
   width: 100vw;
-  background-color: rgba(#000, 0.2);
+  height: 100vh;
+  background-color: rgba(rgb(0, 0, 0), 0.5);
   text-align: center;
   z-index: 10000;
-  &.hidden {
-    display: none;
+
+  .error-modal-container {
+    display: flex;
+    margin: (20px auto) auto;
+    width: 95%;
+    min-height: 50px;
+    border-radius: 10px;
+
+    &.error {
+      background-color: rgb(219, 107, 107);
+    }
+    &.success {
+      background-color: rgb(106, 197, 98);
+    }
+
+    .error-message-container {
+      display: flex;
+      margin: auto;
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
   }
 }

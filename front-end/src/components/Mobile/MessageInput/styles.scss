@@ -1,8 +1,6 @@
 @import "./../../../default.scss";
 
-.message-component-container {
-    display: flex;
-    flex-direction: column;
+
   .message-input-wrapper {
     display: block;
     width: 100%;
@@ -57,4 +55,4 @@
       }
     }
   }
-}
+

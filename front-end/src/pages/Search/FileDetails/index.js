@@ -68,7 +68,7 @@ export const FileDetails = () => {
           <div className="clear"></div>
         </div>
         <div className="sticky-bottom">
-          <MessageInput />
+          <MessageInput initial="Type Comment"/>
         </div>
       </div>
     )

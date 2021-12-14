@@ -3,7 +3,7 @@ import "./styles.scss";
 
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-export const MessageInput = ({ props }) => {
+export const MessageInput = ({ initial = "type" }) => {
   //const { queryFn } = props;
   const [input, setInput] = useState("");
   const [rows, setRows] = useState(1);
@@ -46,7 +46,7 @@ export const MessageInput = ({ props }) => {
             type="text"
             value={input}
             onChange={(e) => handleChange(e)}
-            placeholder="Type Message..."
+            placeholder={initial}
           />
           <button
             className="message-send-button"

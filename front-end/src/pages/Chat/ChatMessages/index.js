@@ -208,7 +208,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
         </div>
       </div>
       <div className="sticky-bottom">
-        <MessageInput />
+        <MessageInput initial="Type Message"/>
       </div>
     </div>
   );
