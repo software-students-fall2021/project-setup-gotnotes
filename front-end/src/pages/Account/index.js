@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import UserAvatar from "../../components/Mobile/UserAvatar";
 
 import { useQuery, useMutation } from "react-query";
@@ -29,8 +29,9 @@ export const Account = () => {
       onSuccess: (data) => {
         set_user(data);
       },
-      onError: (err) => {
-        set_error(err.err);
+      onError: (error) => {
+        console.log("error in useQuery ", error);
+        set_error(error.message);
       },
     }
   );
@@ -39,20 +40,26 @@ export const Account = () => {
   const updateUser = useMutation(postUserUpdates, {
     onSuccess: () => queryClient.invalidateQueries(["user", userToken]),
     onError: (error) => {
-      set_error(error.error);
+      console.log("error in useMutation ", error)
+      set_error(error.message);
       queryClient.invalidateQueries(["user", userToken]);
     },
   });
 
   const uploadHandler = async (e) => {
     e.preventDefault();
+    if (!file[0]) {
+      set_error("Please first choose a file");
+      return;
+    }
     const data = await uploadFile(file[0], userToken);
     if (!data.uri) {
-      set_error(data.error);
+      console.log("error in upload Handler ", data);
+      set_error(data.error.message);
       return;
     }
     setSubmitData((x) => ({ ...x, userAvatarUrl: data.uri }));
-    set_error("Photo Uploaded Succesfully!")
+    set_error("Photo Uploaded Succesfully!");
   };
 
   const handleSubmit = (e) => {
@@ -66,15 +73,27 @@ export const Account = () => {
     data &&
     !isError && (
       <div className="account-container">
-        <UserAvatar
-          props={{
-            userAvatarUrl: data.userAvatarUrl,
-            size: "large",
-            showEditButton: true,
-            handleEditAction: () => setIsEditActive((x) => !x),
-            isEditActive,
-          }}
-        />
+        <div className="user-detail-wrapper">
+          <div className="user-avatar-wrapper">
+            <UserAvatar
+              props={{
+                userAvatarUrl: data.userAvatarUrl,
+                size: "large",
+                showEditButton: true,
+                handleEditAction: () => setIsEditActive((x) => !x),
+                isEditActive,
+              }}
+            />
+          </div>
+          <div className="user-detail-text-wrapper">
+
+          </div>
+        </div>
+
+        <div className="account-interaction-data-wrapper">
+
+        </div>
+
         {isEditActive && (
           <form className="file-form" onSubmit={(e) => uploadHandler(e)}>
             <label htmlFor="input">Choose a Photo</label>

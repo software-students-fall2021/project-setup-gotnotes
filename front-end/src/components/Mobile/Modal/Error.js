@@ -18,7 +18,7 @@ const Error = () => {
     >
       <div className={`error-modal-container ${errorType}`}>
         <div className={`error-message-container ${errorType}`}>
-          File was uploaded successfully!
+          {error}
         </div>
       </div>
     </div>

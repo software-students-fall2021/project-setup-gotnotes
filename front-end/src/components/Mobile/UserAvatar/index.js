@@ -11,7 +11,14 @@ const UserAvatar = ({ props }) => {
     isEditActive,
   } = props;
 
-  const classes = size === "large" ? "large" : size === "med" ? "med" : "small";
+  const classes =
+    size === "xlarge"
+      ? "xlarge"
+      : size === "large"
+      ? "large"
+      : size === "med"
+      ? "med"
+      : "small";
 
   return (
     <div className="user-avatar-container">
@@ -24,9 +31,11 @@ const UserAvatar = ({ props }) => {
         {showEditButton && (
           <div
             className={
-              isEditActive
+              classes +
+              " " +
+              (isEditActive
                 ? "edit-icon-container active"
-                : "edit-icon-container"
+                : "edit-icon-container")
             }
             onClick={() => handleEditAction()}
           >
