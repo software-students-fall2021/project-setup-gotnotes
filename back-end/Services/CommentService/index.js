@@ -6,7 +6,7 @@ const Comment = require("../../Models/Comment");
  * @returns {Comment}
  */
 exports.get_comment_by_id = async (commentId) => {
-  return await Comment.findOne({ _id: commentId });
+  return await Comment.findOne({ _id: commentId }).populate("sharedBy");
 };
 
 /**
@@ -15,7 +15,7 @@ exports.get_comment_by_id = async (commentId) => {
  * @returns {[Comment]}
  */
 exports.get_comments_by_file_id = async (fileId) => {
-  return await Comment.find({ fileId: fileId });
+  return await Comment.find({ fileId: fileId }).populate("sharedBy");
 };
 
 /**
@@ -69,7 +69,7 @@ exports.update_comment = async (commentId, content) => {
     { _id: commentId },
     { $set: { content: content, isEdited: true } },
     { new: true }
-  );
+  ).populate("sharedBy");
 };
 
 /**
@@ -111,5 +111,5 @@ exports.update_comment_arr_by_comment_id = async (
     { _id: comment._id },
     { $set: updateObject },
     { new: true }
-  );
+  ).populate("sharedBy");
 };

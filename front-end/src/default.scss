@@ -7,6 +7,14 @@ $border_light: rgb(152, 152, 152);
 $text_primary_light: rgb(39, 39, 39);
 $text_secondary_light: rgb(179, 44, 44);
 
+$text_tertiary_light:rgb(202, 0, 101);
+
+$bottom_nav_offset: 41.88px;
+
+$text_sent: #4da3ff;
+$text_sent_variation: #8bc3ff;
+$text_received: #c7c7c7;
+
 html {
   font-size: 10px;
 }
@@ -20,7 +28,6 @@ html,
 body,
 #root,
 .App {
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -41,7 +48,11 @@ body {
 
 a {
   text-decoration: none;
+  color: white !important;
   cursor: pointer;
+}
+.nav-link{
+  color: white !important;
 }
 
 a,
@@ -60,7 +71,16 @@ a:hover {
   position: sticky;
   top: 0;
 }
+.sticky-bottom{
+  position: sticky;
+  width: 100%;
+  bottom: 0;
+}
 .clear {
   /*this is the height of our bottom tab navigator*/
   height: 50px;
+}
+
+.hidden{
+  display: none !important;
 }

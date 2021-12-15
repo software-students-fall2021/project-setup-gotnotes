@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./styles.scss";
 
@@ -8,12 +8,16 @@ import GridViewSharpIcon from "@mui/icons-material/GridViewSharp";
 
 import ViewListOutlinedIcon from "@mui/icons-material/ViewListOutlined";
 import ViewListIcon from "@mui/icons-material/ViewList";
+import { GlobalContext } from "../../../../context/provider";
 
-export const GridListToggle = ({ props }) => {
-  const { currentLayout, setCurrentLayout } = props;
+export const GridListToggle = () => {
+  const {
+    globalState: { currentLayout },
+    set_current_layout,
+  } = useContext(GlobalContext);
 
   const changeLayout = () =>
-    setCurrentLayout(currentLayout === "grid" ? "list" : "grid");
+    currentLayout == "list" ? set_current_layout("grid") : set_current_layout("list");
 
   return (
     <div className="grid-list-toggle">

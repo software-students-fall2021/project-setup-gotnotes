@@ -1,48 +1,51 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import "./styles.scss";
 
-//mock data
-//import { mockUniData } from '../../../assets/mocks/mockData'
+import { useQuery } from "react-query";
+import { fetchUniData } from "../../../services/SearchTabServices/FetchCalls";
+import { GlobalContext } from "../../../context/provider";
 
-export const Unis = ({
-  ViewComponent,
-  activeClass,
-  BreadCrumbData,
-  SetBreadCrumbData,
-}) => {
-  const [uniData, setUniData] = useState(null);
+import { ListItem } from "./../../../components/Mobile/ListItem";
+import { GridItem } from "./../../../components/Mobile/GridItem";
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/unis`, { crossdomain: true })
-      .then((res) => {
-        console.log(res.data);
-        setUniData(res.data);
-      });
-  }, []);
+export const Unis = () => {
+  const { globalState: {currentLayout} } = useContext(GlobalContext);
+  const { data, error, isError, isLoading } = useQuery("unis", fetchUniData);
 
+  if (isLoading) return <div>Loading</div>;
+  if (isError) return <div>Error: {error}</div>;
   return (
-    <div className={activeClass === "grid" ? "unis grid" : "unis"}>
-      {uniData &&
-        uniData.map(
+    <div className={currentLayout === "grid" ? "unis grid" : "unis"}>
+      {data?.map(
           ({
-            uniID: itemID,
+            _id: itemId,
             uniName: itemName,
             uniLogoPath: itemLogoPath,
-            uniStudentCount: courseCount,
-          }) => (
-            <ViewComponent
-              key={itemID}
-              props={{
-                itemID,
-                itemName,
-                itemLogoPath,
-                itemType: "uni",
-                courseCount,
-              }}
-            />
-          )
+            uniCourses: courses,
+          }) =>
+            currentLayout === "grid" ? (
+              <GridItem
+                key={itemId}
+                props={{
+                  itemId,
+                  itemName,
+                  itemLogoPath,
+                  itemType: "uni",
+                  courses,
+                }}
+              />
+            ) : (
+              <ListItem
+                key={itemId}
+                props={{
+                  itemId,
+                  itemName,
+                  itemLogoPath,
+                  itemType: "uni",
+                  courses,
+                }}
+              />
+            )
         )}
     </div>
   );

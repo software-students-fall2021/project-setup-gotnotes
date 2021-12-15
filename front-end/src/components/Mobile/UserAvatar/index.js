@@ -1,35 +1,48 @@
 import React from "react";
-// import { useHistory } from "react-router";
 import "./styles.scss";
-
-//icons
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-/*
-    editActive will only work with large sizes, default size small
-*/
-
 const UserAvatar = ({ props }) => {
-  const { userAvatarUrl, size, showEditButton, handleEditAction } = props;
+  const {
+    userAvatarUrl,
+    size,
+    showEditButton,
+    handleEditAction,
+    isEditActive,
+  } = props;
 
-  const classes = size === "large" ? "large" : size === "med" ? "med" : "small";
-
-  //const history = useHistory();
+  const classes =
+    size === "xlarge"
+      ? "xlarge"
+      : size === "large"
+      ? "large"
+      : size === "med"
+      ? "med"
+      : "small";
 
   return (
     <div className="user-avatar-container">
       <div className={`user-avatar ${classes}`}>
         <img
-          src={userAvatarUrl}
+          src={userAvatarUrl ? userAvatarUrl : "/no-avatar.png"}
           alt="user-avatar"
           className="user-avatar-img"
         />
+        {showEditButton && (
+          <div
+            className={
+              classes +
+              " " +
+              (isEditActive
+                ? "edit-icon-container active"
+                : "edit-icon-container")
+            }
+            onClick={() => handleEditAction()}
+          >
+            <EditOutlinedIcon fontSize="large" />
+          </div>
+        )}
       </div>
-      {showEditButton && (
-        <div className="edit-icon-container" onClick={() => handleEditAction()}>
-          <EditOutlinedIcon fontSize="large" />
-        </div>
-      )}
     </div>
   );
 };

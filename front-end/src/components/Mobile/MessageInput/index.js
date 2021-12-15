@@ -1,66 +1,62 @@
-import axios from "axios";
 import React, { useState } from "react";
 import "./styles.scss";
 
-export const MessageInput = ({ props }) => {
-  const chatID = props;
-  const [inputMessage, setInputMessage] = useState("");
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-  const [userChatID, setUserChatID] = useState(null);
+export const MessageInput = ({ initial = "type" }) => {
+  //const { queryFn } = props;
+  const [input, setInput] = useState("");
+  const [rows, setRows] = useState(1);
+  const minRows = 1;
+  const maxRows = 10;
 
-  const onChange = (event) => {
-    setInputMessage(event.target.value);
+  const handleSend = () => {
+    //queryFn(input);
+    setInput("");
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("text sent!");
+  const handleChange = (event) => {
+    const textareaLineHeight = 24;
 
-    axios("http://localhost:4000/:chatID/newMessage", {
-      method: "POST",
-      data: {
-        chatID: chatID,
-      },
-    })
-      .then((res) => setUserChatID(res.data[0]))
-      .catch((err) => console.log(err));
+    const previousRows = event.target.rows;
+    event.target.rows = minRows;
 
-    setInputMessage(event.target.value);
+    const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
+
+    if (currentRows === previousRows) {
+      event.target.rows = currentRows;
+    }
+
+    if (currentRows >= maxRows) {
+      event.target.rows = maxRows;
+      event.target.scrollTop = event.target.scrollHeight;
+    }
+
+    setInput(event.target.value);
+    setRows(currentRows < maxRows ? currentRows : maxRows);
   };
 
-  //TODO have an input field with two way binding
-  //react input handleChange
-  /**
-   * const { chatID (we will have chatID and probably other props dereferenced here)} = props
-   *
-   * const handleChange = () => {
-   * }
-   *
-   * const handleSubmit = () => {
-   *    here we will do a post request to the relevant api endpoint: http://localhost:4000/:chatID/newMessage
-   * }
-   */
-
-  //onclick function??
   return (
-    <div className="message-input-container">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
+    <div className="message-input-wrapper">
+      <div className="message-input-container">
+        <div className="message-input-button-rounded">
+          <textarea
+            rows={rows}
+            className="message-input"
             type="text"
-            placeholder={"Type Message"}
-            value={inputMessage}
-            onChange={onChange}
+            value={input}
+            onChange={(e) => handleChange(e)}
+            placeholder={initial}
           />
+          <button
+            className="message-send-button"
+            type="text"
+            onClick={() => handleSend()}
+          >
+            <ArrowUpwardIcon />
+          </button>
         </div>
-        <input type="submit" value="Send" />
-      </form>
-      {/**
-       * here we need an input element
-       * and then a submit button
-       * and the submit button should have a onClick function that
-       * we need to define right above the return statement
-       */}
+      </div>
     </div>
   );
 };

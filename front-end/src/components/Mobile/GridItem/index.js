@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
+
+import { GlobalContext } from "../../../context/provider";
 
 //imports
 import { useHistory, useLocation } from "react-router-dom";
@@ -12,13 +14,13 @@ import { DislikeIcon } from "../Icons/DislikeIcon";
 import { CommentIcon } from "../Icons/CommentIcon";
 
 export const GridItem = ({ props }) => {
-  //TODO in the future we will fetch these data from the api, for now we use mock data
-  //with a similar format to the actual api that we will design
+  const { set_current_course, set_current_uni } = useContext(GlobalContext);
   const {
-    itemID,
+    itemId,
     itemName,
     itemLogoPath,
     itemType,
+    fileType,
     enrolledStudents,
     courseCount,
     likeCount,
@@ -29,13 +31,24 @@ export const GridItem = ({ props }) => {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const handleClick = () => history.push(`${pathname}/${itemID}`);
+  const handleClick = () => {
+    history.push(`${pathname}/${itemId}`);
+    if (itemType == "uni") set_current_uni(itemId, itemName);
+    if (itemType == "course") set_current_course(itemId, itemName);
+  };
 
   return (
     <div className="grid-item" onClick={() => handleClick()}>
       <div className="grid-img-container">
-        {(itemType === "uni" || itemType === "file") && (
-          <img className="grid-item-logo" src={itemLogoPath} alt="" />
+        {itemType === "uni" && (
+          <img className="list-item-logo" src={itemLogoPath} alt="" />
+        )}
+        {itemType === "file" && (
+          <img
+            className="list-item-logo"
+            src={`/fileLogos/${fileType}.png`}
+            alt=""
+          />
         )}
       </div>
 
@@ -57,22 +70,22 @@ export const GridItem = ({ props }) => {
           )}
           {itemType === "class" && (
             <div className="grid-icon-set">
-              <NotificationBell props={{ itemID, fontSize: "large" }} />
+              <NotificationBell props={{ itemId, fontSize: "large" }} />
               <span>{enrolledStudents}</span>
             </div>
           )}
           {itemType === "file" && (
             <>
               <div className="grid-icon-set">
-                <LikeIcon props={{ itemID, fontSize: "large" }} />
+                <LikeIcon props={{ itemId, fontSize: "large" }} />
                 <span>{likeCount}</span>
               </div>
               <div className="grid-icon-set">
-                <DislikeIcon props={{ itemID, fontSize: "large" }} />
+                <DislikeIcon props={{ itemId, fontSize: "large" }} />
                 <span>{dislikeCount}</span>
               </div>
               <div className="grid-icon-set">
-                <CommentIcon props={{ itemID, fontSize: "large" }} />
+                <CommentIcon props={{ itemId, fontSize: "large" }} />
                 <span>{commentCount}</span>
               </div>
             </>

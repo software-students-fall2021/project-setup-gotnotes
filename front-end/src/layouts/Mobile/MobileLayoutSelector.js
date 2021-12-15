@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "./../../context/provider";
 
 //HOC
 import { SearchHigherOrder } from "./../../components/Mobile/SearchHigherOrder";
 
-import { ListItem } from "../../components/Mobile/ListItem";
-import { GridItem } from "../../components/Mobile/GridItem";
+//components
 import { Breadcrumbs } from "../../components/Mobile/Navigations/Breadcrumbs";
+import AdminToolbar from "./../../components/AdminToolbar";
 
-export const MobileLayoutSelector = ({ Component }) => {
-  const [currentLayout, setCurrentLayout] = useState("list");
-
-  const [breadCrumbData, setBreadCrumbData] = useState(null);
-
+export const MobileLayoutSelector = ({ children }) => {
+  const { globalState } = useContext(GlobalContext);
   return (
     <div className="layout-container">
       <div className="sticky-top">
-        <Breadcrumbs props={breadCrumbData} />
-        <SearchHigherOrder props={{ currentLayout, setCurrentLayout }} />
+        {globalState.currentUser?.isAdmin && <AdminToolbar />}
+        <Breadcrumbs />
+        <SearchHigherOrder />
       </div>
-      <Component
-        activeClass={currentLayout === "list" ? "" : "grid"}
-        ViewComponent={currentLayout === "list" ? ListItem : GridItem}
-        BreadCrumbData={breadCrumbData}
-        SetBreadCrumbData={setBreadCrumbData}
-      />
+      {children}
       <div className="clear"></div>
     </div>
   );

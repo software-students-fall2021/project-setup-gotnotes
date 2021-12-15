@@ -1,17 +1,10 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
+
 import "./styles.scss";
 
-import { checkUserIsAdmin } from "../../services/AdminAuthService";
-
-const AdminToolbar = ({ props }) => {
-  const { currentUser } = props;
-
-  const isAdmin = checkUserIsAdmin(currentUser);
-  console.log(isAdmin);
-
-  if (!isAdmin) return <></>;
+const AdminToolbar = () => {
+  
   return (
     <div className="adminToolbar">
       <ul>

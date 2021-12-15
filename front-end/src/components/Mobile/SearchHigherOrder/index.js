@@ -6,19 +6,18 @@ import { Search } from "./Search";
 import { Sort } from "./Sort";
 import { GridListToggle } from "./GridListToggle";
 
-export const SearchHigherOrder = ({ props }) => {
-  const { currentLayout, setCurrentLayout, items, setItems } = props;
+export const SearchHigherOrder = () => {
 
   return (
     <div className="search-higher-order-container">
       <div className="search-container">
-        <Search props={{ items, setItems }} />
+        <Search />
       </div>
       <div className="sort-container">
-        <Sort props={{ items, setItems }} />
+        <Sort />
       </div>
       <div className="grid-list-toggle-container">
-        <GridListToggle props={{ currentLayout, setCurrentLayout }} />
+        <GridListToggle />
       </div>
     </div>
   );

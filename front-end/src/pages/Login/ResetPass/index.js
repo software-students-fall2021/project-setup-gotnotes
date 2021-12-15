@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../../components/Mobile/Button";
-import logo from "../../../assets/GotNotes.jpg";
+import logo from "../../../assets/logo-login.png";
 import "./styles.scss";
 
 export const ResetPass = () => {

@@ -1,25 +1,22 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useContext } from "react";
 
 import "./styles.scss";
-
-//data
+//service
+import { sortResults } from "../../../../services/SortService";
 import {
   uniSortParams,
   courseSortParams,
   fileSortParams,
 } from "./../../../../assets/constants/sortParams";
 
-//service
-import { sortResults } from "../../../../services/SortService";
+//ctx
+import { GlobalContext } from "../../../../context/provider";
 
-export const Sort = ({ props }) => {
-  const { items, setItems } = props;
+export const Sort = () => {
+  const { displayedItems, setDisplayedItems, currentPage } = useContext(GlobalContext);
 
-  const currentPage = (useLocation().pathname.match(/\//g) || []).length;
-
-  const handleChange = (e) => {
-    setItems(sortResults(e, items));
+  const handleChange = (sortParam) => {
+    setDisplayedItems(sortResults(sortParam, displayedItems));
   };
 
   return (
@@ -28,15 +25,15 @@ export const Sort = ({ props }) => {
         className="sort-options"
         onChange={(e) => handleChange(e.target.value)}
       >
-        {currentPage === 1 &&
+        {currentPage === "unis" &&
           uniSortParams.map((values) => (
             <option value={values.value}>{values.label}</option>
           ))}
-        {currentPage === 2 &&
+        {currentPage === "courses" &&
           courseSortParams.map((values) => (
             <option value={values.value}>{values.label}</option>
           ))}
-        {currentPage === 3 &&
+        {currentPage === "files" &&
           fileSortParams.map((values) => (
             <option value={values.value}>{values.label}</option>
           ))}

@@ -1,32 +1,82 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import "./styles.scss";
 
-import { mockUserData, currentUserID } from "../../../../assets/mocks/mockData";
+import { useMutation } from "react-query";
+import { queryClient } from "../../../../index";
 
 import { ThumbUpOutlined, ThumbUp } from "@mui/icons-material";
+import { GlobalContext } from "../../../../context/provider";
+import {
+  postLikeDislikeFile,
+  postLikeDislikeComment,
+} from "./../../../../services/SearchTabServices/FetchCalls";
 
 export const LikeIcon = ({ props }) => {
   //TODO gotta refactor this logic out to a helper function later
+  const {
+    globalState: { currentUser, userToken },
+    set_error,
+  } = useContext(GlobalContext);
 
-  const [isLiked, setisLiked] = useState(0);
-  const { itemID, fontSize } = props;
+  const [isLiked, setIsLiked] = useState(0);
+  const { commentId, fileId, likes, fontSize, type } = props;
 
   useEffect(() => {
-    mockUserData
-      .filter((user) => user.userID === currentUserID)[0]
-      .userSubscribed.includes(itemID)
-      ? setisLiked(1)
-      : setisLiked(0);
-  }, [itemID]);
+    likes?.includes(currentUser?._id) ? setIsLiked(1) : setIsLiked(0);
+  }, [currentUser]);
 
-  //checking if the current user has liked this class
+  const likeFile = useMutation(
+    ({ fileId, likeDislike, type, userToken }) => {
+      postLikeDislikeFile(fileId, likeDislike, type, userToken);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["file", fileId]);
+        queryClient.invalidateQueries(["user", userToken]);
+      },
+    }
+  );
+  const likeComment = useMutation(
+    ({ commentId, type, likeDislike, userToken }) =>
+      postLikeDislikeComment(commentId, type, likeDislike, userToken),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", fileId]);
+        queryClient.invalidateQueries(["user", userToken]);
+      },
+    }
+  );
 
-  //needs refactoring for different like checking components
-
-  //TODO create a middleware that adds the item to liked list of user
+  const handleClick = () => {
+    if (!currentUser) {
+      set_error("You Must Be Logged in");
+    } else if (type == "file") {
+      const actionType = isLiked ? "remove" : "add";
+      likeFile.mutate({
+        fileId,
+        likeDislike: "like",
+        type: actionType,
+        userToken,
+      });
+    } else if (type == "comment") {
+      const actionType = isLiked ? "remove" : "add";
+      likeComment.mutate({
+        commentId,
+        likeDislike: "like",
+        type: actionType,
+        userToken,
+      });
+    }
+  };
   return (
-    <div className="notificationBell">
+    <div
+      className="notificationBell"
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
+    >
       {isLiked ? (
         <ThumbUp fontSize={fontSize} />
       ) : (

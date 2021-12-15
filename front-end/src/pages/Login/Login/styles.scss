@@ -1,21 +1,90 @@
-.whole {
+.login-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  .logo-container {
+    display: flex;
+    width: 70vw;
+    height: 40vh;
 
-  .image {
-    margin-left: auto;
-    margin-right: auto;
-    size: 20%;
+    max-height: 200px;
+    margin: 20px auto;
 
-    // width: 20%;
+    .login-logo {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
   }
-  .login {
-    margin-top: 5%;
-  }
-  .reset {
-    margin-top: 2%;
-    // margin-bottom: 100%
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    max-width: 500px;
+    margin: 10px auto;
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus {
+      transition: background-color 600000s 0s, color 600000s 0s;
+    }
+    input[data-autocompleted] {
+      background-color: transparent !important;
+    }
+    .text-input {
+      outline: none;
+      border: none;
+      border-bottom: 1px solid gray;
+      width: 100%;
+      font-size: 2em;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      &:focus {
+        outline: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+    }
+    .email-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .password-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      button {
+        margin-left: -30px;
+        background: none;
+        border: none;
+      }
+    }
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .action-button {
+        margin: 10px auto;
+        width: 100%;
+        font-size: 1.7em;
+        border: 1px solid black;
+        color: black;
+        background-color: rgb(241, 241, 241);
+        &:hover {
+          box-shadow: 1px 5px 5px 5px rgba($color: #000000, $alpha: 0.5);
+        }
+
+        &.dark {
+          margin-top: 20px;
+          padding: 0.5rem 0;
+          color: rgb(241, 241, 241);
+          background-color: black;
+        }
+      }
+    }
   }
 }

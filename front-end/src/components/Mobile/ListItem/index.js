@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 
 //imports
@@ -10,32 +10,44 @@ import { NotificationBell } from "../Icons/NotificationBell";
 import { LikeIcon } from "../Icons/LikeIcon";
 import { DislikeIcon } from "../Icons/DislikeIcon";
 import { CommentIcon } from "../Icons/CommentIcon";
+import { GlobalContext } from "../../../context/provider";
 
 export const ListItem = ({ props }) => {
-  //TODO in the future we will fetch these data from the api, for now we use mock data
-  //with a similar format to the actual api that we will design
+  const {set_current_course, set_current_uni} = useContext(GlobalContext)
   const {
-    itemID,
+    itemId,
     itemName,
     itemLogoPath,
     itemType,
-    enrolledStudents,
-    courseCount,
-    likeCount,
+    fileType,
+    subscribed,
+    courses,
+    likes,
     commentCount,
-    dislikeCount,
+    dislikes,
   } = props;
 
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const handleClick = () => history.push(`${pathname}/${itemID}`);
+  const handleClick = () => {
+    history.push(`${pathname}/${itemId}`)
+    if(itemType == "uni") set_current_uni(itemId, itemName)
+    if(itemType == "course") set_current_course(itemId, itemName)
+  };
 
   return (
     <div className="list-item" onClick={() => handleClick()}>
       <div className="img-container">
-        {(itemType === "uni" || itemType === "file") && (
+        {itemType === "uni" && (
           <img className="list-item-logo" src={itemLogoPath} alt="" />
+        )}
+        {itemType === "file" && (
+          <img
+            className="list-item-logo"
+            src={`/fileLogos/${fileType}.png`}
+            alt=""
+          />
         )}
       </div>
 
@@ -52,27 +64,27 @@ export const ListItem = ({ props }) => {
           {itemType === "uni" && (
             <div className="icon-set">
               <School fontSize="large" />
-              <span>{courseCount}</span>
+              <span>{courses.length}</span>
             </div>
           )}
-          {itemType === "class" && (
+          {itemType === "course" && (
             <div className="icon-set">
-              <NotificationBell props={{ itemID, fontSize: "large" }} />
-              <span>{enrolledStudents}</span>
+              <NotificationBell props={{ itemId: itemId, fontSize: "large" }} />
+              <span>{subscribed.length}</span>
             </div>
           )}
           {itemType === "file" && (
             <>
               <div className="icon-set">
-                <LikeIcon props={{ itemID, fontSize: "large" }} />
-                <span>{likeCount}</span>
+                <LikeIcon props={{ itemId: itemId, fontSize: "large" }} />
+                <span>{likes.length}</span>
               </div>
               <div className="icon-set">
-                <DislikeIcon props={{ itemID, fontSize: "large" }} />
-                <span>{dislikeCount}</span>
+                <DislikeIcon props={{ itemId: itemId, fontSize: "large" }} />
+                <span>{dislikes.length}</span>
               </div>
               <div className="icon-set">
-                <CommentIcon props={{ itemID, fontSize: "large" }} />
+                <CommentIcon props={{ itemId: itemId, fontSize: "large" }} />
                 <span>{commentCount}</span>
               </div>
             </>

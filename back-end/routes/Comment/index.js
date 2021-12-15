@@ -17,7 +17,7 @@ router.post(
 
 //TODO delete comment not implemented
 router.post("/delete-comment", (req, res) => {
-  res.json([{ error: "Comment Delete Not Implemented" }]);
+  res.status(500).json([{ error: "Comment Delete Not Implemented" }]);
 });
 
 module.exports = router;

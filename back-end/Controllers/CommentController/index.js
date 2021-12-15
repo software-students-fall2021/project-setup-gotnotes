@@ -51,7 +51,7 @@ exports.create_comment = async (req, res) => {
     if (err.message.includes("session"))
       err.message = "Please sign in to comment";
 
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 /**
@@ -84,7 +84,7 @@ exports.update_comment = async (req, res) => {
     if (err.message.includes("session"))
       err.message = "Please sign in to comment";
 
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 /**
@@ -94,6 +94,7 @@ exports.update_comment = async (req, res) => {
  * @returns {[{comment}] | [{error: String}]} res.queryResult
  */
 exports.update_user_like_dislike = async (req, res) => {
+  console.log(req.body)
   try {
     const { documentId, type, likeDislike } = req.body;
     if (!(documentId && type && likeDislike))
@@ -143,6 +144,6 @@ exports.update_user_like_dislike = async (req, res) => {
 
     res.json([queryResult]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };

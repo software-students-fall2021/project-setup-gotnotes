@@ -5,6 +5,7 @@ exports.create_user = async (email, username, passwordHash) => {
     email: email,
     username: username,
     passwordHash: passwordHash,
+    userAvatarUrl: null,
     isAdmin: false,
     subscribed: [],
     likes: [],
@@ -36,6 +37,7 @@ exports.get_user_by_email_or_username = async (usernameOrEmail) => {
   await User.findOne({
     $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
   })
+    .populate("userUni")
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
@@ -53,6 +55,7 @@ exports.make_admin = async (usernameOrEmail, isAdminNew) => {
     { $set: { isAdmin: isAdminNew } },
     { new: true }
   )
+    .populate("userUni")
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
@@ -64,11 +67,13 @@ exports.update_user_scalar_by_email_or_username = async (
   usernameOrEmail,
   updateObject
 ) => {
+  console.log(updateObject)
   return await User.findOneAndUpdate(
     { $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] },
     { $set: updateObject },
     { new: true }
   )
+    .populate("userUni")
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")
@@ -109,6 +114,7 @@ exports.update_user_arr_by_email_or_username = async (
     { $set: updateObject },
     { new: true }
   )
+    .populate("userUni")
     .populate("subscribed")
     .populate("likes")
     .populate("dislikes")

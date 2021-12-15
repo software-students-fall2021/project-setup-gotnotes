@@ -1,60 +1,58 @@
-import React, { useEffect, useState } from "react";
-
-import axios from "axios";
-import { subscribeToCourse } from "../../../services/SearchTabServices/CourseInteractionHandler";
-
-// import { useLocation } from "react-router-dom";
-
+import React, { useContext } from "react";
 import "./styles.scss";
 
-// import { mockClassData } from "../../../assets/mocks/mockData";
+import { GlobalContext } from "../../../context/provider";
+import { fetchCourseByUni } from "../../../services/SearchTabServices/FetchCalls";
 
-export const Courses = ({ ViewComponent, activeClass }) => {
-  const [courseData, setCourseData] = useState(null);
+import { useQuery } from "react-query";
+import { ListItem } from "../../../components/Mobile/ListItem";
+import { GridItem } from "../../../components/Mobile/GridItem";
+import { useParams } from "react-router-dom";
 
-  // const { pathname } = useLocation();
+export const Courses = () => {
+  const {
+    globalState: { currentLayout },
+  } = useContext(GlobalContext);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:4000${pathname}`, { crossdomain: true })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setCourseData(res.data);
-  //     });
-  // }, []);
+  const { uniId } = useParams();
 
-  // another temporary fix as pathname is seemingly not being recognized
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/courses`, { crossdomain: true })
-      .then((res) => {
-        console.log(res.data);
-        setCourseData(res.data);
-      });
-  }, []);
+  const { data, error, isError, isLoading } = useQuery(
+    ["courses", uniId],
+    fetchCourseByUni
+  );
 
-  return (
-    <div className={activeClass === "grid" ? "courses grid" : "courses"}>
-      {courseData &&
-        courseData[0].uniCourses.map(
-          ({
-            courseID: itemID,
-            courseName: itemName,
-            courseSharedFileCount: enrolledStudents,
-          }) => (
-            <ViewComponent
-              key={itemID}
+  if (isLoading) return <div>Loading</div>;
+  if (isError) return <div>Error: {error}</div>;
+
+  if (data) {
+    return (
+      <div className={currentLayout === "grid" ? "courses grid" : "courses"}>
+        {data.map(({ _id: itemId, courseName: itemName, subscribed }) =>
+          currentLayout == "list" ? (
+            <ListItem
+              key={itemId}
               props={{
-                itemID,
+                itemId,
                 itemName,
                 itemLogoPath: "",
                 itemType: "course",
-                enrolledStudents,
-                interactionHandler: subscribeToCourse,
+                subscribed,
+              }}
+            />
+          ) : (
+            <GridItem
+              key={itemId}
+              props={{
+                itemId,
+                itemName,
+                itemLogoPath: "",
+                itemType: "course",
+                subscribed
               }}
             />
           )
         )}
-    </div>
-  );
+      </div>
+    );
+  }
 };

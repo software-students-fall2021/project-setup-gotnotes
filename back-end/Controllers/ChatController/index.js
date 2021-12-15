@@ -1,6 +1,5 @@
 const { check_auth } = require("./../../Services/Auth");
 
-const UserService = require("./../../Services/UserService");
 const CourseService = require("./../../Services/CourseService");
 const ChatService = require("./../../Services/ChatService");
 
@@ -33,7 +32,7 @@ exports.get_chat_by_course_id = async (req, res) => {
     const chat = await ChatService.get_chat_by_course_id(req.params.courseId);
     res.json([chat]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -76,7 +75,7 @@ exports.create_message = async (req, res) => {
   } catch (err) {
     if (err.message.includes("Cast to ObjectId"))
       err.message = "No Such Course";
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };
 
@@ -96,6 +95,6 @@ exports.update_like_message_toggle = async (req, res) => {
     const chat = await ChatService.get_chat_by_course_id(courseId);
     res.json([{ chat }]);
   } catch (err) {
-    res.json([{ error: err.message }]);
+    res.status(500).json([{ error: err.message }]);
   }
 };

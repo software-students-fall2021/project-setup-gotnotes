@@ -1,0 +1,52 @@
+@import "./../../default.scss";
+
+.account-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .user-detail-wrapper {
+    display: flex;
+    flex-direction: row;
+    .user-detail-container{
+
+      .user-avatar-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      .user-detail-text-wrapper {
+        display: flex;
+        flex-direction: column;
+        .user-detail-text{
+
+        }
+      }
+    }
+
+  }
+
+  .file-form {
+  }
+
+  .user-info {
+    width: 80%;
+    margin: 0 auto;
+    label {
+      font-size: 2em;
+      font-weight: bold;
+      margin-right: auto;
+    }
+  }
+
+  .account-input {
+    margin-left: auto;
+    border: none;
+    font-size: 2em;
+    &:focus {
+      outline: none;
+    }
+
+    &.edit {
+      border-bottom: 1px solid black;
+    }
+  }
+}
