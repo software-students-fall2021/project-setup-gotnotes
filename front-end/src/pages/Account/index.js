@@ -7,7 +7,7 @@ import { GlobalContext } from "../../context/provider";
 import {fetchUserData, postUserUpdates, uploadFile} from "../../services/SearchTabServices/FetchCalls";
 
 import "./styles.scss";
-import { queryClient } from "../../App";
+import { queryClient } from "../../index";
 
 export const Account = () => {
   //prettier-ignore
@@ -27,6 +27,7 @@ export const Account = () => {
     ["user", userToken],
     fetchUserData,
     {
+      enabled: !!userToken,
       onSuccess: (data) => {
         set_user(data);
       },

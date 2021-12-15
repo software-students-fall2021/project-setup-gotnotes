@@ -1,5 +1,19 @@
 import axios from "axios";
 
+export const refresh = async () => {
+  const { data } = await axios.get("http://localhost:4000/auth/refresh", {
+    withCredentials: true,
+    crossdomain: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!data.token) throw new Error(data);
+
+  return data;
+};
 export const fetchUserData = async ({ queryKey }) => {
   const [, userToken] = queryKey;
 
@@ -26,8 +40,6 @@ export const postUserUpdates = async ({
     lastName: lastName,
     userAvatarUrl: userAvatarUrl,
   });
-
-  console.log(postData);
 
   const { data } = await axios.post(
     `http://localhost:4000/account/edit-scalar`,

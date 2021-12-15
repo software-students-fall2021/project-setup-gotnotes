@@ -24,10 +24,11 @@ export const Login = () => {
         password: password,
       });
       const { data } = await axios.post(
-        "http://localhost:4000/login",
+        "http://localhost:4000/auth/login",
         postData,
         {
           crossdomain: true,
+          withCredentials: true,
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

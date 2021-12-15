@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
 
 import { useMutation } from "react-query";
-import { queryClient } from "../../../../App";
+import { queryClient } from "../../../../index";
 
 import { ThumbUpOutlined, ThumbUp } from "@mui/icons-material";
 import { GlobalContext } from "../../../../context/provider";
@@ -33,7 +33,7 @@ export const LikeIcon = ({ props }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["file", fileId]);
-        queryClient.invalidateQueries(["user", userToken])
+        queryClient.invalidateQueries(["user", userToken]);
       },
     }
   );
@@ -43,7 +43,7 @@ export const LikeIcon = ({ props }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["comments", fileId]);
-        queryClient.invalidateQueries(["user", userToken])
+        queryClient.invalidateQueries(["user", userToken]);
       },
     }
   );
