@@ -1,0 +1,58 @@
+#https://simplernerd.com/docker-mern-development/
+#here is a tutorial that I followed ~had287
+version: "3"
+services:
+
+  client:
+    build: 
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - gotnotes-network
+    volumes:
+      - ./front-end/src:/usr/app/src
+      - ./front-end/public:/usr/app/public
+    depends_on:
+      - server
+    environment:
+      - API_URL=http://localhost:4000
+      - CHOKIDAR_USEPOLLING=true
+    command: yarn start
+    stdin_open: true
+    tty: true
+  
+  server:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    networks:
+      - gotnotes-network
+    volumes:
+      - ./back-end/:/usr/app/src
+    depends_on:
+      - db
+    environment:
+      - DB_URL_TEST=mongodb://db:27017/gotnotes
+      
+    command: /usr/app/node_modules/.bin/nodemon -L src/server.js
+
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - gotnotes-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  gotnotes-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
