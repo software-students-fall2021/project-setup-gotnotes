@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const refresh = async () => {
-  const { data } = await axios.get("http://localhost:4000/auth/refresh", {
+  const { data } = await axios.get(process.env.BASE_URL + "/api/auth/refresh", {
     withCredentials: true,
     crossdomain: true,
     headers: {
@@ -15,7 +15,7 @@ export const refresh = async () => {
   return data;
 };
 export const logout = async () => {
-  const { data } = await axios.get("http://localhost:4000/auth/logout", {
+  const { data } = await axios.get(process.env.BASE_URL + "/api/auth/logout", {
     withCredentials: true,
     crossdomain: true,
     headers: {
@@ -32,7 +32,7 @@ export const logout = async () => {
 export const fetchUserData = async ({ queryKey }) => {
   const [, userToken] = queryKey;
 
-  const { data } = await axios.get(`http://localhost:4000/account`, {
+  const { data } = await axios.get(process.env.BASE_URL + `/api/account`, {
     crossdomain: true,
     headers: {
       authorization: userToken,
@@ -57,7 +57,7 @@ export const postUserUpdates = async ({
   });
 
   const { data } = await axios.post(
-    `http://localhost:4000/account/edit-scalar`,
+    process.env.BASE_URL + `/api/account/edit-scalar`,
     postData,
     {
       crossdomain: true,
@@ -79,7 +79,7 @@ export const fetchCourseByUni = async ({ queryKey }) => {
     uniId: uniId.toString(),
   });
 
-  const { data } = await axios.post(`http://localhost:4000/courses`, postData, {
+  const { data } = await axios.post(process.env.BASE_URL + `/api/courses`, postData, {
     crossdomain: true,
     headers: {
       "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export const fetchSingleCourse = async ({ queryKey }) => {
   const [, courseId] = queryKey;
 
   const { data } = await axios.get(
-    `http://localhost:4000/courses/${courseId}`,
+    process.env.BASE_URL + `/api/courses/${courseId}`,
     {
       crossdomain: true,
     }
@@ -103,7 +103,7 @@ export const fetchSingleCourse = async ({ queryKey }) => {
 };
 
 export const fetchUniData = async () => {
-  const { data } = await axios.get(`http://localhost:4000/unis`, {
+  const { data } = await axios.get(process.env.BASE_URL + `/api/unis`, {
     crossdomain: true,
   });
   return data;
@@ -112,7 +112,7 @@ export const fetchUniData = async () => {
 export const fetchFileById = async ({ queryKey }) => {
   const [, fileId] = queryKey;
 
-  const { data } = await axios.get(`http://localhost:4000/files/${fileId}`, {
+  const { data } = await axios.get(process.env.BASE_URL + `/api/files/${fileId}`, {
     crossdomain: true,
   });
 
@@ -122,7 +122,7 @@ export const fetchFileById = async ({ queryKey }) => {
 export const fetchCommentsByFileId = async ({ queryKey }) => {
   const [, fileId] = queryKey;
 
-  const { data } = await axios.get(`http://localhost:4000/comments/${fileId}`, {
+  const { data } = await axios.get(process.env.BASE_URL + `/api/comments/${fileId}`, {
     crossdomain: true,
   });
 
@@ -144,7 +144,7 @@ export const postLikeDislikeComment = async (
   console.log("postData: ", postData);
 
   const { data } = await axios.post(
-    `http://localhost:4000/comments/like-dislike-comment`,
+    process.env.BASE_URL + `/api/comments/like-dislike-comment`,
     postData,
     {
       crossdomain: true,
@@ -171,7 +171,7 @@ export const postLikeDislikeFile = async (
   });
 
   const { data } = await axios.post(
-    `http://localhost:4000/files/like-dislike-file`,
+    process.env.BASE_URL + `/api/files/like-dislike-file`,
     postData,
     {
       crossdomain: true,
@@ -190,7 +190,7 @@ export const uploadFile = async (file, userToken) => {
   postData.append("file", file, file.name);
 
   const { data } = await axios.post(
-    "http://localhost:4000/files/upload",
+    process.env.BASE_URL + "/api/files/upload",
     postData,
     {
       crossdomain: true,
