@@ -29,7 +29,7 @@ export const SignUp = () => {
         confirmPassword: confirmPassword,
       });
       const { data } = await axios.post(
-        "http://localhost:4000/auth/signup",
+        process.env.BASE_URL + "/api/auth/signup",
         postData,
         {
           crossdomain: true,

@@ -11,7 +11,7 @@ const initialMessages = [
     sender: {
       senderId: 1,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
+        process.env.BASE_URL + "/api/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
       senderName: "John1998",
     },
     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
@@ -22,7 +22,7 @@ const initialMessages = [
     sender: {
       senderId: 2,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Kaan",
     },
     message:
@@ -34,7 +34,7 @@ const initialMessages = [
     sender: {
       senderId: 3,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Julie",
     },
     message:
@@ -46,7 +46,7 @@ const initialMessages = [
     sender: {
       senderId: 4,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Matthew",
     },
     message: "Lorem ipsum dolor sit amet ",
@@ -57,7 +57,7 @@ const initialMessages = [
     sender: {
       senderId: 5,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Mark",
     },
     message:
@@ -69,7 +69,7 @@ const initialMessages = [
     sender: {
       senderId: 4,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Julie",
     },
     message: "Lorem ipsum",
@@ -80,7 +80,7 @@ const initialMessages = [
     sender: {
       senderId: 1,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
+        process.env.BASE_URL + "/api/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
       senderName: "John1998",
     },
     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
@@ -91,7 +91,7 @@ const initialMessages = [
     sender: {
       senderId: 1,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
+        process.env.BASE_URL + "/api/files/uploads/51aca822eb87969fc2eef8ad6f405633.jpg",
       senderName: "John1998",
     },
     message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
@@ -102,7 +102,7 @@ const initialMessages = [
     sender: {
       senderId: 2,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Kaan",
     },
     message: "Lorem ipsum dolor sit amet ",
@@ -113,7 +113,7 @@ const initialMessages = [
     sender: {
       senderId: 2,
       senderAvatarUrl:
-        "http://localhost:4000/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
+        process.env.BASE_URL + "/api/files/uploads/cf9fd311e90f8089b17029d68bfddc0d.jpg",
       senderName: "Kaan",
     },
     message:

@@ -26,7 +26,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.BASE_URL,
     credentials: true,
   },
 });
@@ -41,7 +41,7 @@ io.on("connection", onConnection);
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: process.env.BASE_URL,
   })
 );
 app.use(cookieParser());

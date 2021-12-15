@@ -24,7 +24,7 @@ export const Login = () => {
         password: password,
       });
       const { data } = await axios.post(
-        "http://localhost:4000/auth/login",
+        process.env.BASE_URL + "/api/auth/login",
         postData,
         {
           crossdomain: true,

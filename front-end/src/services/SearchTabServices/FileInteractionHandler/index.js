@@ -9,7 +9,7 @@ export const likeDislikeFile = (currentUserID, fileID, likeStatus) => {
       likeStatus: likeStatus,
     }),
   };
-  fetch("http://localhost:4000/unis/:uni/:course", reqOptions)
+  fetch(process.env.BASE_URL + "/api/unis/:uni/:course", reqOptions)
     .then((res) => res.json())
     .then((data) => (returnData = data));
 
