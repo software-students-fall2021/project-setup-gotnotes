@@ -3,15 +3,15 @@ FROM node:alpine as build-stage
 
 WORKDIR /usr/app
 COPY package*.json ./
-RUN yarn
+RUN npm install 
 COPY . .
 
-RUN yarn start
+RUN npm run build
 
 # Stage 2
 FROM nginx:alpine
 
-COPY --from=build-stage /usr/app /usr/share/nginx/html
+COPY --from=build-stage /usr/app/build /usr/share/nginx/html
 EXPOSE 80
 
 CMD nginx -g 'daemon off;'
