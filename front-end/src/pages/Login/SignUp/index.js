@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import axios from "axios";
+
+import { useMutation } from "react-query";
 
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import logo from "../../../assets/logo-login.png";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
+import { GlobalContext } from "../../../context/provider";
 
 export const SignUp = () => {
+  const { set_error, login_user } = useContext(GlobalContext);
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -14,9 +20,45 @@ export const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const signup = useMutation(
+    async ({ username, email, password, confirmPassword }) => {
+      const postData = JSON.stringify({
+        username: username,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      });
+      const { data } = await axios.post(
+        "http://localhost:4000/auth/signup",
+        postData,
+        {
+          crossdomain: true,
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!data.token) throw new Error(data.error);
+      return data;
+    },
+    {
+      onSuccess: (data) => {
+        login_user(data.token, data.user);
+        history.push("/unis");
+      },
+      onError: (error) => {
+        set_error(error.message);
+      },
+    }
+  );
+
   const submitHandler = (e) => {
     e.preventDefault();
+    signup.mutate({ username, email, password, confirmPassword });
   };
+
   const handleEmailChange = (value) => {
     setEmail(value);
   };
