@@ -8,11 +8,13 @@ const ChatBubble = ({ props }) => {
   const { message, sender, dateSent, likes } = props;
   const { senderId, senderAvatarUrl, senderName } = sender;
 
+
   //Sun Dec 12 2021 21:59:38 GMT-0500 (EST)
   const dateString = new Date(dateSent).toString().split(" ")[4];
   //21:59:38
   const time = dateString.substring(0, 5);
   //21:59
+
 
   const myMessage = senderId == currentUser._id;
   return (

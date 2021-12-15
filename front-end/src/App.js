@@ -12,7 +12,9 @@ import { Unis } from "./pages/Search/Unis";
 import { Courses } from "./pages/Search/Courses";
 import { Files } from "./pages/Search/Files";
 import { FileDetails } from "./pages/Search/FileDetails";
+
 import { ChatMessages } from "./pages/Chat/ChatMessages";
+
 import { SignUp } from "./pages/Login/SignUp";
 import { Login } from "./pages/Login/Login";
 import { ResetPass } from "./pages/Login/ResetPass";
