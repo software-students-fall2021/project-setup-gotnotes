@@ -1,16 +1,17 @@
-# Dockerfile for React client
-FROM node:alpine
+# Stage 1
+FROM node:alpine as build-stage
 
-# Working directory be app
 WORKDIR /usr/app
-
-###  Installing dependencies
 COPY package*.json ./
 RUN yarn
-
-# copy local files to app folder
 COPY . .
 
-EXPOSE 3000
+RUN yarn start
 
-CMD ["yarn","start"]
+# Stage 2
+FROM nginx:alpine
+
+COPY --from=build-stage /usr/app /usr/share/nginx/html
+EXPOSE 80
+
+CMD nginx -g 'daemon off;'
