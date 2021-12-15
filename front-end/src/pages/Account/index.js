@@ -4,14 +4,14 @@ import UserAvatar from "../../components/Mobile/UserAvatar";
 import { useQuery, useMutation } from "react-query";
 import { GlobalContext } from "../../context/provider";
 //prettier-ignore
-import {fetchUserData, postUserUpdates, uploadFile} from "../../services/SearchTabServices/FetchCalls";
+import {fetchUserData, postUserUpdates, uploadFile, logout} from "../../services/SearchTabServices/FetchCalls";
 
 import "./styles.scss";
 import { queryClient } from "../../index";
 
 export const Account = () => {
   //prettier-ignore
-  const {globalState: { userToken }, set_user, set_error} = useContext(GlobalContext);
+  const {globalState: { userToken, currentUser }, set_user, set_error, logout_user} = useContext(GlobalContext);
 
   const [isEditActive, setIsEditActive] = useState(false);
   const [file, setFile] = useState("");
@@ -22,21 +22,6 @@ export const Account = () => {
     lastName, 
     userAvatarUrl 
   }, setSubmitData] = useState({firstName: "",lastName: "",userAvatarUrl: "",});
-
-  const { data, isError, isLoading } = useQuery(
-    ["user", userToken],
-    fetchUserData,
-    {
-      enabled: !!userToken,
-      onSuccess: (data) => {
-        set_user(data);
-      },
-      onError: (error) => {
-        console.log("error in useQuery ", error);
-        set_error(error.message);
-      },
-    }
-  );
 
   //prettier-ignore
   const updateUser = useMutation(postUserUpdates, {
@@ -69,25 +54,37 @@ export const Account = () => {
     updateUser.mutate({ firstName, lastName, userAvatarUrl, userToken });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  const logoutHandler = async () => {
+    const data = await logout();
+    logout_user();
+    console.log(data);
+  };
 
   return (
-    data &&
-    !isError && (
+    currentUser && (
       <div className="account-container">
         <div className="user-detail-wrapper">
-          <div className="user-avatar-wrapper">
-            <UserAvatar
-              props={{
-                userAvatarUrl: data.userAvatarUrl,
-                size: "large",
-                showEditButton: true,
-                handleEditAction: () => setIsEditActive((x) => !x),
-                isEditActive,
-              }}
-            />
+          <div className="user-detail-container">
+            <div className="user-avatar-wrapper">
+              <UserAvatar
+                props={{
+                  userAvatarUrl: currentUser.userAvatarUrl,
+                  size: "large",
+                  showEditButton: true,
+                  handleEditAction: () => setIsEditActive((x) => !x),
+                  isEditActive,
+                }}
+              />
+              <button className="logout" onClick={() => logoutHandler()}>
+                LOGOUT
+              </button>
+            </div>
+            <div className="user-detail-text-wrapper">
+              <div className="user-detail-text"></div>
+              <div className="user-detail-text"></div>
+              <div></div>
+            </div>
           </div>
-          <div className="user-detail-text-wrapper"></div>
         </div>
 
         <div className="account-interaction-data-wrapper"></div>
@@ -119,7 +116,7 @@ export const Account = () => {
               className={isEditActive ? "account-input edit" : "account-input"}
               readOnly={!isEditActive}
               type="text"
-              value={isEditActive ? firstName : data.firstName}
+              value={isEditActive ? firstName : currentUser.firstName}
               onChange={(e) =>
                 setSubmitData((x) => ({ ...x, firstName: e.target.value }))
               }
@@ -131,7 +128,7 @@ export const Account = () => {
               className={isEditActive ? "account-input edit" : "account-input"}
               readOnly={!isEditActive}
               type="text"
-              value={isEditActive ? lastName : data.lastName}
+              value={isEditActive ? lastName : currentUser.lastName}
               onChange={(e) =>
                 setSubmitData((x) => ({ ...x, lastName: e.target.value }))
               }

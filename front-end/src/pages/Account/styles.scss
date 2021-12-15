@@ -7,15 +7,21 @@
   .user-detail-wrapper {
     display: flex;
     flex-direction: row;
+    .user-detail-container{
 
-    .user-avatar-wrapper {
-      display: flex;
-      flex-direction: column;
+      .user-avatar-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      .user-detail-text-wrapper {
+        display: flex;
+        flex-direction: column;
+        .user-detail-text{
+
+        }
+      }
     }
-    .user-detail-text-wrapper {
-      display: flex;
-      flex-direction: column;
-    }
+
   }
 
   .file-form {

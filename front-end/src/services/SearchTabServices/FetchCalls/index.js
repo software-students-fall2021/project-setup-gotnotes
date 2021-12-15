@@ -14,6 +14,21 @@ export const refresh = async () => {
 
   return data;
 };
+export const logout = async () => {
+  const { data } = await axios.get("http://localhost:4000/auth/logout", {
+    withCredentials: true,
+    crossdomain: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!data.success) throw new Error(data);
+
+  return data;
+};
+
 export const fetchUserData = async ({ queryKey }) => {
   const [, userToken] = queryKey;
 

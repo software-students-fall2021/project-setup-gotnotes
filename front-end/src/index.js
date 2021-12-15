@@ -8,7 +8,7 @@ import { App } from "./App";
 
 //react-query
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+// import { ReactQueryDevtools } from "react-query/devtools";
 
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,7 +24,7 @@ ReactDOM.render(
           <App />
         </BrowserRouter>
       </GlobalStoreProvider>
-      <ReactQueryDevtools initialIsOpen={false} position="top-right" />
+      {/* <ReactQueryDevtools initialIsOpen={false} position="top-right" /> */}
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -54,7 +54,7 @@ export const App = () => {
         queryClient.invalidateQueries(["user", data.token]);
       },
       onError: (data) => {
-        console.log(data.error.toString());
+        console.log(data);
         logout_user();
       },
     }
