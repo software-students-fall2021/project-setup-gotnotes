@@ -36,7 +36,6 @@ export const App = () => {
         <Error />
         <Switch>
           <Redirect exact from="/" to="unis" />
-
           {/*prettier-ignore*/}
           <Route exact path={["/unis", "/unis/:uniId", "/unis/:uniId/:courseId"]}>
             <MobileLayoutSelector>
@@ -45,10 +44,8 @@ export const App = () => {
               <Route exact path="/unis/:uniId/:courseId" render={() => <Files />} />
             </MobileLayoutSelector>
           </Route>
-
           {/*prettier-ignore*/}
           <Route path="/unis/:uniId/:courseId/:fileId" render={() => <FileDetails />}/>
-
           <Route
             path="/chat"
             render={() => (
@@ -65,16 +62,14 @@ export const App = () => {
               </WithAuth>
             )}
           />
-          {/* <Route
+          <Route
             path="/account"
             render={() => (
               <WithAuth>
                 <Account />
               </WithAuth>
             )}
-          /> */}
-          //FIXME after testing, revert to original
-          <Route path="/account" render={() => <Account />} />
+          />
           <Route
             path="/admin"
             render={() => (
@@ -83,7 +78,6 @@ export const App = () => {
               </WithAdminAuth>
             )}
           />
-
           <Route exact path="/signup" render={() => <SignUp />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/resetpass" render={() => <ResetPass />} />

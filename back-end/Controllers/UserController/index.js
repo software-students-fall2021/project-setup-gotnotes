@@ -4,7 +4,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION_MINUTES = process.env.JWT_EXPIRATION_MINUTES;
-const { check_auth, check_auth_with_admin, check_refresh_token } = require("./../../Services/Auth");
+const {
+  check_auth,
+  check_auth_with_admin,
+  check_refresh_token,
+} = require("./../../Services/Auth");
 
 const validate = require("./../../Services/Validation");
 
@@ -13,7 +17,6 @@ const UserService = require("./../../Services/UserService");
 //TODO refresh tokens need to be implemented
 exports.refresh = async (req, res) => {
   try {
-    console.log(req.cookies)
     const refresh_token = req.cookies?.refresh_token;
     const user = await check_refresh_token(refresh_token);
 
@@ -23,7 +26,6 @@ exports.refresh = async (req, res) => {
       { expiresIn: JWT_EXPIRATION_MINUTES }
     );
 
-    
     res.json({
       token: `Bearer ${token}`,
       user: {
@@ -47,19 +49,19 @@ exports.refresh = async (req, res) => {
   }
 };
 
-exports.logout_user = async (req,res) => {
+exports.logout_user = async (req, res) => {
   try {
     let options = {
       maxAge: 1000 * 60 * 60 * 24 * 2, // would expire after 2 days
       httpOnly: true, // The cookie only accessible by the web server
-  }
+    };
 
-res.cookie("refresh_token", null, options);
-res.json({success: "Logged out successfully"})
+    res.cookie("refresh_token", null, options);
+    res.json({ success: "Logged out successfully" });
   } catch (error) {
-    res.json({error : error.message})
+    res.json({ error: error.message });
   }
-}
+};
 
 exports.login_user = async (req, res) => {
   try {
@@ -85,15 +87,15 @@ exports.login_user = async (req, res) => {
     let options = {
       maxAge: 1000 * 60 * 60 * 24 * 2, // would expire after 2 days
       httpOnly: true, // The cookie only accessible by the web server
-  }
+    };
 
     const refresh_token = jwt.sign(
-      {email: user.email, username: user.username},
+      { email: user.email, username: user.username },
       JWT_SECRET,
-      {expiresIn: options.maxAge}
-    )
+      { expiresIn: options.maxAge }
+    );
 
-res.cookie("refresh_token", refresh_token, options);
+    res.cookie("refresh_token", refresh_token, options);
     res.json({
       token: `Bearer ${token}`,
       user: {
@@ -147,15 +149,15 @@ exports.signup_user = async (req, res) => {
     let options = {
       maxAge: 1000 * 60 * 60 * 24 * 2, // would expire after 2 days
       httpOnly: true, // The cookie only accessible by the web server
-  }
+    };
 
     const refresh_token = jwt.sign(
-      {email: user.email, username: user.username},
+      { email: user.email, username: user.username },
       JWT_SECRET,
-      {expiresIn: options.maxAge}
-    )
+      { expiresIn: options.maxAge }
+    );
 
-res.cookie("refresh_token", refresh_token, options);
+    res.cookie("refresh_token", refresh_token, options);
 
     res.json({
       token: `Bearer ${token}`,

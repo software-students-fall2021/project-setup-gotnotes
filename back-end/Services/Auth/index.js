@@ -12,7 +12,6 @@ exports.check_jwt = (token) => {
 };
 
 exports.check_refresh_token = async (token) => {
-
   const jwtContents = exports.check_jwt(token);
 
   if (!jwtContents)
@@ -63,7 +62,8 @@ exports.check_auth_with_admin = async (req) => {
   );
 
   if (!user) throw new Error("No such User");
-  if (!user.isAdmin) throw new Error("This action requires an admin level account");
+  if (!user.isAdmin)
+    throw new Error("This action requires an admin level account");
 
   return user;
 };

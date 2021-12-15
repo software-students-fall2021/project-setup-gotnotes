@@ -27,22 +27,24 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: "http://localhost:3000",
-    credentials: true
+    credentials: true,
   },
 });
 
 const onConnection = (socket) => {
-  console.log(`User socketId: ${socket.id} connected`)
+  console.log(`User socketId: ${socket.id} connected`);
   WebSocketService(io, socket);
 };
 
 io.on("connection", onConnection);
 
-app.use(cors({
-  origin : "http://localhost:3000",
-  credentials: true,
-}))
-app.use(cookieParser())
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -54,7 +56,7 @@ app.use("/comments", commentRouter);
 app.use("/chats", chatRouter);
 app.use("/account", accountRouter);
 
-app.use("/admin", adminRouter)
+app.use("/admin", adminRouter);
 
 app.use("/auth", authRouter);
 

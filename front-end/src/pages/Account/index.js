@@ -27,8 +27,6 @@ export const Account = () => {
     ["user", userToken],
     fetchUserData,
     {
-
-
       onSuccess: (data) => {
         set_user(data);
       },
@@ -88,14 +86,10 @@ export const Account = () => {
               }}
             />
           </div>
-          <div className="user-detail-text-wrapper">
-
-          </div>
+          <div className="user-detail-text-wrapper"></div>
         </div>
 
-        <div className="account-interaction-data-wrapper">
-
-        </div>
+        <div className="account-interaction-data-wrapper"></div>
 
         {isEditActive && (
           <form className="file-form" onSubmit={(e) => uploadHandler(e)}>
