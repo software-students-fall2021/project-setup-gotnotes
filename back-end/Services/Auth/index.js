@@ -11,6 +11,22 @@ exports.check_jwt = (token) => {
   }
 };
 
+exports.check_refresh_token = async (token) => {
+
+  const jwtContents = exports.check_jwt(token);
+
+  if (!jwtContents)
+    throw new Error("Your session is expired, please sign in again");
+
+  const { user } = await UserService.get_user_by_email_or_username(
+    jwtContents.email
+  );
+
+  if (!user) throw new Error("No such user");
+
+  return user;
+};
+
 exports.check_auth = async (req) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) throw new Error("Please Sign in");
@@ -47,7 +63,7 @@ exports.check_auth_with_admin = async (req) => {
   );
 
   if (!user) throw new Error("No such User");
-  if (!user.isAdmin) return false;
+  if (!user.isAdmin) throw new Error("This action requires an admin level account");
 
   return user;
 };

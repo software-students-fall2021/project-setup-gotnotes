@@ -6,7 +6,7 @@ var {
   userController,
   courseController,
   uniController,
-} = require("../../../Controllers");
+} = require("./../../Controllers");
 
 router.post("/make-admin", userController.user_change_admin_status);
 

@@ -8,6 +8,7 @@
     "body-parser": "^1.19.0",
     "chai": "^4.3.4",
     "content-disposition": "^0.5.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "deep-equal-in-any-order": "^1.1.15",
     "dotenv": "^10.0.0",

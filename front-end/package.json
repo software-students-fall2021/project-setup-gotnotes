@@ -34,9 +34,9 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
-    "test": "NODE_ENV=test mocha --require @babel/register --require       ignore-styles src/test/*.test.js",
+    "test": "NODE_ENV=test mocha --require @babel/register --require ignore-styles src/test/*.test.js",
     "eject": "react-scripts eject"
 },
   "eslintConfig": {

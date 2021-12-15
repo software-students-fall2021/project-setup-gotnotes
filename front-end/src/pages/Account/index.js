@@ -15,6 +15,7 @@ export const Account = () => {
 
   const [isEditActive, setIsEditActive] = useState(false);
   const [file, setFile] = useState("");
+
   //prettier-ignore
   const [{ 
     firstName, 
@@ -26,6 +27,8 @@ export const Account = () => {
     ["user", userToken],
     fetchUserData,
     {
+
+
       onSuccess: (data) => {
         set_user(data);
       },
