@@ -25,6 +25,7 @@ import { WithAdminAuth, WithAuth } from "./AuthHOC";
 
 //modals
 import Error from "./components/Mobile/Modal/Error";
+import Loading from "./components/Mobile/Modal/Loading";
 
 import { GlobalContext } from "./context/provider";
 
@@ -62,6 +63,7 @@ export const App = () => {
   return (
     <div className="App">
       <Error />
+      {isLoading ? <Loading /> : 
       <Switch>
         <Redirect exact from="/" to="unis" />
         {/*prettier-ignore*/}
@@ -110,6 +112,7 @@ export const App = () => {
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/resetpass" render={() => <ResetPass />} />
       </Switch>
+      }
       <BottomNav />
     </div>
   );

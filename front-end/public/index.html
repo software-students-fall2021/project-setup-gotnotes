@@ -15,9 +15,72 @@
     />
     <script src="https://unpkg.com/@pusher/chatkit"></script>
     <title>GotNotes</title>
+    <style>
+      .loading-container {
+        width: 100%;
+        height: 100vh;
+      }
+
+      .loading {
+        margin: auto;
+        width: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .circle {
+        border-radius: 60%;
+        background-color: black;
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        opacity: 0;
+        animation: scaleIn 4s infinite cubic-bezier(0.31, 0.11, 0.61, 0.31);
+      }
+
+      .item {
+        z-index: 100;
+        padding: 5px;
+        width: 50%;
+      }
+      .item img {
+        display: flex;
+        margin: auto;
+        width: 50%;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      @keyframes scaleIn {
+        from {
+          transform: scale(0.5, 0.5);
+          opacity: 0.5;
+        }
+        to {
+          transform: scale(2.5, 2.5);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="loading-container">
+        <div class="loading">
+          <div class="item">
+            <img src="%PUBLIC_URL%/logo490.png" alt="loading-logo" />
+          </div>
+          <div class="circle" style="animation-delay: -3s"></div>
+          <div class="circle" style="animation-delay: -2s"></div>
+          <div class="circle" style="animation-delay: -1s"></div>
+          <div class="circle" style="animation-delay: 0s"></div>
+        </div>
+      </div>
+      <h1>Signing you back in...</h1>
+    </div>
   </body>
 </html>
