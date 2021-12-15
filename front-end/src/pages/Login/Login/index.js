@@ -24,7 +24,7 @@ export const Login = () => {
         password: password,
       });
       const { data } = await axios.post(
-        process.env.BASE_URL + "/api/auth/login",
+        process.env.BASE_URL + "/auth/login",
         postData,
         {
           crossdomain: true,

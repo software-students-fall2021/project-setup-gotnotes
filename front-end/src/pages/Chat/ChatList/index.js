@@ -8,7 +8,7 @@ export const ChatList = ({ ViewComponent, activeClass }) => {
 
   useEffect(() => {
     axios
-      .get(process.env.BASE_URL + `/api/courses`, { crossdomain: true })
+      .get(process.env.BASE_URL + `/courses`, { crossdomain: true })
       .then((res) => {
         setCourseData(res.data);
       });
