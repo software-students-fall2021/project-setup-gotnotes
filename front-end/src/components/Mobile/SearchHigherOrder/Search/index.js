@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import { GlobalContext } from "../../../../context/provider";
+import React, { useState } from "react";
+//import { GlobalContext } from "../../../../context/provider";
 
 import "./styles.scss";
 
-export const Search = ({ props }) => {
-  const {displayedItems} = useContext(GlobalContext)
+export const Search = () => {
+  //const {displayedItems} = useContext(GlobalContext)
 
-  const [search, setSearch] = useState("");
+  const [, setSearch] = useState("");
 
   //TODO get the items drilled down onto this component from the app.js
   const handleSearchChange = (value) => {

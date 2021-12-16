@@ -27,7 +27,7 @@ export const FileDetails = () => {
     { refetchOnWindowFocus: false }
   );
 
-  const docs = useMemo(() => getFileUri(data), [data?.uri, data?.type]);
+  const docs = useMemo(() => getFileUri(data), [data]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error}</div>;

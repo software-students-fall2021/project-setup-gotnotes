@@ -17,7 +17,7 @@ export const GridListToggle = () => {
   } = useContext(GlobalContext);
 
   const changeLayout = () =>
-    currentLayout == "list" ? set_current_layout("grid") : set_current_layout("list");
+    currentLayout === "list" ? set_current_layout("grid") : set_current_layout("list");
 
   return (
     <div className="grid-list-toggle">

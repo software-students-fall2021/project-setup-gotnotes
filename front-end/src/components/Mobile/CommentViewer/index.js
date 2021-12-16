@@ -28,12 +28,12 @@ const CommentViewer = ({ props }) => {
     setDataWithHierarchy(
       data?.map((comment) => {
         comment.replies = data.filter(
-          (reply) => reply.parentCommentId == comment._id
+          (reply) => reply.parentCommentId.toString() === comment._id.toString()
         );
         return comment;
       })
     );
-  }, [data]);
+  }, [data, set_comment_count]);
 
   console.log("data with hierarchy: ", dataWithHierarchy);
 

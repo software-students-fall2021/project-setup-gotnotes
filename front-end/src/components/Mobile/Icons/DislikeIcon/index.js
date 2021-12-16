@@ -24,7 +24,7 @@ export const DislikeIcon = ({ props }) => {
 
   useEffect(() => {
     likes?.includes(currentUser?._id) ? setIsDisliked(1) : setIsDisliked(0);
-  }, [currentUser]);
+  }, [currentUser, likes]);
 
   const dislikeFile = useMutation(
     ({ fileId, likeDislike, type, userToken }) => {
@@ -51,7 +51,7 @@ export const DislikeIcon = ({ props }) => {
   const handleClick = () => {
     if (!currentUser) {
       set_error("You Must Be Logged in");
-    } else if (type == "file") {
+    } else if (type === "file") {
       const actionType = isDisliked ? "remove" : "add";
       dislikeFile.mutate({
         fileId,
@@ -59,7 +59,7 @@ export const DislikeIcon = ({ props }) => {
         type: actionType,
         userToken,
       });
-    } else if (type == "comment") {
+    } else if (type === "comment") {
       const actionType = isDisliked ? "remove" : "add";
       dislikeComment.mutate({
         commentId,

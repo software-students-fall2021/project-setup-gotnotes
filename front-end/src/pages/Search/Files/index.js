@@ -34,7 +34,7 @@ export const Files = () => {
           likes,
           dislikes,
         }) =>
-          currentLayout == "list" ? (
+          currentLayout === "list" ? (
             <ListItem
               key={itemId}
               props={{

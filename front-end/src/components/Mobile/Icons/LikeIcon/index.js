@@ -24,7 +24,7 @@ export const LikeIcon = ({ props }) => {
 
   useEffect(() => {
     likes?.includes(currentUser?._id) ? setIsLiked(1) : setIsLiked(0);
-  }, [currentUser]);
+  }, [currentUser, likes]);
 
   const likeFile = useMutation(
     ({ fileId, likeDislike, type, userToken }) => {
@@ -51,7 +51,7 @@ export const LikeIcon = ({ props }) => {
   const handleClick = () => {
     if (!currentUser) {
       set_error("You Must Be Logged in");
-    } else if (type == "file") {
+    } else if (type === "file") {
       const actionType = isLiked ? "remove" : "add";
       likeFile.mutate({
         fileId,
@@ -59,7 +59,7 @@ export const LikeIcon = ({ props }) => {
         type: actionType,
         userToken,
       });
-    } else if (type == "comment") {
+    } else if (type === "comment") {
       const actionType = isLiked ? "remove" : "add";
       likeComment.mutate({
         commentId,

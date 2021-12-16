@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
 import UserAvatar from "../../components/Mobile/UserAvatar";
 
-import { useQuery, useMutation } from "react-query";
+import {  useMutation } from "react-query";
 import { GlobalContext } from "../../context/provider";
 //prettier-ignore
-import {fetchUserData, postUserUpdates, uploadFile, logout} from "../../services/SearchTabServices/FetchCalls";
+import { postUserUpdates, uploadFile, logout} from "../../services/SearchTabServices/FetchCalls";
 
 import "./styles.scss";
 import { queryClient } from "../../index";
 
 export const Account = () => {
   //prettier-ignore
-  const {globalState: { userToken, currentUser }, set_user, set_error, logout_user} = useContext(GlobalContext);
+  const {globalState: { userToken, currentUser }, set_error, logout_user} = useContext(GlobalContext);
 
   const [isEditActive, setIsEditActive] = useState(false);
   const [file, setFile] = useState("");

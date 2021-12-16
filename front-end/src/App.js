@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./default.scss";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -38,12 +38,11 @@ import { queryClient } from "./index";
 
 export const App = () => {
   const {
-    globalState: { userToken, currentUser },
     login_user,
     logout_user,
   } = useContext(GlobalContext);
 
-  const { data, error, isError, isLoading } = useQuery(
+  const { isLoading } = useQuery(
     "refresh_token",
     refresh,
     {

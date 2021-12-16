@@ -149,8 +149,10 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
     [isEndOfMessagesVisible]
   );
 
+  
   const initialScroll = useCallback(
     () => messagesEndRef.current.scrollIntoView({ behavior: "auto" }),
+    // eslint-disable-next-line
     []
   );
 
@@ -187,7 +189,7 @@ export const ChatMessages = ({ title = "Course Chat" }) => {
       <div className="chat-messages-container">
         <div className="chat-bubbles-container" ref={messagesContainerRef}>
           {messages.map(({ message, sender, dateSent, likes }, idx) => {
-            if (idx == messages.length - 1) {
+            if (idx === messages.length - 1) {
               return (
                 <>
                   <ChatBubble
