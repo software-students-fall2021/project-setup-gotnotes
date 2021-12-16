@@ -5,7 +5,7 @@ import "./styles.scss";
 const currentUser = { _id: 1 };
 
 const ChatBubble = ({ props }) => {
-  const { message, sender, dateSent, likes } = props;
+  const { message, sender, dateSent } = props;
   const { senderId, senderAvatarUrl, senderName } = sender;
 
 
@@ -16,7 +16,7 @@ const ChatBubble = ({ props }) => {
   //21:59
 
 
-  const myMessage = senderId == currentUser._id;
+  const myMessage = senderId.toString() === currentUser._id.toString();
   return (
     <div
       className={myMessage ? "message-container" : "message-container received"}

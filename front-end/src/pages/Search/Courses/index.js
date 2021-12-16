@@ -28,7 +28,7 @@ export const Courses = () => {
     return (
       <div className={currentLayout === "grid" ? "courses grid" : "courses"}>
         {data.map(({ _id: itemId, courseName: itemName, subscribed }) =>
-          currentLayout == "list" ? (
+          currentLayout === "list" ? (
             <ListItem
               key={itemId}
               props={{

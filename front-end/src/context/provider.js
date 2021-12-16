@@ -1,7 +1,6 @@
 import React, { useReducer, createContext } from "react";
 import Reducers from "./reducer";
 import {
-  SET_LOADING,
   SET_ERROR,
   CLEAR_ERROR,
   SET_CURRENT_LAYOUT,

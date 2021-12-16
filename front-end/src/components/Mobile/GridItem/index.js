@@ -33,8 +33,8 @@ export const GridItem = ({ props }) => {
 
   const handleClick = () => {
     history.push(`${pathname}/${itemId}`);
-    if (itemType == "uni") set_current_uni(itemId, itemName);
-    if (itemType == "course") set_current_course(itemId, itemName);
+    if (itemType === "uni") set_current_uni(itemId, itemName);
+    if (itemType === "course") set_current_course(itemId, itemName);
   };
 
   return (
