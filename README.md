@@ -59,5 +59,5 @@ These will be implemented:
 ### Product Presentation
 https://nyu.zoom.us/rec/share/WaGyWJc3b89n0jIt-kRkOGA7lnGepVoc7p7FcxAeRjV2u8Lm5JPqlPCx22BUKeyA.97nGc9c4KKOomq0u?startTime=1639500756000
 
-### Instructions for building go here
-
+### Deployed Project
+[got-notes.com](http://got-notes.com)
