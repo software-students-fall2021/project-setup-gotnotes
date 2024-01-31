@@ -1,0 +1,20 @@
+@import "./../../../default.scss";
+
+.comment-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 0px;
+  border-bottom: 1px solid $border_light;
+
+  .comment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .comment-interaction-data {
+    display: flex;
+    flex-direction: row;
+  }
+}

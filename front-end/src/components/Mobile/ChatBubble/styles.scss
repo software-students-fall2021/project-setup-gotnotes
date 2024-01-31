@@ -1,0 +1,51 @@
+@import "./../../../default.scss";
+
+.message-container {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 100%;
+
+  &.received {
+    align-items: flex-start;
+  }
+
+  .user-avatar-and-text-container {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0;
+    .avatar-container{
+      display: flex;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .message-data-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      &.received{
+        align-items: flex-start;
+      }
+      .sender-name-container {
+        font-size: 0.8rem;
+      }
+      .message {
+        max-width: 200px;
+        border-radius: 10px;
+        min-height: 1.3em;
+        font-size: 1rem;
+        padding: 10px 10px;
+        background-color: $text_sent;
+        color: white;
+        &.received {
+          background-color: $text_received;
+          color: black;
+        }
+      }
+      .date-container {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

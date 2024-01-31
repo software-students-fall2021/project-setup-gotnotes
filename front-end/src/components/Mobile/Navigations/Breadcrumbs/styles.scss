@@ -1,0 +1,20 @@
+@import "./../../../../default.scss";
+
+.breadcrumb-container {
+  display: flex;
+  padding: 5px 10px;
+
+  background-color: black;
+
+  font-size: 1.5rem;
+  color: white;
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    &:hover {
+      color: $text_secondary_light;
+    }
+  }
+}

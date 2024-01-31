@@ -1,17 +1,63 @@
-# Project Repository
+# GotNotes: A Course Note Sharing Website (and mobile app) for college students.
+Proposal by H. Atacan Demir
 
-This repository will be used for team projects.
+### What is GotNotes?
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+GotNotes is an online platform for college students to create communities around shared classes and share class notes.
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-1a-project-setup.md)
+### Why GotNotes?
 
-1. See the [Sprint Planning instructions](instructions-1b-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+As college students, we have all spent hours in various note sharing websites like Chegg, CourseHero, etc. to find that *specific* document we need to study for an upcoming exam. <br /><br />
+How often did we find what we were looking for? <br />
+**Not that often.** <br /><br />
+How often were we able to create a community to ask and answer questions with our peers? <br />
+**Almost never.**<br /><br />
+Were we bombarded with ads that forced us to pay something to get something? <br />
+**Every Single Time!** <br /><br />
 
-1. See the [Front-End Development instructions](./instructions-2-front-end.md) for the requirements of the initial Front-End Development.
+You'll suffer no longer my friend, GotNotes is here to save you!
 
-1. See the [Back-End Development instructions](./instructions-3-back-end.md) for the requirements of the initial Back-End Development.
+### For whom?
 
-1. See the [Database Integration instructions](./instructions-4-database.md) for the requirements of integrating a database into the back-end.
+This is for all college students who are fed up with currently existing course note sharing platforms that prey on students by asking for a payment for any useful feature that we could need.
 
-1. See the [Deployment instructions](./instructions-5-deployment.md) for the requirements of deploying an app.
+### How?
+
+The how is *simple*:
+* Sign Up
+* Select a University
+* Browse the Course Catalogue
+* Subscribe to the Courses You Are Taking
+* Get the New Notes that Are Shared in your Feed
+* Share your Notes
+* And Chat with Your Classmates in the Course Group Chat that GotNotes automatically creates!
+
+The *question* is **what are you waiting for?!?**
+
+### Scope
+
+These will be implemented:
+* file upload and download systems that supports jpeg, pdf, doc, docx, pages.
+* live chat rooms with websocket
+* easy to use, minimalist, modern, and mobile friendly layout with reactjs.
+* Login/Sign-up Page
+* Page with College and Course Selection lists
+* Page with subscribed courses and lists of documents shared to that course
+* Live Chat rooms page with the User's subscribed courses
+* authentication using google, facebook.
+* If time permits, we will convert the project to a react native project and use expo for development purposes. At the end, we could have a cross platform app and a website!!
+
+### Developers
+* [Mark Zarutin](https://github.com/m4rker11)
+* [H. Atacan Demir](https://github.com/HuseyinAtacanDemir)
+* [Julie Pirro](https://github.com/jap871)
+* [Matthew Apuya](https://github.com/mapuya19)
+* [Kaan Karakas](https://github.com/KocKaan)
+
+#### If you are iterested in contributing please read [Contributing.md](https://github.com/software-students-fall2021/project-setup-gotnotes/blob/master/CONTRIBUTING.md)
+
+### Product Presentation
+https://nyu.zoom.us/rec/share/WaGyWJc3b89n0jIt-kRkOGA7lnGepVoc7p7FcxAeRjV2u8Lm5JPqlPCx22BUKeyA.97nGc9c4KKOomq0u?startTime=1639500756000
+
+### Deployed Project
+[got-notes.com](http://got-notes.com)

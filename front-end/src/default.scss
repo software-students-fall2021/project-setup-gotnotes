@@ -1,0 +1,86 @@
+$primary_light: rgb(244, 244, 244);
+$secondary_light: rgb(189, 189, 189);
+$tertiary_light: rgb(55, 55, 55);
+
+$border_light: rgb(152, 152, 152);
+
+$text_primary_light: rgb(39, 39, 39);
+$text_secondary_light: rgb(179, 44, 44);
+
+$text_tertiary_light:rgb(202, 0, 101);
+
+$bottom_nav_offset: 41.88px;
+
+$text_sent: #4da3ff;
+$text_sent_variation: #8bc3ff;
+$text_received: #c7c7c7;
+
+html {
+  font-size: 10px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#root,
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+* ::before,
+::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+a {
+  text-decoration: none;
+  color: white !important;
+  cursor: pointer;
+}
+.nav-link{
+  color: white !important;
+}
+
+a,
+a:hover {
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+}
+.sticky-bottom{
+  position: sticky;
+  width: 100%;
+  bottom: 0;
+}
+.clear {
+  /*this is the height of our bottom tab navigator*/
+  height: 50px;
+}
+
+.hidden{
+  display: none !important;
+}

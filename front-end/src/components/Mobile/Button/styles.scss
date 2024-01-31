@@ -1,0 +1,11 @@
+.button {
+  display: flex;
+  width: auto;
+  height: auto;
+  border-radius: 3px;
+  background-color: rgb(209, 197, 197);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+}

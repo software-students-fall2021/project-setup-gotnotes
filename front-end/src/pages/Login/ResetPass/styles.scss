@@ -1,0 +1,24 @@
+.whole {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .image {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 70%;
+  }
+  .form {
+    display: flex;
+    margin-top: 10%;
+  }
+  .button {
+    margin-top: 3%;
+  }
+}

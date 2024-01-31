@@ -1,0 +1,67 @@
+@import "./../../../default.scss";
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+  border-bottom: 1px solid black;
+  font-size: 1.5rem;
+
+  &:hover {
+    background-color: $primary_light;
+  }
+  .img-container {
+    margin: 10px;
+    width: 10vw;
+    height: auto;
+    .list-item-logo {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .item-name-container {
+    display: flex;
+    height: 100%;
+    width: 50vw;
+
+    .list-item-name {
+      margin: auto;
+      text-align: center;
+    }
+  }
+
+  .info-container {
+    display: flex;
+
+    width: 20%;
+    height: 100%;
+    .info {
+      display: flex;
+      flex-direction: row;
+      margin: auto 0px;
+      font-size: 1.2rem;
+      width: 90%;
+      margin-right: 10%;
+      justify-content: space-between;
+
+      &.single {
+        justify-content: flex-end;
+        width: 80%;
+        margin-right: 20%;
+      }
+
+      .icon-set {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

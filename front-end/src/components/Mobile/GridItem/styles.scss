@@ -1,0 +1,76 @@
+@import "./../../../default.scss";
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  width: 28vw;
+
+  border: 1px solid $border_light;
+
+  margin: 10px 0px;
+  padding-bottom: 10px;
+
+  border-radius: 5px;
+  background-color: $primary_light;
+
+  &:hover {
+    box-shadow: 0px 0px 5px 3px rgba($color: #000000, $alpha: 0.5);
+    background-color: white;
+  }
+  .grid-img-container {
+    display: flex;
+
+    height: 100px;
+    min-height: 100px;
+    width: 90%;
+
+    margin: 10px auto;
+
+    .grid-item-logo {
+      object-fit: contain;
+      height: 80%;
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  .grid-item-name-container {
+    display: flex;
+    justify-content: center;
+    min-height: 60px;
+    width: 90%;
+    margin: auto;
+    .grid-item-name {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+
+  .grid-info-container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+
+    .grid-info {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      font-size: 1.2rem;
+      justify-content: space-between;
+
+      &.single {
+        justify-content: space-around;
+      }
+
+      .grid-icon-set {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

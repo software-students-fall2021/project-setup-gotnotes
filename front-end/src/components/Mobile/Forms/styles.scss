@@ -1,0 +1,42 @@
+.EmailPassword {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  .email {
+    margin-bottom: 20px;
+    input {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 0 10px;
+      font-size: 14px;
+      &:focus {
+        outline: none;
+        border: 1px solid #000;
+      }
+    }
+  }
+  .password {
+    margin-bottom: 20px;
+    input {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 0 10px;
+      font-size: 14px;
+      &:focus {
+        outline: none;
+        border: 1px solid #000;
+      }
+    }
+  }
+}

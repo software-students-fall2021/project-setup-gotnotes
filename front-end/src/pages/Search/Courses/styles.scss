@@ -1,0 +1,13 @@
+.courses {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &.grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 5%;
+    justify-content: space-between;
+    flex-basis: content;
+  }
+}

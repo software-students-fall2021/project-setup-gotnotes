@@ -1,0 +1,16 @@
+.user-data-viewer-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .username-share-date-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: flex-start;
+    margin-left: 10px;
+    &.share-date {
+      flex-direction: column;
+    }
+  }
+}

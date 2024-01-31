@@ -1,0 +1,15 @@
+{
+  "short_name": "GotNotes",
+  "name": "Best Online Note Sharing and Course Chat Platform",
+  "icons": [
+    {
+      "src": "logo490.png",
+      "type": "image/png",
+      "sizes": "490x490"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,20 @@
+.page-container {
+  text-align: center;
+  .add-file-container {
+    .file-form-container {
+      .select-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100px;
+      }
+      .file-select-container {
+        display: flex;
+        flex-direction: column;
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

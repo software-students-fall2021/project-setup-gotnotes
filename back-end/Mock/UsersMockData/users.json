@@ -1,0 +1,3578 @@
+[
+  {
+    "userID": "cdies0@netlog.com",
+    "username": "cdies0",
+    "passwordHash": "484EWg48",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/210x100.png/dddddd/000000",
+    "firstName": "Celia",
+    "lastName": "Dies",
+    "userUni": 12,
+    "userSubscribed": [{ "courseID": 11 }],
+    "userLiked": [
+      { "fileID": 54 },
+      { "fileID": 67 },
+      { "fileID": 38 },
+      { "fileID": 17 }
+    ],
+    "userDisliked": [
+      { "fileID": 12 },
+      { "fileID": 66 },
+      { "fileID": 24 },
+      { "fileID": 29 },
+      { "fileID": 81 },
+      { "fileID": 99 },
+      { "fileID": 73 }
+    ],
+    "userComments": [
+      { "commentId": 64 },
+      { "commentId": 53 },
+      { "commentId": 95 },
+      { "commentId": 43 },
+      { "commentId": 5 },
+      { "commentId": 82 },
+      { "commentId": 73 }
+    ]
+  },
+  {
+    "userID": "ewarstall1@reverbnation.com",
+    "username": "ewarstall1",
+    "passwordHash": "Rg41pVubykG",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/169x100.png/5fa2dd/ffffff",
+    "firstName": "Ebba",
+    "lastName": "Warstall",
+    "userUni": 52,
+    "userSubscribed": [
+      { "courseID": 12 },
+      { "courseID": 17 },
+      { "courseID": 32 },
+      { "courseID": 61 }
+    ],
+    "userLiked": [{ "fileID": 14 }],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 49 },
+      { "commentId": 96 },
+      { "commentId": 41 }
+    ]
+  },
+  {
+    "userID": "zbedrosian2@barnesandnoble.com",
+    "username": "zbedrosian2",
+    "passwordHash": "PSh7wfn",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/210x100.png/5fa2dd/ffffff",
+    "firstName": "Zelda",
+    "lastName": "Bedrosian",
+    "userUni": 85,
+    "userSubscribed": [
+      { "courseID": 15 },
+      { "courseID": 52 },
+      { "courseID": 95 },
+      { "courseID": 5 }
+    ],
+    "userLiked": [{ "fileID": 74 }, { "fileID": 60 }],
+    "userDisliked": [{ "fileID": 83 }, { "fileID": 32 }, { "fileID": 29 }],
+    "userComments": [
+      { "commentId": 73 },
+      { "commentId": 89 },
+      { "commentId": 89 },
+      { "commentId": 31 },
+      { "commentId": 53 },
+      { "commentId": 68 },
+      { "commentId": 97 },
+      { "commentId": 59 }
+    ]
+  },
+  {
+    "userID": "agillespie3@disqus.com",
+    "username": "agillespie3",
+    "passwordHash": "G3Y9TiJs3Iyc",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/111x100.png/cc0000/ffffff",
+    "firstName": "Al",
+    "lastName": "Gillespie",
+    "userUni": 47,
+    "userSubscribed": [
+      { "courseID": 63 },
+      { "courseID": 53 },
+      { "courseID": 66 },
+      { "courseID": 30 }
+    ],
+    "userLiked": [{ "fileID": 38 }, { "fileID": 56 }, { "fileID": 2 }],
+    "userDisliked": [
+      { "fileID": 53 },
+      { "fileID": 27 },
+      { "fileID": 44 },
+      { "fileID": 95 },
+      { "fileID": 66 }
+    ],
+    "userComments": [
+      { "commentId": 40 },
+      { "commentId": 27 },
+      { "commentId": 56 },
+      { "commentId": 83 },
+      { "commentId": 70 },
+      { "commentId": 47 },
+      { "commentId": 95 },
+      { "commentId": 70 },
+      { "commentId": 12 },
+      { "commentId": 2 }
+    ]
+  },
+  {
+    "userID": "adressel4@ycombinator.com",
+    "username": "adressel4",
+    "passwordHash": "vm2Qam",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/137x100.png/cc0000/ffffff",
+    "firstName": "Almeria",
+    "lastName": "Dressel",
+    "userUni": 86,
+    "userSubscribed": [
+      { "courseID": 51 },
+      { "courseID": 81 },
+      { "courseID": 69 },
+      { "courseID": 43 }
+    ],
+    "userLiked": [],
+    "userDisliked": [{ "fileID": 100 }],
+    "userComments": [
+      { "commentId": 98 },
+      { "commentId": 53 },
+      { "commentId": 67 },
+      { "commentId": 85 },
+      { "commentId": 2 },
+      { "commentId": 47 },
+      { "commentId": 86 },
+      { "commentId": 89 }
+    ]
+  },
+  {
+    "userID": "edanev5@xrea.com",
+    "username": "edanev5",
+    "passwordHash": "Suv3pr",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/137x100.png/5fa2dd/ffffff",
+    "firstName": "Ertha",
+    "lastName": "Danev",
+    "userUni": 90,
+    "userSubscribed": [
+      { "courseID": 93 },
+      { "courseID": 84 },
+      { "courseID": 68 },
+      { "courseID": 88 },
+      { "courseID": 85 },
+      { "courseID": 70 },
+      { "courseID": 88 },
+      { "courseID": 33 },
+      { "courseID": 88 }
+    ],
+    "userLiked": [
+      { "fileID": 59 },
+      { "fileID": 21 },
+      { "fileID": 28 },
+      { "fileID": 93 },
+      { "fileID": 91 },
+      { "fileID": 23 },
+      { "fileID": 81 },
+      { "fileID": 61 },
+      { "fileID": 88 },
+      { "fileID": 91 }
+    ],
+    "userDisliked": [
+      { "fileID": 90 },
+      { "fileID": 53 },
+      { "fileID": 35 },
+      { "fileID": 55 },
+      { "fileID": 42 },
+      { "fileID": 6 },
+      { "fileID": 30 },
+      { "fileID": 61 }
+    ],
+    "userComments": [
+      { "commentId": 76 },
+      { "commentId": 51 },
+      { "commentId": 92 }
+    ]
+  },
+  {
+    "userID": "afrankiewicz6@vk.com",
+    "username": "afrankiewicz6",
+    "passwordHash": "8s6D1O",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/223x100.png/5fa2dd/ffffff",
+    "firstName": "Alla",
+    "lastName": "Frankiewicz",
+    "userUni": 7,
+    "userSubscribed": [],
+    "userLiked": [],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 80 },
+      { "commentId": 25 },
+      { "commentId": 79 },
+      { "commentId": 63 },
+      { "commentId": 26 },
+      { "commentId": 83 },
+      { "commentId": 56 }
+    ]
+  },
+  {
+    "userID": "neldred7@cornell.edu",
+    "username": "neldred7",
+    "passwordHash": "VDXhSRDzkTG",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/213x100.png/dddddd/000000",
+    "firstName": "Noelle",
+    "lastName": "Eldred",
+    "userUni": 80,
+    "userSubscribed": [
+      { "courseID": 33 },
+      { "courseID": 89 },
+      { "courseID": 82 },
+      { "courseID": 80 },
+      { "courseID": 9 },
+      { "courseID": 34 },
+      { "courseID": 69 },
+      { "courseID": 11 },
+      { "courseID": 79 },
+      { "courseID": 18 }
+    ],
+    "userLiked": [{ "fileID": 51 }, { "fileID": 63 }, { "fileID": 51 }],
+    "userDisliked": [{ "fileID": 45 }, { "fileID": 13 }, { "fileID": 32 }],
+    "userComments": [
+      { "commentId": 51 },
+      { "commentId": 83 },
+      { "commentId": 46 },
+      { "commentId": 67 },
+      { "commentId": 18 },
+      { "commentId": 66 },
+      { "commentId": 44 },
+      { "commentId": 81 },
+      { "commentId": 81 }
+    ]
+  },
+  {
+    "userID": "rgamble8@privacy.gov.au",
+    "username": "rgamble8",
+    "passwordHash": "22p71UmW7kl",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/208x100.png/5fa2dd/ffffff",
+    "firstName": "Reid",
+    "lastName": "Gamble",
+    "userUni": 88,
+    "userSubscribed": [
+      { "courseID": 71 },
+      { "courseID": 18 },
+      { "courseID": 32 },
+      { "courseID": 62 },
+      { "courseID": 50 }
+    ],
+    "userLiked": [
+      { "fileID": 85 },
+      { "fileID": 94 },
+      { "fileID": 82 },
+      { "fileID": 28 },
+      { "fileID": 50 },
+      { "fileID": 76 },
+      { "fileID": 18 },
+      { "fileID": 26 }
+    ],
+    "userDisliked": [
+      { "fileID": 27 },
+      { "fileID": 55 },
+      { "fileID": 51 },
+      { "fileID": 55 }
+    ],
+    "userComments": [
+      { "commentId": 56 },
+      { "commentId": 14 },
+      { "commentId": 97 },
+      { "commentId": 86 }
+    ]
+  },
+  {
+    "userID": "jgrandisson9@berkeley.edu",
+    "username": "jgrandisson9",
+    "passwordHash": "3E7XZ1tTox",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/189x100.png/cc0000/ffffff",
+    "firstName": "Jessika",
+    "lastName": "Grandisson",
+    "userUni": 37,
+    "userSubscribed": [
+      { "courseID": 78 },
+      { "courseID": 58 },
+      { "courseID": 51 },
+      { "courseID": 61 },
+      { "courseID": 81 },
+      { "courseID": 38 },
+      { "courseID": 72 },
+      { "courseID": 88 },
+      { "courseID": 88 },
+      { "courseID": 11 }
+    ],
+    "userLiked": [{ "fileID": 32 }, { "fileID": 73 }, { "fileID": 44 }],
+    "userDisliked": [
+      { "fileID": 10 },
+      { "fileID": 79 },
+      { "fileID": 29 },
+      { "fileID": 9 },
+      { "fileID": 92 },
+      { "fileID": 93 },
+      { "fileID": 28 },
+      { "fileID": 90 },
+      { "fileID": 95 },
+      { "fileID": 5 }
+    ],
+    "userComments": [
+      { "commentId": 41 },
+      { "commentId": 17 },
+      { "commentId": 62 },
+      { "commentId": 30 },
+      { "commentId": 77 },
+      { "commentId": 57 },
+      { "commentId": 48 }
+    ]
+  },
+  {
+    "userID": "ydanielota@hao123.com",
+    "username": "ydanielota",
+    "passwordHash": "1TXZaGTD3",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/214x100.png/cc0000/ffffff",
+    "firstName": "Yettie",
+    "lastName": "Danielot",
+    "userUni": 92,
+    "userSubscribed": [
+      { "courseID": 57 },
+      { "courseID": 59 },
+      { "courseID": 4 },
+      { "courseID": 67 },
+      { "courseID": 33 },
+      { "courseID": 84 },
+      { "courseID": 93 },
+      { "courseID": 58 }
+    ],
+    "userLiked": [
+      { "fileID": 88 },
+      { "fileID": 21 },
+      { "fileID": 22 },
+      { "fileID": 85 }
+    ],
+    "userDisliked": [{ "fileID": 8 }, { "fileID": 50 }, { "fileID": 94 }],
+    "userComments": [{ "commentId": 65 }, { "commentId": 35 }]
+  },
+  {
+    "userID": "ebronotb@eepurl.com",
+    "username": "ebronotb",
+    "passwordHash": "XgyZ5F8wBQ",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/100x100.png/dddddd/000000",
+    "firstName": "Elspeth",
+    "lastName": "Bronot",
+    "userUni": 29,
+    "userSubscribed": [
+      { "courseID": 63 },
+      { "courseID": 5 },
+      { "courseID": 67 },
+      { "courseID": 95 },
+      { "courseID": 41 },
+      { "courseID": 75 },
+      { "courseID": 28 },
+      { "courseID": 18 }
+    ],
+    "userLiked": [
+      { "fileID": 19 },
+      { "fileID": 98 },
+      { "fileID": 45 },
+      { "fileID": 1 }
+    ],
+    "userDisliked": [],
+    "userComments": [{ "commentId": 84 }]
+  },
+  {
+    "userID": "ireavellc@pagesperso-orange.fr",
+    "username": "ireavellc",
+    "passwordHash": "eisdvN",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/187x100.png/5fa2dd/ffffff",
+    "firstName": "Isadore",
+    "lastName": "Reavell",
+    "userUni": 86,
+    "userSubscribed": [{ "courseID": 39 }],
+    "userLiked": [{ "fileID": 68 }],
+    "userDisliked": [
+      { "fileID": 10 },
+      { "fileID": 75 },
+      { "fileID": 60 },
+      { "fileID": 43 }
+    ],
+    "userComments": [
+      { "commentId": 71 },
+      { "commentId": 36 },
+      { "commentId": 15 },
+      { "commentId": 43 }
+    ]
+  },
+  {
+    "userID": "lsymcockd@smugmug.com",
+    "username": "lsymcockd",
+    "passwordHash": "JoT6bhzjYXJ",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/150x100.png/dddddd/000000",
+    "firstName": "Lillis",
+    "lastName": "Symcock",
+    "userUni": 73,
+    "userSubscribed": [
+      { "courseID": 64 },
+      { "courseID": 70 },
+      { "courseID": 10 },
+      { "courseID": 54 },
+      { "courseID": 42 },
+      { "courseID": 85 }
+    ],
+    "userLiked": [
+      { "fileID": 8 },
+      { "fileID": 1 },
+      { "fileID": 74 },
+      { "fileID": 42 },
+      { "fileID": 55 },
+      { "fileID": 56 }
+    ],
+    "userDisliked": [
+      { "fileID": 10 },
+      { "fileID": 77 },
+      { "fileID": 1 },
+      { "fileID": 1 },
+      { "fileID": 85 },
+      { "fileID": 1 },
+      { "fileID": 51 }
+    ],
+    "userComments": []
+  },
+  {
+    "userID": "aducarele@arizona.edu",
+    "username": "aducarele",
+    "passwordHash": "B3D8l7i0CmW",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/249x100.png/ff4444/ffffff",
+    "firstName": "Alicia",
+    "lastName": "Ducarel",
+    "userUni": 72,
+    "userSubscribed": [
+      { "courseID": 8 },
+      { "courseID": 57 },
+      { "courseID": 95 }
+    ],
+    "userLiked": [{ "fileID": 51 }],
+    "userDisliked": [{ "fileID": 100 }, { "fileID": 21 }],
+    "userComments": [
+      { "commentId": 71 },
+      { "commentId": 90 },
+      { "commentId": 6 },
+      { "commentId": 48 },
+      { "commentId": 43 },
+      { "commentId": 32 },
+      { "commentId": 94 },
+      { "commentId": 89 },
+      { "commentId": 13 },
+      { "commentId": 88 }
+    ]
+  },
+  {
+    "userID": "nmerguef@shop-pro.jp",
+    "username": "nmerguef",
+    "passwordHash": "akORkNZYv",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/201x100.png/5fa2dd/ffffff",
+    "firstName": "Nerta",
+    "lastName": "Mergue",
+    "userUni": 23,
+    "userSubscribed": [
+      { "courseID": 5 },
+      { "courseID": 23 },
+      { "courseID": 30 },
+      { "courseID": 66 }
+    ],
+    "userLiked": [
+      { "fileID": 90 },
+      { "fileID": 48 },
+      { "fileID": 9 },
+      { "fileID": 8 },
+      { "fileID": 15 },
+      { "fileID": 93 },
+      { "fileID": 82 },
+      { "fileID": 49 },
+      { "fileID": 66 },
+      { "fileID": 62 }
+    ],
+    "userDisliked": [
+      { "fileID": 57 },
+      { "fileID": 37 },
+      { "fileID": 4 },
+      { "fileID": 64 },
+      { "fileID": 99 },
+      { "fileID": 32 },
+      { "fileID": 4 },
+      { "fileID": 32 }
+    ],
+    "userComments": [{ "commentId": 45 }]
+  },
+  {
+    "userID": "ljoshamg@mail.ru",
+    "username": "ljoshamg",
+    "passwordHash": "oW8uZ3N3HaP",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/146x100.png/cc0000/ffffff",
+    "firstName": "Lanny",
+    "lastName": "Josham",
+    "userUni": 69,
+    "userSubscribed": [
+      { "courseID": 13 },
+      { "courseID": 11 },
+      { "courseID": 70 },
+      { "courseID": 22 },
+      { "courseID": 93 },
+      { "courseID": 42 },
+      { "courseID": 21 }
+    ],
+    "userLiked": [
+      { "fileID": 90 },
+      { "fileID": 61 },
+      { "fileID": 84 },
+      { "fileID": 7 },
+      { "fileID": 19 },
+      { "fileID": 47 },
+      { "fileID": 72 },
+      { "fileID": 42 },
+      { "fileID": 47 }
+    ],
+    "userDisliked": [
+      { "fileID": 73 },
+      { "fileID": 27 },
+      { "fileID": 30 },
+      { "fileID": 13 },
+      { "fileID": 59 }
+    ],
+    "userComments": [{ "commentId": 86 }, { "commentId": 98 }]
+  },
+  {
+    "userID": "mricksonh@tmall.com",
+    "username": "mricksonh",
+    "passwordHash": "AyLqnzkhqhW",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/114x100.png/cc0000/ffffff",
+    "firstName": "Melisenda",
+    "lastName": "Rickson",
+    "userUni": 22,
+    "userSubscribed": [{ "courseID": 80 }],
+    "userLiked": [
+      { "fileID": 79 },
+      { "fileID": 30 },
+      { "fileID": 7 },
+      { "fileID": 95 },
+      { "fileID": 77 },
+      { "fileID": 7 },
+      { "fileID": 31 },
+      { "fileID": 74 },
+      { "fileID": 69 },
+      { "fileID": 6 }
+    ],
+    "userDisliked": [
+      { "fileID": 74 },
+      { "fileID": 37 },
+      { "fileID": 55 },
+      { "fileID": 33 },
+      { "fileID": 29 },
+      { "fileID": 67 },
+      { "fileID": 23 }
+    ],
+    "userComments": [
+      { "commentId": 81 },
+      { "commentId": 8 },
+      { "commentId": 14 }
+    ]
+  },
+  {
+    "userID": "pballei@java.com",
+    "username": "pballei",
+    "passwordHash": "5CR5adcz",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/104x100.png/ff4444/ffffff",
+    "firstName": "Pooh",
+    "lastName": "Balle",
+    "userUni": 37,
+    "userSubscribed": [
+      { "courseID": 14 },
+      { "courseID": 67 },
+      { "courseID": 91 },
+      { "courseID": 10 },
+      { "courseID": 15 }
+    ],
+    "userLiked": [
+      { "fileID": 46 },
+      { "fileID": 4 },
+      { "fileID": 54 },
+      { "fileID": 6 },
+      { "fileID": 35 },
+      { "fileID": 54 },
+      { "fileID": 41 },
+      { "fileID": 63 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 12 },
+      { "commentId": 23 },
+      { "commentId": 64 },
+      { "commentId": 20 },
+      { "commentId": 95 }
+    ]
+  },
+  {
+    "userID": "jaylettj@bloglines.com",
+    "username": "jaylettj",
+    "passwordHash": "Et9av1UTDIff",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/106x100.png/5fa2dd/ffffff",
+    "firstName": "Jerad",
+    "lastName": "Aylett",
+    "userUni": 94,
+    "userSubscribed": [
+      { "courseID": 14 },
+      { "courseID": 11 },
+      { "courseID": 83 },
+      { "courseID": 98 },
+      { "courseID": 37 }
+    ],
+    "userLiked": [
+      { "fileID": 55 },
+      { "fileID": 71 },
+      { "fileID": 10 },
+      { "fileID": 15 },
+      { "fileID": 56 },
+      { "fileID": 21 },
+      { "fileID": 81 },
+      { "fileID": 22 },
+      { "fileID": 49 }
+    ],
+    "userDisliked": [{ "fileID": 65 }, { "fileID": 83 }, { "fileID": 56 }],
+    "userComments": [{ "commentId": 83 }, { "commentId": 29 }]
+  },
+  {
+    "userID": "eohannayk@archive.org",
+    "username": "eohannayk",
+    "passwordHash": "R9RfViyp8v",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/227x100.png/5fa2dd/ffffff",
+    "firstName": "Egbert",
+    "lastName": "O'Hannay",
+    "userUni": 1,
+    "userSubscribed": [
+      { "courseID": 85 },
+      { "courseID": 99 },
+      { "courseID": 1 },
+      { "courseID": 60 }
+    ],
+    "userLiked": [{ "fileID": 75 }, { "fileID": 20 }],
+    "userDisliked": [
+      { "fileID": 100 },
+      { "fileID": 44 },
+      { "fileID": 29 },
+      { "fileID": 70 },
+      { "fileID": 16 },
+      { "fileID": 46 },
+      { "fileID": 97 },
+      { "fileID": 90 }
+    ],
+    "userComments": [
+      { "commentId": 2 },
+      { "commentId": 85 },
+      { "commentId": 67 },
+      { "commentId": 23 },
+      { "commentId": 26 }
+    ]
+  },
+  {
+    "userID": "ncornewelll@npr.org",
+    "username": "ncornewelll",
+    "passwordHash": "EB6J1J",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/200x100.png/cc0000/ffffff",
+    "firstName": "Nathanil",
+    "lastName": "Cornewell",
+    "userUni": 96,
+    "userSubscribed": [
+      { "courseID": 96 },
+      { "courseID": 81 },
+      { "courseID": 60 },
+      { "courseID": 8 },
+      { "courseID": 88 },
+      { "courseID": 51 },
+      { "courseID": 9 }
+    ],
+    "userLiked": [],
+    "userDisliked": [
+      { "fileID": 46 },
+      { "fileID": 74 },
+      { "fileID": 53 },
+      { "fileID": 32 },
+      { "fileID": 29 },
+      { "fileID": 54 },
+      { "fileID": 21 },
+      { "fileID": 18 }
+    ],
+    "userComments": [
+      { "commentId": 100 },
+      { "commentId": 39 },
+      { "commentId": 69 },
+      { "commentId": 54 },
+      { "commentId": 71 },
+      { "commentId": 76 }
+    ]
+  },
+  {
+    "userID": "mkernermannm@addthis.com",
+    "username": "mkernermannm",
+    "passwordHash": "3TtUn8yiBzxd",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/221x100.png/5fa2dd/ffffff",
+    "firstName": "Marris",
+    "lastName": "Kernermann",
+    "userUni": 52,
+    "userSubscribed": [{ "courseID": 47 }],
+    "userLiked": [
+      { "fileID": 64 },
+      { "fileID": 55 },
+      { "fileID": 35 },
+      { "fileID": 84 },
+      { "fileID": 95 },
+      { "fileID": 59 },
+      { "fileID": 28 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 55 },
+      { "commentId": 69 },
+      { "commentId": 57 }
+    ]
+  },
+  {
+    "userID": "lmelsomen@netlog.com",
+    "username": "lmelsomen",
+    "passwordHash": "Wv66ho1",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/171x100.png/dddddd/000000",
+    "firstName": "Lise",
+    "lastName": "Melsome",
+    "userUni": 18,
+    "userSubscribed": [
+      { "courseID": 36 },
+      { "courseID": 67 },
+      { "courseID": 68 },
+      { "courseID": 74 },
+      { "courseID": 51 },
+      { "courseID": 52 },
+      { "courseID": 67 },
+      { "courseID": 23 },
+      { "courseID": 16 }
+    ],
+    "userLiked": [
+      { "fileID": 84 },
+      { "fileID": 35 },
+      { "fileID": 52 },
+      { "fileID": 16 }
+    ],
+    "userDisliked": [
+      { "fileID": 19 },
+      { "fileID": 75 },
+      { "fileID": 19 },
+      { "fileID": 42 },
+      { "fileID": 4 },
+      { "fileID": 69 },
+      { "fileID": 17 },
+      { "fileID": 1 }
+    ],
+    "userComments": [
+      { "commentId": 46 },
+      { "commentId": 27 },
+      { "commentId": 68 },
+      { "commentId": 16 },
+      { "commentId": 57 },
+      { "commentId": 70 },
+      { "commentId": 79 }
+    ]
+  },
+  {
+    "userID": "mtomovico@goo.gl",
+    "username": "mtomovico",
+    "passwordHash": "purCxk",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/117x100.png/dddddd/000000",
+    "firstName": "Maxie",
+    "lastName": "Tomovic",
+    "userUni": 72,
+    "userSubscribed": [
+      { "courseID": 56 },
+      { "courseID": 15 },
+      { "courseID": 23 },
+      { "courseID": 25 },
+      { "courseID": 16 },
+      { "courseID": 60 }
+    ],
+    "userLiked": [
+      { "fileID": 84 },
+      { "fileID": 10 },
+      { "fileID": 14 },
+      { "fileID": 82 },
+      { "fileID": 22 },
+      { "fileID": 54 },
+      { "fileID": 59 }
+    ],
+    "userDisliked": [{ "fileID": 52 }, { "fileID": 43 }],
+    "userComments": [
+      { "commentId": 97 },
+      { "commentId": 82 },
+      { "commentId": 60 },
+      { "commentId": 60 },
+      { "commentId": 44 }
+    ]
+  },
+  {
+    "userID": "dwayvillp@unblog.fr",
+    "username": "dwayvillp",
+    "passwordHash": "g0aHBTsN",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/230x100.png/5fa2dd/ffffff",
+    "firstName": "Doyle",
+    "lastName": "Wayvill",
+    "userUni": 40,
+    "userSubscribed": [
+      { "courseID": 10 },
+      { "courseID": 27 },
+      { "courseID": 3 },
+      { "courseID": 87 },
+      { "courseID": 71 },
+      { "courseID": 98 },
+      { "courseID": 14 },
+      { "courseID": 30 },
+      { "courseID": 59 }
+    ],
+    "userLiked": [
+      { "fileID": 30 },
+      { "fileID": 91 },
+      { "fileID": 84 },
+      { "fileID": 74 },
+      { "fileID": 80 },
+      { "fileID": 57 },
+      { "fileID": 57 },
+      { "fileID": 24 },
+      { "fileID": 83 }
+    ],
+    "userDisliked": [
+      { "fileID": 92 },
+      { "fileID": 65 },
+      { "fileID": 30 },
+      { "fileID": 55 },
+      { "fileID": 81 },
+      { "fileID": 93 }
+    ],
+    "userComments": [
+      { "commentId": 87 },
+      { "commentId": 80 },
+      { "commentId": 33 },
+      { "commentId": 8 },
+      { "commentId": 100 },
+      { "commentId": 8 }
+    ]
+  },
+  {
+    "userID": "jangoveq@yandex.ru",
+    "username": "jangoveq",
+    "passwordHash": "yIyT4WbKJ",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/218x100.png/cc0000/ffffff",
+    "firstName": "Joshua",
+    "lastName": "Angove",
+    "userUni": 4,
+    "userSubscribed": [
+      { "courseID": 19 },
+      { "courseID": 63 },
+      { "courseID": 82 }
+    ],
+    "userLiked": [
+      { "fileID": 64 },
+      { "fileID": 8 },
+      { "fileID": 18 },
+      { "fileID": 35 },
+      { "fileID": 18 },
+      { "fileID": 87 }
+    ],
+    "userDisliked": [{ "fileID": 12 }, { "fileID": 15 }, { "fileID": 96 }],
+    "userComments": [
+      { "commentId": 68 },
+      { "commentId": 8 },
+      { "commentId": 43 },
+      { "commentId": 48 },
+      { "commentId": 74 },
+      { "commentId": 4 }
+    ]
+  },
+  {
+    "userID": "aizatr@ucoz.ru",
+    "username": "aizatr",
+    "passwordHash": "4kVJ61pms",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/154x100.png/5fa2dd/ffffff",
+    "firstName": "Adah",
+    "lastName": "Izat",
+    "userUni": 26,
+    "userSubscribed": [
+      { "courseID": 4 },
+      { "courseID": 46 },
+      { "courseID": 4 },
+      { "courseID": 79 }
+    ],
+    "userLiked": [
+      { "fileID": 53 },
+      { "fileID": 28 },
+      { "fileID": 60 },
+      { "fileID": 65 },
+      { "fileID": 16 }
+    ],
+    "userDisliked": [
+      { "fileID": 95 },
+      { "fileID": 67 },
+      { "fileID": 94 },
+      { "fileID": 7 },
+      { "fileID": 1 },
+      { "fileID": 1 },
+      { "fileID": 22 },
+      { "fileID": 11 },
+      { "fileID": 49 },
+      { "fileID": 47 }
+    ],
+    "userComments": [
+      { "commentId": 90 },
+      { "commentId": 69 },
+      { "commentId": 22 }
+    ]
+  },
+  {
+    "userID": "sskingles@ted.com",
+    "username": "sskingles",
+    "passwordHash": "QkjJmiO4O",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/107x100.png/cc0000/ffffff",
+    "firstName": "Shelia",
+    "lastName": "Skingle",
+    "userUni": 50,
+    "userSubscribed": [
+      { "courseID": 58 },
+      { "courseID": 98 },
+      { "courseID": 6 },
+      { "courseID": 35 },
+      { "courseID": 84 },
+      { "courseID": 89 },
+      { "courseID": 3 }
+    ],
+    "userLiked": [
+      { "fileID": 37 },
+      { "fileID": 13 },
+      { "fileID": 87 },
+      { "fileID": 86 },
+      { "fileID": 12 },
+      { "fileID": 64 }
+    ],
+    "userDisliked": [
+      { "fileID": 44 },
+      { "fileID": 98 },
+      { "fileID": 9 },
+      { "fileID": 94 },
+      { "fileID": 96 },
+      { "fileID": 28 }
+    ],
+    "userComments": [
+      { "commentId": 99 },
+      { "commentId": 78 },
+      { "commentId": 7 },
+      { "commentId": 38 },
+      { "commentId": 10 },
+      { "commentId": 38 }
+    ]
+  },
+  {
+    "userID": "aodempseyt@wikipedia.org",
+    "username": "aodempseyt",
+    "passwordHash": "Y8Uyyr",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/123x100.png/dddddd/000000",
+    "firstName": "Anne-marie",
+    "lastName": "O'Dempsey",
+    "userUni": 28,
+    "userSubscribed": [{ "courseID": 20 }],
+    "userLiked": [{ "fileID": 39 }],
+    "userDisliked": [
+      { "fileID": 100 },
+      { "fileID": 32 },
+      { "fileID": 92 },
+      { "fileID": 76 },
+      { "fileID": 14 },
+      { "fileID": 50 }
+    ],
+    "userComments": [
+      { "commentId": 44 },
+      { "commentId": 9 },
+      { "commentId": 36 },
+      { "commentId": 3 },
+      { "commentId": 22 },
+      { "commentId": 27 },
+      { "commentId": 69 },
+      { "commentId": 37 },
+      { "commentId": 68 },
+      { "commentId": 49 }
+    ]
+  },
+  {
+    "userID": "cstarcksu@booking.com",
+    "username": "cstarcksu",
+    "passwordHash": "1iUOog",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/124x100.png/5fa2dd/ffffff",
+    "firstName": "Cassandry",
+    "lastName": "Starcks",
+    "userUni": 15,
+    "userSubscribed": [
+      { "courseID": 36 },
+      { "courseID": 14 },
+      { "courseID": 17 },
+      { "courseID": 86 },
+      { "courseID": 56 },
+      { "courseID": 94 },
+      { "courseID": 25 },
+      { "courseID": 66 },
+      { "courseID": 89 },
+      { "courseID": 5 }
+    ],
+    "userLiked": [{ "fileID": 10 }, { "fileID": 22 }, { "fileID": 60 }],
+    "userDisliked": [
+      { "fileID": 25 },
+      { "fileID": 18 },
+      { "fileID": 76 },
+      { "fileID": 15 },
+      { "fileID": 85 }
+    ],
+    "userComments": []
+  },
+  {
+    "userID": "cwarnerv@vkontakte.ru",
+    "username": "cwarnerv",
+    "passwordHash": "bYzzSpkN5pS",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/231x100.png/5fa2dd/ffffff",
+    "firstName": "Corbett",
+    "lastName": "Warner",
+    "userUni": 80,
+    "userSubscribed": [{ "courseID": 33 }],
+    "userLiked": [
+      { "fileID": 22 },
+      { "fileID": 34 },
+      { "fileID": 85 },
+      { "fileID": 100 },
+      { "fileID": 17 },
+      { "fileID": 36 }
+    ],
+    "userDisliked": [{ "fileID": 92 }, { "fileID": 88 }],
+    "userComments": [
+      { "commentId": 9 },
+      { "commentId": 25 },
+      { "commentId": 4 }
+    ]
+  },
+  {
+    "userID": "kginmanw@hp.com",
+    "username": "kginmanw",
+    "passwordHash": "uQHCHZuDzIsM",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/120x100.png/5fa2dd/ffffff",
+    "firstName": "Karry",
+    "lastName": "Ginman",
+    "userUni": 53,
+    "userSubscribed": [],
+    "userLiked": [
+      { "fileID": 41 },
+      { "fileID": 72 },
+      { "fileID": 4 },
+      { "fileID": 31 },
+      { "fileID": 48 }
+    ],
+    "userDisliked": [
+      { "fileID": 29 },
+      { "fileID": 42 },
+      { "fileID": 32 },
+      { "fileID": 79 },
+      { "fileID": 22 },
+      { "fileID": 46 },
+      { "fileID": 76 }
+    ],
+    "userComments": [
+      { "commentId": 99 },
+      { "commentId": 4 },
+      { "commentId": 79 },
+      { "commentId": 21 },
+      { "commentId": 66 },
+      { "commentId": 46 },
+      { "commentId": 46 },
+      { "commentId": 49 },
+      { "commentId": 56 },
+      { "commentId": 86 }
+    ]
+  },
+  {
+    "userID": "bsultanax@plala.or.jp",
+    "username": "bsultanax",
+    "passwordHash": "567XzvCd9",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/234x100.png/ff4444/ffffff",
+    "firstName": "Berton",
+    "lastName": "Sultana",
+    "userUni": 81,
+    "userSubscribed": [
+      { "courseID": 96 },
+      { "courseID": 48 },
+      { "courseID": 11 },
+      { "courseID": 57 },
+      { "courseID": 26 }
+    ],
+    "userLiked": [
+      { "fileID": 38 },
+      { "fileID": 46 },
+      { "fileID": 25 },
+      { "fileID": 88 },
+      { "fileID": 2 },
+      { "fileID": 51 },
+      { "fileID": 21 },
+      { "fileID": 93 },
+      { "fileID": 11 },
+      { "fileID": 67 }
+    ],
+    "userDisliked": [
+      { "fileID": 26 },
+      { "fileID": 57 },
+      { "fileID": 41 },
+      { "fileID": 22 },
+      { "fileID": 53 },
+      { "fileID": 89 },
+      { "fileID": 12 },
+      { "fileID": 80 },
+      { "fileID": 41 },
+      { "fileID": 32 }
+    ],
+    "userComments": [
+      { "commentId": 10 },
+      { "commentId": 6 },
+      { "commentId": 78 },
+      { "commentId": 57 },
+      { "commentId": 84 },
+      { "commentId": 11 },
+      { "commentId": 9 }
+    ]
+  },
+  {
+    "userID": "lbiddley@spotify.com",
+    "username": "lbiddley",
+    "passwordHash": "UXniHixgmT",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/113x100.png/ff4444/ffffff",
+    "firstName": "Leonard",
+    "lastName": "Biddle",
+    "userUni": 16,
+    "userSubscribed": [
+      { "courseID": 50 },
+      { "courseID": 75 },
+      { "courseID": 12 },
+      { "courseID": 33 },
+      { "courseID": 83 },
+      { "courseID": 88 },
+      { "courseID": 28 },
+      { "courseID": 39 },
+      { "courseID": 18 },
+      { "courseID": 75 }
+    ],
+    "userLiked": [
+      { "fileID": 36 },
+      { "fileID": 94 },
+      { "fileID": 58 },
+      { "fileID": 87 },
+      { "fileID": 32 },
+      { "fileID": 2 },
+      { "fileID": 1 }
+    ],
+    "userDisliked": [
+      { "fileID": 97 },
+      { "fileID": 12 },
+      { "fileID": 31 },
+      { "fileID": 35 }
+    ],
+    "userComments": [
+      { "commentId": 17 },
+      { "commentId": 9 },
+      { "commentId": 88 },
+      { "commentId": 92 },
+      { "commentId": 3 },
+      { "commentId": 35 },
+      { "commentId": 69 },
+      { "commentId": 98 },
+      { "commentId": 7 },
+      { "commentId": 65 }
+    ]
+  },
+  {
+    "userID": "kcurteisz@princeton.edu",
+    "username": "kcurteisz",
+    "passwordHash": "3jPRbeMGxao",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/102x100.png/cc0000/ffffff",
+    "firstName": "Kennith",
+    "lastName": "Curteis",
+    "userUni": 99,
+    "userSubscribed": [
+      { "courseID": 93 },
+      { "courseID": 13 },
+      { "courseID": 34 },
+      { "courseID": 43 },
+      { "courseID": 29 },
+      { "courseID": 61 },
+      { "courseID": 94 },
+      { "courseID": 76 }
+    ],
+    "userLiked": [],
+    "userDisliked": [{ "fileID": 94 }, { "fileID": 39 }, { "fileID": 98 }],
+    "userComments": [
+      { "commentId": 1 },
+      { "commentId": 35 },
+      { "commentId": 58 },
+      { "commentId": 82 }
+    ]
+  },
+  {
+    "userID": "cbannester10@va.gov",
+    "username": "cbannester10",
+    "passwordHash": "rDh9Lt",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/180x100.png/dddddd/000000",
+    "firstName": "Cello",
+    "lastName": "Bannester",
+    "userUni": 88,
+    "userSubscribed": [
+      { "courseID": 86 },
+      { "courseID": 13 },
+      { "courseID": 15 },
+      { "courseID": 36 },
+      { "courseID": 58 },
+      { "courseID": 68 },
+      { "courseID": 78 },
+      { "courseID": 51 },
+      { "courseID": 2 },
+      { "courseID": 100 }
+    ],
+    "userLiked": [
+      { "fileID": 27 },
+      { "fileID": 78 },
+      { "fileID": 84 },
+      { "fileID": 98 },
+      { "fileID": 79 },
+      { "fileID": 82 },
+      { "fileID": 62 }
+    ],
+    "userDisliked": [
+      { "fileID": 15 },
+      { "fileID": 74 },
+      { "fileID": 99 },
+      { "fileID": 92 },
+      { "fileID": 43 },
+      { "fileID": 77 },
+      { "fileID": 86 },
+      { "fileID": 18 },
+      { "fileID": 41 },
+      { "fileID": 69 }
+    ],
+    "userComments": [
+      { "commentId": 6 },
+      { "commentId": 47 },
+      { "commentId": 45 },
+      { "commentId": 3 },
+      { "commentId": 12 },
+      { "commentId": 59 },
+      { "commentId": 13 },
+      { "commentId": 77 },
+      { "commentId": 43 }
+    ]
+  },
+  {
+    "userID": "gtansly11@cloudflare.com",
+    "username": "gtansly11",
+    "passwordHash": "oJDFB6hOpg",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/119x100.png/ff4444/ffffff",
+    "firstName": "Genvieve",
+    "lastName": "Tansly",
+    "userUni": 13,
+    "userSubscribed": [
+      { "courseID": 22 },
+      { "courseID": 91 },
+      { "courseID": 68 }
+    ],
+    "userLiked": [
+      { "fileID": 13 },
+      { "fileID": 64 },
+      { "fileID": 13 },
+      { "fileID": 16 },
+      { "fileID": 84 },
+      { "fileID": 34 },
+      { "fileID": 73 },
+      { "fileID": 12 },
+      { "fileID": 57 }
+    ],
+    "userDisliked": [
+      { "fileID": 74 },
+      { "fileID": 64 },
+      { "fileID": 1 },
+      { "fileID": 60 },
+      { "fileID": 36 }
+    ],
+    "userComments": [
+      { "commentId": 69 },
+      { "commentId": 94 },
+      { "commentId": 66 },
+      { "commentId": 27 },
+      { "commentId": 30 },
+      { "commentId": 26 }
+    ]
+  },
+  {
+    "userID": "bkeeri12@com.com",
+    "username": "bkeeri12",
+    "passwordHash": "uMUCCHGquWG",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/118x100.png/5fa2dd/ffffff",
+    "firstName": "Barton",
+    "lastName": "Keeri",
+    "userUni": 36,
+    "userSubscribed": [
+      { "courseID": 85 },
+      { "courseID": 70 },
+      { "courseID": 50 }
+    ],
+    "userLiked": [
+      { "fileID": 11 },
+      { "fileID": 42 },
+      { "fileID": 36 },
+      { "fileID": 53 },
+      { "fileID": 92 },
+      { "fileID": 36 },
+      { "fileID": 64 },
+      { "fileID": 67 }
+    ],
+    "userDisliked": [
+      { "fileID": 32 },
+      { "fileID": 5 },
+      { "fileID": 99 },
+      { "fileID": 20 }
+    ],
+    "userComments": [
+      { "commentId": 10 },
+      { "commentId": 78 },
+      { "commentId": 13 },
+      { "commentId": 37 },
+      { "commentId": 99 },
+      { "commentId": 26 },
+      { "commentId": 88 },
+      { "commentId": 66 },
+      { "commentId": 34 }
+    ]
+  },
+  {
+    "userID": "cmatteotti13@nydailynews.com",
+    "username": "cmatteotti13",
+    "passwordHash": "cMWwxc",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/141x100.png/cc0000/ffffff",
+    "firstName": "Charline",
+    "lastName": "Matteotti",
+    "userUni": 100,
+    "userSubscribed": [{ "courseID": 94 }, { "courseID": 78 }],
+    "userLiked": [],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 52 },
+      { "commentId": 75 },
+      { "commentId": 36 },
+      { "commentId": 91 },
+      { "commentId": 47 },
+      { "commentId": 41 },
+      { "commentId": 3 },
+      { "commentId": 69 }
+    ]
+  },
+  {
+    "userID": "ecopner14@umich.edu",
+    "username": "ecopner14",
+    "passwordHash": "4JR35vY9o",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/235x100.png/ff4444/ffffff",
+    "firstName": "Eulalie",
+    "lastName": "Copner",
+    "userUni": 9,
+    "userSubscribed": [{ "courseID": 71 }],
+    "userLiked": [
+      { "fileID": 82 },
+      { "fileID": 61 },
+      { "fileID": 87 },
+      { "fileID": 100 },
+      { "fileID": 71 }
+    ],
+    "userDisliked": [
+      { "fileID": 13 },
+      { "fileID": 98 },
+      { "fileID": 22 },
+      { "fileID": 63 },
+      { "fileID": 29 },
+      { "fileID": 44 },
+      { "fileID": 54 },
+      { "fileID": 41 },
+      { "fileID": 52 },
+      { "fileID": 38 }
+    ],
+    "userComments": [
+      { "commentId": 71 },
+      { "commentId": 83 },
+      { "commentId": 51 },
+      { "commentId": 71 }
+    ]
+  },
+  {
+    "userID": "dpisco15@cnet.com",
+    "username": "dpisco15",
+    "passwordHash": "qfYFQif5G8L",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/138x100.png/cc0000/ffffff",
+    "firstName": "D'arcy",
+    "lastName": "Pisco",
+    "userUni": 17,
+    "userSubscribed": [{ "courseID": 33 }, { "courseID": 31 }],
+    "userLiked": [{ "fileID": 76 }],
+    "userDisliked": [
+      { "fileID": 62 },
+      { "fileID": 2 },
+      { "fileID": 58 },
+      { "fileID": 83 },
+      { "fileID": 80 },
+      { "fileID": 24 },
+      { "fileID": 82 },
+      { "fileID": 41 },
+      { "fileID": 98 }
+    ],
+    "userComments": [
+      { "commentId": 52 },
+      { "commentId": 36 },
+      { "commentId": 50 },
+      { "commentId": 98 }
+    ]
+  },
+  {
+    "userID": "shuguenet16@xinhuanet.com",
+    "username": "shuguenet16",
+    "passwordHash": "3CYOMcLU",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/120x100.png/ff4444/ffffff",
+    "firstName": "Stephi",
+    "lastName": "Huguenet",
+    "userUni": 49,
+    "userSubscribed": [
+      { "courseID": 52 },
+      { "courseID": 48 },
+      { "courseID": 86 },
+      { "courseID": 10 },
+      { "courseID": 51 },
+      { "courseID": 60 },
+      { "courseID": 37 },
+      { "courseID": 74 },
+      { "courseID": 33 },
+      { "courseID": 49 }
+    ],
+    "userLiked": [
+      { "fileID": 86 },
+      { "fileID": 11 },
+      { "fileID": 59 },
+      { "fileID": 60 },
+      { "fileID": 99 },
+      { "fileID": 32 },
+      { "fileID": 38 }
+    ],
+    "userDisliked": [{ "fileID": 52 }, { "fileID": 33 }],
+    "userComments": [
+      { "commentId": 1 },
+      { "commentId": 30 },
+      { "commentId": 9 },
+      { "commentId": 36 },
+      { "commentId": 54 }
+    ]
+  },
+  {
+    "userID": "rgeraldo17@yelp.com",
+    "username": "rgeraldo17",
+    "passwordHash": "p5iu3TLDvw",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/145x100.png/ff4444/ffffff",
+    "firstName": "Rafaela",
+    "lastName": "Geraldo",
+    "userUni": 17,
+    "userSubscribed": [
+      { "courseID": 81 },
+      { "courseID": 1 },
+      { "courseID": 60 },
+      { "courseID": 74 },
+      { "courseID": 32 },
+      { "courseID": 3 }
+    ],
+    "userLiked": [
+      { "fileID": 11 },
+      { "fileID": 51 },
+      { "fileID": 35 },
+      { "fileID": 56 },
+      { "fileID": 26 },
+      { "fileID": 8 },
+      { "fileID": 40 },
+      { "fileID": 16 },
+      { "fileID": 70 }
+    ],
+    "userDisliked": [
+      { "fileID": 94 },
+      { "fileID": 39 },
+      { "fileID": 23 },
+      { "fileID": 72 },
+      { "fileID": 83 },
+      { "fileID": 4 },
+      { "fileID": 10 },
+      { "fileID": 8 }
+    ],
+    "userComments": [
+      { "commentId": 81 },
+      { "commentId": 5 },
+      { "commentId": 30 }
+    ]
+  },
+  {
+    "userID": "wpackwood18@columbia.edu",
+    "username": "wpackwood18",
+    "passwordHash": "BcSxH2VMba",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/126x100.png/ff4444/ffffff",
+    "firstName": "Winnie",
+    "lastName": "Packwood",
+    "userUni": 39,
+    "userSubscribed": [
+      { "courseID": 35 },
+      { "courseID": 25 },
+      { "courseID": 41 },
+      { "courseID": 43 },
+      { "courseID": 26 },
+      { "courseID": 84 }
+    ],
+    "userLiked": [
+      { "fileID": 2 },
+      { "fileID": 81 },
+      { "fileID": 13 },
+      { "fileID": 49 },
+      { "fileID": 87 },
+      { "fileID": 92 }
+    ],
+    "userDisliked": [{ "fileID": 98 }, { "fileID": 9 }, { "fileID": 20 }],
+    "userComments": [
+      { "commentId": 8 },
+      { "commentId": 59 },
+      { "commentId": 99 },
+      { "commentId": 23 },
+      { "commentId": 45 },
+      { "commentId": 60 },
+      { "commentId": 65 },
+      { "commentId": 53 },
+      { "commentId": 92 },
+      { "commentId": 75 }
+    ]
+  },
+  {
+    "userID": "kpeare19@chron.com",
+    "username": "kpeare19",
+    "passwordHash": "Zh3sRpOPCF",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/107x100.png/5fa2dd/ffffff",
+    "firstName": "Kleon",
+    "lastName": "Peare",
+    "userUni": 88,
+    "userSubscribed": [
+      { "courseID": 13 },
+      { "courseID": 74 },
+      { "courseID": 21 }
+    ],
+    "userLiked": [
+      { "fileID": 88 },
+      { "fileID": 27 },
+      { "fileID": 62 },
+      { "fileID": 30 },
+      { "fileID": 72 },
+      { "fileID": 79 },
+      { "fileID": 54 },
+      { "fileID": 23 },
+      { "fileID": 78 }
+    ],
+    "userDisliked": [
+      { "fileID": 99 },
+      { "fileID": 59 },
+      { "fileID": 94 },
+      { "fileID": 15 },
+      { "fileID": 28 },
+      { "fileID": 69 },
+      { "fileID": 15 },
+      { "fileID": 14 },
+      { "fileID": 71 }
+    ],
+    "userComments": [
+      { "commentId": 49 },
+      { "commentId": 47 },
+      { "commentId": 12 },
+      { "commentId": 64 }
+    ]
+  },
+  {
+    "userID": "cminister1a@nih.gov",
+    "username": "cminister1a",
+    "passwordHash": "pTMsoT352boR",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/168x100.png/cc0000/ffffff",
+    "firstName": "Cairistiona",
+    "lastName": "Minister",
+    "userUni": 41,
+    "userSubscribed": [
+      { "courseID": 84 },
+      { "courseID": 71 },
+      { "courseID": 38 },
+      { "courseID": 83 },
+      { "courseID": 32 },
+      { "courseID": 21 },
+      { "courseID": 61 },
+      { "courseID": 93 },
+      { "courseID": 97 },
+      { "courseID": 76 }
+    ],
+    "userLiked": [
+      { "fileID": 5 },
+      { "fileID": 35 },
+      { "fileID": 28 },
+      { "fileID": 45 },
+      { "fileID": 99 },
+      { "fileID": 26 },
+      { "fileID": 23 }
+    ],
+    "userDisliked": [
+      { "fileID": 52 },
+      { "fileID": 77 },
+      { "fileID": 86 },
+      { "fileID": 20 },
+      { "fileID": 76 },
+      { "fileID": 61 },
+      { "fileID": 60 },
+      { "fileID": 89 },
+      { "fileID": 96 }
+    ],
+    "userComments": [{ "commentId": 59 }]
+  },
+  {
+    "userID": "bmilby1b@gmpg.org",
+    "username": "bmilby1b",
+    "passwordHash": "TCRkygcYDRl",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/137x100.png/cc0000/ffffff",
+    "firstName": "Budd",
+    "lastName": "Milby",
+    "userUni": 98,
+    "userSubscribed": [
+      { "courseID": 79 },
+      { "courseID": 75 },
+      { "courseID": 15 },
+      { "courseID": 30 },
+      { "courseID": 43 },
+      { "courseID": 96 },
+      { "courseID": 41 }
+    ],
+    "userLiked": [
+      { "fileID": 46 },
+      { "fileID": 98 },
+      { "fileID": 30 },
+      { "fileID": 40 },
+      { "fileID": 59 },
+      { "fileID": 20 },
+      { "fileID": 17 },
+      { "fileID": 27 },
+      { "fileID": 72 }
+    ],
+    "userDisliked": [
+      { "fileID": 82 },
+      { "fileID": 25 },
+      { "fileID": 53 },
+      { "fileID": 48 }
+    ],
+    "userComments": [
+      { "commentId": 60 },
+      { "commentId": 18 },
+      { "commentId": 65 },
+      { "commentId": 27 },
+      { "commentId": 77 },
+      { "commentId": 53 }
+    ]
+  },
+  {
+    "userID": "bnickoll1c@ihg.com",
+    "username": "bnickoll1c",
+    "passwordHash": "eY2ufdk",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/228x100.png/5fa2dd/ffffff",
+    "firstName": "Bea",
+    "lastName": "Nickoll",
+    "userUni": 70,
+    "userSubscribed": [
+      { "courseID": 21 },
+      { "courseID": 71 },
+      { "courseID": 5 },
+      { "courseID": 53 },
+      { "courseID": 81 },
+      { "courseID": 81 }
+    ],
+    "userLiked": [
+      { "fileID": 95 },
+      { "fileID": 11 },
+      { "fileID": 65 },
+      { "fileID": 83 },
+      { "fileID": 65 },
+      { "fileID": 82 },
+      { "fileID": 76 }
+    ],
+    "userDisliked": [
+      { "fileID": 71 },
+      { "fileID": 65 },
+      { "fileID": 42 },
+      { "fileID": 65 }
+    ],
+    "userComments": [
+      { "commentId": 19 },
+      { "commentId": 11 },
+      { "commentId": 19 }
+    ]
+  },
+  {
+    "userID": "callright1d@mail.ru",
+    "username": "callright1d",
+    "passwordHash": "bkQYSHJM",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/248x100.png/5fa2dd/ffffff",
+    "firstName": "Cori",
+    "lastName": "Allright",
+    "userUni": 96,
+    "userSubscribed": [
+      { "courseID": 84 },
+      { "courseID": 42 },
+      { "courseID": 34 },
+      { "courseID": 15 },
+      { "courseID": 80 },
+      { "courseID": 93 },
+      { "courseID": 91 },
+      { "courseID": 82 },
+      { "courseID": 58 },
+      { "courseID": 99 }
+    ],
+    "userLiked": [
+      { "fileID": 47 },
+      { "fileID": 2 },
+      { "fileID": 100 },
+      { "fileID": 49 },
+      { "fileID": 23 },
+      { "fileID": 53 }
+    ],
+    "userDisliked": [{ "fileID": 26 }, { "fileID": 87 }, { "fileID": 89 }],
+    "userComments": [
+      { "commentId": 57 },
+      { "commentId": 98 },
+      { "commentId": 80 }
+    ]
+  },
+  {
+    "userID": "cvelten1e@purevolume.com",
+    "username": "cvelten1e",
+    "passwordHash": "cC8Liz8ejY",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/220x100.png/cc0000/ffffff",
+    "firstName": "Cyrillus",
+    "lastName": "Velten",
+    "userUni": 43,
+    "userSubscribed": [
+      { "courseID": 28 },
+      { "courseID": 68 },
+      { "courseID": 17 },
+      { "courseID": 74 },
+      { "courseID": 84 },
+      { "courseID": 37 },
+      { "courseID": 50 }
+    ],
+    "userLiked": [
+      { "fileID": 85 },
+      { "fileID": 54 },
+      { "fileID": 66 },
+      { "fileID": 23 },
+      { "fileID": 94 },
+      { "fileID": 51 },
+      { "fileID": 27 },
+      { "fileID": 90 }
+    ],
+    "userDisliked": [{ "fileID": 74 }, { "fileID": 59 }, { "fileID": 20 }],
+    "userComments": [
+      { "commentId": 50 },
+      { "commentId": 65 },
+      { "commentId": 54 },
+      { "commentId": 23 },
+      { "commentId": 87 },
+      { "commentId": 20 }
+    ]
+  },
+  {
+    "userID": "egillmore1f@blogtalkradio.com",
+    "username": "egillmore1f",
+    "passwordHash": "Tr1kkp",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/147x100.png/5fa2dd/ffffff",
+    "firstName": "Elbertina",
+    "lastName": "Gillmore",
+    "userUni": 64,
+    "userSubscribed": [
+      { "courseID": 32 },
+      { "courseID": 69 },
+      { "courseID": 34 },
+      { "courseID": 85 },
+      { "courseID": 36 },
+      { "courseID": 64 },
+      { "courseID": 76 },
+      { "courseID": 35 },
+      { "courseID": 29 }
+    ],
+    "userLiked": [{ "fileID": 17 }, { "fileID": 50 }, { "fileID": 6 }],
+    "userDisliked": [
+      { "fileID": 45 },
+      { "fileID": 9 },
+      { "fileID": 65 },
+      { "fileID": 6 }
+    ],
+    "userComments": [
+      { "commentId": 23 },
+      { "commentId": 35 },
+      { "commentId": 53 },
+      { "commentId": 97 },
+      { "commentId": 26 },
+      { "commentId": 4 },
+      { "commentId": 91 },
+      { "commentId": 15 }
+    ]
+  },
+  {
+    "userID": "cbicheno1g@shop-pro.jp",
+    "username": "cbicheno1g",
+    "passwordHash": "cyJTg86",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/118x100.png/dddddd/000000",
+    "firstName": "Cynthia",
+    "lastName": "Bicheno",
+    "userUni": 95,
+    "userSubscribed": [
+      { "courseID": 80 },
+      { "courseID": 79 },
+      { "courseID": 92 },
+      { "courseID": 97 },
+      { "courseID": 42 }
+    ],
+    "userLiked": [
+      { "fileID": 58 },
+      { "fileID": 30 },
+      { "fileID": 78 },
+      { "fileID": 23 },
+      { "fileID": 81 },
+      { "fileID": 89 }
+    ],
+    "userDisliked": [
+      { "fileID": 8 },
+      { "fileID": 93 },
+      { "fileID": 98 },
+      { "fileID": 60 },
+      { "fileID": 2 },
+      { "fileID": 45 },
+      { "fileID": 4 },
+      { "fileID": 72 },
+      { "fileID": 22 },
+      { "fileID": 71 }
+    ],
+    "userComments": [
+      { "commentId": 29 },
+      { "commentId": 24 },
+      { "commentId": 11 },
+      { "commentId": 38 },
+      { "commentId": 22 },
+      { "commentId": 23 },
+      { "commentId": 2 }
+    ]
+  },
+  {
+    "userID": "jzelner1h@fda.gov",
+    "username": "jzelner1h",
+    "passwordHash": "UqxTRVaUAFHI",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/146x100.png/cc0000/ffffff",
+    "firstName": "Jamey",
+    "lastName": "Zelner",
+    "userUni": 50,
+    "userSubscribed": [
+      { "courseID": 48 },
+      { "courseID": 24 },
+      { "courseID": 82 },
+      { "courseID": 29 },
+      { "courseID": 25 }
+    ],
+    "userLiked": [{ "fileID": 29 }, { "fileID": 56 }, { "fileID": 75 }],
+    "userDisliked": [
+      { "fileID": 27 },
+      { "fileID": 85 },
+      { "fileID": 93 },
+      { "fileID": 35 }
+    ],
+    "userComments": [
+      { "commentId": 72 },
+      { "commentId": 22 },
+      { "commentId": 92 },
+      { "commentId": 91 },
+      { "commentId": 33 }
+    ]
+  },
+  {
+    "userID": "sfarrears1i@ask.com",
+    "username": "sfarrears1i",
+    "passwordHash": "uAlarcWeKE",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/222x100.png/dddddd/000000",
+    "firstName": "Sheilakathryn",
+    "lastName": "Farrears",
+    "userUni": 69,
+    "userSubscribed": [
+      { "courseID": 97 },
+      { "courseID": 100 },
+      { "courseID": 100 },
+      { "courseID": 57 },
+      { "courseID": 58 },
+      { "courseID": 14 }
+    ],
+    "userLiked": [
+      { "fileID": 22 },
+      { "fileID": 9 },
+      { "fileID": 16 },
+      { "fileID": 91 },
+      { "fileID": 36 },
+      { "fileID": 73 },
+      { "fileID": 45 },
+      { "fileID": 51 },
+      { "fileID": 89 },
+      { "fileID": 24 }
+    ],
+    "userDisliked": [
+      { "fileID": 56 },
+      { "fileID": 77 },
+      { "fileID": 6 },
+      { "fileID": 22 },
+      { "fileID": 17 },
+      { "fileID": 73 },
+      { "fileID": 25 },
+      { "fileID": 96 },
+      { "fileID": 28 },
+      { "fileID": 36 }
+    ],
+    "userComments": [
+      { "commentId": 1 },
+      { "commentId": 58 },
+      { "commentId": 35 },
+      { "commentId": 52 },
+      { "commentId": 78 },
+      { "commentId": 89 },
+      { "commentId": 10 },
+      { "commentId": 93 }
+    ]
+  },
+  {
+    "userID": "hdandison1j@surveymonkey.com",
+    "username": "hdandison1j",
+    "passwordHash": "cPICFD",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/102x100.png/ff4444/ffffff",
+    "firstName": "Hagan",
+    "lastName": "Dandison",
+    "userUni": 100,
+    "userSubscribed": [
+      { "courseID": 84 },
+      { "courseID": 34 },
+      { "courseID": 99 },
+      { "courseID": 5 },
+      { "courseID": 35 },
+      { "courseID": 1 },
+      { "courseID": 65 },
+      { "courseID": 16 },
+      { "courseID": 45 },
+      { "courseID": 28 }
+    ],
+    "userLiked": [
+      { "fileID": 78 },
+      { "fileID": 69 },
+      { "fileID": 42 },
+      { "fileID": 64 },
+      { "fileID": 35 },
+      { "fileID": 36 },
+      { "fileID": 35 },
+      { "fileID": 73 },
+      { "fileID": 87 },
+      { "fileID": 88 }
+    ],
+    "userDisliked": [
+      { "fileID": 56 },
+      { "fileID": 87 },
+      { "fileID": 19 },
+      { "fileID": 51 },
+      { "fileID": 9 },
+      { "fileID": 99 },
+      { "fileID": 14 }
+    ],
+    "userComments": [{ "commentId": 25 }]
+  },
+  {
+    "userID": "rledingham1k@opensource.org",
+    "username": "rledingham1k",
+    "passwordHash": "n2KPfUetdlF",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/105x100.png/dddddd/000000",
+    "firstName": "Ram",
+    "lastName": "Ledingham",
+    "userUni": 92,
+    "userSubscribed": [{ "courseID": 85 }, { "courseID": 18 }],
+    "userLiked": [
+      { "fileID": 67 },
+      { "fileID": 2 },
+      { "fileID": 27 },
+      { "fileID": 19 },
+      { "fileID": 14 },
+      { "fileID": 22 }
+    ],
+    "userDisliked": [{ "fileID": 2 }, { "fileID": 41 }],
+    "userComments": [
+      { "commentId": 8 },
+      { "commentId": 37 },
+      { "commentId": 93 },
+      { "commentId": 67 },
+      { "commentId": 49 },
+      { "commentId": 57 }
+    ]
+  },
+  {
+    "userID": "snutley1l@fc2.com",
+    "username": "snutley1l",
+    "passwordHash": "BvwPyKYQyp7V",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/150x100.png/ff4444/ffffff",
+    "firstName": "Sharline",
+    "lastName": "Nutley",
+    "userUni": 93,
+    "userSubscribed": [
+      { "courseID": 30 },
+      { "courseID": 26 },
+      { "courseID": 54 }
+    ],
+    "userLiked": [
+      { "fileID": 12 },
+      { "fileID": 12 },
+      { "fileID": 34 },
+      { "fileID": 38 },
+      { "fileID": 37 },
+      { "fileID": 75 },
+      { "fileID": 38 },
+      { "fileID": 27 },
+      { "fileID": 58 },
+      { "fileID": 8 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 81 },
+      { "commentId": 31 },
+      { "commentId": 51 },
+      { "commentId": 63 },
+      { "commentId": 8 },
+      { "commentId": 41 },
+      { "commentId": 33 }
+    ]
+  },
+  {
+    "userID": "hborleace1m@ovh.net",
+    "username": "hborleace1m",
+    "passwordHash": "txmKvkv",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/249x100.png/dddddd/000000",
+    "firstName": "Hunfredo",
+    "lastName": "Borleace",
+    "userUni": 1,
+    "userSubscribed": [{ "courseID": 38 }, { "courseID": 67 }],
+    "userLiked": [
+      { "fileID": 41 },
+      { "fileID": 11 },
+      { "fileID": 97 },
+      { "fileID": 91 },
+      { "fileID": 27 },
+      { "fileID": 55 },
+      { "fileID": 88 }
+    ],
+    "userDisliked": [
+      { "fileID": 24 },
+      { "fileID": 25 },
+      { "fileID": 72 },
+      { "fileID": 54 },
+      { "fileID": 68 },
+      { "fileID": 5 },
+      { "fileID": 46 },
+      { "fileID": 14 },
+      { "fileID": 11 },
+      { "fileID": 97 }
+    ],
+    "userComments": [
+      { "commentId": 67 },
+      { "commentId": 80 },
+      { "commentId": 24 },
+      { "commentId": 57 },
+      { "commentId": 89 },
+      { "commentId": 69 }
+    ]
+  },
+  {
+    "userID": "herangy1n@ca.gov",
+    "username": "herangy1n",
+    "passwordHash": "3dvBRH7d",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/219x100.png/dddddd/000000",
+    "firstName": "Harlan",
+    "lastName": "Erangy",
+    "userUni": 81,
+    "userSubscribed": [
+      { "courseID": 53 },
+      { "courseID": 51 },
+      { "courseID": 93 },
+      { "courseID": 48 },
+      { "courseID": 24 },
+      { "courseID": 71 }
+    ],
+    "userLiked": [
+      { "fileID": 34 },
+      { "fileID": 36 },
+      { "fileID": 10 },
+      { "fileID": 71 },
+      { "fileID": 74 },
+      { "fileID": 100 },
+      { "fileID": 46 },
+      { "fileID": 88 },
+      { "fileID": 98 }
+    ],
+    "userDisliked": [{ "fileID": 14 }, { "fileID": 16 }],
+    "userComments": [
+      { "commentId": 95 },
+      { "commentId": 10 },
+      { "commentId": 71 },
+      { "commentId": 91 },
+      { "commentId": 1 },
+      { "commentId": 13 },
+      { "commentId": 71 },
+      { "commentId": 63 },
+      { "commentId": 52 },
+      { "commentId": 89 }
+    ]
+  },
+  {
+    "userID": "msowter1o@simplemachines.org",
+    "username": "msowter1o",
+    "passwordHash": "PIFCEU0",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/238x100.png/ff4444/ffffff",
+    "firstName": "Meade",
+    "lastName": "Sowter",
+    "userUni": 77,
+    "userSubscribed": [
+      { "courseID": 9 },
+      { "courseID": 49 },
+      { "courseID": 28 }
+    ],
+    "userLiked": [
+      { "fileID": 27 },
+      { "fileID": 89 },
+      { "fileID": 28 },
+      { "fileID": 2 },
+      { "fileID": 61 },
+      { "fileID": 19 },
+      { "fileID": 49 },
+      { "fileID": 62 },
+      { "fileID": 40 },
+      { "fileID": 51 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 64 },
+      { "commentId": 84 },
+      { "commentId": 37 },
+      { "commentId": 29 },
+      { "commentId": 98 }
+    ]
+  },
+  {
+    "userID": "scadlock1p@nydailynews.com",
+    "username": "scadlock1p",
+    "passwordHash": "VnToeJb",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/177x100.png/5fa2dd/ffffff",
+    "firstName": "Sibelle",
+    "lastName": "Cadlock",
+    "userUni": 75,
+    "userSubscribed": [
+      { "courseID": 83 },
+      { "courseID": 34 },
+      { "courseID": 29 },
+      { "courseID": 62 },
+      { "courseID": 11 },
+      { "courseID": 26 },
+      { "courseID": 37 },
+      { "courseID": 6 }
+    ],
+    "userLiked": [{ "fileID": 50 }],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 79 },
+      { "commentId": 81 },
+      { "commentId": 33 },
+      { "commentId": 44 },
+      { "commentId": 98 },
+      { "commentId": 23 },
+      { "commentId": 1 },
+      { "commentId": 56 },
+      { "commentId": 74 }
+    ]
+  },
+  {
+    "userID": "enavan1q@taobao.com",
+    "username": "enavan1q",
+    "passwordHash": "AVxTLy6Rbw1",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/221x100.png/cc0000/ffffff",
+    "firstName": "Eddy",
+    "lastName": "Navan",
+    "userUni": 20,
+    "userSubscribed": [{ "courseID": 85 }, { "courseID": 81 }],
+    "userLiked": [
+      { "fileID": 55 },
+      { "fileID": 28 },
+      { "fileID": 3 },
+      { "fileID": 15 }
+    ],
+    "userDisliked": [{ "fileID": 99 }, { "fileID": 42 }, { "fileID": 44 }],
+    "userComments": [
+      { "commentId": 6 },
+      { "commentId": 41 },
+      { "commentId": 47 },
+      { "commentId": 6 },
+      { "commentId": 83 },
+      { "commentId": 18 },
+      { "commentId": 92 },
+      { "commentId": 9 },
+      { "commentId": 37 },
+      { "commentId": 87 }
+    ]
+  },
+  {
+    "userID": "bclaire1r@go.com",
+    "username": "bclaire1r",
+    "passwordHash": "GmzLmbIvO",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/108x100.png/5fa2dd/ffffff",
+    "firstName": "Brunhilda",
+    "lastName": "Claire",
+    "userUni": 2,
+    "userSubscribed": [
+      { "courseID": 60 },
+      { "courseID": 44 },
+      { "courseID": 37 },
+      { "courseID": 32 },
+      { "courseID": 32 }
+    ],
+    "userLiked": [],
+    "userDisliked": [{ "fileID": 31 }],
+    "userComments": [
+      { "commentId": 22 },
+      { "commentId": 60 },
+      { "commentId": 77 },
+      { "commentId": 86 },
+      { "commentId": 48 },
+      { "commentId": 1 },
+      { "commentId": 48 },
+      { "commentId": 61 }
+    ]
+  },
+  {
+    "userID": "nreilly1s@cmu.edu",
+    "username": "nreilly1s",
+    "passwordHash": "kRjNq9T2I1",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/220x100.png/ff4444/ffffff",
+    "firstName": "Nara",
+    "lastName": "Reilly",
+    "userUni": 51,
+    "userSubscribed": [],
+    "userLiked": [
+      { "fileID": 1 },
+      { "fileID": 98 },
+      { "fileID": 1 },
+      { "fileID": 41 }
+    ],
+    "userDisliked": [
+      { "fileID": 2 },
+      { "fileID": 90 },
+      { "fileID": 60 },
+      { "fileID": 19 },
+      { "fileID": 16 },
+      { "fileID": 63 }
+    ],
+    "userComments": [
+      { "commentId": 53 },
+      { "commentId": 44 },
+      { "commentId": 87 },
+      { "commentId": 45 },
+      { "commentId": 75 },
+      { "commentId": 13 },
+      { "commentId": 24 },
+      { "commentId": 55 },
+      { "commentId": 33 }
+    ]
+  },
+  {
+    "userID": "gsantacrole1t@accuweather.com",
+    "username": "gsantacrole1t",
+    "passwordHash": "T56tumAnOg",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/123x100.png/cc0000/ffffff",
+    "firstName": "Gilbertina",
+    "lastName": "Santacrole",
+    "userUni": 96,
+    "userSubscribed": [],
+    "userLiked": [
+      { "fileID": 94 },
+      { "fileID": 34 },
+      { "fileID": 34 },
+      { "fileID": 19 },
+      { "fileID": 25 },
+      { "fileID": 95 },
+      { "fileID": 41 }
+    ],
+    "userDisliked": [
+      { "fileID": 13 },
+      { "fileID": 95 },
+      { "fileID": 43 },
+      { "fileID": 38 }
+    ],
+    "userComments": [{ "commentId": 39 }, { "commentId": 67 }]
+  },
+  {
+    "userID": "wpevie1u@jugem.jp",
+    "username": "wpevie1u",
+    "passwordHash": "GRpoqtTpd",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/206x100.png/dddddd/000000",
+    "firstName": "Winthrop",
+    "lastName": "Pevie",
+    "userUni": 50,
+    "userSubscribed": [],
+    "userLiked": [
+      { "fileID": 81 },
+      { "fileID": 97 },
+      { "fileID": 7 },
+      { "fileID": 30 },
+      { "fileID": 84 },
+      { "fileID": 13 },
+      { "fileID": 73 },
+      { "fileID": 2 },
+      { "fileID": 6 }
+    ],
+    "userDisliked": [],
+    "userComments": [{ "commentId": 74 }]
+  },
+  {
+    "userID": "wblything1v@apple.com",
+    "username": "wblything1v",
+    "passwordHash": "uhfWQQZ0yZ",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/241x100.png/dddddd/000000",
+    "firstName": "Waldemar",
+    "lastName": "Blything",
+    "userUni": 13,
+    "userSubscribed": [
+      { "courseID": 45 },
+      { "courseID": 98 },
+      { "courseID": 21 },
+      { "courseID": 52 },
+      { "courseID": 37 },
+      { "courseID": 62 },
+      { "courseID": 78 },
+      { "courseID": 29 }
+    ],
+    "userLiked": [
+      { "fileID": 32 },
+      { "fileID": 94 },
+      { "fileID": 42 },
+      { "fileID": 53 },
+      { "fileID": 14 },
+      { "fileID": 50 },
+      { "fileID": 93 },
+      { "fileID": 21 },
+      { "fileID": 94 },
+      { "fileID": 97 }
+    ],
+    "userDisliked": [{ "fileID": 72 }, { "fileID": 65 }],
+    "userComments": [
+      { "commentId": 78 },
+      { "commentId": 6 },
+      { "commentId": 68 },
+      { "commentId": 56 }
+    ]
+  },
+  {
+    "userID": "woshee1w@fc2.com",
+    "username": "woshee1w",
+    "passwordHash": "hASvagp8Km",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/223x100.png/ff4444/ffffff",
+    "firstName": "Willamina",
+    "lastName": "O'Shee",
+    "userUni": 39,
+    "userSubscribed": [{ "courseID": 88 }],
+    "userLiked": [],
+    "userDisliked": [{ "fileID": 82 }, { "fileID": 13 }, { "fileID": 66 }],
+    "userComments": [
+      { "commentId": 69 },
+      { "commentId": 62 },
+      { "commentId": 93 }
+    ]
+  },
+  {
+    "userID": "swylie1x@ucoz.ru",
+    "username": "swylie1x",
+    "passwordHash": "qpxXYTj",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/250x100.png/5fa2dd/ffffff",
+    "firstName": "Sherry",
+    "lastName": "Wylie",
+    "userUni": 51,
+    "userSubscribed": [
+      { "courseID": 19 },
+      { "courseID": 29 },
+      { "courseID": 29 }
+    ],
+    "userLiked": [
+      { "fileID": 21 },
+      { "fileID": 45 },
+      { "fileID": 21 },
+      { "fileID": 83 },
+      { "fileID": 9 },
+      { "fileID": 87 },
+      { "fileID": 27 },
+      { "fileID": 41 },
+      { "fileID": 83 },
+      { "fileID": 34 }
+    ],
+    "userDisliked": [
+      { "fileID": 55 },
+      { "fileID": 65 },
+      { "fileID": 33 },
+      { "fileID": 37 },
+      { "fileID": 88 },
+      { "fileID": 1 }
+    ],
+    "userComments": [
+      { "commentId": 94 },
+      { "commentId": 67 },
+      { "commentId": 73 },
+      { "commentId": 1 },
+      { "commentId": 79 },
+      { "commentId": 36 }
+    ]
+  },
+  {
+    "userID": "ldinwoodie1y@biglobe.ne.jp",
+    "username": "ldinwoodie1y",
+    "passwordHash": "BXGdBBXMwZCd",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/134x100.png/ff4444/ffffff",
+    "firstName": "Lynnette",
+    "lastName": "Dinwoodie",
+    "userUni": 29,
+    "userSubscribed": [{ "courseID": 12 }],
+    "userLiked": [{ "fileID": 99 }, { "fileID": 32 }],
+    "userDisliked": [
+      { "fileID": 65 },
+      { "fileID": 58 },
+      { "fileID": 5 },
+      { "fileID": 90 },
+      { "fileID": 96 },
+      { "fileID": 38 }
+    ],
+    "userComments": [
+      { "commentId": 73 },
+      { "commentId": 26 },
+      { "commentId": 19 },
+      { "commentId": 6 },
+      { "commentId": 13 },
+      { "commentId": 66 },
+      { "commentId": 92 },
+      { "commentId": 95 },
+      { "commentId": 52 },
+      { "commentId": 100 }
+    ]
+  },
+  {
+    "userID": "jboutellier1z@ow.ly",
+    "username": "jboutellier1z",
+    "passwordHash": "517eQgE",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/206x100.png/5fa2dd/ffffff",
+    "firstName": "Janos",
+    "lastName": "Boutellier",
+    "userUni": 91,
+    "userSubscribed": [{ "courseID": 96 }, { "courseID": 97 }],
+    "userLiked": [
+      { "fileID": 45 },
+      { "fileID": 55 },
+      { "fileID": 35 },
+      { "fileID": 95 },
+      { "fileID": 22 }
+    ],
+    "userDisliked": [
+      { "fileID": 30 },
+      { "fileID": 99 },
+      { "fileID": 75 },
+      { "fileID": 15 },
+      { "fileID": 85 },
+      { "fileID": 28 },
+      { "fileID": 93 }
+    ],
+    "userComments": [
+      { "commentId": 82 },
+      { "commentId": 63 },
+      { "commentId": 57 },
+      { "commentId": 69 },
+      { "commentId": 80 },
+      { "commentId": 99 },
+      { "commentId": 50 },
+      { "commentId": 9 },
+      { "commentId": 69 },
+      { "commentId": 4 }
+    ]
+  },
+  {
+    "userID": "tker20@boston.com",
+    "username": "tker20",
+    "passwordHash": "kAZ8Bk",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/120x100.png/5fa2dd/ffffff",
+    "firstName": "Townie",
+    "lastName": "Ker",
+    "userUni": 44,
+    "userSubscribed": [
+      { "courseID": 28 },
+      { "courseID": 58 },
+      { "courseID": 58 }
+    ],
+    "userLiked": [
+      { "fileID": 87 },
+      { "fileID": 71 },
+      { "fileID": 59 },
+      { "fileID": 60 },
+      { "fileID": 31 }
+    ],
+    "userDisliked": [
+      { "fileID": 65 },
+      { "fileID": 75 },
+      { "fileID": 45 },
+      { "fileID": 97 },
+      { "fileID": 13 }
+    ],
+    "userComments": [
+      { "commentId": 84 },
+      { "commentId": 68 },
+      { "commentId": 86 },
+      { "commentId": 56 },
+      { "commentId": 28 },
+      { "commentId": 48 },
+      { "commentId": 35 }
+    ]
+  },
+  {
+    "userID": "emckerton21@desdev.cn",
+    "username": "emckerton21",
+    "passwordHash": "t4jflbHZKMp",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/168x100.png/ff4444/ffffff",
+    "firstName": "Egbert",
+    "lastName": "McKerton",
+    "userUni": 90,
+    "userSubscribed": [{ "courseID": 93 }],
+    "userLiked": [
+      { "fileID": 48 },
+      { "fileID": 40 },
+      { "fileID": 8 },
+      { "fileID": 66 }
+    ],
+    "userDisliked": [
+      { "fileID": 75 },
+      { "fileID": 56 },
+      { "fileID": 62 },
+      { "fileID": 31 },
+      { "fileID": 34 },
+      { "fileID": 31 },
+      { "fileID": 70 }
+    ],
+    "userComments": [{ "commentId": 22 }]
+  },
+  {
+    "userID": "kfullerlove22@goo.ne.jp",
+    "username": "kfullerlove22",
+    "passwordHash": "XQfIx0409Q",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/223x100.png/dddddd/000000",
+    "firstName": "Kippie",
+    "lastName": "Fullerlove",
+    "userUni": 95,
+    "userSubscribed": [
+      { "courseID": 19 },
+      { "courseID": 71 },
+      { "courseID": 89 },
+      { "courseID": 18 },
+      { "courseID": 6 }
+    ],
+    "userLiked": [
+      { "fileID": 62 },
+      { "fileID": 30 },
+      { "fileID": 62 },
+      { "fileID": 24 },
+      { "fileID": 45 },
+      { "fileID": 99 },
+      { "fileID": 100 },
+      { "fileID": 67 }
+    ],
+    "userDisliked": [
+      { "fileID": 46 },
+      { "fileID": 44 },
+      { "fileID": 72 },
+      { "fileID": 25 },
+      { "fileID": 9 },
+      { "fileID": 47 },
+      { "fileID": 83 },
+      { "fileID": 40 },
+      { "fileID": 6 }
+    ],
+    "userComments": [
+      { "commentId": 28 },
+      { "commentId": 7 },
+      { "commentId": 19 }
+    ]
+  },
+  {
+    "userID": "rshambrook23@homestead.com",
+    "username": "rshambrook23",
+    "passwordHash": "LgtCsJPQ0fN",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/202x100.png/cc0000/ffffff",
+    "firstName": "Reese",
+    "lastName": "Shambrook",
+    "userUni": 83,
+    "userSubscribed": [{ "courseID": 73 }],
+    "userLiked": [{ "fileID": 13 }],
+    "userDisliked": [{ "fileID": 5 }, { "fileID": 11 }],
+    "userComments": []
+  },
+  {
+    "userID": "bgladding24@stanford.edu",
+    "username": "bgladding24",
+    "passwordHash": "jensQW",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/196x100.png/cc0000/ffffff",
+    "firstName": "Bertine",
+    "lastName": "Gladding",
+    "userUni": 67,
+    "userSubscribed": [
+      { "courseID": 67 },
+      { "courseID": 31 },
+      { "courseID": 61 },
+      { "courseID": 19 },
+      { "courseID": 86 },
+      { "courseID": 38 },
+      { "courseID": 47 }
+    ],
+    "userLiked": [
+      { "fileID": 74 },
+      { "fileID": 87 },
+      { "fileID": 79 },
+      { "fileID": 32 },
+      { "fileID": 79 },
+      { "fileID": 91 },
+      { "fileID": 97 },
+      { "fileID": 51 },
+      { "fileID": 24 },
+      { "fileID": 37 }
+    ],
+    "userDisliked": [
+      { "fileID": 96 },
+      { "fileID": 2 },
+      { "fileID": 97 },
+      { "fileID": 5 },
+      { "fileID": 69 },
+      { "fileID": 52 },
+      { "fileID": 24 }
+    ],
+    "userComments": [
+      { "commentId": 87 },
+      { "commentId": 33 },
+      { "commentId": 50 },
+      { "commentId": 33 },
+      { "commentId": 60 },
+      { "commentId": 82 },
+      { "commentId": 42 },
+      { "commentId": 3 },
+      { "commentId": 92 }
+    ]
+  },
+  {
+    "userID": "winmett25@e-recht24.de",
+    "username": "winmett25",
+    "passwordHash": "kMOisO",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/168x100.png/ff4444/ffffff",
+    "firstName": "Wilone",
+    "lastName": "Inmett",
+    "userUni": 41,
+    "userSubscribed": [
+      { "courseID": 59 },
+      { "courseID": 35 },
+      { "courseID": 77 },
+      { "courseID": 80 },
+      { "courseID": 41 },
+      { "courseID": 84 },
+      { "courseID": 24 },
+      { "courseID": 28 },
+      { "courseID": 52 },
+      { "courseID": 6 }
+    ],
+    "userLiked": [
+      { "fileID": 13 },
+      { "fileID": 51 },
+      { "fileID": 96 },
+      { "fileID": 40 },
+      { "fileID": 78 },
+      { "fileID": 59 },
+      { "fileID": 60 },
+      { "fileID": 97 }
+    ],
+    "userDisliked": [
+      { "fileID": 2 },
+      { "fileID": 12 },
+      { "fileID": 50 },
+      { "fileID": 89 },
+      { "fileID": 22 }
+    ],
+    "userComments": [
+      { "commentId": 53 },
+      { "commentId": 72 },
+      { "commentId": 32 },
+      { "commentId": 9 },
+      { "commentId": 32 },
+      { "commentId": 99 },
+      { "commentId": 77 },
+      { "commentId": 48 }
+    ]
+  },
+  {
+    "userID": "kinglesant26@cornell.edu",
+    "username": "kinglesant26",
+    "passwordHash": "thJ0Rz",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/247x100.png/ff4444/ffffff",
+    "firstName": "Katherine",
+    "lastName": "Inglesant",
+    "userUni": 37,
+    "userSubscribed": [
+      { "courseID": 34 },
+      { "courseID": 31 },
+      { "courseID": 17 }
+    ],
+    "userLiked": [
+      { "fileID": 10 },
+      { "fileID": 87 },
+      { "fileID": 95 },
+      { "fileID": 66 },
+      { "fileID": 26 },
+      { "fileID": 36 },
+      { "fileID": 98 },
+      { "fileID": 15 },
+      { "fileID": 13 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 73 },
+      { "commentId": 65 },
+      { "commentId": 66 },
+      { "commentId": 70 },
+      { "commentId": 56 },
+      { "commentId": 30 },
+      { "commentId": 59 }
+    ]
+  },
+  {
+    "userID": "aloffill27@w3.org",
+    "username": "aloffill27",
+    "passwordHash": "A2k4wlmmTE",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/119x100.png/ff4444/ffffff",
+    "firstName": "Antonella",
+    "lastName": "Loffill",
+    "userUni": 74,
+    "userSubscribed": [
+      { "courseID": 44 },
+      { "courseID": 3 },
+      { "courseID": 35 },
+      { "courseID": 65 },
+      { "courseID": 26 },
+      { "courseID": 22 },
+      { "courseID": 2 },
+      { "courseID": 10 }
+    ],
+    "userLiked": [
+      { "fileID": 74 },
+      { "fileID": 67 },
+      { "fileID": 99 },
+      { "fileID": 27 },
+      { "fileID": 35 },
+      { "fileID": 22 }
+    ],
+    "userDisliked": [{ "fileID": 70 }, { "fileID": 23 }, { "fileID": 56 }],
+    "userComments": [
+      { "commentId": 8 },
+      { "commentId": 40 },
+      { "commentId": 78 },
+      { "commentId": 72 },
+      { "commentId": 91 },
+      { "commentId": 6 },
+      { "commentId": 82 }
+    ]
+  },
+  {
+    "userID": "loager28@tuttocitta.it",
+    "username": "loager28",
+    "passwordHash": "VBkMIhS",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/114x100.png/dddddd/000000",
+    "firstName": "Leonie",
+    "lastName": "Oager",
+    "userUni": 32,
+    "userSubscribed": [
+      { "courseID": 20 },
+      { "courseID": 87 },
+      { "courseID": 91 }
+    ],
+    "userLiked": [
+      { "fileID": 90 },
+      { "fileID": 63 },
+      { "fileID": 62 },
+      { "fileID": 14 },
+      { "fileID": 35 },
+      { "fileID": 72 },
+      { "fileID": 4 },
+      { "fileID": 24 }
+    ],
+    "userDisliked": [{ "fileID": 11 }],
+    "userComments": [
+      { "commentId": 100 },
+      { "commentId": 84 },
+      { "commentId": 11 },
+      { "commentId": 32 },
+      { "commentId": 89 },
+      { "commentId": 22 }
+    ]
+  },
+  {
+    "userID": "mcounihan29@vistaprint.com",
+    "username": "mcounihan29",
+    "passwordHash": "U4DTaHaWR82",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/237x100.png/ff4444/ffffff",
+    "firstName": "Myrna",
+    "lastName": "Counihan",
+    "userUni": 33,
+    "userSubscribed": [{ "courseID": 16 }],
+    "userLiked": [
+      { "fileID": 76 },
+      { "fileID": 31 },
+      { "fileID": 64 },
+      { "fileID": 75 }
+    ],
+    "userDisliked": [
+      { "fileID": 25 },
+      { "fileID": 45 },
+      { "fileID": 58 },
+      { "fileID": 19 },
+      { "fileID": 71 },
+      { "fileID": 19 },
+      { "fileID": 95 },
+      { "fileID": 82 },
+      { "fileID": 94 },
+      { "fileID": 89 }
+    ],
+    "userComments": [
+      { "commentId": 81 },
+      { "commentId": 45 },
+      { "commentId": 28 },
+      { "commentId": 50 },
+      { "commentId": 95 },
+      { "commentId": 40 },
+      { "commentId": 71 },
+      { "commentId": 41 },
+      { "commentId": 4 }
+    ]
+  },
+  {
+    "userID": "hlappine2a@alexa.com",
+    "username": "hlappine2a",
+    "passwordHash": "9ncUFg7z",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/137x100.png/5fa2dd/ffffff",
+    "firstName": "Herschel",
+    "lastName": "Lappine",
+    "userUni": 71,
+    "userSubscribed": [{ "courseID": 55 }, { "courseID": 29 }],
+    "userLiked": [],
+    "userDisliked": [
+      { "fileID": 48 },
+      { "fileID": 36 },
+      { "fileID": 90 },
+      { "fileID": 76 },
+      { "fileID": 98 },
+      { "fileID": 46 },
+      { "fileID": 82 },
+      { "fileID": 72 },
+      { "fileID": 13 },
+      { "fileID": 60 }
+    ],
+    "userComments": [
+      { "commentId": 13 },
+      { "commentId": 41 },
+      { "commentId": 72 },
+      { "commentId": 86 }
+    ]
+  },
+  {
+    "userID": "tcoleiro2b@answers.com",
+    "username": "tcoleiro2b",
+    "passwordHash": "LPaUfG8",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/156x100.png/cc0000/ffffff",
+    "firstName": "Tiff",
+    "lastName": "Coleiro",
+    "userUni": 57,
+    "userSubscribed": [
+      { "courseID": 61 },
+      { "courseID": 88 },
+      { "courseID": 4 },
+      { "courseID": 27 },
+      { "courseID": 88 },
+      { "courseID": 88 },
+      { "courseID": 95 },
+      { "courseID": 95 },
+      { "courseID": 99 }
+    ],
+    "userLiked": [
+      { "fileID": 88 },
+      { "fileID": 60 },
+      { "fileID": 73 },
+      { "fileID": 95 },
+      { "fileID": 60 },
+      { "fileID": 68 },
+      { "fileID": 43 },
+      { "fileID": 60 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 69 },
+      { "commentId": 44 },
+      { "commentId": 82 },
+      { "commentId": 23 },
+      { "commentId": 70 },
+      { "commentId": 36 },
+      { "commentId": 57 }
+    ]
+  },
+  {
+    "userID": "hlumm2c@wunderground.com",
+    "username": "hlumm2c",
+    "passwordHash": "2XDhmYV",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/246x100.png/dddddd/000000",
+    "firstName": "Horatius",
+    "lastName": "Lumm",
+    "userUni": 72,
+    "userSubscribed": [
+      { "courseID": 48 },
+      { "courseID": 2 },
+      { "courseID": 71 },
+      { "courseID": 61 },
+      { "courseID": 97 },
+      { "courseID": 43 }
+    ],
+    "userLiked": [
+      { "fileID": 16 },
+      { "fileID": 66 },
+      { "fileID": 40 },
+      { "fileID": 83 },
+      { "fileID": 47 },
+      { "fileID": 14 },
+      { "fileID": 34 },
+      { "fileID": 90 },
+      { "fileID": 51 }
+    ],
+    "userDisliked": [
+      { "fileID": 97 },
+      { "fileID": 22 },
+      { "fileID": 19 },
+      { "fileID": 74 },
+      { "fileID": 68 },
+      { "fileID": 11 },
+      { "fileID": 45 },
+      { "fileID": 10 },
+      { "fileID": 55 }
+    ],
+    "userComments": [
+      { "commentId": 86 },
+      { "commentId": 40 },
+      { "commentId": 93 },
+      { "commentId": 78 },
+      { "commentId": 74 },
+      { "commentId": 97 }
+    ]
+  },
+  {
+    "userID": "tbugge2d@deviantart.com",
+    "username": "tbugge2d",
+    "passwordHash": "pu6FIzJovDm",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/231x100.png/ff4444/ffffff",
+    "firstName": "Teddy",
+    "lastName": "Bugge",
+    "userUni": 41,
+    "userSubscribed": [{ "courseID": 84 }],
+    "userLiked": [{ "fileID": 39 }, { "fileID": 26 }],
+    "userDisliked": [{ "fileID": 55 }],
+    "userComments": [{ "commentId": 82 }, { "commentId": 39 }]
+  },
+  {
+    "userID": "gyeoman2e@amazon.co.jp",
+    "username": "gyeoman2e",
+    "passwordHash": "36jlP3Nl1kH",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/144x100.png/dddddd/000000",
+    "firstName": "Gerrie",
+    "lastName": "Yeoman",
+    "userUni": 51,
+    "userSubscribed": [
+      { "courseID": 97 },
+      { "courseID": 42 },
+      { "courseID": 42 },
+      { "courseID": 3 },
+      { "courseID": 51 }
+    ],
+    "userLiked": [
+      { "fileID": 100 },
+      { "fileID": 63 },
+      { "fileID": 11 },
+      { "fileID": 100 },
+      { "fileID": 95 },
+      { "fileID": 69 }
+    ],
+    "userDisliked": [{ "fileID": 84 }, { "fileID": 96 }, { "fileID": 95 }],
+    "userComments": [
+      { "commentId": 90 },
+      { "commentId": 93 },
+      { "commentId": 31 },
+      { "commentId": 39 },
+      { "commentId": 69 },
+      { "commentId": 19 },
+      { "commentId": 87 },
+      { "commentId": 42 }
+    ]
+  },
+  {
+    "userID": "sphizackarley2f@google.it",
+    "username": "sphizackarley2f",
+    "passwordHash": "R2Cgaz5S",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/243x100.png/cc0000/ffffff",
+    "firstName": "Shurlock",
+    "lastName": "Phizackarley",
+    "userUni": 12,
+    "userSubscribed": [],
+    "userLiked": [
+      { "fileID": 68 },
+      { "fileID": 36 },
+      { "fileID": 38 },
+      { "fileID": 95 },
+      { "fileID": 4 },
+      { "fileID": 19 },
+      { "fileID": 26 },
+      { "fileID": 25 }
+    ],
+    "userDisliked": [],
+    "userComments": [
+      { "commentId": 13 },
+      { "commentId": 57 },
+      { "commentId": 45 },
+      { "commentId": 25 },
+      { "commentId": 25 }
+    ]
+  },
+  {
+    "userID": "mtrudgian2g@ucoz.com",
+    "username": "mtrudgian2g",
+    "passwordHash": "x3RRs21zeWQ",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/183x100.png/cc0000/ffffff",
+    "firstName": "Morty",
+    "lastName": "Trudgian",
+    "userUni": 17,
+    "userSubscribed": [{ "courseID": 15 }, { "courseID": 12 }],
+    "userLiked": [
+      { "fileID": 54 },
+      { "fileID": 92 },
+      { "fileID": 90 },
+      { "fileID": 1 },
+      { "fileID": 33 },
+      { "fileID": 81 },
+      { "fileID": 65 },
+      { "fileID": 58 },
+      { "fileID": 16 }
+    ],
+    "userDisliked": [
+      { "fileID": 90 },
+      { "fileID": 44 },
+      { "fileID": 90 },
+      { "fileID": 19 },
+      { "fileID": 94 }
+    ],
+    "userComments": [
+      { "commentId": 60 },
+      { "commentId": 77 },
+      { "commentId": 91 }
+    ]
+  },
+  {
+    "userID": "thardaker2h@g.co",
+    "username": "thardaker2h",
+    "passwordHash": "fYQ75VfUX",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/222x100.png/dddddd/000000",
+    "firstName": "Tobi",
+    "lastName": "Hardaker",
+    "userUni": 86,
+    "userSubscribed": [
+      { "courseID": 98 },
+      { "courseID": 68 },
+      { "courseID": 47 },
+      { "courseID": 52 }
+    ],
+    "userLiked": [
+      { "fileID": 71 },
+      { "fileID": 99 },
+      { "fileID": 63 },
+      { "fileID": 43 },
+      { "fileID": 30 }
+    ],
+    "userDisliked": [
+      { "fileID": 1 },
+      { "fileID": 83 },
+      { "fileID": 47 },
+      { "fileID": 84 },
+      { "fileID": 19 }
+    ],
+    "userComments": [
+      { "commentId": 6 },
+      { "commentId": 17 },
+      { "commentId": 61 }
+    ]
+  },
+  {
+    "userID": "asteadman2i@youtu.be",
+    "username": "asteadman2i",
+    "passwordHash": "u9lm67",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/172x100.png/cc0000/ffffff",
+    "firstName": "Aldrich",
+    "lastName": "Steadman",
+    "userUni": 22,
+    "userSubscribed": [
+      { "courseID": 6 },
+      { "courseID": 81 },
+      { "courseID": 97 },
+      { "courseID": 48 },
+      { "courseID": 61 },
+      { "courseID": 10 },
+      { "courseID": 70 },
+      { "courseID": 94 },
+      { "courseID": 52 },
+      { "courseID": 8 }
+    ],
+    "userLiked": [
+      { "fileID": 3 },
+      { "fileID": 96 },
+      { "fileID": 42 },
+      { "fileID": 74 },
+      { "fileID": 7 },
+      { "fileID": 13 },
+      { "fileID": 10 },
+      { "fileID": 22 }
+    ],
+    "userDisliked": [
+      { "fileID": 86 },
+      { "fileID": 6 },
+      { "fileID": 28 },
+      { "fileID": 85 },
+      { "fileID": 71 },
+      { "fileID": 88 },
+      { "fileID": 78 }
+    ],
+    "userComments": [{ "commentId": 22 }, { "commentId": 86 }]
+  },
+  {
+    "userID": "ksmoth2j@addtoany.com",
+    "username": "ksmoth2j",
+    "passwordHash": "xu2YMVnp6r",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/151x100.png/5fa2dd/ffffff",
+    "firstName": "Kenton",
+    "lastName": "Smoth",
+    "userUni": 44,
+    "userSubscribed": [],
+    "userLiked": [{ "fileID": 20 }],
+    "userDisliked": [
+      { "fileID": 10 },
+      { "fileID": 9 },
+      { "fileID": 55 },
+      { "fileID": 45 },
+      { "fileID": 67 },
+      { "fileID": 56 },
+      { "fileID": 71 }
+    ],
+    "userComments": [
+      { "commentId": 95 },
+      { "commentId": 27 },
+      { "commentId": 51 },
+      { "commentId": 46 },
+      { "commentId": 47 },
+      { "commentId": 91 },
+      { "commentId": 2 },
+      { "commentId": 88 },
+      { "commentId": 61 }
+    ]
+  },
+  {
+    "userID": "ablann2k@cnbc.com",
+    "username": "ablann2k",
+    "passwordHash": "lrwp6QSfkwKs",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/174x100.png/cc0000/ffffff",
+    "firstName": "Adlai",
+    "lastName": "Blann",
+    "userUni": 82,
+    "userSubscribed": [
+      { "courseID": 47 },
+      { "courseID": 7 },
+      { "courseID": 53 },
+      { "courseID": 25 },
+      { "courseID": 93 },
+      { "courseID": 73 },
+      { "courseID": 57 },
+      { "courseID": 23 },
+      { "courseID": 32 },
+      { "courseID": 80 }
+    ],
+    "userLiked": [{ "fileID": 7 }, { "fileID": 1 }],
+    "userDisliked": [{ "fileID": 77 }, { "fileID": 11 }, { "fileID": 48 }],
+    "userComments": [{ "commentId": 8 }]
+  },
+  {
+    "userID": "estoner2l@domainmarket.com",
+    "username": "estoner2l",
+    "passwordHash": "DjlEi4lS9kCh",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/162x100.png/cc0000/ffffff",
+    "firstName": "Emilee",
+    "lastName": "Stoner",
+    "userUni": 4,
+    "userSubscribed": [
+      { "courseID": 87 },
+      { "courseID": 60 },
+      { "courseID": 15 },
+      { "courseID": 81 },
+      { "courseID": 43 },
+      { "courseID": 95 },
+      { "courseID": 17 },
+      { "courseID": 63 }
+    ],
+    "userLiked": [
+      { "fileID": 99 },
+      { "fileID": 69 },
+      { "fileID": 49 },
+      { "fileID": 8 },
+      { "fileID": 96 }
+    ],
+    "userDisliked": [
+      { "fileID": 100 },
+      { "fileID": 54 },
+      { "fileID": 62 },
+      { "fileID": 11 },
+      { "fileID": 98 },
+      { "fileID": 27 },
+      { "fileID": 46 },
+      { "fileID": 13 },
+      { "fileID": 40 }
+    ],
+    "userComments": [
+      { "commentId": 65 },
+      { "commentId": 31 },
+      { "commentId": 3 },
+      { "commentId": 8 },
+      { "commentId": 61 },
+      { "commentId": 48 },
+      { "commentId": 52 },
+      { "commentId": 78 },
+      { "commentId": 79 },
+      { "commentId": 65 }
+    ]
+  },
+  {
+    "userID": "amarages2m@bandcamp.com",
+    "username": "amarages2m",
+    "passwordHash": "NYdQ352e2",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/139x100.png/5fa2dd/ffffff",
+    "firstName": "Ardine",
+    "lastName": "Marages",
+    "userUni": 12,
+    "userSubscribed": [
+      { "courseID": 62 },
+      { "courseID": 42 },
+      { "courseID": 75 },
+      { "courseID": 92 },
+      { "courseID": 9 },
+      { "courseID": 41 }
+    ],
+    "userLiked": [
+      { "fileID": 1 },
+      { "fileID": 74 },
+      { "fileID": 8 },
+      { "fileID": 79 },
+      { "fileID": 34 },
+      { "fileID": 72 },
+      { "fileID": 12 },
+      { "fileID": 10 },
+      { "fileID": 63 },
+      { "fileID": 98 }
+    ],
+    "userDisliked": [
+      { "fileID": 78 },
+      { "fileID": 79 },
+      { "fileID": 43 },
+      { "fileID": 89 },
+      { "fileID": 91 },
+      { "fileID": 18 },
+      { "fileID": 49 }
+    ],
+    "userComments": [
+      { "commentId": 26 },
+      { "commentId": 77 },
+      { "commentId": 47 },
+      { "commentId": 16 },
+      { "commentId": 97 },
+      { "commentId": 90 },
+      { "commentId": 80 },
+      { "commentId": 86 },
+      { "commentId": 42 }
+    ]
+  },
+  {
+    "userID": "ssoutham2n@joomla.org",
+    "username": "ssoutham2n",
+    "passwordHash": "4cBC71cC",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/133x100.png/ff4444/ffffff",
+    "firstName": "Sibby",
+    "lastName": "Southam",
+    "userUni": 7,
+    "userSubscribed": [
+      { "courseID": 65 },
+      { "courseID": 7 },
+      { "courseID": 63 },
+      { "courseID": 7 }
+    ],
+    "userLiked": [{ "fileID": 30 }],
+    "userDisliked": [
+      { "fileID": 19 },
+      { "fileID": 35 },
+      { "fileID": 36 },
+      { "fileID": 17 },
+      { "fileID": 31 },
+      { "fileID": 54 },
+      { "fileID": 35 },
+      { "fileID": 59 },
+      { "fileID": 23 }
+    ],
+    "userComments": [
+      { "commentId": 75 },
+      { "commentId": 90 },
+      { "commentId": 12 }
+    ]
+  },
+  {
+    "userID": "udilkes2o@macromedia.com",
+    "username": "udilkes2o",
+    "passwordHash": "LY4PYq",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/160x100.png/5fa2dd/ffffff",
+    "firstName": "Urbanus",
+    "lastName": "Dilkes",
+    "userUni": 3,
+    "userSubscribed": [
+      { "courseID": 42 },
+      { "courseID": 5 },
+      { "courseID": 79 },
+      { "courseID": 72 },
+      { "courseID": 71 }
+    ],
+    "userLiked": [{ "fileID": 8 }, { "fileID": 20 }],
+    "userDisliked": [{ "fileID": 55 }, { "fileID": 33 }, { "fileID": 21 }],
+    "userComments": [
+      { "commentId": 64 },
+      { "commentId": 42 },
+      { "commentId": 34 },
+      { "commentId": 71 },
+      { "commentId": 9 },
+      { "commentId": 38 },
+      { "commentId": 36 }
+    ]
+  },
+  {
+    "userID": "kring2p@people.com.cn",
+    "username": "kring2p",
+    "passwordHash": "JBf4cHqjRKxA",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/243x100.png/ff4444/ffffff",
+    "firstName": "Karalynn",
+    "lastName": "Ring",
+    "userUni": 81,
+    "userSubscribed": [
+      { "courseID": 93 },
+      { "courseID": 100 },
+      { "courseID": 72 }
+    ],
+    "userLiked": [],
+    "userDisliked": [],
+    "userComments": [{ "commentId": 58 }, { "commentId": 65 }]
+  },
+  {
+    "userID": "iryson2q@princeton.edu",
+    "username": "iryson2q",
+    "passwordHash": "wArtQk",
+    "isAdmin": true,
+    "userAvatarUrl": "http://dummyimage.com/250x100.png/cc0000/ffffff",
+    "firstName": "Ilaire",
+    "lastName": "Ryson",
+    "userUni": 10,
+    "userSubscribed": [
+      { "courseID": 54 },
+      { "courseID": 86 },
+      { "courseID": 15 }
+    ],
+    "userLiked": [
+      { "fileID": 37 },
+      { "fileID": 69 },
+      { "fileID": 48 },
+      { "fileID": 75 },
+      { "fileID": 11 },
+      { "fileID": 80 },
+      { "fileID": 29 },
+      { "fileID": 25 },
+      { "fileID": 61 },
+      { "fileID": 82 }
+    ],
+    "userDisliked": [{ "fileID": 80 }, { "fileID": 52 }, { "fileID": 27 }],
+    "userComments": [
+      { "commentId": 95 },
+      { "commentId": 68 },
+      { "commentId": 22 },
+      { "commentId": 31 },
+      { "commentId": 39 }
+    ]
+  },
+  {
+    "userID": "tfewtrell2r@ycombinator.com",
+    "username": "tfewtrell2r",
+    "passwordHash": "PMryNqX",
+    "isAdmin": false,
+    "userAvatarUrl": "http://dummyimage.com/237x100.png/5fa2dd/ffffff",
+    "firstName": "Tonia",
+    "lastName": "Fewtrell",
+    "userUni": 23,
+    "userSubscribed": [
+      { "courseID": 99 },
+      { "courseID": 85 },
+      { "courseID": 72 },
+      { "courseID": 45 },
+      { "courseID": 82 }
+    ],
+    "userLiked": [
+      { "fileID": 32 },
+      { "fileID": 77 },
+      { "fileID": 60 },
+      { "fileID": 33 },
+      { "fileID": 21 },
+      { "fileID": 55 },
+      { "fileID": 18 },
+      { "fileID": 76 },
+      { "fileID": 45 }
+    ],
+    "userDisliked": [{ "fileID": 62 }, { "fileID": 54 }, { "fileID": 84 }],
+    "userComments": [
+      { "commentId": 33 },
+      { "commentId": 3 },
+      { "commentId": 67 },
+      { "commentId": 8 },
+      { "commentId": 96 }
+    ]
+  }
+]
